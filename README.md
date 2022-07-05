@@ -21,10 +21,10 @@ npm install @memoriai/memori-api-client
 ```ts
 import memoriApiClient from '@memoriai/memori-api-client';
 
-const memoriAPI = memoriApiClient('https://backend.memori.ai');
+const memori = memoriApiClient('https://backend.memori.ai');
 
 (async () => {
-  const { memori, ...response } = await client.backend.getMemoriById(
+  const { memori, ...response } = await memori.backend.getMemoriById(
     '768b9654-e781-4c3c-81fa-ae1529d1bfbe',
     'be2e4a44-890b-483b-a26a-f6e122f36e2b'
   );
