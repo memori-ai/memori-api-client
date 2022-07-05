@@ -1,7 +1,7 @@
 # memori-api-client
 
-[![npm version](https://img.shields.io/github/package-json/v/nzambello/memori-api-client)](https://www.npmjs.com/package/@memoriai/memori-api-client)
-![Tests](https://github.com/nzambello/memori-api-client/workflows/CI/badge.svg?branch=main)
+[![npm version](https://img.shields.io/github/package-json/v/memori-ai/memori-api-client)](https://www.npmjs.com/package/@memoriai/memori-api-client)
+![Tests](https://github.com/memori-ai/memori-api-client/workflows/CI/badge.svg?branch=main)
 ![TypeScript Support](https://img.shields.io/badge/TypeScript-Support-blue)
 
 TypeScript client to integrate with [Memori](https://memori.ai) API.
