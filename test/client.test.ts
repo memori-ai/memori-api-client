@@ -1,16 +1,17 @@
-import memori, { getAPIUrl } from '../src';
+import memori from '../src/index';
+import { getApiUrl } from '../src/helpers';
 
 const client = memori();
 
 describe('API URL', () => {
   it('parses the correct API URL with no arg', () => {
-    expect(getAPIUrl()).toBe('https://backend.memori.ai');
+    expect(getApiUrl()).toBe('https://backend.memori.ai');
   });
   it('parses the correct API URL passing host', () => {
-    expect(getAPIUrl('backend.memori.ai')).toBe('https://backend.memori.ai');
+    expect(getApiUrl('backend.memori.ai')).toBe('https://backend.memori.ai');
   });
   it('parses the correct API URL passing more url parts', () => {
-    expect(getAPIUrl('https://backend.memori.ai/memoriai/awanagana')).toBe(
+    expect(getApiUrl('https://backend.memori.ai/memoriai/awanagana')).toBe(
       'https://backend.memori.ai'
     );
   });
@@ -33,5 +34,26 @@ describe('client', () => {
         'be2e4a44-890b-483b-a26a-f6e122f36e2b'
       )
     ).not.toBeNull();
+  });
+
+  it('has backend queries', () => {
+    expect(Object.keys(client.backend).length).toBeGreaterThan(0);
+  });
+
+  it('has engine queries', () => {
+    expect(Object.keys(client.engine).length).toBeGreaterThan(0);
+  });
+
+  it('has constants', () => {
+    expect(Object.keys(client.constants).length).toBeGreaterThan(0);
+  });
+});
+
+describe('constants', () => {
+  it('has allowed mimetypes constant', () => {
+    expect(client.constants.allowedMediaTypes).toHaveLength(17);
+  });
+  it('has anon tag', () => {
+    expect(client.constants.anonTag).toBe('👤');
   });
 });

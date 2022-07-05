@@ -1,19 +1,15 @@
+import { getApiUrl } from './helpers';
 import backend from './backend';
 import engine from './engine';
-
-export const getAPIUrl = (hostname?: string) =>
-  hostname
-    ? new URL(
-        hostname.startsWith('http') ? hostname : `https://${hostname}`
-      ).origin.replace('http://', 'https://')
-    : 'https://backend.memori.ai';
+import * as constants from './constants';
 
 const api = (hostname?: string) => {
-  const apiUrl = getAPIUrl(hostname);
+  const apiUrl = getApiUrl(hostname);
 
   return {
     backend: backend(`${apiUrl}/api/v2`),
     engine: engine(`${apiUrl}/memori/v2`),
+    constants,
   };
 };
 
