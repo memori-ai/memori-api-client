@@ -9,7 +9,7 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test",
+    "test": "NODE_ENV=test tsdx test",
     "test:husky": "NODE_ENV=test CI=true tsdx test --bail --colors",
     "lint": "tsdx lint",
     "format": "prettier --write '**/*.{tsx,ts}'",
