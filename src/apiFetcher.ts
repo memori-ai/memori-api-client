@@ -17,7 +17,7 @@ export const fetcher = (
       'Content-Type': 'application/json',
       ...opts?.headers,
     },
-  }).then(res => res.json());
+  }).then((res) => res.json());
 
 export const devFetcher = (data: any) => Promise.resolve(data);
 

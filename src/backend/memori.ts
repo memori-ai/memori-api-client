@@ -9,7 +9,7 @@ export default (apiUrl: string) => ({
    */
   getTenantPublicMemoriList: (tenant: string) =>
     apiFetcher(`/TenantPublicMemori/${encodeURI(tenant)}`, {
-      apiUrl
+      apiUrl,
     }) as Promise<
       ResponseSpec & {
         memori: Memori[];
@@ -36,7 +36,7 @@ export default (apiUrl: string) => ({
    * @returns A list of Memori objects
    */
   getAllMemori: (authToken: string) =>
-    apiFetcher(`/AllMemori/${authToken}`, {
+    apiFetcher(`/AllMemori/${authToken}`, {
       apiUrl,
     }) as Promise<
       ResponseSpec & {
@@ -147,9 +147,7 @@ export default (apiUrl: string) => ({
   getMemoriById: (authToken: string, memoriID: string) =>
     apiFetcher(`/Memori/${authToken}/${memoriID}`, {
       apiUrl,
-    }) as Promise<
-      ResponseSpec & { memori: Memori }
-    >,
+    }) as Promise<ResponseSpec & { memori: Memori }>,
 
   /**
    * Gets the details of a Memori object of the currently logged in User.
@@ -163,7 +161,7 @@ export default (apiUrl: string) => ({
     tenantName: string,
     userID: string,
     memoriID: string,
-    authToken?: string,
+    authToken?: string
   ) =>
     apiFetcher(
       `/MemoriById/${tenantName}/${userID}/${memoriID}${
@@ -185,11 +183,11 @@ export default (apiUrl: string) => ({
     tenant: string,
     userName: string,
     memoriName: string,
-    authToken?: string,
+    authToken?: string
   ) =>
     apiFetcher(
       `/Memori/${encodeURI(tenant)}/${encodeURI(userName)}/${encodeURI(
-        memoriName,
+        memoriName
       )}/${authToken ?? ''}`,
       {
         apiUrl,
@@ -207,12 +205,12 @@ export default (apiUrl: string) => ({
     authToken: string,
     memoriID: string,
     dateFrom?: string,
-    dateTo?: string,
+    dateTo?: string
   ) =>
     apiFetcher(
-      `/MemoriSessions/${authToken}/${memoriID}${dateFrom ? `/${dateFrom}` : ''}${
-        dateFrom && dateTo ? `/${dateTo}` : ''
-      }`,
+      `/MemoriSessions/${authToken}/${memoriID}${
+        dateFrom ? `/${dateFrom}` : ''
+      }${dateFrom && dateTo ? `/${dateTo}` : ''}`,
       {
         apiUrl,
       }
