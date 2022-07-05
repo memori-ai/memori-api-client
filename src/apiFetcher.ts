@@ -1,3 +1,5 @@
+import { default as fetch } from 'cross-fetch';
+
 export const fetcher = (
   path: string,
   opts: {
