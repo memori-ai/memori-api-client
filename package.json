@@ -11,6 +11,7 @@
     "build": "tsdx build",
     "test": "NODE_ENV=test tsdx test",
     "test:husky": "NODE_ENV=test CI=true tsdx test --bail --colors",
+    "test:ci": "tsdx test --ci",
     "lint": "tsdx lint",
     "format": "prettier --write '**/*.{tsx,ts}'",
     "typecheck": "tsc -b",
