@@ -28,10 +28,71 @@ const memori = memoriApiClient('https://backend.memori.ai');
     '768b9654-e781-4c3c-81fa-ae1529d1bfbe',
     'be2e4a44-890b-483b-a26a-f6e122f36e2b'
   );
+
+  const {
+    currentState: dialogState,
+    ...resp
+  } = await memori.engine.postTextEnteredEvent(
+    '768b9654-e781-4c3c-81fa-ae1529d1bfbe',
+    'Ciao, Memori!'
+  );
 })();
 ```
 
 For the specification of the APIs, see the typings or the documentation from the dashboard if you are allowed to see it.
+
+### Constants
+
+```ts
+import memoriApiClient from '@memoriai/memori-api-client';
+
+const memori = memoriApiClient('https://backend.memori.ai');
+
+memori.constants.allowedMediaTypes; // list of allowed media types in asset upload
+memori.constants.anonTag; // tag for anonymous users
+```
+
+### TTS
+
+Bundled with this client there is a TTS utility that can be used to synthesize text to speech.
+
+```ts
+const memori = memoriApiClient('https://backend.memori.ai');
+
+// Needs Azure Speech API key
+// See https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstarts/setup-platform?pivots=programming-language-javascript
+// Second parameter is for debug mode
+const speechSdk = memori.speech(AZURE_COGNITIVE_SERVICES_TTS_KEY, true);
+
+// Requires the language code of the text to be spoken
+// And the voice type (female or male)
+const speech = speechSdk('it', 'FEMALE');
+
+speech.speak('Ciao, Memori!', () => {
+  console.log('spoken');
+});
+
+speech.isSpeaking();
+
+speech.stopSpeaking();
+```
+
+### STT
+
+There is also a speech recognition utility.
+
+```ts
+// Same as for the TTS
+const speech = speechSdk('it', 'FEMALE');
+
+speech.recognize(transcript => {
+  console.log('Recognized ', transcript);
+});
+
+speech.isRecognizing();
+
+speech.stopRecognizing();
+```
 
 ## Development
 

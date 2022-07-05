@@ -1,21 +1,6 @@
 import memori from '../src/index';
-import { getApiUrl } from '../src/helpers';
 
 const client = memori();
-
-describe('API URL', () => {
-  it('parses the correct API URL with no arg', () => {
-    expect(getApiUrl()).toBe('https://backend.memori.ai');
-  });
-  it('parses the correct API URL passing host', () => {
-    expect(getApiUrl('backend.memori.ai')).toBe('https://backend.memori.ai');
-  });
-  it('parses the correct API URL passing more url parts', () => {
-    expect(getApiUrl('https://backend.memori.ai/memoriai/awanagana')).toBe(
-      'https://backend.memori.ai'
-    );
-  });
-});
 
 describe('client', () => {
   it('works', async () => {
@@ -46,14 +31,5 @@ describe('client', () => {
 
   it('has constants', () => {
     expect(Object.keys(client.constants).length).toBeGreaterThan(0);
-  });
-});
-
-describe('constants', () => {
-  it('has allowed mimetypes constant', () => {
-    expect(client.constants.allowedMediaTypes).toHaveLength(17);
-  });
-  it('has anon tag', () => {
-    expect(client.constants.anonTag).toBe('👤');
   });
 });
