@@ -1,5 +1,5 @@
-import type { ResponseSpec } from 'types';
-import { apiFetcher } from '../../helpers/apiFetcher';
+import { ResponseSpec, Memori } from '../index.d';
+import { apiFetcher } from '../apiFetcher';
 
 /******************
  *                *
@@ -7,40 +7,45 @@ import { apiFetcher } from '../../helpers/apiFetcher';
  *                *
  ******************/
 
-/**
- * Registration of a new Memori object.
- */
-export const postMemori = async ({ memoriId }: { memoriId: string }) =>
-  apiFetcher(`/Memori`, {
-    method: 'GET',
-    apiUrl: process.env.NEXT_PUBLIC_ENGINE_URL,
-  }) as Promise<ResponseSpec>;
+export default (apiUrl: string) => ({
+  /**
+   * Registration of a new Memori object.
+   * @param {Memori} memori - The Memori object
+   */
+  postMemori: async (memori: Partial<Omit<Memori, 'memoriID'>>) =>
+    apiFetcher(`/Memori`, {
+      method: 'POST',
+      apiUrl,
+      body: memori,
+    }) as Promise<ResponseSpec>,
 
-/**
- * Updates an existing Memori object.
- * @param {string} memoriId The Memori object ID
- */
-export const patchMemori = async ({ memoriId }: { memoriId: string }) =>
-  apiFetcher(`/Memori/${memoriId}`, {
-    method: 'GET',
-    apiUrl: process.env.NEXT_PUBLIC_ENGINE_URL,
-  }) as Promise<ResponseSpec>;
+  /**
+   * Updates an existing Memori object.
+   * @param {Memori} memori - The Memori object
+   */
+  patchMemori: async (memori: Partial<Memori> & { memoriID: string }) =>
+    apiFetcher(`/Memori/${memori.memoriID}`, {
+      method: 'PATCH',
+      apiUrl,
+      body: memori,
+    }) as Promise<ResponseSpec>,
 
-/**
- * Deletes an existing Memori object.
- * @param {string} memoriId The Memori object ID
- */
-export const deleteMemori = async ({ memoriId }: { memoriId: string }) =>
-  apiFetcher(`/Memori/${memoriId}`, {
-    method: 'GET',
-    apiUrl: process.env.NEXT_PUBLIC_ENGINE_URL,
-  }) as Promise<ResponseSpec>;
+  /**
+   * Deletes an existing Memori object.
+   * @param {string} memoriId The Memori object ID
+   */
+  deleteMemori: async (memoriId: string) =>
+    apiFetcher(`/Memori/${memoriId}`, {
+      method: 'DELETE',
+      apiUrl,
+    }) as Promise<ResponseSpec>,
 
-/**
- * Lists Memori objects, with optional filtering.
- */
-export const postSearchMemori = async () =>
-  apiFetcher(`/SearchMemori`, {
-    method: 'GET',
-    apiUrl: process.env.NEXT_PUBLIC_ENGINE_URL,
-  }) as Promise<ResponseSpec>;
+  /**
+   * Lists Memori objects, with optional filtering.
+   */
+  postSearchMemori: async () =>
+    apiFetcher(`/SearchMemori`, {
+      method: 'GET',
+      apiUrl,
+    }) as Promise<ResponseSpec>,
+});

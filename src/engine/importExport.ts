@@ -1,5 +1,5 @@
-import type { ResponseSpec } from 'types';
-import { apiFetcher } from '../../helpers/apiFetcher';
+import { ResponseSpec } from '../index.d';
+import { apiFetcher } from '../apiFetcher';
 
 export interface ImportExportBody {
   csvRows: string[];
@@ -28,17 +28,16 @@ export interface ImportExportReponse {
  *                      *
  ************************/
 
-/**
- * Imports memories from a CSV file.
- * @param {string} sessionId The session ID
- * @param {ImportExportBody} csvData The CSV content info to import
- */
-export const postImportExport = async (
-  sessionId: string,
-  csvData: ImportExportBody,
-) =>
-  apiFetcher(`/ImportExport/ImportCSV/${sessionId}`, {
-    method: 'POST',
-    apiUrl: process.env.NEXT_PUBLIC_ENGINE_URL,
-    body: csvData,
-  }) as Promise<ResponseSpec & ImportExportReponse>;
+export default (apiUrl: string) => ({
+  /**
+   * Imports memories from a CSV file.
+   * @param {string} sessionId The session ID
+   * @param {ImportExportBody} csvData The CSV content info to import
+   */
+  postImportExport: async (sessionId: string, csvData: ImportExportBody) =>
+    apiFetcher(`/ImportExport/ImportCSV/${sessionId}`, {
+      method: 'POST',
+      apiUrl,
+      body: csvData,
+    }) as Promise<ResponseSpec & ImportExportReponse>,
+});
