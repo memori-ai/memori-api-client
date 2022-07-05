@@ -32,4 +32,17 @@ describe('client', () => {
   it('has constants', () => {
     expect(Object.keys(client.constants).length).toBeGreaterThan(0);
   });
+
+  it('has media helper', () => {
+    expect(client.media.getResourceUrl).toBeDefined();
+    expect(client.media.getResourceUrl).toBeInstanceOf(Function);
+  });
+
+  it('media helper works', () => {
+    expect(
+      client.media.getResourceUrl({
+        type: 'avatar',
+      })
+    ).toBe('https://app.twincreator.com/images/memoriAvatar.png');
+  });
 });

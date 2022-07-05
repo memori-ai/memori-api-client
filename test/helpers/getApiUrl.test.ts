@@ -1,4 +1,4 @@
-import { getApiUrl } from '../src/helpers';
+import { getApiUrl } from '../../src/helpers/getApiUrl';
 
 describe('API URL', () => {
   it('parses the correct API URL with no arg', () => {

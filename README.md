@@ -18,6 +18,8 @@ npm install @memoriai/memori-api-client
 
 ## Usage
 
+Every method has JSDoc annotations with usage and description and typings information.
+
 ```ts
 import memoriApiClient from '@memoriai/memori-api-client';
 
@@ -92,6 +94,21 @@ speech.recognize(transcript => {
 speech.isRecognizing();
 
 speech.stopRecognizing();
+```
+
+### Media
+
+There is a helper method parsing media urls from the DB, handling different cases
+
+```ts
+const memori = memoriApiClient('https://backend.memori.ai');
+
+memori.media.getResourceUrl({
+  type: 'avatar',
+  resourceURI: '768b9654-e781-4c3c-81fa-ae1529d1bfbe.png',
+  mediaType: 'image/png',
+  sessionId: 'be2e4a44-890b-483b-a26a-f6e122f36e2b',
+});
 ```
 
 ## Development
