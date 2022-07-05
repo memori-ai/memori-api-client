@@ -2,18 +2,16 @@
   "version": "0.1.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist", "src"],
   "engines": {
-    "node": ">=10"
+    "node": ">=14"
   },
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint",
+    "format": "prettier --write '**/*.{tsx,ts}'",
     "typecheck": "tsc -b",
     "prepare": "tsdx build; is-ci || husky install",
     "size": "size-limit",
@@ -32,8 +30,8 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "memori-api-client",
-  "author": "nzambello",
+  "name": "@memoriai/memori-api-client",
+  "author": "Memori Srl",
   "module": "dist/memori-api-client.esm.js",
   "size-limit": [
     {
@@ -50,9 +48,6 @@
     "@commitlint/config-conventional": "17.0.3",
     "@release-it/conventional-changelog": "5.0.0",
     "@size-limit/preset-small-lib": "7.0.8",
-    "@typescript-eslint/eslint-plugin": "5.30.5",
-    "@typescript-eslint/parser": "5.30.5",
-    "eslint-plugin-prettier": "4.2.1",
     "husky": "8.0.1",
     "is-ci": "3.0.1",
     "release-it": "15.1.1",
@@ -60,8 +55,5 @@
     "tsdx": "0.14.1",
     "tslib": "2.4.0",
     "typescript": "4.7.4"
-  },
-  "dependencies": {
-    "prettier": "2.7.1"
   }
 }

@@ -1,6 +1,20 @@
-import memori from '../src';
+import memori, { getAPIUrl } from '../src';
 
-const client = memori('https://backend.memori.ai');
+const client = memori();
+
+describe('API URL', () => {
+  it('parses the correct API URL with no arg', () => {
+    expect(getAPIUrl()).toBe('https://backend.memori.ai');
+  });
+  it('parses the correct API URL passing host', () => {
+    expect(getAPIUrl('backend.memori.ai')).toBe('https://backend.memori.ai');
+  });
+  it('parses the correct API URL passing more url parts', () => {
+    expect(getAPIUrl('https://backend.memori.ai/memoriai/awanagana')).toBe(
+      'https://backend.memori.ai'
+    );
+  });
+});
 
 describe('client', () => {
   it('works', async () => {

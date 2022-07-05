@@ -1,4 +1,4 @@
-import type { ResponseSpec, Tenant, User } from '../index.d';
+import { ResponseSpec, Tenant, User } from '../index.d';
 import { apiFetcher } from '../apiFetcher';
 
 export default (apiUrl: string) => ({

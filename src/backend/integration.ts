@@ -1,4 +1,4 @@
-import type { ResponseSpec, Integration } from '../index.d';
+import { ResponseSpec, Integration } from '../index.d';
 import { apiFetcher } from '../apiFetcher';
 
 export default (apiUrl: string) => ({

@@ -45,7 +45,7 @@ export type Memori = {
   culture?: string;
   publishedInTheMetaverse?: boolean;
   metaverseEnvironment?: string;
-  properties?: [{ [key: string]: string }];
+  properties?: { [key: string]: string };
   creationTimestamp?: string;
   lastChangeTimestamp?: string;
   integrations?: Integration[];
@@ -88,7 +88,7 @@ export type IntegrationResource = {
   url: string;
 };
 
-export declare type IntegrationType = 'GOOGLE' | 'ALEXA' | 'LANDING_EXPERIENCE';
+export type IntegrationType = 'GOOGLE' | 'ALEXA' | 'LANDING_EXPERIENCE';
 
 export type Integration = {
   integrationID?: string;
