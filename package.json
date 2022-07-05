@@ -2,10 +2,7 @@
   "version": "0.1.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist", "src"],
   "engines": {
     "node": ">=14"
   },
@@ -23,6 +20,16 @@
     "analyze": "size-limit --why"
   },
   "license": "Apache-2.0",
+  "homepage": "https://github.com/memori-ai/memori-api-client#readme",
+  "bugs": "https://github.com/memori-ai/memori-api-client/issues",
+  "repository": "https://github.com/memori-ai/memori-api-client.git",
+  "keywords": [
+    "memori",
+    "memori-ai",
+    "conversational-ai",
+    "api-client",
+    "api-wrapper"
+  ],
   "peerDependencies": {},
   "husky": {
     "hooks": {
