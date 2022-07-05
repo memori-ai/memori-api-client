@@ -51,6 +51,10 @@ To run tests, use `npm test` or `yarn test`.
 
 Code quality is set up with `prettier`, `husky`, and `lint-staged`.
 
+You can run prettier with `npm format` or `yarn format`.
+You can run linter with `npm lint` or `yarn lint`.
+You can run type checking with `npm typecheck` or `yarn typecheck`.
+
 ### Jest
 
 Jest tests are set up to run with `npm test` or `yarn test`.
@@ -65,7 +69,8 @@ TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rol
 
 ### TypeScript
 
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
+`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`.
+You can run type checking with `npm typecheck` or `yarn typecheck`.
 
 ### Continuous Integration
 
