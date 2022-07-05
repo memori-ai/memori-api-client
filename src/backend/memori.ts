@@ -197,7 +197,7 @@ export default (apiUrl: string) => ({
   /**
    * Gets the statistics for sessions opened in a specified interval for the specified Memori object.
    * @param {string} authToken - The login token
-   * @param {string} meomriID - The ID of the Memori object
+   * @param {string} memoriID - The ID of the Memori object
    * @param {string=} dateFrom - The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
    * @param {string=} dateTo - The optional end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
    */
