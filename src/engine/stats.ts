@@ -1,4 +1,4 @@
-import { ResponseSpec, Stats, EventLog } from '../index.d';
+import { ResponseSpec, Stats, EventLog } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /*****************

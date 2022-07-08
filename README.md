@@ -9,11 +9,11 @@ TypeScript client to integrate with [Memori](https://memori.ai) API.
 ## Installation
 
 ```bash
-yarn add @memoriai/memori-api-client
+yarn add @memori.ai/memori-api-client
 ```
 
 ```bash
-npm install @memoriai/memori-api-client
+npm install @memori.ai/memori-api-client
 ```
 
 ## Usage
@@ -21,23 +21,19 @@ npm install @memoriai/memori-api-client
 Every method has JSDoc annotations with usage and description and typings information.
 
 ```ts
-import memoriApiClient from '@memoriai/memori-api-client';
+import memoriApiClient from '@memori.ai/memori-api-client';
 
 const memori = memoriApiClient('https://backend.memori.ai');
 
 (async () => {
-  const { memori, ...response } = await memori.backend.getMemoriById(
-    '768b9654-e781-4c3c-81fa-ae1529d1bfbe',
-    'be2e4a44-890b-483b-a26a-f6e122f36e2b'
+  const { sessionID, currentState, ...response } = await memori.initSession(
+    '768b9654-e781-4c3c-81fa-ae1529d1bfbe'
   );
 
   const {
     currentState: dialogState,
     ...resp
-  } = await memori.engine.postTextEnteredEvent(
-    '768b9654-e781-4c3c-81fa-ae1529d1bfbe',
-    'Ciao, Memori!'
-  );
+  } = await memori.postTextEnteredEvent(sessionID, 'Ciao, Memori!');
 })();
 ```
 
@@ -46,7 +42,7 @@ For the specification of the APIs, see the typings or the documentation from the
 ### Constants
 
 ```ts
-import memoriApiClient from '@memoriai/memori-api-client';
+import memoriApiClient from '@memori.ai/memori-api-client';
 
 const memori = memoriApiClient('https://backend.memori.ai');
 
@@ -96,14 +92,14 @@ speech.isRecognizing();
 speech.stopRecognizing();
 ```
 
-### Media
+### Asset
 
 There is a helper method parsing media urls from the DB, handling different cases
 
 ```ts
 const memori = memoriApiClient('https://backend.memori.ai');
 
-memori.media.getResourceUrl({
+memori.asset.getResourceUrl({
   type: 'avatar',
   resourceURI: '768b9654-e781-4c3c-81fa-ae1529d1bfbe.png',
   mediaType: 'image/png',

@@ -1,16 +1,16 @@
-export type Error = {
+export declare type Error = {
   code: number;
   message: string;
 };
 
-export type ResponseSpec = {
+export declare type ResponseSpec = {
   requestID: string;
   requestDateTime: string;
   resultCode: number;
   resultMessage: string;
 };
 
-export type MemoriConfig = {
+export declare type MemoriConfig = {
   memoriConfigID: string;
   useCase: string;
   culture: string;
@@ -19,7 +19,7 @@ export type MemoriConfig = {
   logoURL?: string;
 };
 
-export type Memori = {
+export declare type Memori = {
   memoriID: string;
   name: string;
   password?: string;
@@ -55,14 +55,14 @@ export type Memori = {
   ownerUserName?: string;
 };
 
-export type Venue = {
+export declare type Venue = {
   placeName: string;
   latitude: number;
   longitude: number;
   uncertainty?: number;
 };
 
-export type User = {
+export declare type User = {
   tenant?: string;
   userID?: string;
   userName?: string;
@@ -83,14 +83,14 @@ export type User = {
   maxFreeSessions?: number;
 };
 
-export type IntegrationResource = {
+export declare type IntegrationResource = {
   name: string;
   url: string;
 };
 
-export type IntegrationType = 'GOOGLE' | 'ALEXA' | 'LANDING_EXPERIENCE';
+export declare type IntegrationType = 'GOOGLE' | 'ALEXA' | 'LANDING_EXPERIENCE';
 
-export type Integration = {
+export declare type Integration = {
   integrationID?: string;
   memoriID?: string;
   type: IntegrationType;
@@ -115,7 +115,7 @@ export type Integration = {
   dataResult?: { [key: string]: any };
 };
 
-export type PublicIntegrationListItem = {
+export declare type PublicIntegrationListItem = {
   integration: Integration;
   memori: Memori;
   memoriUser: User;
@@ -154,14 +154,14 @@ export interface UploadFile<T = any> {
   preview?: string;
 }
 
-export type TenantConfig = {
+export declare type TenantConfig = {
   name: string;
   showNewUser: boolean;
   requirePosition: boolean;
   feedbackURL?: string;
 };
 
-export type Tenant = {
+export declare type Tenant = {
   id: string;
   theme: string;
   config: TenantConfig;
@@ -180,21 +180,22 @@ export type Tenant = {
   maxFreeSessionsPerUser?: number;
 };
 
-export type OpenSession = {
+export declare type OpenSession = {
   memoriID: string;
   password?: string;
   recoveryTokens?: string[];
   tag?: string;
   pin?: string;
+  initialContextVars?: { [key: string]: string };
 };
 
-export type MemoriSession = {
+export declare type MemoriSession = {
   sessionID: string;
   currentState: DialogState;
   stats?: Stats;
 };
 
-export type Medium = {
+export declare type Medium = {
   mediumID: string;
   url?: string;
   content?: string;
@@ -207,7 +208,7 @@ export type Medium = {
   lastChangeName?: string;
 };
 
-export type Stats = {
+export declare type Stats = {
   totalReceivers: number;
   receiversWithMemories: number;
   totalMemories: number;
@@ -226,7 +227,7 @@ export type Stats = {
   failedCorrelations: number;
 };
 
-export type GamificationLevel = {
+export declare type GamificationLevel = {
   points: number;
   badge: string;
   pointsForCurrentBadge: number;
@@ -236,7 +237,7 @@ export type GamificationLevel = {
   };
 };
 
-export type EventLog = {
+export declare type EventLog = {
   eventLogID: string;
   timestamp: string;
   eventType: string;
@@ -249,23 +250,23 @@ export type EventLog = {
   receiverTag?: string;
 };
 
-export type UserLog = {
+export declare type UserLog = {
   timestamp: string;
   count: number;
 };
 
-export type UsersLog = {
+export declare type UsersLog = {
   timestamp: string;
   countUsers: number;
   countRecurrentUsers: number;
 };
 
-export type TranslatedHint = {
+export declare type TranslatedHint = {
   text: string;
   originalText: string;
 };
 
-export type DialogState = {
+export declare type DialogState = {
   state: string;
   stateName: string;
   previousState: string;
@@ -293,7 +294,7 @@ export type DialogState = {
   contextVars?: { [key: string]: string };
 };
 
-export type Person = {
+export declare type Person = {
   personID?: string;
   personType: 'Giver' | 'Receiver';
   name?: string;
@@ -306,14 +307,14 @@ export type Person = {
   lastChangeName?: string;
 };
 
-export type PersonificationProfile = {
+export declare type PersonificationProfile = {
   tag?: string;
   pin?: string;
   name?: string;
   sessionID: string;
 };
 
-export type Invitation = {
+export declare type Invitation = {
   invitationID?: string;
   memoriID: string;
   isInviter?: boolean;
@@ -329,19 +330,19 @@ export type Invitation = {
   lastChangeTimestamp?: string;
 };
 
-export type LocalizationKeyContent = {
+export declare type LocalizationKeyContent = {
   key: string;
   value: string;
 };
 
-export type LocalizationKey = LocalizationKeyContent & {
+export declare type LocalizationKey = LocalizationKeyContent & {
   creationTimestamp?: string;
   creationName?: string;
   lastChangeTimestamp?: string;
   lastChangeName?: string;
 };
 
-export type Asset = {
+export declare type Asset = {
   assetID: string;
   assetURL: string;
   mimeType: string;
@@ -353,7 +354,7 @@ export type Asset = {
   lastChangeTimestamp: string;
 };
 
-export type SearchQuery = {
+export declare type SearchQuery = {
   text: string;
   searchType?: 'Literal' | 'Semantic';
   date?: string;
@@ -368,13 +369,13 @@ export type SearchQuery = {
   numberOfResults?: number;
 };
 
-export type SearchMatches = {
+export declare type SearchMatches = {
   confidence: number;
   confidenceLevel?: 'LOW' | 'MEDIUM' | 'HIGH';
   memory: Memory;
 };
 
-export type Answer = {
+export declare type Answer = {
   text: string;
   preformatted?: boolean;
   creationTimestamp?: string;
@@ -383,7 +384,7 @@ export type Answer = {
   lastChangeName?: string;
 };
 
-export type Memory = {
+export declare type Memory = {
   memoryID: string;
   memoryType: string;
   lastRead?: string;
@@ -415,7 +416,7 @@ export type Memory = {
   lastChangeName?: string;
 };
 
-export type UnansweredQuestion = {
+export declare type UnansweredQuestion = {
   unansweredQuestionID?: string;
   text: string;
   occurrencies: number;
@@ -429,7 +430,7 @@ export type UnansweredQuestion = {
   candidateAnswers?: SearchMatches[];
 };
 
-export type Message = {
+export declare type Message = {
   text: string;
   fromUser?: boolean;
   media?: Medium[];

@@ -1,4 +1,4 @@
-import { ResponseSpec, Memori, MemoriConfig } from '../index.d';
+import { ResponseSpec, Memori, MemoriConfig } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 export default (apiUrl: string) => ({

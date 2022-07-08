@@ -1,4 +1,4 @@
-import { ResponseSpec, Asset } from '../index.d';
+import { ResponseSpec, Asset } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 export default (apiUrl: string) => ({

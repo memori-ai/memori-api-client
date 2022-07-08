@@ -18,7 +18,7 @@ describe('engine/importExport api', () => {
 
   it('works on import apis', async () => {
     expect(
-      await client.engine.importExport.postImportExport(
+      await client.importExport.postImportExport(
         '768b9654-e781-4c3c-81fa-ae1529d1bfbe',
         importExportBody
       )
@@ -27,7 +27,7 @@ describe('engine/importExport api', () => {
 
   it('works on import apis with shorthand version', async () => {
     expect(
-      await client.engine.postImportExport(
+      await client.postImportExport(
         '768b9654-e781-4c3c-81fa-ae1529d1bfbe',
         importExportBody
       )

@@ -26,21 +26,21 @@ describe('client', () => {
   });
 
   it('has engine queries', () => {
-    expect(Object.keys(client.engine).length).toBeGreaterThan(0);
+    expect(Object.keys(client.session).length).toBeGreaterThan(0);
   });
 
   it('has constants', () => {
     expect(Object.keys(client.constants).length).toBeGreaterThan(0);
   });
 
-  it('has media helper', () => {
-    expect(client.media.getResourceUrl).toBeDefined();
-    expect(client.media.getResourceUrl).toBeInstanceOf(Function);
+  it('has asset helper', () => {
+    expect(client.asset.getResourceUrl).toBeDefined();
+    expect(client.asset.getResourceUrl).toBeInstanceOf(Function);
   });
 
-  it('media helper works', () => {
+  it('asset helper works', () => {
     expect(
-      client.media.getResourceUrl({
+      client.asset.getResourceUrl({
         type: 'avatar',
       })
     ).toBe('https://app.twincreator.com/images/memoriAvatar.png');

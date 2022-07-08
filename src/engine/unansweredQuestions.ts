@@ -1,4 +1,4 @@
-import { ResponseSpec, UnansweredQuestion } from '../index.d';
+import { ResponseSpec, UnansweredQuestion } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /*******************************

@@ -2,7 +2,10 @@
   "version": "0.1.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "engines": {
     "node": ">=14"
   },
@@ -43,7 +46,7 @@
     "endOfLine": "lf",
     "trailingComma": "es5"
   },
-  "name": "@memoriai/memori-api-client",
+  "name": "@memori.ai/memori-api-client",
   "author": "Memori Srl",
   "module": "dist/memori-api-client.esm.js",
   "size-limit": [

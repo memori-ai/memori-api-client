@@ -1,4 +1,4 @@
-import { ResponseSpec, SearchQuery, SearchMatches } from '../index.d';
+import { ResponseSpec, SearchQuery, SearchMatches } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /******************

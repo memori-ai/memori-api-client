@@ -2,7 +2,7 @@ import {
   ResponseSpec,
   LocalizationKey,
   LocalizationKeyContent,
-} from '../index.d';
+} from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /****************************

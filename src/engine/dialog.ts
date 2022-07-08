@@ -1,4 +1,4 @@
-import { DialogState, Medium, ResponseSpec } from '../index.d';
+import { DialogState, Medium, ResponseSpec } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /******************

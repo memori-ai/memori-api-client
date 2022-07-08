@@ -1,4 +1,4 @@
-import { ResponseSpec, OpenSession, DialogState } from '../index.d';
+import { ResponseSpec, OpenSession, DialogState } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /*******************

@@ -1,4 +1,4 @@
-import { ResponseSpec, Person } from '../index.d';
+import { ResponseSpec, Person } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /******************

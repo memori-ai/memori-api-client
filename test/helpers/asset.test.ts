@@ -1,9 +1,9 @@
-import media from '../../src/helpers/media';
+import asset from '../../src/helpers/asset';
 
 const apiUrl = 'https://backend.memori.ai/api/v2';
-const { getResourceUrl } = media(apiUrl);
+const { getResourceUrl } = asset(apiUrl);
 
-describe('Media URL helper', () => {
+describe('Asset URL helper', () => {
   const sessionId = 'a196b513-d745-4121-8913-8f457b999add';
   const mediumId = 'f469e3e9-1a45-47df-abf3-eeaa01707510';
 
