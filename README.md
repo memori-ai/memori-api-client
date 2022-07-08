@@ -20,6 +20,8 @@ npm install @memori.ai/memori-api-client
 
 Every method has JSDoc annotations with usage and description and typings information.
 
+See an example [here](https://github.com/memori-ai/examples/blob/main/ts-sdk/index.ts).
+
 ```ts
 import memoriApiClient from '@memori.ai/memori-api-client';
 
