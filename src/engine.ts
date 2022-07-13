@@ -4,7 +4,6 @@ import importExport from './engine/importExport';
 import intents from './engine/intents';
 import localizationKeys from './engine/localizationKeys';
 import media from './engine/media';
-import memori from './engine/memori';
 import memories from './engine/memories';
 import nlp from './engine/nlp';
 import people from './engine/people';
@@ -13,7 +12,6 @@ import search from './engine/search';
 import session from './engine/session';
 import stats from './engine/stats';
 import unansweredQuestions from './engine/unansweredQuestions';
-import webhooks from './engine/webhooks';
 
 export default (apiUrl: string) => ({
   correlationPairs: correlationPairs(apiUrl),
@@ -28,8 +26,6 @@ export default (apiUrl: string) => ({
   ...localizationKeys(apiUrl),
   media: media(apiUrl),
   ...media(apiUrl),
-  memori: memori(apiUrl),
-  ...memori(apiUrl),
   memories: memories(apiUrl),
   ...memories(apiUrl),
   nlp: nlp(apiUrl),
@@ -46,6 +42,4 @@ export default (apiUrl: string) => ({
   ...stats(apiUrl),
   unansweredQuestions: unansweredQuestions(apiUrl),
   ...unansweredQuestions(apiUrl),
-  webhooks: webhooks(apiUrl),
-  ...webhooks(apiUrl),
 });

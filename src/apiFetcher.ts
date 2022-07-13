@@ -1,6 +1,6 @@
 import { default as fetch } from 'cross-fetch';
 
-export const fetcher = (
+export const apiFetcher = (
   path: string,
   opts: {
     apiUrl: string;
@@ -20,10 +20,3 @@ export const fetcher = (
       ...opts?.headers,
     },
   }).then(res => res.json());
-
-export const devFetcher = (data: any) => Promise.resolve(data);
-
-export const apiFetcher =
-  process.env.CI === 'true' || process.env.NODE_ENV === 'test'
-    ? devFetcher
-    : fetcher;

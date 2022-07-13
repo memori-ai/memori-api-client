@@ -409,7 +409,7 @@ var getApiUrl = function getApiUrl(hostname) {
   return hostname ? new URL(hostname.startsWith('http') ? hostname : "https://" + hostname).origin.replace('http://', 'https://') : 'https://backend.memori.ai';
 };
 
-var fetcher = function fetcher(path, opts) {
+var apiFetcher = function apiFetcher(path, opts) {
   return fetch$1("" + opts.apiUrl + path, _extends({}, opts, {
     body: opts != null && opts.body ? JSON.stringify(opts.body) : undefined,
     mode: 'cors',
@@ -422,10 +422,6 @@ var fetcher = function fetcher(path, opts) {
     return res.json();
   });
 };
-var devFetcher = function devFetcher(data) {
-  return Promise.resolve(data);
-};
-var apiFetcher = process.env.CI === 'true' || "development" === 'test' ? devFetcher : fetcher;
 
 var memori = (function (apiUrl) {
   return {
@@ -2187,137 +2183,6 @@ var media = (function (apiUrl) {
   };
 });
 
-/******************
- *                *
- *     Memori     *
- *                *
- ******************/
-
-var memori$1 = (function (apiUrl) {
-  return {
-    /**
-     * Registration of a new Memori object.
-     * @param {Memori} memori - The Memori object
-     */
-    postMemori: function () {
-      var _postMemori = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(memori) {
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                return _context.abrupt("return", apiFetcher("/Memori", {
-                  method: 'POST',
-                  apiUrl: apiUrl,
-                  body: memori
-                }));
-
-              case 1:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-
-      function postMemori(_x) {
-        return _postMemori.apply(this, arguments);
-      }
-
-      return postMemori;
-    }(),
-
-    /**
-     * Updates an existing Memori object.
-     * @param {Memori} memori - The Memori object
-     */
-    patchMemori: function () {
-      var _patchMemori = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(memori) {
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                return _context2.abrupt("return", apiFetcher("/Memori/" + memori.memoriID, {
-                  method: 'PATCH',
-                  apiUrl: apiUrl,
-                  body: memori
-                }));
-
-              case 1:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }));
-
-      function patchMemori(_x2) {
-        return _patchMemori.apply(this, arguments);
-      }
-
-      return patchMemori;
-    }(),
-
-    /**
-     * Deletes an existing Memori object.
-     * @param {string} memoriId The Memori object ID
-     */
-    deleteMemori: function () {
-      var _deleteMemori = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(memoriId) {
-        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                return _context3.abrupt("return", apiFetcher("/Memori/" + memoriId, {
-                  method: 'DELETE',
-                  apiUrl: apiUrl
-                }));
-
-              case 1:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }));
-
-      function deleteMemori(_x3) {
-        return _deleteMemori.apply(this, arguments);
-      }
-
-      return deleteMemori;
-    }(),
-
-    /**
-     * Lists Memori objects, with optional filtering.
-     */
-    postSearchMemori: function () {
-      var _postSearchMemori = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                return _context4.abrupt("return", apiFetcher("/SearchMemori", {
-                  method: 'GET',
-                  apiUrl: apiUrl
-                }));
-
-              case 1:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }));
-
-      function postSearchMemori() {
-        return _postSearchMemori.apply(this, arguments);
-      }
-
-      return postSearchMemori;
-    }()
-  };
-});
-
 /********************
  *                  *
  *     Memories     *
@@ -3267,78 +3132,6 @@ var unansweredQuestions = (function (apiUrl) {
   };
 });
 
-/********************
- *                  *
- *     WebHooks     *
- *                  *
- ********************/
-
-var webhooks = (function (apiUrl) {
-  return {
-    /**
-     * Returns test slot values. Currently available test slots are:<ul><li><code>number</code>: integer numbers between 1 and 10</li><li><code>letter</code>: uppercase letters between A and Z</li><li><code>greek_letter</code>: capitalized Greek letters between Alpha and Omega</li></ul>
-     */
-    postTestSlot: function () {
-      var _postTestSlot = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                return _context.abrupt("return", apiFetcher("/TestSlot", {
-                  method: 'GET',
-                  apiUrl: apiUrl
-                }));
-
-              case 1:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-
-      function postTestSlot() {
-        return _postTestSlot.apply(this, arguments);
-      }
-
-      return postTestSlot;
-    }(),
-
-    /**
-        * Returns test intent results. Currently available test intents are:<ul><li><code>ECHO</code>: emits the intent utterance as-is.</li><li><code>COMBINE_LETTER_AND_NUMBER</code>: requires a letter slot and a number slot,
-     emits the content of the two slots in justaxposition, e.g. "A10".</li><li><code>DATE_RANGE</code>: requires a date slot, emits the date range indicated
-     by the date slot in the format "yyyy/MM/dd - yyyy/MM/dd".</li><li><code>AUTOINCREMENT</code>: returns a progressive number that increments by 1
-     each time the intent is called.</li><li><code>FIBONACCI</code>: returns the next element of the Fibonacci series, using
-     context variables to store the series progression.</li></ul>
-        */
-    postTestIntent: function () {
-      var _postTestIntent = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                return _context2.abrupt("return", apiFetcher("/TestIntent", {
-                  method: 'GET',
-                  apiUrl: apiUrl
-                }));
-
-              case 1:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }));
-
-      function postTestIntent() {
-        return _postTestIntent.apply(this, arguments);
-      }
-
-      return postTestIntent;
-    }()
-  };
-});
-
 var engine = (function (apiUrl) {
   return _extends({
     correlationPairs: correlationPairs(apiUrl)
@@ -3353,8 +3146,6 @@ var engine = (function (apiUrl) {
   }, localizationKeys(apiUrl), {
     media: media(apiUrl)
   }, media(apiUrl), {
-    memori: memori$1(apiUrl)
-  }, memori$1(apiUrl), {
     memories: memories(apiUrl)
   }, memories(apiUrl), {
     nlp: nlp(apiUrl)
@@ -3370,9 +3161,7 @@ var engine = (function (apiUrl) {
     stats: stats(apiUrl)
   }, stats(apiUrl), {
     unansweredQuestions: unansweredQuestions(apiUrl)
-  }, unansweredQuestions(apiUrl), {
-    webhooks: webhooks(apiUrl)
-  }, webhooks(apiUrl));
+  }, unansweredQuestions(apiUrl));
 });
 
 var allowedMediaTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'text/plain', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/pdf', 'video/mp4', 'video/avi', 'audio/mpeg3', 'audio/wav', 'audio/mpeg', 'video/mpeg', 'model/gltf-binary'];

@@ -12,12 +12,6 @@ declare const api: (hostname?: string | undefined) => {
     asset: {
         getResourceUrl: ({ type, resourceURI, sessionID, baseURL, }: import("./helpers/asset").ResourceURLParams) => string;
     };
-    postTestSlot: () => Promise<import("./types").ResponseSpec>;
-    postTestIntent: () => Promise<import("./types").ResponseSpec>;
-    webhooks: {
-        postTestSlot: () => Promise<import("./types").ResponseSpec>;
-        postTestIntent: () => Promise<import("./types").ResponseSpec>;
-    };
     getUnansweredQuestions: (sessionId: string) => Promise<import("./types").ResponseSpec & {
         unansweredQuestions: import("./types").UnansweredQuestion[];
     }>;
@@ -151,20 +145,6 @@ declare const api: (hostname?: string | undefined) => {
             memoryID: string;
         }>;
         getMemoryAccess: (sessionId: string, memoryId: string) => Promise<import("./types").ResponseSpec>;
-    };
-    postMemori: (memori: Partial<Pick<import("./types").Memori, "creationTimestamp" | "lastChangeTimestamp" | "name" | "password" | "recoveryTokens" | "newPassword" | "ownerUserID" | "ownerTenantName" | "memoriConfigurationID" | "description" | "engineMemoriID" | "isGiver" | "isReceiver" | "giverTag" | "giverPIN" | "privacyType" | "secretToken" | "minimumNumberOfRecoveryTokens" | "totalNumberOfRecoveryTokens" | "avatarURL" | "coverURL" | "needsPosition" | "voiceType" | "culture" | "publishedInTheMetaverse" | "metaverseEnvironment" | "properties" | "integrations" | "sentInvitations" | "receivedInvitations" | "categories" | "ownerUserName">>) => Promise<import("./types").ResponseSpec>;
-    patchMemori: (memori: Partial<import("./types").Memori> & {
-        memoriID: string;
-    }) => Promise<import("./types").ResponseSpec>;
-    deleteMemori: (memoriId: string) => Promise<import("./types").ResponseSpec>;
-    postSearchMemori: () => Promise<import("./types").ResponseSpec>;
-    memori: {
-        postMemori: (memori: Partial<Pick<import("./types").Memori, "creationTimestamp" | "lastChangeTimestamp" | "name" | "password" | "recoveryTokens" | "newPassword" | "ownerUserID" | "ownerTenantName" | "memoriConfigurationID" | "description" | "engineMemoriID" | "isGiver" | "isReceiver" | "giverTag" | "giverPIN" | "privacyType" | "secretToken" | "minimumNumberOfRecoveryTokens" | "totalNumberOfRecoveryTokens" | "avatarURL" | "coverURL" | "needsPosition" | "voiceType" | "culture" | "publishedInTheMetaverse" | "metaverseEnvironment" | "properties" | "integrations" | "sentInvitations" | "receivedInvitations" | "categories" | "ownerUserName">>) => Promise<import("./types").ResponseSpec>;
-        patchMemori: (memori: Partial<import("./types").Memori> & {
-            memoriID: string;
-        }) => Promise<import("./types").ResponseSpec>;
-        deleteMemori: (memoriId: string) => Promise<import("./types").ResponseSpec>;
-        postSearchMemori: () => Promise<import("./types").ResponseSpec>;
     };
     getMedia: (sessionId: string, memoryId: string) => Promise<import("./types").ResponseSpec>;
     deleteMedia: (sessionId: string, memoryId: string) => Promise<import("./types").ResponseSpec>;
