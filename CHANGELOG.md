@@ -1,5 +1,12 @@
 
 
+## [0.1.1](https://github.com/memori-ai/memori-api-client/compare/v0.1.0...v0.1.1) (2022-07-13)
+
+
+### Changes
+
+* remove test env, run test with actual method, remove useless private api calls ([d432fe7](https://github.com/memori-ai/memori-api-client/commit/d432fe70ea0ab55176bac44195be6c7dc6c27674))
+
 ## 0.1.0 (2022-07-13)
 
 
