@@ -82,6 +82,8 @@ export declare type User = {
     canEditDynamicIntents?: boolean;
     canEditMemoriChaining?: boolean;
     maxFreeSessions?: number;
+    creationTimestamp?: string;
+    lastChangeTimestamp?: string;
 };
 export declare type IntegrationResource = {
     name: string;
