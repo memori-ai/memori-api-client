@@ -1,11 +1,8 @@
 {
-  "version": "0.1.0",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist", "src"],
   "engines": {
     "node": ">=14"
   },
@@ -20,7 +17,8 @@
     "typecheck": "tsc -b",
     "prepare": "tsdx build; is-ci || husky install",
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "analyze": "size-limit --why",
+    "release": "release-it"
   },
   "license": "Apache-2.0",
   "homepage": "https://github.com/memori-ai/memori-api-client#readme",
@@ -59,6 +57,50 @@
       "limit": "10 KB"
     }
   ],
+  "release-it": {
+    "git": {
+      "tagName": "v${version}",
+      "commitMessage": "chore: release v${version}"
+    },
+    "npm": {
+      "publish": true,
+      "skipChecks": true
+    },
+    "github": {
+      "release": true,
+      "releaseName": "${version}"
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "infile": "CHANGELOG.md",
+        "preset": {
+          "name": "conventionalcommits",
+          "types": [
+            {
+              "type": "feat",
+              "section": "Features"
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes"
+            },
+            {
+              "type": "refactor",
+              "section": "Changes"
+            },
+            {
+              "type": "chore",
+              "section": "Maintenance"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "devDependencies": {
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
