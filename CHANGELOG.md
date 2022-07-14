@@ -1,5 +1,12 @@
 
 
+## [0.1.2](https://github.com/memori-ai/memori-api-client/compare/v0.1.1...v0.1.2) (2022-07-14)
+
+
+### Bug Fixes
+
+* remove disabling of microsoft speech sdk telemetry, will re-enabling it (ref: microsoft/cognitive-services-speech-sdk-js[#552](https://github.com/memori-ai/memori-api-client/issues/552)) ([763c294](https://github.com/memori-ai/memori-api-client/commit/763c29485c3a616be3c52826abdad7cefc0a65f7))
+
 ## [0.1.1](https://github.com/memori-ai/memori-api-client/compare/v0.1.0...v0.1.1) (2022-07-13)
 
 
