@@ -52,7 +52,24 @@ memori.constants.allowedMediaTypes; // list of allowed media types in asset uplo
 memori.constants.anonTag; // tag for anonymous users
 ```
 
+### Asset
+
+There is a helper method parsing media urls from the DB, handling different cases
+
+```ts
+const memori = memoriApiClient('https://backend.memori.ai');
+
+memori.asset.getResourceUrl({
+  type: 'avatar',
+  resourceURI: '768b9654-e781-4c3c-81fa-ae1529d1bfbe.png',
+  mediaType: 'image/png',
+  sessionId: 'be2e4a44-890b-483b-a26a-f6e122f36e2b',
+});
+```
+
 ### TTS
+
+> Experimental
 
 Bundled with this client there is a TTS utility that can be used to synthesize text to speech.
 
@@ -79,6 +96,8 @@ speech.stopSpeaking();
 
 ### STT
 
+> Experimental
+
 There is also a speech recognition utility.
 
 ```ts
@@ -92,21 +111,6 @@ speech.recognize(transcript => {
 speech.isRecognizing();
 
 speech.stopRecognizing();
-```
-
-### Asset
-
-There is a helper method parsing media urls from the DB, handling different cases
-
-```ts
-const memori = memoriApiClient('https://backend.memori.ai');
-
-memori.asset.getResourceUrl({
-  type: 'avatar',
-  resourceURI: '768b9654-e781-4c3c-81fa-ae1529d1bfbe.png',
-  mediaType: 'image/png',
-  sessionId: 'be2e4a44-890b-483b-a26a-f6e122f36e2b',
-});
 ```
 
 ## Development

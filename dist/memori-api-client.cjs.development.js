@@ -3246,6 +3246,10 @@ var getCultureCodeByLanguage = function getCultureCodeByLanguage(lang) {
 
   return voice;
 };
+/**
+ * EXPERIMENTAL
+ */
+
 
 var speech = function speech(AZURE_COGNITIVE_SERVICES_TTS_KEY, DEBUG) {
   if (DEBUG === void 0) {
@@ -3253,7 +3257,6 @@ var speech = function speech(AZURE_COGNITIVE_SERVICES_TTS_KEY, DEBUG) {
   }
 
   return function (lang, voiceType) {
-    speechSdk.Recognizer.enableTelemetry(false);
     var speechConfig = speechSdk.SpeechConfig.fromSubscription(AZURE_COGNITIVE_SERVICES_TTS_KEY, 'eastus');
     var speechSynthesizer;
     var audioDestination;

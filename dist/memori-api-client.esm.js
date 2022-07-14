@@ -1,5 +1,5 @@
 import fetch$1 from 'cross-fetch';
-import { Recognizer, SpeechConfig, SpeakerAudioDestination, AudioConfig, SpeechSynthesizer, SpeechRecognizer, ResultReason, CancellationReason } from 'microsoft-cognitiveservices-speech-sdk';
+import { SpeechConfig, SpeakerAudioDestination, AudioConfig, SpeechSynthesizer, SpeechRecognizer, ResultReason, CancellationReason } from 'microsoft-cognitiveservices-speech-sdk';
 
 function _regeneratorRuntime() {
   /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
@@ -3240,6 +3240,10 @@ var getCultureCodeByLanguage = function getCultureCodeByLanguage(lang) {
 
   return voice;
 };
+/**
+ * EXPERIMENTAL
+ */
+
 
 var speech = function speech(AZURE_COGNITIVE_SERVICES_TTS_KEY, DEBUG) {
   if (DEBUG === void 0) {
@@ -3247,7 +3251,6 @@ var speech = function speech(AZURE_COGNITIVE_SERVICES_TTS_KEY, DEBUG) {
   }
 
   return function (lang, voiceType) {
-    Recognizer.enableTelemetry(false);
     var speechConfig = SpeechConfig.fromSubscription(AZURE_COGNITIVE_SERVICES_TTS_KEY, 'eastus');
     var speechSynthesizer;
     var audioDestination;

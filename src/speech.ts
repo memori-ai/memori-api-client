@@ -72,12 +72,13 @@ const getCultureCodeByLanguage = (lang: string): string => {
   return voice;
 };
 
+/**
+ * EXPERIMENTAL
+ */
 const speech = (AZURE_COGNITIVE_SERVICES_TTS_KEY: string, DEBUG = false) => (
   lang: string,
   voiceType: 'FEMALE' | 'MALE'
 ) => {
-  speechSdk.Recognizer.enableTelemetry(false);
-
   let speechConfig: speechSdk.SpeechConfig = speechSdk.SpeechConfig.fromSubscription(
     AZURE_COGNITIVE_SERVICES_TTS_KEY,
     'eastus'
