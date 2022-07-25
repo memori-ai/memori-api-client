@@ -1,5 +1,17 @@
 
 
+## [0.2.0](https://github.com/memori-ai/memori-api-client/compare/v0.1.2...v0.2.0) (2022-07-25)
+
+
+### Features
+
+* add contextVars apis ([864a6fc](https://github.com/memori-ai/memori-api-client/commit/864a6fc12fd5d44fdb403bc083cc0f17205d18eb))
+
+
+### Changes
+
+* patch memori accepts partial memori object ([8b52bc9](https://github.com/memori-ai/memori-api-client/commit/8b52bc93e245c80b643addd956e1ef86d007008e))
+
 ## [0.1.2](https://github.com/memori-ai/memori-api-client/compare/v0.1.1...v0.1.2) (2022-07-14)
 
 
