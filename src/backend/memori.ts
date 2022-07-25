@@ -119,7 +119,10 @@ export default (apiUrl: string) => ({
    * @param memori - The Memori object
    * @returns The created Memori object
    */
-  updateMemori: (authToken: string, memori: Memori) =>
+  updateMemori: (
+    authToken: string,
+    memori: Partial<Memori> & { memoriID: string }
+  ) =>
     apiFetcher(`/Memori/${authToken}/${memori.memoriID}`, {
       apiUrl,
       body: memori,
