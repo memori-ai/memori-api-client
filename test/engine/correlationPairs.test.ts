@@ -2,7 +2,7 @@ import memori from '../../src';
 
 const client = memori('https://backend.memori.ai');
 
-describe('engine/correlationParis api', () => {
+describe('engine/correlationPairs api', () => {
   it('works on correlationPairs apis', async () => {
     expect(
       await client.correlationPairs.getCorrelationPairs(
