@@ -71,7 +71,9 @@ declare const _default: (apiUrl: string) => {
      * @param memori - The Memori object
      * @returns The created Memori object
      */
-    updateMemori: (authToken: string, memori: Memori) => Promise<ResponseSpec & {
+    updateMemori: (authToken: string, memori: Partial<Memori> & {
+        memoriID: string;
+    }) => Promise<ResponseSpec & {
         memori: Memori;
     }>;
     /**

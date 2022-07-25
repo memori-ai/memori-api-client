@@ -103,7 +103,9 @@ declare const backendAPI: (apiUrl: string) => {
     createMemori: (authToken: string, memori: import("./types").Memori) => Promise<import("./types").ResponseSpec & {
         memori: import("./types").Memori;
     }>;
-    updateMemori: (authToken: string, memori: import("./types").Memori) => Promise<import("./types").ResponseSpec & {
+    updateMemori: (authToken: string, memori: Partial<import("./types").Memori> & {
+        memoriID: string;
+    }) => Promise<import("./types").ResponseSpec & {
         memori: import("./types").Memori;
     }>;
     deleteMemori: (authToken: string, memori: import("./types").Memori) => Promise<import("./types").ResponseSpec>;
@@ -165,7 +167,9 @@ declare const backendAPI: (apiUrl: string) => {
         createMemori: (authToken: string, memori: import("./types").Memori) => Promise<import("./types").ResponseSpec & {
             memori: import("./types").Memori;
         }>;
-        updateMemori: (authToken: string, memori: import("./types").Memori) => Promise<import("./types").ResponseSpec & {
+        updateMemori: (authToken: string, memori: Partial<import("./types").Memori> & {
+            memoriID: string;
+        }) => Promise<import("./types").ResponseSpec & {
             memori: import("./types").Memori;
         }>;
         deleteMemori: (authToken: string, memori: import("./types").Memori) => Promise<import("./types").ResponseSpec>;

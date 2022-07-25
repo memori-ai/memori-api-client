@@ -2,10 +2,7 @@
   "version": "0.2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist", "src"],
   "engines": {
     "node": ">=14"
   },
@@ -21,7 +18,7 @@
     "prepare": "tsdx build; is-ci || husky install",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "prerelase": "tsdx build",
+    "prerelase": "tsdx build && git add . && git commit -m 'chore: update dist'",
     "release": "release-it"
   },
   "license": "Apache-2.0",

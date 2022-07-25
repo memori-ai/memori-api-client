@@ -12,6 +12,28 @@ declare const api: (hostname?: string | undefined) => {
     asset: {
         getResourceUrl: ({ type, resourceURI, sessionID, baseURL, }: import("./helpers/asset").ResourceURLParams) => string;
     };
+    getContextVars: (sessionId: string) => Promise<import("./types").ResponseSpec & {
+        [variable: string]: string[];
+    }>;
+    getContextVarNames: (sessionId: string) => Promise<import("./types").ResponseSpec & {
+        contextVarNames: string[];
+    }>;
+    getContextVarValues: (sessionId: string, contextVarName: string) => Promise<import("./types").ResponseSpec & {
+        contextVarName: string;
+        contextVarValues: string[];
+    }>;
+    contextVars: {
+        getContextVars: (sessionId: string) => Promise<import("./types").ResponseSpec & {
+            [variable: string]: string[];
+        }>;
+        getContextVarNames: (sessionId: string) => Promise<import("./types").ResponseSpec & {
+            contextVarNames: string[];
+        }>;
+        getContextVarValues: (sessionId: string, contextVarName: string) => Promise<import("./types").ResponseSpec & {
+            contextVarName: string;
+            contextVarValues: string[];
+        }>;
+    };
     getUnansweredQuestions: (sessionId: string) => Promise<import("./types").ResponseSpec & {
         unansweredQuestions: import("./types").UnansweredQuestion[];
     }>;
@@ -391,7 +413,9 @@ declare const api: (hostname?: string | undefined) => {
         createMemori: (authToken: string, memori: import("./types").Memori) => Promise<import("./types").ResponseSpec & {
             memori: import("./types").Memori;
         }>;
-        updateMemori: (authToken: string, memori: import("./types").Memori) => Promise<import("./types").ResponseSpec & {
+        updateMemori: (authToken: string, memori: Partial<import("./types").Memori> & {
+            memoriID: string;
+        }) => Promise<import("./types").ResponseSpec & {
             memori: import("./types").Memori;
         }>;
         deleteMemori: (authToken: string, memori: import("./types").Memori) => Promise<import("./types").ResponseSpec>;
@@ -453,7 +477,9 @@ declare const api: (hostname?: string | undefined) => {
             createMemori: (authToken: string, memori: import("./types").Memori) => Promise<import("./types").ResponseSpec & {
                 memori: import("./types").Memori;
             }>;
-            updateMemori: (authToken: string, memori: import("./types").Memori) => Promise<import("./types").ResponseSpec & {
+            updateMemori: (authToken: string, memori: Partial<import("./types").Memori> & {
+                memoriID: string;
+            }) => Promise<import("./types").ResponseSpec & {
                 memori: import("./types").Memori;
             }>;
             deleteMemori: (authToken: string, memori: import("./types").Memori) => Promise<import("./types").ResponseSpec>;

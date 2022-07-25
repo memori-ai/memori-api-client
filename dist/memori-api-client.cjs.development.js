@@ -3132,6 +3132,107 @@ var unansweredQuestions = (function (apiUrl) {
   };
 });
 
+/****************************
+ *                          *
+ *       ContextVars        *
+ *                          *
+ ****************************/
+
+var contextVars = (function (apiUrl) {
+  return {
+    /**
+     * Gets a list of currently known context variables.
+     * @param {string} sessionId The session ID
+     */
+    getContextVars: function () {
+      var _getContextVars = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(sessionId) {
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.abrupt("return", apiFetcher("/ContextVars/" + sessionId, {
+                  method: 'GET',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function getContextVars(_x) {
+        return _getContextVars.apply(this, arguments);
+      }
+
+      return getContextVars;
+    }(),
+
+    /**
+     * Gets a list of currently known context variable names.
+     * @param {string} sessionId The session ID
+     */
+    getContextVarNames: function () {
+      var _getContextVarNames = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId) {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                return _context2.abrupt("return", apiFetcher("/ContextVarNames/" + sessionId, {
+                  method: 'GET',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function getContextVarNames(_x2) {
+        return _getContextVarNames.apply(this, arguments);
+      }
+
+      return getContextVarNames;
+    }(),
+
+    /**
+     * /memori/v2/ContextVarValues/{strSessionID}/{contextVarName}
+     * @param {string} sessionId The session ID
+     * @param {string} contextVarName The name of the context variable
+     */
+    getContextVarValues: function () {
+      var _getContextVarValues = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, contextVarName) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", apiFetcher("/ContextVarValues/" + sessionId + "/" + contextVarName, {
+                  method: 'GET',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function getContextVarValues(_x3, _x4) {
+        return _getContextVarValues.apply(this, arguments);
+      }
+
+      return getContextVarValues;
+    }()
+  };
+});
+
 var engine = (function (apiUrl) {
   return _extends({
     correlationPairs: correlationPairs(apiUrl)
@@ -3161,7 +3262,9 @@ var engine = (function (apiUrl) {
     stats: stats(apiUrl)
   }, stats(apiUrl), {
     unansweredQuestions: unansweredQuestions(apiUrl)
-  }, unansweredQuestions(apiUrl));
+  }, unansweredQuestions(apiUrl), {
+    contextVars: contextVars(apiUrl)
+  }, contextVars(apiUrl));
 });
 
 var allowedMediaTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'text/plain', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/pdf', 'video/mp4', 'video/avi', 'audio/mpeg3', 'audio/wav', 'audio/mpeg', 'video/mpeg', 'model/gltf-binary'];

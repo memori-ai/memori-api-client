@@ -1,4 +1,26 @@
 declare const _default: (apiUrl: string) => {
+    getContextVars: (sessionId: string) => Promise<import("./types").ResponseSpec & {
+        [variable: string]: string[];
+    }>;
+    getContextVarNames: (sessionId: string) => Promise<import("./types").ResponseSpec & {
+        contextVarNames: string[];
+    }>;
+    getContextVarValues: (sessionId: string, contextVarName: string) => Promise<import("./types").ResponseSpec & {
+        contextVarName: string;
+        contextVarValues: string[];
+    }>;
+    contextVars: {
+        getContextVars: (sessionId: string) => Promise<import("./types").ResponseSpec & {
+            [variable: string]: string[];
+        }>;
+        getContextVarNames: (sessionId: string) => Promise<import("./types").ResponseSpec & {
+            contextVarNames: string[];
+        }>;
+        getContextVarValues: (sessionId: string, contextVarName: string) => Promise<import("./types").ResponseSpec & {
+            contextVarName: string;
+            contextVarValues: string[];
+        }>;
+    };
     getUnansweredQuestions: (sessionId: string) => Promise<import("./types").ResponseSpec & {
         unansweredQuestions: import("./types").UnansweredQuestion[];
     }>;
