@@ -12,6 +12,7 @@ import search from './engine/search';
 import session from './engine/session';
 import stats from './engine/stats';
 import unansweredQuestions from './engine/unansweredQuestions';
+import contextVars from './engine/contextVars';
 
 export default (apiUrl: string) => ({
   correlationPairs: correlationPairs(apiUrl),
@@ -42,4 +43,6 @@ export default (apiUrl: string) => ({
   ...stats(apiUrl),
   unansweredQuestions: unansweredQuestions(apiUrl),
   ...unansweredQuestions(apiUrl),
+  contextVars: contextVars(apiUrl),
+  ...contextVars(apiUrl),
 });
