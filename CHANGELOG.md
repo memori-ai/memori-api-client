@@ -1,5 +1,12 @@
 
 
+## [0.2.1](https://github.com/memori-ai/memori-api-client/compare/v0.2.0...v0.2.1) (2022-07-25)
+
+
+### Maintenance
+
+* update dist ([01032df](https://github.com/memori-ai/memori-api-client/commit/01032df21c57d02e37c8653fedb8f339f8a56b6a))
+
 ## [0.2.0](https://github.com/memori-ai/memori-api-client/compare/v0.1.2...v0.2.0) (2022-07-25)
 
 
