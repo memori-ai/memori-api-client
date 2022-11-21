@@ -1,4 +1,19 @@
 declare const backendAPI: (apiUrl: string) => {
+    getTenantNotifications: (tenantID: string) => Promise<import("./types").ResponseSpec & {
+        notifications: import("./types").Notification[];
+    }>;
+    getUserNotifications: (authToken: string) => Promise<import("./types").ResponseSpec & {
+        notifications: import("./types").Notification[];
+    }>;
+    getTenantConsumptionLogs: (authToken: string, tenantID: string, type: "Daily" | "Monthly", dateFrom?: string | undefined, dateTo?: string | undefined) => Promise<import("./types").ResponseSpec & {
+        consumptionLogs: import("./types").ConsumptionLog[];
+    }>;
+    getUserConsumptionLogs: (authToken: string, userID: string, type: "Daily" | "Monthly", dateFrom?: string | undefined, dateTo?: string | undefined) => Promise<import("./types").ResponseSpec & {
+        consumptionLogs: import("./types").ConsumptionLog[];
+    }>;
+    getMemoriConsumptionLogs: (authToken: string, memoriID: string, type: "Daily" | "Monthly", dateFrom?: string | undefined, dateTo?: string | undefined) => Promise<import("./types").ResponseSpec & {
+        consumptionLogs: import("./types").ConsumptionLog[];
+    }>;
     getSentInvitations: (authToken: string) => Promise<import("./types").ResponseSpec & {
         invitations: import("./types").Invitation[];
     }>;
@@ -122,6 +137,10 @@ declare const backendAPI: (apiUrl: string) => {
         totalSessions: number;
         validSessions: number;
     }>;
+    transferMemori: (authToken: string, memori: import("./types").Memori & {
+        ownerTenantName: string;
+        ownerUserName: string;
+    }) => Promise<import("./types").ResponseSpec>;
     getUploadAssetURL: (authToken: string, memoriID: string, memoryID?: string | undefined) => string;
     uploadAsset: (fileName: string, fileUrl: string, authToken: string, memoriID: string, memoryID?: string | undefined) => Promise<import("./types").ResponseSpec & {
         asset: import("./types").Asset;
@@ -186,6 +205,10 @@ declare const backendAPI: (apiUrl: string) => {
             totalSessions: number;
             validSessions: number;
         }>;
+        transferMemori: (authToken: string, memori: import("./types").Memori & {
+            ownerTenantName: string;
+            ownerUserName: string;
+        }) => Promise<import("./types").ResponseSpec>;
     };
     user: {
         userSignIn: (user: import("./types").User) => Promise<import("./types").ResponseSpec & {
@@ -271,6 +294,25 @@ declare const backendAPI: (apiUrl: string) => {
         }>;
         sendInvitation: (authToken: string, invitation: Partial<Pick<import("./types").Invitation, "memoriID" | "isInviter" | "isInvitee" | "text" | "destinationEMail" | "destinationName" | "tag" | "pin" | "type" | "state" | "creationTimestamp" | "lastChangeTimestamp">>) => Promise<import("./types").ResponseSpec & {
             invitation: import("./types").Invitation;
+        }>;
+    };
+    consumptionLogs: {
+        getTenantConsumptionLogs: (authToken: string, tenantID: string, type: "Daily" | "Monthly", dateFrom?: string | undefined, dateTo?: string | undefined) => Promise<import("./types").ResponseSpec & {
+            consumptionLogs: import("./types").ConsumptionLog[];
+        }>;
+        getUserConsumptionLogs: (authToken: string, userID: string, type: "Daily" | "Monthly", dateFrom?: string | undefined, dateTo?: string | undefined) => Promise<import("./types").ResponseSpec & {
+            consumptionLogs: import("./types").ConsumptionLog[];
+        }>;
+        getMemoriConsumptionLogs: (authToken: string, memoriID: string, type: "Daily" | "Monthly", dateFrom?: string | undefined, dateTo?: string | undefined) => Promise<import("./types").ResponseSpec & {
+            consumptionLogs: import("./types").ConsumptionLog[];
+        }>;
+    };
+    notifications: {
+        getTenantNotifications: (tenantID: string) => Promise<import("./types").ResponseSpec & {
+            notifications: import("./types").Notification[];
+        }>;
+        getUserNotifications: (authToken: string) => Promise<import("./types").ResponseSpec & {
+            notifications: import("./types").Notification[];
         }>;
     };
 };

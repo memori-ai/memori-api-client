@@ -1,30 +1,55 @@
 import { ResponseSpec } from '../types';
-export interface ImportExportBody {
-    csvRows: string[];
+export interface ImportCSVParams {
+    includedRows?: number[];
+    hasHeaders?: boolean;
+    headerNames?: string[];
+    forceImport?: boolean;
     questionColumnName: string;
     answerColumnName: string;
-    propertyColumnNames: string[];
-    includedRows: number[];
-    csvSeparator: string;
-    questionTitleVariantsSeparator: string;
-    hasHeaders: boolean;
-    forceImport: boolean;
-    headerNames: string[];
+    contextVarsToMatchColumnName?: string;
+    contextVarsToSetColumnName?: string;
+    csvSeparator?: string;
+    questionTitleVariantsSeparator?: string;
 }
-export interface ImportExportReponse {
+export interface ExportCSVParams {
+    newLine: '\n' | '\r\n';
+    hasHeaders?: boolean;
+    questionColumnName: string;
+    answerColumnName: string;
+    contextVarsToMatchColumnName?: string;
+    contextVarsToSetColumnName?: string;
+    csvSeparator?: string;
+    questionTitleVariantsSeparator?: string;
+}
+export interface ImportReponse {
     importID: string;
-    importedMemories: number;
+    importedMemories?: number;
     importWarnings?: {
-        warningType: string;
+        warningType: 'Existing Similar Memory' | 'Internal Error';
+        rowNumber?: number;
+        csvRow: string;
+        text?: string;
+        similarTexts?: {
+            text: string;
+            similarityLevel: 'HIGH' | 'MEDIUM' | 'LOW';
+        }[];
     }[];
 }
 declare const _default: (apiUrl: string) => {
     /**
      * Imports memories from a CSV file.
      * @param {string} sessionId The session ID
-     * @param {ImportExportBody} csvData The CSV content info to import
+     * @param {string[]} csvRows Rows of the CSV file.
+     * @param {ImportCSVParams} params The specifications and content of the CSV file
      */
-    postImportExport: (sessionId: string, csvData: ImportExportBody) => Promise<ResponseSpec & ImportExportReponse>;
+    importCSV: (sessionId: string, csvRows: string[], params: ImportCSVParams) => Promise<ResponseSpec & ImportReponse>;
+    /**
+     * Exports memories to a CSV file.
+     * @param {string} sessionID The session ID
+     * @param {ExportCSVParams} params - The specifications of the CSV file
+     * @returns The CSV file content
+     */
+    exportCSV: (sessionID: string, params: ExportCSVParams) => Promise<string>;
 };
 /************************
  *                      *

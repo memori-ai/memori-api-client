@@ -419,7 +419,7 @@ var apiFetcher = function apiFetcher(path, opts) {
       'Content-Type': 'application/json'
     }, opts == null ? void 0 : opts.headers)
   })).then(function (res) {
-    return res.json();
+    return opts != null && opts.text ? res.text() : res.json();
   });
 };
 
@@ -592,6 +592,21 @@ var memori = (function (apiUrl) {
     getMemoriSessions: function getMemoriSessions(authToken, memoriID, dateFrom, dateTo) {
       return apiFetcher("/MemoriSessions/" + authToken + "/" + memoriID + (dateFrom ? "/" + dateFrom : '') + (dateFrom && dateTo ? "/" + dateTo : ''), {
         apiUrl: apiUrl
+      });
+    },
+
+    /**
+     * Transfers an existing Memori object to another User.
+     * The new owner must be specified by either a OwnerUserID or a OwnerUserName-OwnerTenantName pair.
+     * The OwnerUserName may also specify a user e-mail.
+     * @param {string} authToken - The login token
+     * @param {Memori} memori - The Memori object
+     */
+    transferMemori: function transferMemori(authToken, memori) {
+      return apiFetcher("/TransferMemori/" + authToken, {
+        apiUrl: apiUrl,
+        body: memori,
+        method: 'POST'
       });
     }
   };
@@ -1078,14 +1093,91 @@ var invitation = (function (apiUrl) {
   };
 });
 
+var consumptionLogs = (function (apiUrl) {
+  return {
+    /**
+     * Gets the Consumption Log objects for a specific Tenant in a specific date interval.
+     * @param {string} authToken - The login token
+     * @param {string} tenantID - The name of the tenant
+     * @param {string} type - Type of consumption (i.e. granularity), it may either be Daily or Monthly
+     * @param {string=} dateFrom - The optional begin of the date interval, in UTC time, in the format yyyyMMdd
+     * @param {string=} dateTo - The optional end of the date interval, in UTC time, in the format yyyyMMdd
+     * @returns The list of Consumption Logs objects.
+     */
+    getTenantConsumptionLogs: function getTenantConsumptionLogs(authToken, tenantID, type, dateFrom, dateTo) {
+      return apiFetcher("/TenantConsumptionLogs/" + authToken + "/" + tenantID + "/" + type + (dateFrom ? "/" + dateFrom : '') + (dateFrom && dateTo ? "/" + dateTo : ''), {
+        apiUrl: apiUrl
+      });
+    },
+
+    /**
+     * Gets the Consumption Log objects for a specific User in a specific date interval.
+     * @param {string} authToken - The login token
+     * @param {string} userID - The ID of the User object
+     * @param {string} type - Type of consumption (i.e. granularity), it may either be Daily or Monthly
+     * @param {string=} dateFrom - The optional begin of the date interval, in UTC time, in the format yyyyMMdd
+     * @param {string=} dateTo - The optional end of the date interval, in UTC time, in the format yyyyMMdd
+     * @returns The list of Consumption Logs objects.
+     */
+    getUserConsumptionLogs: function getUserConsumptionLogs(authToken, userID, type, dateFrom, dateTo) {
+      return apiFetcher("/UserConsumptionLogs/" + authToken + "/" + userID + "/" + type + (dateFrom ? "/" + dateFrom : '') + (dateFrom && dateTo ? "/" + dateTo : ''), {
+        apiUrl: apiUrl
+      });
+    },
+
+    /**
+     * Gets the Consumption Log objects for a specific Memori in a specific date interval.
+     * @param {string} authToken - The login token
+     * @param {string} memoriID - The ID of the Memori object
+     * @param {string} type - Type of consumption (i.e. granularity), it may either be Daily or Monthly
+     * @param {string=} dateFrom - The optional begin of the date interval, in UTC time, in the format yyyyMMdd
+     * @param {string=} dateTo - The optional end of the date interval, in UTC time, in the format yyyyMMdd
+     * @returns The list of Consumption Logs objects.
+     */
+    getMemoriConsumptionLogs: function getMemoriConsumptionLogs(authToken, memoriID, type, dateFrom, dateTo) {
+      return apiFetcher("/MemoriConsumptionLogs/" + authToken + "/" + memoriID + "/" + type + (dateFrom ? "/" + dateFrom : '') + (dateFrom && dateTo ? "/" + dateTo : ''), {
+        apiUrl: apiUrl
+      });
+    }
+  };
+});
+
+var notifications = (function (apiUrl) {
+  return {
+    /**
+     * Gets the Notification objects available for a specific Tenant.
+     * @param {string} tenantID - The name of the tenant
+     * @returns The list of Notification objects.
+     */
+    getTenantNotifications: function getTenantNotifications(tenantID) {
+      return apiFetcher("/TenantNotifications/" + tenantID, {
+        apiUrl: apiUrl
+      });
+    },
+
+    /**
+     * Gets the Notification objects available for a specific User.
+     * @param {string} authToken - The login token
+     * @returns The list of Notification objects.
+     */
+    getUserNotifications: function getUserNotifications(authToken) {
+      return apiFetcher("/UserNotifications/" + authToken, {
+        apiUrl: apiUrl
+      });
+    }
+  };
+});
+
 var backendAPI = function backendAPI(apiUrl) {
   return _extends({
     asset: asset(apiUrl),
     memori: memori(apiUrl),
     user: user(apiUrl),
     integration: integration(apiUrl),
-    invitation: invitation(apiUrl)
-  }, asset(apiUrl), memori(apiUrl), user(apiUrl), integration(apiUrl), invitation(apiUrl));
+    invitation: invitation(apiUrl),
+    consumptionLogs: consumptionLogs(apiUrl),
+    notifications: notifications(apiUrl)
+  }, asset(apiUrl), memori(apiUrl), user(apiUrl), integration(apiUrl), invitation(apiUrl), consumptionLogs(apiUrl), notifications(apiUrl));
 };
 
 /****************************
@@ -1380,19 +1472,17 @@ var dialog = (function (apiUrl) {
      * @param {string} sessionId The session ID
      */
     postDateSelectedEvent: function () {
-      var _postDateSelectedEvent = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(_ref3) {
-        var sessionId;
+      var _postDateSelectedEvent = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(sessionId) {
         return _regeneratorRuntime().wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                sessionId = _ref3.sessionId;
                 return _context7.abrupt("return", apiFetcher("/DateSelectedEvent/" + sessionId, {
                   method: 'GET',
                   apiUrl: apiUrl
                 }));
 
-              case 2:
+              case 1:
               case "end":
                 return _context7.stop();
             }
@@ -1412,19 +1502,17 @@ var dialog = (function (apiUrl) {
      * @param {string} sessionId The session ID
      */
     postPlaceSelectedEvent: function () {
-      var _postPlaceSelectedEvent = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(_ref4) {
-        var sessionId;
+      var _postPlaceSelectedEvent = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(sessionId) {
         return _regeneratorRuntime().wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                sessionId = _ref4.sessionId;
                 return _context8.abrupt("return", apiFetcher("/PlaceSelectedEvent/" + sessionId, {
                   method: 'GET',
                   apiUrl: apiUrl
                 }));
 
-              case 2:
+              case 1:
               case "end":
                 return _context8.stop();
             }
@@ -1444,19 +1532,17 @@ var dialog = (function (apiUrl) {
      * @param {string} sessionId The session ID
      */
     postTagSelectedEvent: function () {
-      var _postTagSelectedEvent = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(_ref5) {
-        var sessionId;
+      var _postTagSelectedEvent = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(sessionId) {
         return _regeneratorRuntime().wrap(function _callee9$(_context9) {
           while (1) {
             switch (_context9.prev = _context9.next) {
               case 0:
-                sessionId = _ref5.sessionId;
                 return _context9.abrupt("return", apiFetcher("/TagSelectedEvent/" + sessionId, {
                   method: 'GET',
                   apiUrl: apiUrl
                 }));
 
-              case 2:
+              case 1:
               case "end":
                 return _context9.stop();
             }
@@ -1484,10 +1570,11 @@ var importExport = (function (apiUrl) {
     /**
      * Imports memories from a CSV file.
      * @param {string} sessionId The session ID
-     * @param {ImportExportBody} csvData The CSV content info to import
+     * @param {string[]} csvRows Rows of the CSV file.
+     * @param {ImportCSVParams} params The specifications and content of the CSV file
      */
-    postImportExport: function () {
-      var _postImportExport = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(sessionId, csvData) {
+    importCSV: function () {
+      var _importCSV = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(sessionId, csvRows, params) {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -1495,7 +1582,9 @@ var importExport = (function (apiUrl) {
                 return _context.abrupt("return", apiFetcher("/ImportExport/ImportCSV/" + sessionId, {
                   method: 'POST',
                   apiUrl: apiUrl,
-                  body: csvData
+                  body: _extends({
+                    csvRows: csvRows
+                  }, params)
                 }));
 
               case 1:
@@ -1506,11 +1595,45 @@ var importExport = (function (apiUrl) {
         }, _callee);
       }));
 
-      function postImportExport(_x, _x2) {
-        return _postImportExport.apply(this, arguments);
+      function importCSV(_x, _x2, _x3) {
+        return _importCSV.apply(this, arguments);
       }
 
-      return postImportExport;
+      return importCSV;
+    }(),
+
+    /**
+     * Exports memories to a CSV file.
+     * @param {string} sessionID The session ID
+     * @param {ExportCSVParams} params - The specifications of the CSV file
+     * @returns The CSV file content
+     */
+    exportCSV: function () {
+      var _exportCSV = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionID, params) {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                return _context2.abrupt("return", apiFetcher("/ImportExport/ExportCSV/" + sessionID, {
+                  method: 'POST',
+                  apiUrl: apiUrl,
+                  body: params,
+                  text: true
+                }));
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function exportCSV(_x4, _x5) {
+        return _exportCSV.apply(this, arguments);
+      }
+
+      return exportCSV;
     }()
   };
 });
@@ -1587,17 +1710,18 @@ var intents = (function (apiUrl) {
     /**
      * Updates an existing Intent object.
      * @param {string} sessionId The session ID
-     * @param {string} intentId The Intent object ID
+     * @param {Intent} intent The Intent object
      */
     patchIntent: function () {
-      var _patchIntent = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, intentId) {
+      var _patchIntent = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, intent) {
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                return _context3.abrupt("return", apiFetcher("/Intent/" + sessionId + "/" + intentId, {
-                  method: 'GET',
-                  apiUrl: apiUrl
+                return _context3.abrupt("return", apiFetcher("/Intent/" + sessionId + "/" + intent.intentID, {
+                  method: 'PATCH',
+                  apiUrl: apiUrl,
+                  body: intent
                 }));
 
               case 1:
@@ -1627,7 +1751,7 @@ var intents = (function (apiUrl) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 return _context4.abrupt("return", apiFetcher("/Intent/" + sessionId + "/" + intentId, {
-                  method: 'GET',
+                  method: 'DELETE',
                   apiUrl: apiUrl
                 }));
 
@@ -1649,16 +1773,18 @@ var intents = (function (apiUrl) {
     /**
      * Adds a new Intent object.
      * @param {string} sessionId The session ID
+     * @param {Intent} intent The Intent object
      */
-    postIntent: function () {
-      var _postIntent = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(sessionId) {
+    createIntent: function () {
+      var _createIntent = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(sessionId, intent) {
         return _regeneratorRuntime().wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 return _context5.abrupt("return", apiFetcher("/Intent/" + sessionId, {
-                  method: 'GET',
-                  apiUrl: apiUrl
+                  method: 'POST',
+                  apiUrl: apiUrl,
+                  body: intent
                 }));
 
               case 1:
@@ -1669,11 +1795,11 @@ var intents = (function (apiUrl) {
         }, _callee5);
       }));
 
-      function postIntent(_x8) {
-        return _postIntent.apply(this, arguments);
+      function createIntent(_x8, _x9) {
+        return _createIntent.apply(this, arguments);
       }
 
-      return postIntent;
+      return createIntent;
     }(),
 
     /**
@@ -1699,7 +1825,7 @@ var intents = (function (apiUrl) {
         }, _callee6);
       }));
 
-      function getIntentSlots(_x9) {
+      function getIntentSlots(_x10) {
         return _getIntentSlots.apply(this, arguments);
       }
 
@@ -1730,7 +1856,7 @@ var intents = (function (apiUrl) {
         }, _callee7);
       }));
 
-      function getIntentSlot(_x10, _x11) {
+      function getIntentSlot(_x11, _x12) {
         return _getIntentSlot.apply(this, arguments);
       }
 
@@ -1740,17 +1866,18 @@ var intents = (function (apiUrl) {
     /**
      * Updates an existing Intent Slot object.
      * @param {string} sessionId The session ID
-     * @param {string} slotId The Intent Slot object ID
+     * @param {IntentSlot} intentSlot The Intent Slot object
      */
     patchIntentSlot: function () {
-      var _patchIntentSlot = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(sessionId, slotId) {
+      var _patchIntentSlot = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(sessionId, intentSlot) {
         return _regeneratorRuntime().wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                return _context8.abrupt("return", apiFetcher("/IntentSlot/" + sessionId + "/" + slotId, {
-                  method: 'GET',
-                  apiUrl: apiUrl
+                return _context8.abrupt("return", apiFetcher("/IntentSlot/" + sessionId + "/" + intentSlot.intentSlotID, {
+                  method: 'PATCH',
+                  apiUrl: apiUrl,
+                  body: intentSlot
                 }));
 
               case 1:
@@ -1761,7 +1888,7 @@ var intents = (function (apiUrl) {
         }, _callee8);
       }));
 
-      function patchIntentSlot(_x12, _x13) {
+      function patchIntentSlot(_x13, _x14) {
         return _patchIntentSlot.apply(this, arguments);
       }
 
@@ -1780,7 +1907,7 @@ var intents = (function (apiUrl) {
             switch (_context9.prev = _context9.next) {
               case 0:
                 return _context9.abrupt("return", apiFetcher("/IntentSlot/" + sessionId + "/" + slotId, {
-                  method: 'GET',
+                  method: 'DELETE',
                   apiUrl: apiUrl
                 }));
 
@@ -1792,7 +1919,7 @@ var intents = (function (apiUrl) {
         }, _callee9);
       }));
 
-      function deleteIntentSlot(_x14, _x15) {
+      function deleteIntentSlot(_x15, _x16) {
         return _deleteIntentSlot.apply(this, arguments);
       }
 
@@ -1803,15 +1930,16 @@ var intents = (function (apiUrl) {
      * Adds a new Intent Slot object.
      * @param {string} sessionId The session ID
      */
-    postIntentSlot: function () {
-      var _postIntentSlot = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(sessionId) {
+    createIntentSlot: function () {
+      var _createIntentSlot = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(sessionId, intentSlot) {
         return _regeneratorRuntime().wrap(function _callee10$(_context10) {
           while (1) {
             switch (_context10.prev = _context10.next) {
               case 0:
                 return _context10.abrupt("return", apiFetcher("/IntentSlot/" + sessionId, {
-                  method: 'GET',
-                  apiUrl: apiUrl
+                  method: 'POST',
+                  apiUrl: apiUrl,
+                  body: intentSlot
                 }));
 
               case 1:
@@ -1822,11 +1950,11 @@ var intents = (function (apiUrl) {
         }, _callee10);
       }));
 
-      function postIntentSlot(_x16) {
-        return _postIntentSlot.apply(this, arguments);
+      function createIntentSlot(_x17, _x18) {
+        return _createIntentSlot.apply(this, arguments);
       }
 
-      return postIntentSlot;
+      return createIntentSlot;
     }()
   };
 });
@@ -2420,22 +2548,19 @@ var nlp = (function (apiUrl) {
     }(),
 
     /**
-     * Tries to guess the language of a sentence by analyzing key word occurrences.
+     * Searches for the 10 words most semantically similar words to the specified word.
      * @param {string} sessionId The session ID
-     * @param {string} text Text to be used for guessing the language.
+     * @param {string} word Word to be looked up
      */
-    guessLanguage: function () {
-      var _guessLanguage = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, text) {
+    getSimilarWords: function () {
+      var _getSimilarWords = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, word) {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                return _context2.abrupt("return", apiFetcher("/GuessLanguage/" + sessionId, {
-                  method: 'POST',
-                  apiUrl: apiUrl,
-                  body: {
-                    text: text
-                  }
+                return _context2.abrupt("return", apiFetcher("/SimilarWords/" + sessionId + "/" + word, {
+                  method: 'GET',
+                  apiUrl: apiUrl
                 }));
 
               case 1:
@@ -2446,11 +2571,119 @@ var nlp = (function (apiUrl) {
         }, _callee2);
       }));
 
-      function guessLanguage(_x3, _x4) {
+      function getSimilarWords(_x3, _x4) {
+        return _getSimilarWords.apply(this, arguments);
+      }
+
+      return getSimilarWords;
+    }(),
+
+    /**
+     * Tries to guess the language of a sentence by analyzing key word occurrences.
+     * @param {string} sessionId The session ID
+     * @param {string} text Text to be used for guessing the language.
+     */
+    guessLanguage: function () {
+      var _guessLanguage = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, text) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", apiFetcher("/GuessLanguage/" + sessionId, {
+                  method: 'POST',
+                  apiUrl: apiUrl,
+                  body: {
+                    text: text
+                  }
+                }));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function guessLanguage(_x5, _x6) {
         return _guessLanguage.apply(this, arguments);
       }
 
       return guessLanguage;
+    }(),
+
+    /**
+     * Computes the similarity between a reference and a comparison sentences.
+     * @param {string} sessionId The session ID
+     * @param {string} referenceText Text of the reference sentence.
+     * @param {'QUESTION' | 'ANSWER'} referenceTextType Type of reference text, i.e. question or answer. Only types supported are: 'QUESTION' and 'ANSWER'.
+     * @param {string} comparisonText Text of the comparison sentence.
+     * @param {'QUESTION' | 'ANSWER'} comparisonTextType Type of comparison text, i.e. question or answer. Only types supported are: 'QUESTION' and 'ANSWER'.
+     */
+    computeSimilarity: function () {
+      var _computeSimilarity = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(sessionId, referenceText, referenceTextType, comparisonText, comparisonTextType) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                return _context4.abrupt("return", apiFetcher("/ComputeSimilarity/" + sessionId, {
+                  method: 'POST',
+                  apiUrl: apiUrl,
+                  body: {
+                    referenceText: referenceText,
+                    referenceTextType: referenceTextType,
+                    comparisonText: comparisonText,
+                    comparisonTextType: comparisonTextType
+                  }
+                }));
+
+              case 1:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function computeSimilarity(_x7, _x8, _x9, _x10, _x11) {
+        return _computeSimilarity.apply(this, arguments);
+      }
+
+      return computeSimilarity;
+    }(),
+
+    /**
+     * Checks the words of a sentence for their definition in the word vector dictionary.
+     * @param {string} sessionId The session ID
+     * @param {string} text Text of the sentence.
+     */
+    checkWords: function () {
+      var _checkWords = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(sessionId, text) {
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                return _context5.abrupt("return", apiFetcher("/CheckWords/" + sessionId, {
+                  method: 'POST',
+                  apiUrl: apiUrl,
+                  body: {
+                    text: text
+                  }
+                }));
+
+              case 1:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }));
+
+      function checkWords(_x12, _x13) {
+        return _checkWords.apply(this, arguments);
+      }
+
+      return checkWords;
     }()
   };
 });
@@ -3028,18 +3261,16 @@ var stats = (function (apiUrl) {
     }(),
 
     /**
-     * Get the Event Log objects for the Memori of the current session in a specific date interval
-     * @param {string} sessionId The session ID
-     * @param {string} strDateFrom The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
-     * @param {string} strDateTo The optional end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     * Computes content quality indexes for a Memori.
+     * @param {string} memoriID - The Memori object ID
      */
-    getEventLogs: function () {
-      var _getEventLogs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, strDateFrom, strDateTo) {
+    getContentQualityIndexes: function () {
+      var _getContentQualityIndexes = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(memoriID) {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                return _context2.abrupt("return", apiFetcher("/EventLogs/" + sessionId + "/" + strDateFrom + "/" + strDateTo, {
+                return _context2.abrupt("return", apiFetcher("/ContentQualityIndexes/" + memoriID, {
                   method: 'GET',
                   apiUrl: apiUrl
                 }));
@@ -3052,11 +3283,139 @@ var stats = (function (apiUrl) {
         }, _callee2);
       }));
 
-      function getEventLogs(_x2, _x3, _x4) {
+      function getContentQualityIndexes(_x2) {
+        return _getContentQualityIndexes.apply(this, arguments);
+      }
+
+      return getContentQualityIndexes;
+    }(),
+
+    /**
+     * Computes text quality indexes for a Memori.
+     * @param {string} sessionId - The session ID
+     */
+    getTextQualityIndexes: function () {
+      var _getTextQualityIndexes = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", apiFetcher("/TextQualityIndexes/" + sessionId, {
+                  method: 'GET',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function getTextQualityIndexes(_x3) {
+        return _getTextQualityIndexes.apply(this, arguments);
+      }
+
+      return getTextQualityIndexes;
+    }(),
+
+    /**
+     * Get the Event Log objects for the Memori of the current session in a specific date interval
+     * @param {string} sessionId The session ID
+     * @param {string} strDateFrom The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     * @param {string} strDateTo The optional end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     */
+    getEventLogs: function () {
+      var _getEventLogs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(sessionId, strDateFrom, strDateTo) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                return _context4.abrupt("return", apiFetcher("/EventLogs/" + sessionId + "/" + strDateFrom + "/" + strDateTo, {
+                  method: 'GET',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function getEventLogs(_x4, _x5, _x6) {
         return _getEventLogs.apply(this, arguments);
       }
 
       return getEventLogs;
+    }(),
+
+    /**
+     * Gets the Event Log objects for a specific Memory object in a specific date interval.
+     * @param {string} sessionId - The session ID
+     * @param {string} memoryId - The Memory object ID
+     * @param {string} strDateFrom - The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     * @param {string} strDateTo - The optional end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     */
+    getMemoryEventLogs: function () {
+      var _getMemoryEventLogs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(sessionId, memoryId, strDateFrom, strDateTo) {
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                return _context5.abrupt("return", apiFetcher("/EventLogs/" + sessionId + "/" + memoryId + "/" + strDateFrom + "/" + strDateTo, {
+                  method: 'GET',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }));
+
+      function getMemoryEventLogs(_x7, _x8, _x9, _x10) {
+        return _getMemoryEventLogs.apply(this, arguments);
+      }
+
+      return getMemoryEventLogs;
+    }(),
+
+    /**
+     * Gets the Event Log objects for a specific Intent object in a specific date interval.
+     * @param {string} sessionId - The session ID
+     * @param {string} intentId - The Intent object ID
+     * @param {string} strDateFrom - The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     * @param {string} strDateTo - The optional end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     */
+    getIntentEventLogs: function () {
+      var _getIntentEventLogs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(sessionId, intentId, strDateFrom, strDateTo) {
+        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                return _context6.abrupt("return", apiFetcher("/EventLogs/" + sessionId + "/" + intentId + "/" + strDateFrom + "/" + strDateTo, {
+                  method: 'GET',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }));
+
+      function getIntentEventLogs(_x11, _x12, _x13, _x14) {
+        return _getIntentEventLogs.apply(this, arguments);
+      }
+
+      return getIntentEventLogs;
     }()
   };
 });
@@ -3233,6 +3592,278 @@ var contextVars = (function (apiUrl) {
   };
 });
 
+/****************************
+ *                          *
+ *     CustomDictionary     *
+ *                          *
+ ****************************/
+
+var customDictionary = (function (apiUrl) {
+  return {
+    /**
+     * Lists all Custom Words.
+     * @param {string} sessionId The session ID
+     */
+    getCustomWords: function () {
+      var _getCustomWords = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(sessionId) {
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.abrupt("return", apiFetcher("/CustomWords/" + sessionId, {
+                  method: 'GET',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function getCustomWords(_x) {
+        return _getCustomWords.apply(this, arguments);
+      }
+
+      return getCustomWords;
+    }(),
+
+    /**
+     * Gets the details of a Custom Word object.
+     * @param {string} sessionId The session ID
+     * @param {string} customWordID The Custom Word object ID
+     */
+    getCustomWord: function () {
+      var _getCustomWord = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, customWordID) {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                return _context2.abrupt("return", apiFetcher("/CustomWord/" + sessionId + "/" + customWordID, {
+                  method: 'GET',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function getCustomWord(_x2, _x3) {
+        return _getCustomWord.apply(this, arguments);
+      }
+
+      return getCustomWord;
+    }(),
+
+    /**
+     * Removes an existing Custom Word object.
+     * @param {string} sessionId The session ID
+     * @param {string} key The key of the Custom Word
+     */
+    deleteCustomWord: function () {
+      var _deleteCustomWord = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, key) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", apiFetcher("/CustomWord/" + sessionId + "/" + key, {
+                  method: 'DELETE',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function deleteCustomWord(_x4, _x5) {
+        return _deleteCustomWord.apply(this, arguments);
+      }
+
+      return deleteCustomWord;
+    }(),
+
+    /**
+     * Adds a new Custom Word object.
+     * @param {string} sessionId The session ID
+     * @param {CustomWord} customWord Custom Word
+     */
+    postCustomWord: function () {
+      var _postCustomWord = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(sessionId, customWord) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                return _context4.abrupt("return", apiFetcher("/CustomWord/" + sessionId, {
+                  method: 'POST',
+                  apiUrl: apiUrl,
+                  body: customWord
+                }));
+
+              case 1:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function postCustomWord(_x6, _x7) {
+        return _postCustomWord.apply(this, arguments);
+      }
+
+      return postCustomWord;
+    }(),
+
+    /**
+     * Updates an existing Custom Word object.
+     * Only the Definition field is considered for update. To change the Word field a new Custom Word must be added and the existing must be removed.
+     * @param {string} sessionId The session ID
+     * @param {CustomWord} customWord Custom Word
+     */
+    patchCustomWord: function () {
+      var _patchCustomWord = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(sessionId, customWord) {
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                return _context5.abrupt("return", apiFetcher("/CustomWord/" + sessionId + "/" + customWord.customWordID, {
+                  method: 'PATCH',
+                  apiUrl: apiUrl,
+                  body: customWord
+                }));
+
+              case 1:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }));
+
+      function patchCustomWord(_x8, _x9) {
+        return _patchCustomWord.apply(this, arguments);
+      }
+
+      return patchCustomWord;
+    }()
+  };
+});
+
+/*************************
+ *                       *
+ *       ChatLogs        *
+ *                       *
+ *************************/
+
+var chatLogs = (function (apiUrl) {
+  return {
+    /**
+     * Gets the Chat Log objects for the Memori of the current session in a specific date interval.
+     * @param {string} sessionId The session ID
+     * @param {?string} dateFrom The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     * @param {?string} dateTo The optional end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     */
+    getChatLogs: function () {
+      var _getChatLogs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(sessionId, dateFrom, dateTo) {
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.abrupt("return", apiFetcher("/ChatLogs/" + sessionId + (dateFrom ? "/" + dateFrom : '') + (dateFrom && dateTo ? "/" + dateTo : ''), {
+                  method: 'GET',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function getChatLogs(_x, _x2, _x3) {
+        return _getChatLogs.apply(this, arguments);
+      }
+
+      return getChatLogs;
+    }(),
+
+    /**
+     * Removes all Chat Log objects in a specific date internval.
+     * @param {string} sessionId The session ID
+     * @param {?string} dateFrom The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     * @param {?string} dateTo The optional end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     */
+    deleteChatLogs: function () {
+      var _deleteChatLogs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, dateFrom, dateTo) {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                return _context2.abrupt("return", apiFetcher("/ChatLogs/" + sessionId + (dateFrom ? "/" + dateFrom : '') + (dateFrom && dateTo ? "/" + dateTo : ''), {
+                  method: 'DELETE',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function deleteChatLogs(_x4, _x5, _x6) {
+        return _deleteChatLogs.apply(this, arguments);
+      }
+
+      return deleteChatLogs;
+    }(),
+
+    /**
+     * Removes an existing Chat Log object.
+     * @param {string} sessionId The session ID
+     * @param {string} chatLogId The Chat Log object ID
+     */
+    deleteChatLog: function () {
+      var _deleteChatLog = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, chatLogId) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", apiFetcher("/ChatLog/" + sessionId + "/" + chatLogId, {
+                  method: 'DELETE',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function deleteChatLog(_x7, _x8) {
+        return _deleteChatLog.apply(this, arguments);
+      }
+
+      return deleteChatLog;
+    }()
+  };
+});
+
 var engine = (function (apiUrl) {
   return _extends({
     correlationPairs: correlationPairs(apiUrl)
@@ -3264,7 +3895,11 @@ var engine = (function (apiUrl) {
     unansweredQuestions: unansweredQuestions(apiUrl)
   }, unansweredQuestions(apiUrl), {
     contextVars: contextVars(apiUrl)
-  }, contextVars(apiUrl));
+  }, contextVars(apiUrl), {
+    customDictionary: customDictionary(apiUrl)
+  }, customDictionary(apiUrl), {
+    chatLogs: chatLogs(apiUrl)
+  }, chatLogs(apiUrl));
 });
 
 var allowedMediaTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'text/plain', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/pdf', 'video/mp4', 'video/avi', 'audio/mpeg3', 'audio/wav', 'audio/mpeg', 'video/mpeg', 'model/gltf-binary'];

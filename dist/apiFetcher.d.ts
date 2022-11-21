@@ -3,4 +3,5 @@ export declare const apiFetcher: (path: string, opts: {
     method?: string;
     body?: object;
     headers?: object;
+    text?: boolean;
 }) => Promise<any>;

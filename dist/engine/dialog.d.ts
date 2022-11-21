@@ -62,23 +62,17 @@ declare const _default: (apiUrl: string) => {
      * Submits a Date Selected event to the session's Dialog State Machine.
      * @param {string} sessionId The session ID
      */
-    postDateSelectedEvent: ({ sessionId }: {
-        sessionId: string;
-    }) => Promise<ResponseSpec>;
+    postDateSelectedEvent: (sessionId: string) => Promise<ResponseSpec>;
     /**
      * Submits a Place Selected event to the session's Dialog State Machine.
      * @param {string} sessionId The session ID
      */
-    postPlaceSelectedEvent: ({ sessionId }: {
-        sessionId: string;
-    }) => Promise<ResponseSpec>;
+    postPlaceSelectedEvent: (sessionId: string) => Promise<ResponseSpec>;
     /**
      * Submits a Tag Selected event to the session's Dialog State Machine.
      * @param {string} sessionId The session ID
      */
-    postTagSelectedEvent: ({ sessionId }: {
-        sessionId: string;
-    }) => Promise<ResponseSpec>;
+    postTagSelectedEvent: (sessionId: string) => Promise<ResponseSpec>;
 };
 /******************
  *                *
