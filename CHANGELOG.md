@@ -1,5 +1,12 @@
 
 
+## [0.3.1](https://github.com/memori-ai/memori-api-client/compare/v0.3.0...v0.3.1) (2022-11-21)
+
+
+### Maintenance
+
+* build add new api, update ([e69f833](https://github.com/memori-ai/memori-api-client/commit/e69f83311466d63da7fe4e783393895ebac1232b))
+
 ## [0.3.0](https://github.com/memori-ai/memori-api-client/compare/v0.2.1...v0.3.0) (2022-11-21)
 
 
