@@ -7,6 +7,7 @@ export const apiFetcher = (
     method?: string;
     body?: object;
     headers?: object;
+    text?: boolean;
   }
 ) =>
   fetch(`${opts.apiUrl}${path}`, {
@@ -19,4 +20,4 @@ export const apiFetcher = (
       'Content-Type': 'application/json',
       ...opts?.headers,
     },
-  }).then(res => res.json());
+  }).then(res => (opts?.text ? res.text() : res.json()));

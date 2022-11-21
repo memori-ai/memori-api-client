@@ -130,7 +130,7 @@ export default (apiUrl: string) => ({
    * Submits a Date Selected event to the session's Dialog State Machine.
    * @param {string} sessionId The session ID
    */
-  postDateSelectedEvent: async ({ sessionId }: { sessionId: string }) =>
+  postDateSelectedEvent: async (sessionId: string) =>
     apiFetcher(`/DateSelectedEvent/${sessionId}`, {
       method: 'GET',
       apiUrl,
@@ -140,7 +140,7 @@ export default (apiUrl: string) => ({
    * Submits a Place Selected event to the session's Dialog State Machine.
    * @param {string} sessionId The session ID
    */
-  postPlaceSelectedEvent: async ({ sessionId }: { sessionId: string }) =>
+  postPlaceSelectedEvent: async (sessionId: string) =>
     apiFetcher(`/PlaceSelectedEvent/${sessionId}`, {
       method: 'GET',
       apiUrl,
@@ -150,7 +150,7 @@ export default (apiUrl: string) => ({
    * Submits a Tag Selected event to the session's Dialog State Machine.
    * @param {string} sessionId The session ID
    */
-  postTagSelectedEvent: async ({ sessionId }: { sessionId: string }) =>
+  postTagSelectedEvent: async (sessionId: string) =>
     apiFetcher(`/TagSelectedEvent/${sessionId}`, {
       method: 'GET',
       apiUrl,

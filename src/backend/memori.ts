@@ -223,4 +223,24 @@ export default (apiUrl: string) => ({
         validSessions: number;
       }
     >,
+
+  /**
+   * Transfers an existing Memori object to another User.
+   * The new owner must be specified by either a OwnerUserID or a OwnerUserName-OwnerTenantName pair.
+   * The OwnerUserName may also specify a user e-mail.
+   * @param {string} authToken - The login token
+   * @param {Memori} memori - The Memori object
+   */
+  transferMemori: (
+    authToken: string,
+    memori: Memori & {
+      ownerTenantName: string;
+      ownerUserName: string;
+    }
+  ) =>
+    apiFetcher(`/TransferMemori/${authToken}`, {
+      apiUrl,
+      body: memori,
+      method: 'POST',
+    }) as Promise<ResponseSpec>,
 });

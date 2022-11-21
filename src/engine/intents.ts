@@ -1,4 +1,4 @@
-import { ResponseSpec } from '../types';
+import { ResponseSpec, Intent, IntentSlot } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /*******************
@@ -16,7 +16,11 @@ export default (apiUrl: string) => ({
     apiFetcher(`/Intents/${sessionId}`, {
       method: 'GET',
       apiUrl,
-    }) as Promise<ResponseSpec>,
+    }) as Promise<
+      ResponseSpec & {
+        intents: (Intent & { intentID: string })[];
+      }
+    >,
 
   /**
    * Gets the details of an Intent object.
@@ -27,17 +31,25 @@ export default (apiUrl: string) => ({
     apiFetcher(`/Intent/${sessionId}/${intentId}`, {
       method: 'GET',
       apiUrl,
-    }) as Promise<ResponseSpec>,
+    }) as Promise<
+      ResponseSpec & {
+        intent: Intent & { intentID: string };
+      }
+    >,
 
   /**
    * Updates an existing Intent object.
    * @param {string} sessionId The session ID
-   * @param {string} intentId The Intent object ID
+   * @param {Intent} intent The Intent object
    */
-  patchIntent: async (sessionId: string, intentId: string) =>
-    apiFetcher(`/Intent/${sessionId}/${intentId}`, {
-      method: 'GET',
+  patchIntent: async (
+    sessionId: string,
+    intent: Partial<Intent> & { intentID: string }
+  ) =>
+    apiFetcher(`/Intent/${sessionId}/${intent.intentID}`, {
+      method: 'PATCH',
       apiUrl,
+      body: intent,
     }) as Promise<ResponseSpec>,
 
   /**
@@ -47,19 +59,25 @@ export default (apiUrl: string) => ({
    */
   deleteIntent: async (sessionId: string, intentId: string) =>
     apiFetcher(`/Intent/${sessionId}/${intentId}`, {
-      method: 'GET',
+      method: 'DELETE',
       apiUrl,
     }) as Promise<ResponseSpec>,
 
   /**
    * Adds a new Intent object.
    * @param {string} sessionId The session ID
+   * @param {Intent} intent The Intent object
    */
-  postIntent: async (sessionId: string) =>
+  createIntent: async (sessionId: string, intent: Intent) =>
     apiFetcher(`/Intent/${sessionId}`, {
-      method: 'GET',
+      method: 'POST',
       apiUrl,
-    }) as Promise<ResponseSpec>,
+      body: intent,
+    }) as Promise<
+      ResponseSpec & {
+        intentID: string;
+      }
+    >,
 
   /**
    * Lists all Intent Slot objects.
@@ -69,7 +87,13 @@ export default (apiUrl: string) => ({
     apiFetcher(`/IntentSlots/${sessionId}`, {
       method: 'GET',
       apiUrl,
-    }) as Promise<ResponseSpec>,
+    }) as Promise<
+      ResponseSpec & {
+        intentSlots: (IntentSlot & {
+          intentSlotID: string;
+        })[];
+      }
+    >,
 
   /**
    * Gets the details of an Intent Slot object.
@@ -80,17 +104,25 @@ export default (apiUrl: string) => ({
     apiFetcher(`/IntentSlot/${sessionId}/${slotId}`, {
       method: 'GET',
       apiUrl,
-    }) as Promise<ResponseSpec>,
+    }) as Promise<
+      ResponseSpec & {
+        intentSlot: IntentSlot & { intentSlotID: string };
+      }
+    >,
 
   /**
    * Updates an existing Intent Slot object.
    * @param {string} sessionId The session ID
-   * @param {string} slotId The Intent Slot object ID
+   * @param {IntentSlot} intentSlot The Intent Slot object
    */
-  patchIntentSlot: async (sessionId: string, slotId: string) =>
-    apiFetcher(`/IntentSlot/${sessionId}/${slotId}`, {
-      method: 'GET',
+  patchIntentSlot: async (
+    sessionId: string,
+    intentSlot: Partial<IntentSlot> & { intentSlotID: string }
+  ) =>
+    apiFetcher(`/IntentSlot/${sessionId}/${intentSlot.intentSlotID}`, {
+      method: 'PATCH',
       apiUrl,
+      body: intentSlot,
     }) as Promise<ResponseSpec>,
 
   /**
@@ -100,7 +132,7 @@ export default (apiUrl: string) => ({
    */
   deleteIntentSlot: async (sessionId: string, slotId: string) =>
     apiFetcher(`/IntentSlot/${sessionId}/${slotId}`, {
-      method: 'GET',
+      method: 'DELETE',
       apiUrl,
     }) as Promise<ResponseSpec>,
 
@@ -108,9 +140,14 @@ export default (apiUrl: string) => ({
    * Adds a new Intent Slot object.
    * @param {string} sessionId The session ID
    */
-  postIntentSlot: async (sessionId: string) =>
+  createIntentSlot: async (sessionId: string, intentSlot: IntentSlot) =>
     apiFetcher(`/IntentSlot/${sessionId}`, {
-      method: 'GET',
+      method: 'POST',
       apiUrl,
-    }) as Promise<ResponseSpec>,
+      body: intentSlot,
+    }) as Promise<
+      ResponseSpec & {
+        intentSlotID: string;
+      }
+    >,
 });

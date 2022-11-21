@@ -13,6 +13,8 @@ import session from './engine/session';
 import stats from './engine/stats';
 import unansweredQuestions from './engine/unansweredQuestions';
 import contextVars from './engine/contextVars';
+import customDictionary from './engine/customDictionary';
+import chatLogs from './engine/chatLogs';
 
 export default (apiUrl: string) => ({
   correlationPairs: correlationPairs(apiUrl),
@@ -45,4 +47,8 @@ export default (apiUrl: string) => ({
   ...unansweredQuestions(apiUrl),
   contextVars: contextVars(apiUrl),
   ...contextVars(apiUrl),
+  customDictionary: customDictionary(apiUrl),
+  ...customDictionary(apiUrl),
+  chatLogs: chatLogs(apiUrl),
+  ...chatLogs(apiUrl),
 });
