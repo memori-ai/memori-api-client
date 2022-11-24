@@ -1,5 +1,12 @@
 
 
+## [0.3.3](https://github.com/memori-ai/memori-api-client/compare/v0.3.2...v0.3.3) (2022-11-24)
+
+
+### Maintenance
+
+* add open session with initial question in typings ([75f2f88](https://github.com/memori-ai/memori-api-client/commit/75f2f8893e0d24294addab6db823290445e48064))
+
 ## [0.3.2](https://github.com/memori-ai/memori-api-client/compare/v0.3.1...v0.3.2) (2022-11-24)
 
 
