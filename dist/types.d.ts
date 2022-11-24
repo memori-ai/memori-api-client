@@ -48,7 +48,7 @@ export declare type Memori = {
     metaverseEnvironment?: string;
     exposed?: boolean;
     properties?: {
-        [key: string]: string;
+        [key: string]: any;
     };
     creationTimestamp?: string;
     lastChangeTimestamp?: string;
@@ -218,7 +218,7 @@ export declare type Medium = {
     mimeType: string;
     title?: string;
     properties?: {
-        [key: string]: string;
+        [key: string]: any;
     };
     creationTimestamp?: string;
     creationName?: string;
@@ -489,7 +489,7 @@ export declare type ChatMedium = {
      * Key-value pairs for additional structured content storage.
      */
     properties?: {
-        [key: string]: string;
+        [key: string]: any;
     };
 };
 export declare type ChatLogLine = {
