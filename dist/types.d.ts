@@ -205,6 +205,7 @@ export declare type OpenSession = {
     initialContextVars?: {
         [key: string]: string;
     };
+    initialQuestion?: string;
 };
 export declare type MemoriSession = {
     sessionID: string;

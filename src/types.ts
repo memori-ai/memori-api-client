@@ -227,6 +227,7 @@ export declare type OpenSession = {
   tag?: string;
   pin?: string;
   initialContextVars?: { [key: string]: string };
+  initialQuestion?: string;
 };
 
 export declare type MemoriSession = {
