@@ -1,5 +1,12 @@
 
 
+## [0.3.2](https://github.com/memori-ai/memori-api-client/compare/v0.3.1...v0.3.2) (2022-11-24)
+
+
+### Bug Fixes
+
+* properties typings ([976ce37](https://github.com/memori-ai/memori-api-client/commit/976ce37830e09b3786a5da3bd78f3ca60fa705d7))
+
 ## [0.3.1](https://github.com/memori-ai/memori-api-client/compare/v0.3.0...v0.3.1) (2022-11-21)
 
 
