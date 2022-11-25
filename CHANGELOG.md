@@ -1,5 +1,12 @@
 
 
+## [0.4.1](https://github.com/memori-ai/memori-api-client/compare/v0.4.0...v0.4.1) (2022-11-25)
+
+
+### Changes
+
+* unanswered question response with suggestions from engine ([1b3819c](https://github.com/memori-ai/memori-api-client/commit/1b3819cc058143bc671868f065e10e3441957f30))
+
 ## [0.4.0](https://github.com/memori-ai/memori-api-client/compare/v0.3.3...v0.4.0) (2022-11-25)
 
 
