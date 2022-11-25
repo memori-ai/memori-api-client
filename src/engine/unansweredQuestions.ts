@@ -29,7 +29,7 @@ export default (apiUrl: string) => ({
   getUnansweredQuestionsPaginated: async (
     sessionId: string,
     from: number,
-    howMany: string
+    howMany: number
   ) =>
     apiFetcher(`/UnansweredQuestions/${sessionId}/${from}/${howMany}`, {
       method: 'GET',

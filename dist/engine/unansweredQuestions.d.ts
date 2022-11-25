@@ -11,7 +11,7 @@ declare const _default: (apiUrl: string) => {
      * Lists paginated Unanswered Question objects.
      * @param {string} sessionId The session ID
      */
-    getUnansweredQuestionsPaginated: (sessionId: string, from: number, howMany: string) => Promise<ResponseSpec & {
+    getUnansweredQuestionsPaginated: (sessionId: string, from: number, howMany: number) => Promise<ResponseSpec & {
         count: number;
         unansweredQuestions: UnansweredQuestion[];
     }>;
