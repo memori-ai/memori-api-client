@@ -2344,17 +2344,16 @@ var memories = (function (apiUrl) {
     }(),
 
     /**
-     * Gets the details of a Memory object.
+     * Lists paginated Memory objects.
      * @param {string} sessionId The session ID
-     * @param {string} memoryId The Memory object ID
      */
-    getMemory: function () {
-      var _getMemory = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, memoryId) {
+    getMemoriesPaginated: function () {
+      var _getMemoriesPaginated = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, from, howMany) {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                return _context2.abrupt("return", apiFetcher("/Memory/" + sessionId + "/" + memoryId, {
+                return _context2.abrupt("return", apiFetcher("/Memories/" + sessionId + "/" + from + "/" + howMany, {
                   method: 'GET',
                   apiUrl: apiUrl
                 }));
@@ -2367,7 +2366,38 @@ var memories = (function (apiUrl) {
         }, _callee2);
       }));
 
-      function getMemory(_x2, _x3) {
+      function getMemoriesPaginated(_x2, _x3, _x4) {
+        return _getMemoriesPaginated.apply(this, arguments);
+      }
+
+      return getMemoriesPaginated;
+    }(),
+
+    /**
+     * Gets the details of a Memory object.
+     * @param {string} sessionId The session ID
+     * @param {string} memoryId The Memory object ID
+     */
+    getMemory: function () {
+      var _getMemory = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, memoryId) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", apiFetcher("/Memory/" + sessionId + "/" + memoryId, {
+                  method: 'GET',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function getMemory(_x5, _x6) {
         return _getMemory.apply(this, arguments);
       }
 
@@ -2380,12 +2410,12 @@ var memories = (function (apiUrl) {
      * @param {Memory} memory The Memory object
      */
     patchMemory: function () {
-      var _patchMemory = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, memory) {
-        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      var _patchMemory = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(sessionId, memory) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                return _context3.abrupt("return", apiFetcher("/Memory/" + sessionId + "/" + memory.memoryID, {
+                return _context4.abrupt("return", apiFetcher("/Memory/" + sessionId + "/" + memory.memoryID, {
                   method: 'PATCH',
                   apiUrl: apiUrl,
                   body: memory
@@ -2393,13 +2423,13 @@ var memories = (function (apiUrl) {
 
               case 1:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }));
 
-      function patchMemory(_x4, _x5) {
+      function patchMemory(_x7, _x8) {
         return _patchMemory.apply(this, arguments);
       }
 
@@ -2412,25 +2442,25 @@ var memories = (function (apiUrl) {
      * @param {string} memoryId The Memory object ID
      */
     deleteMemory: function () {
-      var _deleteMemory = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(sessionId, memoryId) {
-        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+      var _deleteMemory = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(sessionId, memoryId) {
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
-                return _context4.abrupt("return", apiFetcher("/Memory/" + sessionId + "/" + memoryId, {
+                return _context5.abrupt("return", apiFetcher("/Memory/" + sessionId + "/" + memoryId, {
                   method: 'DELETE',
                   apiUrl: apiUrl
                 }));
 
               case 1:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4);
+        }, _callee5);
       }));
 
-      function deleteMemory(_x6, _x7) {
+      function deleteMemory(_x9, _x10) {
         return _deleteMemory.apply(this, arguments);
       }
 
@@ -2443,12 +2473,12 @@ var memories = (function (apiUrl) {
      * @param {Memory} memory The Memory object
      */
     postMemory: function () {
-      var _postMemory = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(sessionId, memory) {
-        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+      var _postMemory = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(sessionId, memory) {
+        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
-                return _context5.abrupt("return", apiFetcher("/Memory/" + sessionId, {
+                return _context6.abrupt("return", apiFetcher("/Memory/" + sessionId, {
                   method: 'POST',
                   apiUrl: apiUrl,
                   body: memory
@@ -2456,13 +2486,13 @@ var memories = (function (apiUrl) {
 
               case 1:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5);
+        }, _callee6);
       }));
 
-      function postMemory(_x8, _x9) {
+      function postMemory(_x11, _x12) {
         return _postMemory.apply(this, arguments);
       }
 
@@ -2475,25 +2505,25 @@ var memories = (function (apiUrl) {
      * @param {string} memoryId The Memory object ID
      */
     getMemoryAccess: function () {
-      var _getMemoryAccess = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(sessionId, memoryId) {
-        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+      var _getMemoryAccess = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(sessionId, memoryId) {
+        return _regeneratorRuntime().wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context6.prev = _context6.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
-                return _context6.abrupt("return", apiFetcher("/MemoryAccess/" + sessionId + "/" + memoryId, {
+                return _context7.abrupt("return", apiFetcher("/MemoryAccess/" + sessionId + "/" + memoryId, {
                   method: 'GET',
                   apiUrl: apiUrl
                 }));
 
               case 1:
               case "end":
-                return _context6.stop();
+                return _context7.stop();
             }
           }
-        }, _callee6);
+        }, _callee7);
       }));
 
-      function getMemoryAccess(_x10, _x11) {
+      function getMemoryAccess(_x13, _x14) {
         return _getMemoryAccess.apply(this, arguments);
       }
 
@@ -3453,18 +3483,17 @@ var unansweredQuestions = (function (apiUrl) {
     }(),
 
     /**
-     * Removes an existing Unanswered Question object.
+     * Lists paginated Unanswered Question objects.
      * @param {string} sessionId The session ID
-     * @param {string} unansweredQuestionId The Unanswered Question object ID
      */
-    deleteUnansweredQuestion: function () {
-      var _deleteUnansweredQuestion = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, unansweredQuestionId) {
+    getUnansweredQuestionsPaginated: function () {
+      var _getUnansweredQuestionsPaginated = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, from, howMany) {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                return _context2.abrupt("return", apiFetcher("/UnansweredQuestion/" + sessionId + "/" + unansweredQuestionId, {
-                  method: 'DELETE',
+                return _context2.abrupt("return", apiFetcher("/UnansweredQuestions/" + sessionId + "/" + from + "/" + howMany, {
+                  method: 'GET',
                   apiUrl: apiUrl
                 }));
 
@@ -3476,7 +3505,38 @@ var unansweredQuestions = (function (apiUrl) {
         }, _callee2);
       }));
 
-      function deleteUnansweredQuestion(_x2, _x3) {
+      function getUnansweredQuestionsPaginated(_x2, _x3, _x4) {
+        return _getUnansweredQuestionsPaginated.apply(this, arguments);
+      }
+
+      return getUnansweredQuestionsPaginated;
+    }(),
+
+    /**
+     * Removes an existing Unanswered Question object.
+     * @param {string} sessionId The session ID
+     * @param {string} unansweredQuestionId The Unanswered Question object ID
+     */
+    deleteUnansweredQuestion: function () {
+      var _deleteUnansweredQuestion = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, unansweredQuestionId) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", apiFetcher("/UnansweredQuestion/" + sessionId + "/" + unansweredQuestionId, {
+                  method: 'DELETE',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function deleteUnansweredQuestion(_x5, _x6) {
         return _deleteUnansweredQuestion.apply(this, arguments);
       }
 

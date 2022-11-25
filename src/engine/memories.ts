@@ -23,6 +23,25 @@ export default (apiUrl: string) => ({
     >,
 
   /**
+   * Lists paginated Memory objects.
+   * @param {string} sessionId The session ID
+   */
+  getMemoriesPaginated: async (
+    sessionId: string,
+    from: number,
+    howMany: number
+  ) =>
+    apiFetcher(`/Memories/${sessionId}/${from}/${howMany}`, {
+      method: 'GET',
+      apiUrl,
+    }) as Promise<
+      ResponseSpec & {
+        count: number;
+        memories: Memory[];
+      }
+    >,
+
+  /**
    * Gets the details of a Memory object.
    * @param {string} sessionId The session ID
    * @param {string} memoryId The Memory object ID

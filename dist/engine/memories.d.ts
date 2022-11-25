@@ -8,6 +8,14 @@ declare const _default: (apiUrl: string) => {
         memories: Memory[];
     }>;
     /**
+     * Lists paginated Memory objects.
+     * @param {string} sessionId The session ID
+     */
+    getMemoriesPaginated: (sessionId: string, from: number, howMany: number) => Promise<ResponseSpec & {
+        count: number;
+        memories: Memory[];
+    }>;
+    /**
      * Gets the details of a Memory object.
      * @param {string} sessionId The session ID
      * @param {string} memoryId The Memory object ID

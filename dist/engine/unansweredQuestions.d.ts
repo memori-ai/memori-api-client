@@ -8,6 +8,14 @@ declare const _default: (apiUrl: string) => {
         unansweredQuestions: UnansweredQuestion[];
     }>;
     /**
+     * Lists paginated Unanswered Question objects.
+     * @param {string} sessionId The session ID
+     */
+    getUnansweredQuestionsPaginated: (sessionId: string, from: number, howMany: string) => Promise<ResponseSpec & {
+        count: number;
+        unansweredQuestions: UnansweredQuestion[];
+    }>;
+    /**
      * Removes an existing Unanswered Question object.
      * @param {string} sessionId The session ID
      * @param {string} unansweredQuestionId The Unanswered Question object ID
