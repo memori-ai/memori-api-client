@@ -1,5 +1,12 @@
 
 
+## [0.4.2](https://github.com/memori-ai/memori-api-client/compare/v0.4.1...v0.4.2) (2022-11-25)
+
+
+### Bug Fixes
+
+* unans questions pagination params type ([2ccf150](https://github.com/memori-ai/memori-api-client/commit/2ccf150eae4c970f7aee49c985241ef0af12b00b))
+
 ## [0.4.1](https://github.com/memori-ai/memori-api-client/compare/v0.4.0...v0.4.1) (2022-11-25)
 
 
