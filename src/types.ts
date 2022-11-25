@@ -468,7 +468,7 @@ export declare type UnansweredQuestion = {
   creationName?: string;
   lastChangeTimestamp?: string;
   lastChangeName?: string;
-  candidateAnswers?: SearchMatches[];
+  suggestions?: SearchMatches[];
 };
 
 export declare type Message = {
