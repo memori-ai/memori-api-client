@@ -25,16 +25,23 @@ export default (apiUrl: string) => ({
   /**
    * Lists paginated Memory objects.
    * @param {string} sessionId The session ID
+   * @param {number} from The starting index
+   * @param {number} howMany The number of items to return
+   * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS
    */
   getMemoriesPaginated: async (
     sessionId: string,
     from: number,
-    howMany: number
+    howMany: number,
+    type?: 'ALL' | 'CONTENTS' | 'DEFAULTS'
   ) =>
-    apiFetcher(`/Memories/${sessionId}/${from}/${howMany}`, {
-      method: 'GET',
-      apiUrl,
-    }) as Promise<
+    apiFetcher(
+      `/Memories/${sessionId}/${from}/${howMany}${type ? `/${type}` : ''}`,
+      {
+        method: 'GET',
+        apiUrl,
+      }
+    ) as Promise<
       ResponseSpec & {
         count: number;
         memories: Memory[];
