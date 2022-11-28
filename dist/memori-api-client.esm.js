@@ -2346,14 +2346,17 @@ var memories = (function (apiUrl) {
     /**
      * Lists paginated Memory objects.
      * @param {string} sessionId The session ID
+     * @param {number} from The starting index
+     * @param {number} howMany The number of items to return
+     * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS
      */
     getMemoriesPaginated: function () {
-      var _getMemoriesPaginated = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, from, howMany) {
+      var _getMemoriesPaginated = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, from, howMany, type) {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                return _context2.abrupt("return", apiFetcher("/Memories/" + sessionId + "/" + from + "/" + howMany, {
+                return _context2.abrupt("return", apiFetcher("/Memories/" + sessionId + "/" + from + "/" + howMany + (type ? "/" + type : ''), {
                   method: 'GET',
                   apiUrl: apiUrl
                 }));
@@ -2366,7 +2369,7 @@ var memories = (function (apiUrl) {
         }, _callee2);
       }));
 
-      function getMemoriesPaginated(_x2, _x3, _x4) {
+      function getMemoriesPaginated(_x2, _x3, _x4, _x5) {
         return _getMemoriesPaginated.apply(this, arguments);
       }
 
@@ -2397,7 +2400,7 @@ var memories = (function (apiUrl) {
         }, _callee3);
       }));
 
-      function getMemory(_x5, _x6) {
+      function getMemory(_x6, _x7) {
         return _getMemory.apply(this, arguments);
       }
 
@@ -2429,7 +2432,7 @@ var memories = (function (apiUrl) {
         }, _callee4);
       }));
 
-      function patchMemory(_x7, _x8) {
+      function patchMemory(_x8, _x9) {
         return _patchMemory.apply(this, arguments);
       }
 
@@ -2460,7 +2463,7 @@ var memories = (function (apiUrl) {
         }, _callee5);
       }));
 
-      function deleteMemory(_x9, _x10) {
+      function deleteMemory(_x10, _x11) {
         return _deleteMemory.apply(this, arguments);
       }
 
@@ -2492,7 +2495,7 @@ var memories = (function (apiUrl) {
         }, _callee6);
       }));
 
-      function postMemory(_x11, _x12) {
+      function postMemory(_x12, _x13) {
         return _postMemory.apply(this, arguments);
       }
 
@@ -2523,7 +2526,7 @@ var memories = (function (apiUrl) {
         }, _callee7);
       }));
 
-      function getMemoryAccess(_x13, _x14) {
+      function getMemoryAccess(_x14, _x15) {
         return _getMemoryAccess.apply(this, arguments);
       }
 
