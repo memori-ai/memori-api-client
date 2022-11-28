@@ -1,5 +1,12 @@
 
 
+## [0.4.3](https://github.com/memori-ai/memori-api-client/compare/v0.4.2...v0.4.3) (2022-11-28)
+
+
+### Features
+
+* add type on paginated contents query ([b823f73](https://github.com/memori-ai/memori-api-client/commit/b823f733d3ece8ce6dfddb0c8d48bfb72fbcbdec))
+
 ## [0.4.2](https://github.com/memori-ai/memori-api-client/compare/v0.4.1...v0.4.2) (2022-11-25)
 
 
