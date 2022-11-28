@@ -1,5 +1,12 @@
 
 
+## [0.4.4](https://github.com/memori-ai/memori-api-client/compare/v0.4.3...v0.4.4) (2022-11-28)
+
+
+### Maintenance
+
+* run dist ([5853078](https://github.com/memori-ai/memori-api-client/commit/58530783784df5d11643516269eaf258edaca699))
+
 ## [0.4.3](https://github.com/memori-ai/memori-api-client/compare/v0.4.2...v0.4.3) (2022-11-28)
 
 
