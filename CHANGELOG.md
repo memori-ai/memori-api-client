@@ -1,5 +1,13 @@
 
 
+## [0.4.5](https://github.com/memori-ai/memori-api-client/compare/v0.4.4...v0.4.5) (2022-12-06)
+
+
+### Maintenance
+
+* add prebump build with release-it ([1e892e3](https://github.com/memori-ai/memori-api-client/commit/1e892e33452c0c2ebed56e59c538f5bdce5e31de))
+* **deps:** bump terser from 4.8.0 to 4.8.1 ([8fe97ad](https://github.com/memori-ai/memori-api-client/commit/8fe97ad0a0779fe48266d6f9472158f393a94b49))
+
 ## [0.4.4](https://github.com/memori-ai/memori-api-client/compare/v0.4.3...v0.4.4) (2022-11-28)
 
 
