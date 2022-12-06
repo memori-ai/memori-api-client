@@ -1,11 +1,22 @@
 {
   "version": "0.4.5",
+  "name": "@memori.ai/memori-api-client",
+  "description": "React library to integrate a Memori in your app or website",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/memori-ai/memori-api-client#readme",
+  "bugs": "https://github.com/memori-ai/memori-api-client/issues",
+  "repository": "https://github.com/memori-ai/memori-api-client.git",
+  "keywords": [
+    "memori",
+    "memori-ai",
+    "conversational-ai",
+    "api-client",
+    "api-wrapper"
+  ],
+  "author": "Memori Srl",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist", "src"],
   "engines": {
     "node": ">=14"
   },
@@ -24,17 +35,6 @@
     "prerelase": "tsdx build && git add . && git commit -m 'chore: update dist'",
     "release": "release-it"
   },
-  "license": "Apache-2.0",
-  "homepage": "https://github.com/memori-ai/memori-api-client#readme",
-  "bugs": "https://github.com/memori-ai/memori-api-client/issues",
-  "repository": "https://github.com/memori-ai/memori-api-client.git",
-  "keywords": [
-    "memori",
-    "memori-ai",
-    "conversational-ai",
-    "api-client",
-    "api-wrapper"
-  ],
   "peerDependencies": {},
   "husky": {
     "hooks": {
@@ -48,8 +48,6 @@
     "endOfLine": "lf",
     "trailingComma": "es5"
   },
-  "name": "@memori.ai/memori-api-client",
-  "author": "Memori Srl",
   "module": "dist/memori-api-client.esm.js",
   "size-limit": [
     {
