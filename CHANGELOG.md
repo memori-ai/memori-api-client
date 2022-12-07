@@ -1,5 +1,12 @@
 
 
+## [0.4.6](https://github.com/memori-ai/memori-api-client/compare/v0.4.5...v0.4.6) (2022-12-07)
+
+
+### Maintenance
+
+* add description in package.json ([4526d38](https://github.com/memori-ai/memori-api-client/commit/4526d3816b1ad36f2f1b281ab6b46f64f0cfd4fd))
+
 ## [0.4.5](https://github.com/memori-ai/memori-api-client/compare/v0.4.4...v0.4.5) (2022-12-06)
 
 

@@ -1,5 +1,5 @@
 {
-  "version": "0.4.5",
+  "version": "0.4.6",
   "name": "@memori.ai/memori-api-client",
   "description": "React library to integrate a Memori in your app or website",
   "license": "Apache-2.0",
@@ -16,7 +16,10 @@
   "author": "Memori Srl",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "engines": {
     "node": ">=14"
   },
