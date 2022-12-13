@@ -1,5 +1,12 @@
 
 
+## [0.5.0](https://github.com/memori-ai/memori-api-client/compare/v0.4.6...v0.5.0) (2022-12-13)
+
+
+### Features
+
+* add MemoriContentUpdated ([c252a68](https://github.com/memori-ai/memori-api-client/commit/c252a68cefc239fd7413556f397ccf785f57e04c))
+
 ## [0.4.6](https://github.com/memori-ai/memori-api-client/compare/v0.4.5...v0.4.6) (2022-12-07)
 
 
