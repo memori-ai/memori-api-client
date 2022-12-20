@@ -1,5 +1,17 @@
 
 
+## [0.6.0](https://github.com/memori-ai/memori-api-client/compare/v0.5.0...v0.6.0) (2022-12-20)
+
+
+### Features
+
+* update Memori and Memory typings ([c796d2e](https://github.com/memori-ai/memori-api-client/commit/c796d2ed31161f9f3f20d0d62df0c174bbb4b872))
+
+
+### Maintenance
+
+* update package.json files ([8deca06](https://github.com/memori-ai/memori-api-client/commit/8deca06d42c1110a13e2572b794ff0bcfd65076f))
+
 ## [0.5.0](https://github.com/memori-ai/memori-api-client/compare/v0.4.6...v0.5.0) (2022-12-13)
 
 
