@@ -47,6 +47,8 @@ export declare type Memori = {
     publishedInTheMetaverse?: boolean;
     metaverseEnvironment?: string;
     exposed?: boolean;
+    disableR2R3Loop?: boolean;
+    disableR4Loop?: boolean;
     properties?: {
         [key: string]: any;
     };
@@ -291,6 +293,7 @@ export declare type DialogState = {
     acceptsPlace?: boolean;
     acceptsTag?: boolean;
     hints?: string[];
+    timeout?: number;
     translatedHints?: TranslatedHint[];
     currentTag?: string;
     currentDate?: string;
@@ -414,6 +417,8 @@ export declare type Memory = {
     conclusive?: boolean;
     help?: boolean;
     notPickable?: boolean;
+    minTimeout?: number;
+    maxTimeout?: number;
     contextVarsToSet?: {
         [variable: string]: string;
     };
