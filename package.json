@@ -18,7 +18,10 @@
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
-    "src"
+    "src",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "engines": {
     "node": ">=14"
