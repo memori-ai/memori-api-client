@@ -1,5 +1,12 @@
 
 
+## [0.7.0](https://github.com/memori-ai/memori-api-client/compare/v0.6.0...v0.7.0) (2022-12-21)
+
+
+### Features
+
+* add hints as memory properties ([49ed038](https://github.com/memori-ai/memori-api-client/commit/49ed0385d52e7bc5f25520e26007bd60c37c6f2d))
+
 ## [0.6.0](https://github.com/memori-ai/memori-api-client/compare/v0.5.0...v0.6.0) (2022-12-20)
 
 
