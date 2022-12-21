@@ -452,6 +452,7 @@ export declare type Memory = {
   conclusive?: boolean;
   help?: boolean;
   notPickable?: boolean;
+  hints?: string[];
   minTimeout?: number;
   maxTimeout?: number;
   contextVarsToSet?: { [variable: string]: string };
