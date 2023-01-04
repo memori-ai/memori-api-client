@@ -314,7 +314,9 @@ export declare type DialogState = {
   stateName: string;
   previousState: string;
   confidence?: number;
+  confidenceLevel?: 'NONE' | 'LOW' | 'MEDIUM' | 'HIGH';
   emission?: string;
+  continuationEmitted?: boolean;
   acceptsTimeout?: boolean;
   acceptsAbort?: boolean;
   acceptsMedia?: boolean;
