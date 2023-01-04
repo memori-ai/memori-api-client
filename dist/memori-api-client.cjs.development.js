@@ -437,6 +437,17 @@ var memori = (function (apiUrl) {
     },
 
     /**
+     * Gets a list of all the public Memori objects published on the Metaverse for a specific Tenant.
+     * @param tenant - The name of the tenant
+     * @returns A list of Memori objects
+     */
+    getTenantMetaverseMemoriList: function getTenantMetaverseMemoriList(tenant) {
+      return apiFetcher("/TenantMetaverseMemori/" + encodeURI(tenant), {
+        apiUrl: apiUrl
+      });
+    },
+
+    /**
      * Gets a list of all the public Memori objects for a specific Tenant accessible from user session.
      * @param authToken - The login token
      * @returns A list of Memori objects
