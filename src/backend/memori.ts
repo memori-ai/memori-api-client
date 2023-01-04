@@ -17,6 +17,20 @@ export default (apiUrl: string) => ({
     >,
 
   /**
+   * Gets a list of all the public Memori objects published on the Metaverse for a specific Tenant.
+   * @param tenant - The name of the tenant
+   * @returns A list of Memori objects
+   */
+  getTenantMetaverseMemoriList: (tenant: string) =>
+    apiFetcher(`/TenantMetaverseMemori/${encodeURI(tenant)}`, {
+      apiUrl,
+    }) as Promise<
+      ResponseSpec & {
+        memori: Memori[];
+      }
+    >,
+
+  /**
    * Gets a list of all the public Memori objects for a specific Tenant accessible from user session.
    * @param authToken - The login token
    * @returns A list of Memori objects
