@@ -1,5 +1,23 @@
 
 
+## [0.8.0](https://github.com/memori-ai/memori-api-client/compare/v0.7.0...v0.8.0) (2023-01-04)
+
+
+### Features
+
+* add tenant metaverse api ([cd24228](https://github.com/memori-ai/memori-api-client/commit/cd242283679cf05fc8d254a0960116e4136df7de))
+
+
+### Changes
+
+* add new dialogState attrs ([eccf321](https://github.com/memori-ai/memori-api-client/commit/eccf321654a084873159697e592f14561542a07d))
+* add new dialogState attrs ([87877f0](https://github.com/memori-ai/memori-api-client/commit/87877f0faa82061aab0635b8529aabfe90137db2))
+
+
+### Maintenance
+
+* update dist ([3b8640a](https://github.com/memori-ai/memori-api-client/commit/3b8640a093b6248160d24f6d0e490b7bc8ac52a5))
+
 ## [0.7.0](https://github.com/memori-ai/memori-api-client/compare/v0.6.0...v0.7.0) (2022-12-21)
 
 
