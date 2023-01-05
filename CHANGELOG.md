@@ -1,5 +1,12 @@
 
 
+## [0.8.2](https://github.com/memori-ai/memori-api-client/compare/v0.8.1...v0.8.2) (2023-01-05)
+
+
+### Features
+
+* add getMemoriInvitations api ([22d33a1](https://github.com/memori-ai/memori-api-client/commit/22d33a1c8c3be29e1ee896eaf725cbd3fa7fc37b))
+
 ## [0.8.1](https://github.com/memori-ai/memori-api-client/compare/v0.8.0...v0.8.1) (2023-01-05)
 
 

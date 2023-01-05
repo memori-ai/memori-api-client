@@ -9,6 +9,15 @@ declare const _default: (apiUrl: string) => {
         invitations: Invitation[];
     }>;
     /**
+     * Gets a list of invitations sent for the specified Memori object
+     * @param {string} authToken - The login token
+     * @param {string} memoriId - The ID of the Memori object
+     * @returns The list of Invitation objects.
+     */
+    getMemoriInvitations: (authToken: string, memoriId: string) => Promise<ResponseSpec & {
+        invitations: Invitation[];
+    }>;
+    /**
      * Gets a list of invitations received by the currently logged in User.
      * @param {string} authToken - The login token
      * @returns The list of Invitation objects.
