@@ -1,5 +1,17 @@
 
 
+## [0.8.1](https://github.com/memori-ai/memori-api-client/compare/v0.8.0...v0.8.1) (2023-01-05)
+
+
+### Changes
+
+* add new MemoriSpec attrs ([c96a42e](https://github.com/memori-ai/memori-api-client/commit/c96a42e7a17fd3714c07f7deb70a300fb3770fad))
+
+
+### Maintenance
+
+* update dist ([88e7522](https://github.com/memori-ai/memori-api-client/commit/88e752202baac2af89aca4bccfb7d2dd90518a49))
+
 ## [0.8.0](https://github.com/memori-ai/memori-api-client/compare/v0.7.0...v0.8.0) (2023-01-04)
 
 
