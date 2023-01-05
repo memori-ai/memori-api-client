@@ -41,6 +41,20 @@ export declare type Memori = {
     totalNumberOfRecoveryTokens?: number;
     avatarURL?: string;
     coverURL?: string;
+    /**
+     * @readonly
+     * URL of the avatar 3D model represting this Memori object.
+     * It is obtained from the CustomData property of the public home page Integration object for this Memori, if present.
+     * To be changed, the Integration object must be changed. Returned during Get operations. Ignored in other cases.
+     */
+    avatar3DURL?: string;
+    /**
+     * @readonly
+     * Original URL of the avatar 3D model represting this Memori object.
+     * It is obtained from the CustomData property of the public home page Integration object for this Memori, if present.
+     * To be changed, the Integration object must be changed. Returned during Get operations. Ignored in other cases.
+     */
+    avatarOriginal3DURL?: string;
     needsPosition?: boolean;
     voiceType: string;
     culture?: string;
@@ -49,6 +63,9 @@ export declare type Memori = {
     exposed?: boolean;
     disableR2R3Loop?: boolean;
     disableR4Loop?: boolean;
+    chainingMemoriID?: string;
+    chainingBaseURL?: string;
+    chainingPassword?: string;
     properties?: {
         [key: string]: any;
     };
