@@ -1,5 +1,12 @@
 
 
+## [0.8.3](https://github.com/memori-ai/memori-api-client/compare/v0.8.2...v0.8.3) (2023-01-14)
+
+
+### Maintenance
+
+* pin azure sdk to 1.20.0 ([24ee3b6](https://github.com/memori-ai/memori-api-client/commit/24ee3b6ed50d67578b4c916d088c7062df103618))
+
 ## [0.8.2](https://github.com/memori-ai/memori-api-client/compare/v0.8.1...v0.8.2) (2023-01-05)
 
 
