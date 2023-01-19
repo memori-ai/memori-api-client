@@ -57,6 +57,29 @@ declare const _default: (apiUrl: string) => {
          */
         undefinedWords: string[];
     }>;
+    /**
+     * Tries to suggest the answer for a question, using as much content as possible from the session's associated Memori object.
+     * @param {string} sessionId The session ID
+     * @param {string} text Text of the sentence.
+     */
+    suggestAnswer: (sessionId: string, text: string) => Promise<ResponseSpec & {
+        /**
+         * Suggested answer. May be null if no answer could be suggested.
+         */
+        answer: string;
+    }>;
+    /**
+     * Tries to suggest questions for an answer.
+     * Differently from ```SuggestAnswer```, no content from the session's associated Memori object is used.
+     * @param {string} sessionId The session ID
+     * @param {string} text Text of the sentence.
+     */
+    suggestQuestions: (sessionId: string, text: string) => Promise<ResponseSpec & {
+        /**
+         * Suggested questions. May be null or empty if no questions could be suggested.
+         */
+        questions: string[];
+    }>;
 };
 /***************
  *             *

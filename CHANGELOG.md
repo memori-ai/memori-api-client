@@ -1,5 +1,18 @@
 
 
+## [0.10.0](https://github.com/memori-ai/memori-api-client/compare/v0.9.0...v0.10.0) (2023-01-19)
+
+
+### Features
+
+* add new nlp apis ([9befc96](https://github.com/memori-ai/memori-api-client/commit/9befc9629e8f5d99b89e910b365f9c2306cffe1d))
+
+
+### Changes
+
+* add memory type DRAFT ([fa64870](https://github.com/memori-ai/memori-api-client/commit/fa648709749a3220f038edeaacbdf78749f3f7e7))
+* add memoryID in chat log lines ([52fa29d](https://github.com/memori-ai/memori-api-client/commit/52fa29db601037e4d11f5874a3a01a161b46bc1e))
+
 ## [0.9.0](https://github.com/memori-ai/memori-api-client/compare/v0.8.3...v0.9.0) (2023-01-19)
 
 
