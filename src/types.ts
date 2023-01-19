@@ -343,6 +343,7 @@ export declare type DialogState = {
   acceptsDate?: boolean;
   acceptsPlace?: boolean;
   acceptsTag?: boolean;
+  acceptsFeedback?: boolean;
   hints?: string[];
   timeout?: number;
   translatedHints?: TranslatedHint[];
