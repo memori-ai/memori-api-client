@@ -62,6 +62,8 @@ export declare type Memori = {
   exposed?: boolean;
   disableR2R3Loop?: boolean;
   disableR4Loop?: boolean;
+  disableR5Loop?: boolean;
+  enableCompletions?: boolean;
   chainingMemoriID?: string;
   chainingBaseURL?: string;
   chainingPassword?: string;
