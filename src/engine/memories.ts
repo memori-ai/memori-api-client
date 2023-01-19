@@ -33,7 +33,7 @@ export default (apiUrl: string) => ({
     sessionId: string,
     from: number,
     howMany: number,
-    type?: 'ALL' | 'CONTENTS' | 'DEFAULTS'
+    type?: 'ALL' | 'CONTENTS' | 'DEFAULTS' | 'DRAFTS'
   ) =>
     apiFetcher(
       `/Memories/${sessionId}/${from}/${howMany}${type ? `/${type}` : ''}`,
