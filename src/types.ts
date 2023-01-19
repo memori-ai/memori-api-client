@@ -576,6 +576,10 @@ export type ChatLogLine = {
    */
   media?: ChatMedium[];
   /**
+   * ID of the Memory object referenced in this line.
+   */
+  memoryID?: string;
+  /**
    * Dialog State Machine context variables after the emission, if present. Empty if the line is inbound.
    */
   contextVars?: { [key: string]: string };
