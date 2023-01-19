@@ -63,6 +63,8 @@ export declare type Memori = {
     exposed?: boolean;
     disableR2R3Loop?: boolean;
     disableR4Loop?: boolean;
+    disableR5Loop?: boolean;
+    enableCompletions?: boolean;
     chainingMemoriID?: string;
     chainingBaseURL?: string;
     chainingPassword?: string;
@@ -312,6 +314,7 @@ export declare type DialogState = {
     acceptsDate?: boolean;
     acceptsPlace?: boolean;
     acceptsTag?: boolean;
+    acceptsFeedback?: boolean;
     hints?: string[];
     timeout?: number;
     translatedHints?: TranslatedHint[];

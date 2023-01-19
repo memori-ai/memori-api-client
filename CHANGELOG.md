@@ -1,5 +1,13 @@
 
 
+## [0.9.0](https://github.com/memori-ai/memori-api-client/compare/v0.8.3...v0.9.0) (2023-01-19)
+
+
+### Features
+
+* add new flags in dialog state ([24abc93](https://github.com/memori-ai/memori-api-client/commit/24abc9352134e1b0a922700740f60a57870681a2))
+* add new flags in memori ([6fd0fb0](https://github.com/memori-ai/memori-api-client/commit/6fd0fb0a593b44451e068975edb05f1678ad820e))
+
 ## [0.8.3](https://github.com/memori-ai/memori-api-client/compare/v0.8.2...v0.8.3) (2023-01-14)
 
 
