@@ -1,5 +1,12 @@
 
 
+## [0.10.1](https://github.com/memori-ai/memori-api-client/compare/v0.10.0...v0.10.1) (2023-01-20)
+
+
+### Changes
+
+* remove internal api not usable from public ([d3d3656](https://github.com/memori-ai/memori-api-client/commit/d3d3656619c45f192ffd0ea2bfb2391cb9c483c5))
+
 ## [0.10.0](https://github.com/memori-ai/memori-api-client/compare/v0.9.0...v0.10.0) (2023-01-19)
 
 
