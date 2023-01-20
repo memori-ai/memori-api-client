@@ -1,5 +1,12 @@
 
 
+## [0.10.2](https://github.com/memori-ai/memori-api-client/compare/v0.10.1...v0.10.2) (2023-01-20)
+
+
+### Maintenance
+
+* add flag in Message for AI-generated msgs ([6ea6ae3](https://github.com/memori-ai/memori-api-client/commit/6ea6ae33897c92b6bc032f4d74b8137d4a360f8b))
+
 ## [0.10.1](https://github.com/memori-ai/memori-api-client/compare/v0.10.0...v0.10.1) (2023-01-20)
 
 

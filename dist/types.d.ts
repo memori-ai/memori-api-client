@@ -471,6 +471,7 @@ export declare type Message = {
     text: string;
     translatedText?: string;
     fromUser?: boolean;
+    generatedByAI?: boolean;
     media?: Medium[];
     initial?: boolean;
     timestamp?: string;
