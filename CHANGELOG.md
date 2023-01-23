@@ -1,5 +1,12 @@
 
 
+## [0.10.3](https://github.com/memori-ai/memori-api-client/compare/v0.10.2...v0.10.3) (2023-01-23)
+
+
+### Features
+
+* add completion flag in dialog state ([9d7b417](https://github.com/memori-ai/memori-api-client/commit/9d7b4170fe1bbfe575cd9dff1165ad01525e898c))
+
 ## [0.10.2](https://github.com/memori-ai/memori-api-client/compare/v0.10.1...v0.10.2) (2023-01-20)
 
 
