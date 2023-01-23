@@ -306,6 +306,7 @@ export declare type DialogState = {
     confidence?: number;
     confidenceLevel?: 'NONE' | 'LOW' | 'MEDIUM' | 'HIGH';
     emission?: string;
+    completion?: boolean;
     continuationEmitted?: boolean;
     lastMatchedMemoryID?: string;
     acceptsTimeout?: boolean;
