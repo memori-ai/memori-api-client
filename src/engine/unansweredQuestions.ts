@@ -42,6 +42,25 @@ export default (apiUrl: string) => ({
     >,
 
   /**
+   * Adds a new Unanswered Question object.
+   * @param {string} sessionId The session ID
+   * @param {UnansweredQuestion} unansweredQuestion The Unanswered Question object
+   */
+  postUnansweredQuestion: async (
+    sessionId: string,
+    unansweredQuestion: UnansweredQuestion
+  ) =>
+    apiFetcher(`/UnansweredQuestion/${sessionId}`, {
+      method: 'POST',
+      apiUrl,
+      body: unansweredQuestion,
+    }) as Promise<
+      ResponseSpec & {
+        unansweredQuestion: UnansweredQuestion;
+      }
+    >,
+
+  /**
    * Removes an existing Unanswered Question object.
    * @param {string} sessionId The session ID
    * @param {string} unansweredQuestionId The Unanswered Question object ID

@@ -30,6 +30,21 @@ export default (apiUrl: string) => ({
     >,
 
   /**
+   * Gets the Chat Log objects for the Memori of the current session recorded during a specific other session.
+   * @param {string} sessionId The session ID
+   * @param {string} chatLogSessionID The session ID for which Chat Log objects are being searched
+   */
+  getSessionChatLogs: async (sessionId: string, chatLogSessionID: string) =>
+    apiFetcher(`/SessionChatLogs/${sessionId}/${chatLogSessionID}`, {
+      method: 'GET',
+      apiUrl,
+    }) as Promise<
+      ResponseSpec & {
+        chatLogs: ChatLog[];
+      }
+    >,
+
+  /**
    * Removes all Chat Log objects in a specific date internval.
    * @param {string} sessionId The session ID
    * @param {?string} dateFrom The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff

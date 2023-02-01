@@ -64,6 +64,7 @@ export declare type Memori = {
   disableR4Loop?: boolean;
   disableR5Loop?: boolean;
   enableCompletions?: boolean;
+  completionDescription?: string;
   chainingMemoriID?: string;
   chainingBaseURL?: string;
   chainingPassword?: string;
@@ -127,6 +128,7 @@ export declare type User = {
   flowID?: string;
   newsletterSubscribed?: boolean;
   maxMemori?: number;
+  maxCompletions?: number;
   canCreateMemori?: boolean;
   canAccessAPI?: boolean;
   canRunSnippets?: boolean;
@@ -141,6 +143,7 @@ export declare type User = {
   couponCode?: string;
   paying?: boolean;
   notificationPrefs?: NotificationPrefs[];
+  dontSendInvitationEmail?: boolean;
 };
 
 export declare type IntegrationResource = {
@@ -229,8 +232,11 @@ export declare type Tenant = {
   maxMemoriPerAdmin?: number;
   maxMemoriPerUser?: number;
   maxTotalMemori?: number;
+  memoriCount?: number;
   maxAdmins?: number;
+  adminCount?: number;
   maxUsers?: number;
+  userCount?: number;
   usersCanCreateMemori?: boolean;
   usersCanAccessAPI?: boolean;
   usersCanEditIntegrations?: boolean;
@@ -239,6 +245,9 @@ export declare type Tenant = {
   maxFreeSessions?: number;
   maxFreeSessionsPerUser?: number;
   nonFreeSessionCost?: number;
+  maxCompletions?: number;
+  maxCompletionsPerUser?: number;
+  paying?: boolean;
 };
 
 export declare type OpenSession = {
@@ -481,10 +490,16 @@ export declare type Memory = {
   maxTimeout?: number;
   contextVarsToSet?: { [variable: string]: string };
   contextVarsToMatch?: { [variable: string]: string };
+  /**
+   * Used for Unanswered Questions
+   */
+  contextVars?: { [variable: string]: string };
   creationTimestamp?: string;
   creationName?: string;
+  creationSessionID?: string;
   lastChangeTimestamp?: string;
   lastChangeName?: string;
+  lastChangeSessionID?: string;
 };
 
 export declare type UnansweredQuestion = {
@@ -496,16 +511,20 @@ export declare type UnansweredQuestion = {
   receiverName?: string;
   creationTimestamp?: string;
   creationName?: string;
+  creationSessionID?: string;
   lastChangeTimestamp?: string;
   lastChangeName?: string;
+  lastChangeSessionID?: string;
   suggestions?: SearchMatches[];
 };
 
 export declare type Message = {
+  memoryID?: string;
   text: string;
   translatedText?: string;
-  fromUser?: boolean;
+  acceptsFeedback?: boolean;
   generatedByAI?: boolean;
+  fromUser?: boolean;
   media?: Medium[];
   initial?: boolean;
   timestamp?: string;
@@ -521,6 +540,7 @@ export type ConsumptionLog = {
   memoriID?: string;
   totalSessions: number;
   validSessions: number;
+  completions: number;
 };
 
 export type Notification = {
@@ -585,6 +605,17 @@ export type ChatLogLine = {
    * Dialog State Machine context variables after the emission, if present. Empty if the line is inbound.
    */
   contextVars?: { [key: string]: string };
+  /**
+   * @type {boolean}
+   * If True the text is a complation obtained via a generative AI. Can only be True for outbound lines.
+   */
+  completion?: boolean;
+  /**
+   * @type {boolean}
+   * If True the line is the result of a high confidence Memory object match, and as such can be subject to feedback.
+   * Can only be True for outbound lines.
+   */
+  acceptsFeedback?: boolean;
 };
 
 export type ChatLog = {
@@ -619,6 +650,14 @@ export type ChatLog = {
    * List of Chat Line objects of this chat.
    */
   lines: ChatLogLine[];
+};
+
+export type CorrelationPair = {
+  pairID?: string;
+  text1: string;
+  text2: string;
+  correlated: boolean;
+  occurrencies?: number;
 };
 
 export type Utterance = {
@@ -799,4 +838,45 @@ export type CustomWord = {
   creationSessionID: string;
   lastChangeTimestamp: string;
   lastChangeSessionID: string;
+};
+
+export type ImportWarning = {
+  warningType: 'Existing Similar Memory' | 'Internal Error';
+  rowNumber?: number;
+  csvRow: string;
+  text?: string;
+  similarTexts?: {
+    text: string;
+    similarityLevel: 'HIGH' | 'MEDIUM' | 'LOW';
+  }[];
+};
+
+export type ImportReponse = {
+  importID: string;
+  importedMemories?: number;
+  importWarnings?: ImportWarning[];
+};
+
+export type ImportCSVParams = {
+  includedRows?: number[];
+  hasHeaders?: boolean;
+  headerNames?: string[];
+  forceImport?: boolean;
+  questionColumnName: string;
+  answerColumnName: string;
+  contextVarsToMatchColumnName?: string;
+  contextVarsToSetColumnName?: string;
+  csvSeparator?: string;
+  questionTitleVariantsSeparator?: string;
+};
+
+export type ExportCSVParams = {
+  newLine: '\n' | '\r\n';
+  hasHeaders?: boolean;
+  questionColumnName: string;
+  answerColumnName: string;
+  contextVarsToMatchColumnName?: string;
+  contextVarsToSetColumnName?: string;
+  csvSeparator?: string;
+  questionTitleVariantsSeparator?: string;
 };

@@ -11,9 +11,13 @@ export default (apiUrl: string) => ({
   /**
    * Lists all Memory objects.
    * @param {string} sessionId The session ID
+   * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS, DRAFTS
    */
-  getMemories: async (sessionId: string) =>
-    apiFetcher(`/Memories/${sessionId}`, {
+  getMemories: async (
+    sessionId: string,
+    type?: 'ALL' | 'CONTENTS' | 'DEFAULTS' | 'DRAFTS'
+  ) =>
+    apiFetcher(`/Memories/${sessionId}${type ? `/${type}` : ''}`, {
       method: 'GET',
       apiUrl,
     }) as Promise<
@@ -27,7 +31,7 @@ export default (apiUrl: string) => ({
    * @param {string} sessionId The session ID
    * @param {number} from The starting index
    * @param {number} howMany The number of items to return
-   * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS
+   * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS, DRAFTS
    */
   getMemoriesPaginated: async (
     sessionId: string,
@@ -91,7 +95,7 @@ export default (apiUrl: string) => ({
    * @param {string} sessionId The session ID
    * @param {Memory} memory The Memory object
    */
-  postMemory: async (sessionId: string, memory: Memory) =>
+  postMemory: async (sessionId: string, memory: Omit<Memory, 'memoryID'>) =>
     apiFetcher(`/Memory/${sessionId}`, {
       method: 'POST',
       apiUrl,

@@ -1,44 +1,10 @@
-import { ResponseSpec } from '../types';
+import {
+  ResponseSpec,
+  ImportReponse,
+  ImportCSVParams,
+  ExportCSVParams,
+} from '../types';
 import { apiFetcher } from '../apiFetcher';
-
-export interface ImportCSVParams {
-  includedRows?: number[];
-  hasHeaders?: boolean;
-  headerNames?: string[];
-  forceImport?: boolean;
-  questionColumnName: string;
-  answerColumnName: string;
-  contextVarsToMatchColumnName?: string;
-  contextVarsToSetColumnName?: string;
-  csvSeparator?: string;
-  questionTitleVariantsSeparator?: string;
-}
-
-export interface ExportCSVParams {
-  newLine: '\n' | '\r\n';
-  hasHeaders?: boolean;
-  questionColumnName: string;
-  answerColumnName: string;
-  contextVarsToMatchColumnName?: string;
-  contextVarsToSetColumnName?: string;
-  csvSeparator?: string;
-  questionTitleVariantsSeparator?: string;
-}
-
-export interface ImportReponse {
-  importID: string;
-  importedMemories?: number;
-  importWarnings?: {
-    warningType: 'Existing Similar Memory' | 'Internal Error';
-    rowNumber?: number;
-    csvRow: string;
-    text?: string;
-    similarTexts?: {
-      text: string;
-      similarityLevel: 'HIGH' | 'MEDIUM' | 'LOW';
-    }[];
-  }[];
-}
 
 /************************
  *                      *

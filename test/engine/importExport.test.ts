@@ -1,4 +1,4 @@
-import { ImportCSVParams } from '../../src/engine/importExport';
+import { ImportCSVParams } from '../../src/types';
 import memori from '../../src';
 
 const client = memori('https://backend.memori.ai');

@@ -1,4 +1,4 @@
-import { ResponseSpec } from '../types';
+import { ResponseSpec, CorrelationPair } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /****************************
@@ -11,12 +11,46 @@ export default (apiUrl: string) => ({
   /**
    * Lists all Correlation Pair objects.
    * @param {string} sessionId The session ID
+   * @param {number=} from The starting index
+   * @param {number=} howMany The number of items to return
    */
-  getCorrelationPairs: async (sessionId: string) =>
-    apiFetcher(`/CorrelationPairs/${sessionId}`, {
-      method: 'GET',
+  getCorrelationPairs: async (
+    sessionId: string,
+    from?: number,
+    howMany?: number
+  ) =>
+    apiFetcher(
+      `/CorrelationPairs/${sessionId}${
+        from ? `/${from}${howMany ? `/${howMany}` : ''}` : ''
+      }`,
+      {
+        method: 'GET',
+        apiUrl,
+      }
+    ) as Promise<
+      ResponseSpec & {
+        correlationPairs: CorrelationPair[];
+      }
+    >,
+
+  /**
+   * Adds a new Correlation Pair object.
+   * @param {string} sessionId The session ID
+   * @param {CorrelationPair} correlationPair The Correlation Pair object
+   */
+  postCorrelationPair: async (
+    sessionId: string,
+    correlationPair: CorrelationPair
+  ) =>
+    apiFetcher(`/CorrelationPair/${sessionId}`, {
+      method: 'POST',
       apiUrl,
-    }) as Promise<ResponseSpec>,
+      body: correlationPair,
+    }) as Promise<
+      ResponseSpec & {
+        correlationPair: CorrelationPair;
+      }
+    >,
 
   /**
    * Removes an existing Correlation Pair object.
@@ -25,7 +59,7 @@ export default (apiUrl: string) => ({
    */
   deleteCorrelationPair: async (sessionId: string, pairId: string) =>
     apiFetcher(`/CorrelationPair/${sessionId}/${pairId}`, {
-      method: 'GET',
+      method: 'DELETE',
       apiUrl,
     }) as Promise<ResponseSpec>,
 });
