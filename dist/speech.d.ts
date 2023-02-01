@@ -1,9 +1,8 @@
-import * as speechSdk from 'microsoft-cognitiveservices-speech-sdk';
 /**
  * EXPERIMENTAL
  */
 declare const speech: (AZURE_COGNITIVE_SERVICES_TTS_KEY: string, DEBUG?: boolean) => (lang: string, voiceType: 'FEMALE' | 'MALE') => {
-    speak: (text: string, onAudioEnd?: ((sender: speechSdk.IPlayer) => void) | undefined) => void;
+    speak: (text: string, onAudioEnd?: ((sender: any) => void) | undefined) => void;
     isSpeaking: () => boolean;
     stopSpeaking: () => void;
     recognize: (onRecognized: (transcript: string) => void) => void;

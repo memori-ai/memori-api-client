@@ -67,52 +67,6 @@ memori.asset.getResourceUrl({
 });
 ```
 
-### TTS
-
-> Experimental
-
-Bundled with this client there is a TTS utility that can be used to synthesize text to speech.
-
-```ts
-const memori = memoriApiClient('https://backend.memori.ai');
-
-// Needs Azure Speech API key
-// See https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstarts/setup-platform?pivots=programming-language-javascript
-// Second parameter is for debug mode
-const speechSdk = memori.speech(AZURE_COGNITIVE_SERVICES_TTS_KEY, true);
-
-// Requires the language code of the text to be spoken
-// And the voice type (female or male)
-const speech = speechSdk('it', 'FEMALE');
-
-speech.speak('Ciao, Memori!', () => {
-  console.log('spoken');
-});
-
-speech.isSpeaking();
-
-speech.stopSpeaking();
-```
-
-### STT
-
-> Experimental
-
-There is also a speech recognition utility.
-
-```ts
-// Same as for the TTS
-const speech = speechSdk('it', 'FEMALE');
-
-speech.recognize(transcript => {
-  console.log('Recognized ', transcript);
-});
-
-speech.isRecognizing();
-
-speech.stopRecognizing();
-```
-
 ## Development
 
 To run TSDX, use:

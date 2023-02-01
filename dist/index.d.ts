@@ -1,13 +1,5 @@
 import * as constants from './constants';
 declare const api: (hostname?: string | undefined) => {
-    speech: (AZURE_COGNITIVE_SERVICES_TTS_KEY: string, DEBUG?: boolean) => (lang: string, voiceType: "FEMALE" | "MALE") => {
-        speak: (text: string, onAudioEnd?: ((sender: import("microsoft-cognitiveservices-speech-sdk").IPlayer) => void) | undefined) => void;
-        isSpeaking: () => boolean;
-        stopSpeaking: () => void;
-        recognize: (onRecognized: (transcript: string) => void) => void;
-        isRecognizing: () => boolean;
-        stopRecognizing: (onStop?: (() => void) | undefined) => void;
-    };
     constants: typeof constants;
     asset: {
         getResourceUrl: ({ type, resourceURI, sessionID, baseURL, }: import("./helpers/asset").ResourceURLParams) => string;
@@ -15,10 +7,16 @@ declare const api: (hostname?: string | undefined) => {
     getChatLogs: (sessionId: string, dateFrom?: string | undefined, dateTo?: string | undefined) => Promise<import("./types").ResponseSpec & {
         chatLogs: import("./types").ChatLog[];
     }>;
+    getSessionChatLogs: (sessionId: string, chatLogSessionID: string) => Promise<import("./types").ResponseSpec & {
+        chatLogs: import("./types").ChatLog[];
+    }>;
     deleteChatLogs: (sessionId: string, dateFrom?: string | undefined, dateTo?: string | undefined) => Promise<import("./types").ResponseSpec>;
     deleteChatLog: (sessionId: string, chatLogId: string) => Promise<import("./types").ResponseSpec>;
     chatLogs: {
         getChatLogs: (sessionId: string, dateFrom?: string | undefined, dateTo?: string | undefined) => Promise<import("./types").ResponseSpec & {
+            chatLogs: import("./types").ChatLog[];
+        }>;
+        getSessionChatLogs: (sessionId: string, chatLogSessionID: string) => Promise<import("./types").ResponseSpec & {
             chatLogs: import("./types").ChatLog[];
         }>;
         deleteChatLogs: (sessionId: string, dateFrom?: string | undefined, dateTo?: string | undefined) => Promise<import("./types").ResponseSpec>;
@@ -77,10 +75,24 @@ declare const api: (hostname?: string | undefined) => {
     getUnansweredQuestions: (sessionId: string) => Promise<import("./types").ResponseSpec & {
         unansweredQuestions: import("./types").UnansweredQuestion[];
     }>;
+    getUnansweredQuestionsPaginated: (sessionId: string, from: number, howMany: number) => Promise<import("./types").ResponseSpec & {
+        count: number;
+        unansweredQuestions: import("./types").UnansweredQuestion[];
+    }>;
+    postUnansweredQuestion: (sessionId: string, unansweredQuestion: import("./types").UnansweredQuestion) => Promise<import("./types").ResponseSpec & {
+        unansweredQuestion: import("./types").UnansweredQuestion;
+    }>;
     deleteUnansweredQuestion: (sessionId: string, unansweredQuestionId: string) => Promise<import("./types").ResponseSpec>;
     unansweredQuestions: {
         getUnansweredQuestions: (sessionId: string) => Promise<import("./types").ResponseSpec & {
             unansweredQuestions: import("./types").UnansweredQuestion[];
+        }>;
+        getUnansweredQuestionsPaginated: (sessionId: string, from: number, howMany: number) => Promise<import("./types").ResponseSpec & {
+            count: number;
+            unansweredQuestions: import("./types").UnansweredQuestion[];
+        }>;
+        postUnansweredQuestion: (sessionId: string, unansweredQuestion: import("./types").UnansweredQuestion) => Promise<import("./types").ResponseSpec & {
+            unansweredQuestion: import("./types").UnansweredQuestion;
         }>;
         deleteUnansweredQuestion: (sessionId: string, unansweredQuestionId: string) => Promise<import("./types").ResponseSpec>;
     };
@@ -240,7 +252,11 @@ declare const api: (hostname?: string | undefined) => {
             undefinedWords: string[];
         }>;
     };
-    getMemories: (sessionId: string) => Promise<import("./types").ResponseSpec & {
+    getMemories: (sessionId: string, type?: "ALL" | "CONTENTS" | "DEFAULTS" | "DRAFTS" | undefined) => Promise<import("./types").ResponseSpec & {
+        memories: import("./types").Memory[];
+    }>;
+    getMemoriesPaginated: (sessionId: string, from: number, howMany: number, type?: "ALL" | "CONTENTS" | "DEFAULTS" | "DRAFTS" | undefined) => Promise<import("./types").ResponseSpec & {
+        count: number;
         memories: import("./types").Memory[];
     }>;
     getMemory: (sessionId: string, memoryId: string) => Promise<import("./types").ResponseSpec & {
@@ -248,12 +264,16 @@ declare const api: (hostname?: string | undefined) => {
     }>;
     patchMemory: (sessionId: string, memory: import("./types").Memory) => Promise<import("./types").ResponseSpec>;
     deleteMemory: (sessionId: string, memoryId: string) => Promise<import("./types").ResponseSpec>;
-    postMemory: (sessionId: string, memory: import("./types").Memory) => Promise<import("./types").ResponseSpec & {
+    postMemory: (sessionId: string, memory: Pick<import("./types").Memory, "text" | "creationTimestamp" | "lastChangeTimestamp" | "placeName" | "memoryType" | "lastRead" | "readOccurrencies" | "receiverID" | "receiverTag" | "receiverName" | "media" | "textVariants" | "answers" | "title" | "titleVariants" | "date" | "dateUncertaintyDays" | "placeLatitude" | "placeLongitude" | "placeUncertaintyKm" | "preformatted" | "conclusive" | "help" | "notPickable" | "hints" | "minTimeout" | "maxTimeout" | "contextVarsToSet" | "contextVarsToMatch" | "contextVars" | "creationName" | "creationSessionID" | "lastChangeName" | "lastChangeSessionID">) => Promise<import("./types").ResponseSpec & {
         memoryID: string;
     }>;
     getMemoryAccess: (sessionId: string, memoryId: string) => Promise<import("./types").ResponseSpec>;
     memories: {
-        getMemories: (sessionId: string) => Promise<import("./types").ResponseSpec & {
+        getMemories: (sessionId: string, type?: "ALL" | "CONTENTS" | "DEFAULTS" | "DRAFTS" | undefined) => Promise<import("./types").ResponseSpec & {
+            memories: import("./types").Memory[];
+        }>;
+        getMemoriesPaginated: (sessionId: string, from: number, howMany: number, type?: "ALL" | "CONTENTS" | "DEFAULTS" | "DRAFTS" | undefined) => Promise<import("./types").ResponseSpec & {
+            count: number;
             memories: import("./types").Memory[];
         }>;
         getMemory: (sessionId: string, memoryId: string) => Promise<import("./types").ResponseSpec & {
@@ -261,7 +281,7 @@ declare const api: (hostname?: string | undefined) => {
         }>;
         patchMemory: (sessionId: string, memory: import("./types").Memory) => Promise<import("./types").ResponseSpec>;
         deleteMemory: (sessionId: string, memoryId: string) => Promise<import("./types").ResponseSpec>;
-        postMemory: (sessionId: string, memory: import("./types").Memory) => Promise<import("./types").ResponseSpec & {
+        postMemory: (sessionId: string, memory: Pick<import("./types").Memory, "text" | "creationTimestamp" | "lastChangeTimestamp" | "placeName" | "memoryType" | "lastRead" | "readOccurrencies" | "receiverID" | "receiverTag" | "receiverName" | "media" | "textVariants" | "answers" | "title" | "titleVariants" | "date" | "dateUncertaintyDays" | "placeLatitude" | "placeLongitude" | "placeUncertaintyKm" | "preformatted" | "conclusive" | "help" | "notPickable" | "hints" | "minTimeout" | "maxTimeout" | "contextVarsToSet" | "contextVarsToMatch" | "contextVars" | "creationName" | "creationSessionID" | "lastChangeName" | "lastChangeSessionID">) => Promise<import("./types").ResponseSpec & {
             memoryID: string;
         }>;
         getMemoryAccess: (sessionId: string, memoryId: string) => Promise<import("./types").ResponseSpec>;
@@ -374,11 +394,11 @@ declare const api: (hostname?: string | undefined) => {
             intentSlotID: string;
         }>;
     };
-    importCSV: (sessionId: string, csvRows: string[], params: import("./engine/importExport").ImportCSVParams) => Promise<import("./types").ResponseSpec & import("./engine/importExport").ImportReponse>;
-    exportCSV: (sessionID: string, params: import("./engine/importExport").ExportCSVParams) => Promise<string>;
+    importCSV: (sessionId: string, csvRows: string[], params: import("./types").ImportCSVParams) => Promise<import("./types").ResponseSpec & import("./types").ImportReponse>;
+    exportCSV: (sessionID: string, params: import("./types").ExportCSVParams) => Promise<string>;
     importExport: {
-        importCSV: (sessionId: string, csvRows: string[], params: import("./engine/importExport").ImportCSVParams) => Promise<import("./types").ResponseSpec & import("./engine/importExport").ImportReponse>;
-        exportCSV: (sessionID: string, params: import("./engine/importExport").ExportCSVParams) => Promise<string>;
+        importCSV: (sessionId: string, csvRows: string[], params: import("./types").ImportCSVParams) => Promise<import("./types").ResponseSpec & import("./types").ImportReponse>;
+        exportCSV: (sessionID: string, params: import("./types").ExportCSVParams) => Promise<string>;
     };
     postTextEnteredEvent: ({ sessionId, text, }: {
         sessionId: string;
@@ -438,10 +458,20 @@ declare const api: (hostname?: string | undefined) => {
         postPlaceSelectedEvent: (sessionId: string) => Promise<import("./types").ResponseSpec>;
         postTagSelectedEvent: (sessionId: string) => Promise<import("./types").ResponseSpec>;
     };
-    getCorrelationPairs: (sessionId: string) => Promise<import("./types").ResponseSpec>;
+    getCorrelationPairs: (sessionId: string, from?: number | undefined, howMany?: number | undefined) => Promise<import("./types").ResponseSpec & {
+        correlationPairs: import("./types").CorrelationPair[];
+    }>;
+    postCorrelationPair: (sessionId: string, correlationPair: import("./types").CorrelationPair) => Promise<import("./types").ResponseSpec & {
+        correlationPair: import("./types").CorrelationPair;
+    }>;
     deleteCorrelationPair: (sessionId: string, pairId: string) => Promise<import("./types").ResponseSpec>;
     correlationPairs: {
-        getCorrelationPairs: (sessionId: string) => Promise<import("./types").ResponseSpec>;
+        getCorrelationPairs: (sessionId: string, from?: number | undefined, howMany?: number | undefined) => Promise<import("./types").ResponseSpec & {
+            correlationPairs: import("./types").CorrelationPair[];
+        }>;
+        postCorrelationPair: (sessionId: string, correlationPair: import("./types").CorrelationPair) => Promise<import("./types").ResponseSpec & {
+            correlationPair: import("./types").CorrelationPair;
+        }>;
         deleteCorrelationPair: (sessionId: string, pairId: string) => Promise<import("./types").ResponseSpec>;
     };
     backend: {
@@ -461,6 +491,9 @@ declare const api: (hostname?: string | undefined) => {
             consumptionLogs: import("./types").ConsumptionLog[];
         }>;
         getSentInvitations: (authToken: string) => Promise<import("./types").ResponseSpec & {
+            invitations: import("./types").Invitation[];
+        }>;
+        getMemoriInvitations: (authToken: string, memoriId: string) => Promise<import("./types").ResponseSpec & {
             invitations: import("./types").Invitation[];
         }>;
         getReceivedInvitations: (authToken: string) => Promise<import("./types").ResponseSpec & {
@@ -543,6 +576,9 @@ declare const api: (hostname?: string | undefined) => {
         getTenantPublicMemoriList: (tenant: string) => Promise<import("./types").ResponseSpec & {
             memori: import("./types").Memori[];
         }>;
+        getTenantMetaverseMemoriList: (tenant: string) => Promise<import("./types").ResponseSpec & {
+            memori: import("./types").Memori[];
+        }>;
         getPublicMemoriList: (authToken: string) => Promise<import("./types").ResponseSpec & {
             memori: import("./types").Memori[];
         }>;
@@ -587,6 +623,7 @@ declare const api: (hostname?: string | undefined) => {
             ownerTenantName: string;
             ownerUserName: string;
         }) => Promise<import("./types").ResponseSpec>;
+        memoriContentUpdated: (authToken: string, memoriID: string) => Promise<import("./types").ResponseSpec>;
         getUploadAssetURL: (authToken: string, memoriID: string, memoryID?: string | undefined) => string;
         uploadAsset: (fileName: string, fileUrl: string, authToken: string, memoriID: string, memoryID?: string | undefined) => Promise<import("./types").ResponseSpec & {
             asset: import("./types").Asset;
@@ -609,6 +646,9 @@ declare const api: (hostname?: string | undefined) => {
         };
         memori: {
             getTenantPublicMemoriList: (tenant: string) => Promise<import("./types").ResponseSpec & {
+                memori: import("./types").Memori[];
+            }>;
+            getTenantMetaverseMemoriList: (tenant: string) => Promise<import("./types").ResponseSpec & {
                 memori: import("./types").Memori[];
             }>;
             getPublicMemoriList: (authToken: string) => Promise<import("./types").ResponseSpec & {
@@ -655,6 +695,7 @@ declare const api: (hostname?: string | undefined) => {
                 ownerTenantName: string;
                 ownerUserName: string;
             }) => Promise<import("./types").ResponseSpec>;
+            memoriContentUpdated: (authToken: string, memoriID: string) => Promise<import("./types").ResponseSpec>;
         };
         user: {
             userSignIn: (user: import("./types").User) => Promise<import("./types").ResponseSpec & {
@@ -715,6 +756,9 @@ declare const api: (hostname?: string | undefined) => {
         };
         invitation: {
             getSentInvitations: (authToken: string) => Promise<import("./types").ResponseSpec & {
+                invitations: import("./types").Invitation[];
+            }>;
+            getMemoriInvitations: (authToken: string, memoriId: string) => Promise<import("./types").ResponseSpec & {
                 invitations: import("./types").Invitation[];
             }>;
             getReceivedInvitations: (authToken: string) => Promise<import("./types").ResponseSpec & {
