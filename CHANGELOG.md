@@ -1,5 +1,12 @@
 
 
+## [1.0.0](https://github.com/memori-ai/memori-api-client/compare/v0.11.0...v1.0.0) (2023-02-01)
+
+
+### Maintenance
+
+* remove legacy experimental code ([69fc7c6](https://github.com/memori-ai/memori-api-client/commit/69fc7c6c56e1e55d77e95821a40d39d522b20abd))
+
 ## [0.11.0](https://github.com/memori-ai/memori-api-client/compare/v0.10.3...v0.11.0) (2023-02-01)
 
 

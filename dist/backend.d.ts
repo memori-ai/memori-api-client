@@ -17,6 +17,9 @@ declare const backendAPI: (apiUrl: string) => {
     getSentInvitations: (authToken: string) => Promise<import("./types").ResponseSpec & {
         invitations: import("./types").Invitation[];
     }>;
+    getMemoriInvitations: (authToken: string, memoriId: string) => Promise<import("./types").ResponseSpec & {
+        invitations: import("./types").Invitation[];
+    }>;
     getReceivedInvitations: (authToken: string) => Promise<import("./types").ResponseSpec & {
         invitations: import("./types").Invitation[];
     }>;
@@ -97,6 +100,9 @@ declare const backendAPI: (apiUrl: string) => {
     getTenantPublicMemoriList: (tenant: string) => Promise<import("./types").ResponseSpec & {
         memori: import("./types").Memori[];
     }>;
+    getTenantMetaverseMemoriList: (tenant: string) => Promise<import("./types").ResponseSpec & {
+        memori: import("./types").Memori[];
+    }>;
     getPublicMemoriList: (authToken: string) => Promise<import("./types").ResponseSpec & {
         memori: import("./types").Memori[];
     }>;
@@ -141,6 +147,7 @@ declare const backendAPI: (apiUrl: string) => {
         ownerTenantName: string;
         ownerUserName: string;
     }) => Promise<import("./types").ResponseSpec>;
+    memoriContentUpdated: (authToken: string, memoriID: string) => Promise<import("./types").ResponseSpec>;
     getUploadAssetURL: (authToken: string, memoriID: string, memoryID?: string | undefined) => string;
     uploadAsset: (fileName: string, fileUrl: string, authToken: string, memoriID: string, memoryID?: string | undefined) => Promise<import("./types").ResponseSpec & {
         asset: import("./types").Asset;
@@ -163,6 +170,9 @@ declare const backendAPI: (apiUrl: string) => {
     };
     memori: {
         getTenantPublicMemoriList: (tenant: string) => Promise<import("./types").ResponseSpec & {
+            memori: import("./types").Memori[];
+        }>;
+        getTenantMetaverseMemoriList: (tenant: string) => Promise<import("./types").ResponseSpec & {
             memori: import("./types").Memori[];
         }>;
         getPublicMemoriList: (authToken: string) => Promise<import("./types").ResponseSpec & {
@@ -209,6 +219,7 @@ declare const backendAPI: (apiUrl: string) => {
             ownerTenantName: string;
             ownerUserName: string;
         }) => Promise<import("./types").ResponseSpec>;
+        memoriContentUpdated: (authToken: string, memoriID: string) => Promise<import("./types").ResponseSpec>;
     };
     user: {
         userSignIn: (user: import("./types").User) => Promise<import("./types").ResponseSpec & {
@@ -269,6 +280,9 @@ declare const backendAPI: (apiUrl: string) => {
     };
     invitation: {
         getSentInvitations: (authToken: string) => Promise<import("./types").ResponseSpec & {
+            invitations: import("./types").Invitation[];
+        }>;
+        getMemoriInvitations: (authToken: string, memoriId: string) => Promise<import("./types").ResponseSpec & {
             invitations: import("./types").Invitation[];
         }>;
         getReceivedInvitations: (authToken: string) => Promise<import("./types").ResponseSpec & {
