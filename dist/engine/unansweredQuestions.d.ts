@@ -16,6 +16,14 @@ declare const _default: (apiUrl: string) => {
         unansweredQuestions: UnansweredQuestion[];
     }>;
     /**
+     * Adds a new Unanswered Question object.
+     * @param {string} sessionId The session ID
+     * @param {UnansweredQuestion} unansweredQuestion The Unanswered Question object
+     */
+    postUnansweredQuestion: (sessionId: string, unansweredQuestion: UnansweredQuestion) => Promise<ResponseSpec & {
+        unansweredQuestion: UnansweredQuestion;
+    }>;
+    /**
      * Removes an existing Unanswered Question object.
      * @param {string} sessionId The session ID
      * @param {string} unansweredQuestionId The Unanswered Question object ID

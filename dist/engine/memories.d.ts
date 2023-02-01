@@ -3,8 +3,9 @@ declare const _default: (apiUrl: string) => {
     /**
      * Lists all Memory objects.
      * @param {string} sessionId The session ID
+     * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS, DRAFTS
      */
-    getMemories: (sessionId: string) => Promise<ResponseSpec & {
+    getMemories: (sessionId: string, type?: "ALL" | "CONTENTS" | "DEFAULTS" | "DRAFTS" | undefined) => Promise<ResponseSpec & {
         memories: Memory[];
     }>;
     /**
@@ -12,7 +13,7 @@ declare const _default: (apiUrl: string) => {
      * @param {string} sessionId The session ID
      * @param {number} from The starting index
      * @param {number} howMany The number of items to return
-     * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS
+     * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS, DRAFTS
      */
     getMemoriesPaginated: (sessionId: string, from: number, howMany: number, type?: "ALL" | "CONTENTS" | "DEFAULTS" | "DRAFTS" | undefined) => Promise<ResponseSpec & {
         count: number;
@@ -43,7 +44,7 @@ declare const _default: (apiUrl: string) => {
      * @param {string} sessionId The session ID
      * @param {Memory} memory The Memory object
      */
-    postMemory: (sessionId: string, memory: Memory) => Promise<ResponseSpec & {
+    postMemory: (sessionId: string, memory: Omit<Memory, 'memoryID'>) => Promise<ResponseSpec & {
         memoryID: string;
     }>;
     /**

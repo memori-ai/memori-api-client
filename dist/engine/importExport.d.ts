@@ -1,40 +1,4 @@
-import { ResponseSpec } from '../types';
-export interface ImportCSVParams {
-    includedRows?: number[];
-    hasHeaders?: boolean;
-    headerNames?: string[];
-    forceImport?: boolean;
-    questionColumnName: string;
-    answerColumnName: string;
-    contextVarsToMatchColumnName?: string;
-    contextVarsToSetColumnName?: string;
-    csvSeparator?: string;
-    questionTitleVariantsSeparator?: string;
-}
-export interface ExportCSVParams {
-    newLine: '\n' | '\r\n';
-    hasHeaders?: boolean;
-    questionColumnName: string;
-    answerColumnName: string;
-    contextVarsToMatchColumnName?: string;
-    contextVarsToSetColumnName?: string;
-    csvSeparator?: string;
-    questionTitleVariantsSeparator?: string;
-}
-export interface ImportReponse {
-    importID: string;
-    importedMemories?: number;
-    importWarnings?: {
-        warningType: 'Existing Similar Memory' | 'Internal Error';
-        rowNumber?: number;
-        csvRow: string;
-        text?: string;
-        similarTexts?: {
-            text: string;
-            similarityLevel: 'HIGH' | 'MEDIUM' | 'LOW';
-        }[];
-    }[];
-}
+import { ResponseSpec, ImportReponse, ImportCSVParams, ExportCSVParams } from '../types';
 declare const _default: (apiUrl: string) => {
     /**
      * Imports memories from a CSV file.

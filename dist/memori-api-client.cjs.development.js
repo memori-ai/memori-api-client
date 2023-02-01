@@ -1227,14 +1227,16 @@ var correlationPairs = (function (apiUrl) {
     /**
      * Lists all Correlation Pair objects.
      * @param {string} sessionId The session ID
+     * @param {number=} from The starting index
+     * @param {number=} howMany The number of items to return
      */
     getCorrelationPairs: function () {
-      var _getCorrelationPairs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(sessionId) {
+      var _getCorrelationPairs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(sessionId, from, howMany) {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                return _context.abrupt("return", apiFetcher("/CorrelationPairs/" + sessionId, {
+                return _context.abrupt("return", apiFetcher("/CorrelationPairs/" + sessionId + (from ? "/" + from + (howMany ? "/" + howMany : '') : ''), {
                   method: 'GET',
                   apiUrl: apiUrl
                 }));
@@ -1247,7 +1249,7 @@ var correlationPairs = (function (apiUrl) {
         }, _callee);
       }));
 
-      function getCorrelationPairs(_x) {
+      function getCorrelationPairs(_x, _x2, _x3) {
         return _getCorrelationPairs.apply(this, arguments);
       }
 
@@ -1255,19 +1257,20 @@ var correlationPairs = (function (apiUrl) {
     }(),
 
     /**
-     * Removes an existing Correlation Pair object.
+     * Adds a new Correlation Pair object.
      * @param {string} sessionId The session ID
-     * @param {string} pairId The Correlation Pair object ID
+     * @param {CorrelationPair} correlationPair The Correlation Pair object
      */
-    deleteCorrelationPair: function () {
-      var _deleteCorrelationPair = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, pairId) {
+    postCorrelationPair: function () {
+      var _postCorrelationPair = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, correlationPair) {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                return _context2.abrupt("return", apiFetcher("/CorrelationPair/" + sessionId + "/" + pairId, {
-                  method: 'GET',
-                  apiUrl: apiUrl
+                return _context2.abrupt("return", apiFetcher("/CorrelationPair/" + sessionId, {
+                  method: 'POST',
+                  apiUrl: apiUrl,
+                  body: correlationPair
                 }));
 
               case 1:
@@ -1278,7 +1281,38 @@ var correlationPairs = (function (apiUrl) {
         }, _callee2);
       }));
 
-      function deleteCorrelationPair(_x2, _x3) {
+      function postCorrelationPair(_x4, _x5) {
+        return _postCorrelationPair.apply(this, arguments);
+      }
+
+      return postCorrelationPair;
+    }(),
+
+    /**
+     * Removes an existing Correlation Pair object.
+     * @param {string} sessionId The session ID
+     * @param {string} pairId The Correlation Pair object ID
+     */
+    deleteCorrelationPair: function () {
+      var _deleteCorrelationPair = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, pairId) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", apiFetcher("/CorrelationPair/" + sessionId + "/" + pairId, {
+                  method: 'DELETE',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function deleteCorrelationPair(_x6, _x7) {
         return _deleteCorrelationPair.apply(this, arguments);
       }
 
@@ -2358,14 +2392,15 @@ var memories = (function (apiUrl) {
     /**
      * Lists all Memory objects.
      * @param {string} sessionId The session ID
+     * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS, DRAFTS
      */
     getMemories: function () {
-      var _getMemories = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(sessionId) {
+      var _getMemories = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(sessionId, type) {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                return _context.abrupt("return", apiFetcher("/Memories/" + sessionId, {
+                return _context.abrupt("return", apiFetcher("/Memories/" + sessionId + (type ? "/" + type : ''), {
                   method: 'GET',
                   apiUrl: apiUrl
                 }));
@@ -2378,7 +2413,7 @@ var memories = (function (apiUrl) {
         }, _callee);
       }));
 
-      function getMemories(_x) {
+      function getMemories(_x, _x2) {
         return _getMemories.apply(this, arguments);
       }
 
@@ -2390,7 +2425,7 @@ var memories = (function (apiUrl) {
      * @param {string} sessionId The session ID
      * @param {number} from The starting index
      * @param {number} howMany The number of items to return
-     * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS
+     * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS, DRAFTS
      */
     getMemoriesPaginated: function () {
       var _getMemoriesPaginated = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, from, howMany, type) {
@@ -2411,7 +2446,7 @@ var memories = (function (apiUrl) {
         }, _callee2);
       }));
 
-      function getMemoriesPaginated(_x2, _x3, _x4, _x5) {
+      function getMemoriesPaginated(_x3, _x4, _x5, _x6) {
         return _getMemoriesPaginated.apply(this, arguments);
       }
 
@@ -2442,7 +2477,7 @@ var memories = (function (apiUrl) {
         }, _callee3);
       }));
 
-      function getMemory(_x6, _x7) {
+      function getMemory(_x7, _x8) {
         return _getMemory.apply(this, arguments);
       }
 
@@ -2474,7 +2509,7 @@ var memories = (function (apiUrl) {
         }, _callee4);
       }));
 
-      function patchMemory(_x8, _x9) {
+      function patchMemory(_x9, _x10) {
         return _patchMemory.apply(this, arguments);
       }
 
@@ -2505,7 +2540,7 @@ var memories = (function (apiUrl) {
         }, _callee5);
       }));
 
-      function deleteMemory(_x10, _x11) {
+      function deleteMemory(_x11, _x12) {
         return _deleteMemory.apply(this, arguments);
       }
 
@@ -2537,7 +2572,7 @@ var memories = (function (apiUrl) {
         }, _callee6);
       }));
 
-      function postMemory(_x12, _x13) {
+      function postMemory(_x13, _x14) {
         return _postMemory.apply(this, arguments);
       }
 
@@ -2568,7 +2603,7 @@ var memories = (function (apiUrl) {
         }, _callee7);
       }));
 
-      function getMemoryAccess(_x14, _x15) {
+      function getMemoryAccess(_x15, _x16) {
         return _getMemoryAccess.apply(this, arguments);
       }
 
@@ -3558,19 +3593,20 @@ var unansweredQuestions = (function (apiUrl) {
     }(),
 
     /**
-     * Removes an existing Unanswered Question object.
+     * Adds a new Unanswered Question object.
      * @param {string} sessionId The session ID
-     * @param {string} unansweredQuestionId The Unanswered Question object ID
+     * @param {UnansweredQuestion} unansweredQuestion The Unanswered Question object
      */
-    deleteUnansweredQuestion: function () {
-      var _deleteUnansweredQuestion = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, unansweredQuestionId) {
+    postUnansweredQuestion: function () {
+      var _postUnansweredQuestion = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, unansweredQuestion) {
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                return _context3.abrupt("return", apiFetcher("/UnansweredQuestion/" + sessionId + "/" + unansweredQuestionId, {
-                  method: 'DELETE',
-                  apiUrl: apiUrl
+                return _context3.abrupt("return", apiFetcher("/UnansweredQuestion/" + sessionId, {
+                  method: 'POST',
+                  apiUrl: apiUrl,
+                  body: unansweredQuestion
                 }));
 
               case 1:
@@ -3581,7 +3617,38 @@ var unansweredQuestions = (function (apiUrl) {
         }, _callee3);
       }));
 
-      function deleteUnansweredQuestion(_x5, _x6) {
+      function postUnansweredQuestion(_x5, _x6) {
+        return _postUnansweredQuestion.apply(this, arguments);
+      }
+
+      return postUnansweredQuestion;
+    }(),
+
+    /**
+     * Removes an existing Unanswered Question object.
+     * @param {string} sessionId The session ID
+     * @param {string} unansweredQuestionId The Unanswered Question object ID
+     */
+    deleteUnansweredQuestion: function () {
+      var _deleteUnansweredQuestion = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(sessionId, unansweredQuestionId) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                return _context4.abrupt("return", apiFetcher("/UnansweredQuestion/" + sessionId + "/" + unansweredQuestionId, {
+                  method: 'DELETE',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function deleteUnansweredQuestion(_x7, _x8) {
         return _deleteUnansweredQuestion.apply(this, arguments);
       }
 
@@ -3899,19 +3966,18 @@ var chatLogs = (function (apiUrl) {
     }(),
 
     /**
-     * Removes all Chat Log objects in a specific date internval.
+     * Gets the Chat Log objects for the Memori of the current session recorded during a specific other session.
      * @param {string} sessionId The session ID
-     * @param {?string} dateFrom The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
-     * @param {?string} dateTo The optional end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     * @param {string} chatLogSessionID The session ID for which Chat Log objects are being searched
      */
-    deleteChatLogs: function () {
-      var _deleteChatLogs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, dateFrom, dateTo) {
+    getSessionChatLogs: function () {
+      var _getSessionChatLogs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionId, chatLogSessionID) {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                return _context2.abrupt("return", apiFetcher("/ChatLogs/" + sessionId + (dateFrom ? "/" + dateFrom : '') + (dateFrom && dateTo ? "/" + dateTo : ''), {
-                  method: 'DELETE',
+                return _context2.abrupt("return", apiFetcher("/SessionChatLogs/" + sessionId + "/" + chatLogSessionID, {
+                  method: 'GET',
                   apiUrl: apiUrl
                 }));
 
@@ -3923,25 +3989,26 @@ var chatLogs = (function (apiUrl) {
         }, _callee2);
       }));
 
-      function deleteChatLogs(_x4, _x5, _x6) {
-        return _deleteChatLogs.apply(this, arguments);
+      function getSessionChatLogs(_x4, _x5) {
+        return _getSessionChatLogs.apply(this, arguments);
       }
 
-      return deleteChatLogs;
+      return getSessionChatLogs;
     }(),
 
     /**
-     * Removes an existing Chat Log object.
+     * Removes all Chat Log objects in a specific date internval.
      * @param {string} sessionId The session ID
-     * @param {string} chatLogId The Chat Log object ID
+     * @param {?string} dateFrom The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+     * @param {?string} dateTo The optional end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
      */
-    deleteChatLog: function () {
-      var _deleteChatLog = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, chatLogId) {
+    deleteChatLogs: function () {
+      var _deleteChatLogs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sessionId, dateFrom, dateTo) {
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                return _context3.abrupt("return", apiFetcher("/ChatLog/" + sessionId + "/" + chatLogId, {
+                return _context3.abrupt("return", apiFetcher("/ChatLogs/" + sessionId + (dateFrom ? "/" + dateFrom : '') + (dateFrom && dateTo ? "/" + dateTo : ''), {
                   method: 'DELETE',
                   apiUrl: apiUrl
                 }));
@@ -3954,7 +4021,38 @@ var chatLogs = (function (apiUrl) {
         }, _callee3);
       }));
 
-      function deleteChatLog(_x7, _x8) {
+      function deleteChatLogs(_x6, _x7, _x8) {
+        return _deleteChatLogs.apply(this, arguments);
+      }
+
+      return deleteChatLogs;
+    }(),
+
+    /**
+     * Removes an existing Chat Log object.
+     * @param {string} sessionId The session ID
+     * @param {string} chatLogId The Chat Log object ID
+     */
+    deleteChatLog: function () {
+      var _deleteChatLog = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(sessionId, chatLogId) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                return _context4.abrupt("return", apiFetcher("/ChatLog/" + sessionId + "/" + chatLogId, {
+                  method: 'DELETE',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function deleteChatLog(_x9, _x10) {
         return _deleteChatLog.apply(this, arguments);
       }
 
