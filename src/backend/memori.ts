@@ -59,11 +59,61 @@ export default (apiUrl: string) => ({
     >,
 
   /**
+   * Gets a list of Memori objects owned by the specified user.
+   * @param {string} tenantName - The name of the tenant
+   * @param {string} userID - The user name
+   * @param {string=} authToken - The login token
+   * @returns A list of Memori objects
+   */
+  getUserByIDMemoriList: (
+    tenantName: string,
+    userID: string,
+    authToken?: string
+  ) =>
+    apiFetcher(
+      `/UserMemoriByID/${tenantName}/${userID}${
+        authToken ? `/${authToken}` : ''
+      }`,
+      {
+        apiUrl,
+      }
+    ) as Promise<
+      ResponseSpec & {
+        memori: Memori[];
+      }
+    >,
+
+  /**
+   * Gets a list of Memori objects owned by the specified user.
+   * @param {string} tenantName - The name of the tenant
+   * @param {string} userName - The user name
+   * @param {string=} authToken - The login token
+   * @returns A list of Memori objects
+   */
+  getUserMemoriList: (
+    tenantName: string,
+    userName: string,
+    authToken?: string
+  ) =>
+    apiFetcher(
+      `/UserMemori/${tenantName}/${userName}${
+        authToken ? `/${authToken}` : ''
+      }`,
+      {
+        apiUrl,
+      }
+    ) as Promise<
+      ResponseSpec & {
+        memori: Memori[];
+      }
+    >,
+
+  /**
    * Gets a list of Memori objects for the currently logged in User.
    * @param authToken - The login token
    * @returns A list of Memori objects
    */
-  getUserMemoriList: (authToken: string) =>
+  getMemoriList: (authToken: string) =>
     apiFetcher(`/Memori/${authToken}`, {
       apiUrl,
     }) as Promise<
