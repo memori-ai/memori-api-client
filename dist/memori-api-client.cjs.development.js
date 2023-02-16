@@ -405,7 +405,7 @@ function _extends() {
 }
 
 var getApiUrl = function getApiUrl(hostname) {
-  return hostname ? new URL(hostname.startsWith('http') ? hostname : "https://" + hostname).origin.replace('http://', 'https://') : 'https://backend.memori.ai';
+  return hostname ? new URL(hostname.startsWith('http') ? hostname : "https://" + hostname).origin : 'https://backend.memori.ai';
 };
 
 var apiFetcher = function apiFetcher(path, opts) {
