@@ -5,7 +5,7 @@ declare const _default: (apiUrl: string) => {
      * @param user - The user object
      * @returns The created user object
      */
-    userSignIn: (user: User) => Promise<ResponseSpec & {
+    userSignUp: (user: User) => Promise<ResponseSpec & {
         user: User;
     }>;
     /**
@@ -13,7 +13,7 @@ declare const _default: (apiUrl: string) => {
      * @param user - The user object
      * @returns The created user object
      */
-    userConfirmSignIn: (user: User) => Promise<ResponseSpec & {
+    userConfirmSignUp: (user: User) => Promise<ResponseSpec & {
         user: User;
         token?: string | undefined;
     }>;

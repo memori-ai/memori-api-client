@@ -463,11 +463,37 @@ var memori = (function (apiUrl) {
     },
 
     /**
+     * Gets a list of Memori objects owned by the specified user.
+     * @param {string} tenantName - The name of the tenant
+     * @param {string} userID - The user name
+     * @param {string=} authToken - The login token
+     * @returns A list of Memori objects
+     */
+    getUserByIDMemoriList: function getUserByIDMemoriList(tenantName, userID, authToken) {
+      return apiFetcher("/UserMemoriByID/" + tenantName + "/" + userID + (authToken ? "/" + authToken : ''), {
+        apiUrl: apiUrl
+      });
+    },
+
+    /**
+     * Gets a list of Memori objects owned by the specified user.
+     * @param {string} tenantName - The name of the tenant
+     * @param {string} userName - The user name
+     * @param {string=} authToken - The login token
+     * @returns A list of Memori objects
+     */
+    getUserMemoriList: function getUserMemoriList(tenantName, userName, authToken) {
+      return apiFetcher("/UserMemori/" + tenantName + "/" + userName + (authToken ? "/" + authToken : ''), {
+        apiUrl: apiUrl
+      });
+    },
+
+    /**
      * Gets a list of Memori objects for the currently logged in User.
      * @param authToken - The login token
      * @returns A list of Memori objects
      */
-    getUserMemoriList: function getUserMemoriList(authToken) {
+    getMemoriList: function getMemoriList(authToken) {
       return apiFetcher("/Memori/" + authToken, {
         apiUrl: apiUrl
       });
@@ -636,7 +662,7 @@ var user = (function (apiUrl) {
      * @param user - The user object
      * @returns The created user object
      */
-    userSignIn: function userSignIn(user) {
+    userSignUp: function userSignUp(user) {
       return apiFetcher('/User', {
         apiUrl: apiUrl,
         body: user,
@@ -649,7 +675,7 @@ var user = (function (apiUrl) {
      * @param user - The user object
      * @returns The created user object
      */
-    userConfirmSignIn: function userConfirmSignIn(user) {
+    userConfirmSignUp: function userConfirmSignUp(user) {
       return apiFetcher('/UserConfirm', {
         apiUrl: apiUrl,
         body: user,

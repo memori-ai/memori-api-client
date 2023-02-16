@@ -1,5 +1,28 @@
 
 
+## [1.1.0](https://github.com/memori-ai/memori-api-client/compare/v1.0.0...v1.1.0) (2023-02-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename signin in signup, typo
+* update memori lists api, rename user memori list
+
+### Features
+
+* add new user attributes ([5b10720](https://github.com/memori-ai/memori-api-client/commit/5b107206331a0ac6a579f983c5eb0fe04b4d9fc4))
+* update memori lists api, rename user memori list ([6349149](https://github.com/memori-ai/memori-api-client/commit/63491496731ae65978c4ad81404881811ab6b13b))
+
+
+### Bug Fixes
+
+* api url parsing allowing http for localhost ([6b6d881](https://github.com/memori-ai/memori-api-client/commit/6b6d8812385002e40cbbfc7fe87cd72daed3f5aa))
+
+
+### Changes
+
+* rename signin in signup, typo ([6fc8dc4](https://github.com/memori-ai/memori-api-client/commit/6fc8dc4ecced9b379d7ace49f2c25e83985755c1))
+
 ## [1.0.0](https://github.com/memori-ai/memori-api-client/compare/v0.11.0...v1.0.0) (2023-02-01)
 
 

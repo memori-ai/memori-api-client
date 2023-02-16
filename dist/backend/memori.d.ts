@@ -33,11 +33,31 @@ declare const _default: (apiUrl: string) => {
         memori: Memori[];
     }>;
     /**
+     * Gets a list of Memori objects owned by the specified user.
+     * @param {string} tenantName - The name of the tenant
+     * @param {string} userID - The user name
+     * @param {string=} authToken - The login token
+     * @returns A list of Memori objects
+     */
+    getUserByIDMemoriList: (tenantName: string, userID: string, authToken?: string | undefined) => Promise<ResponseSpec & {
+        memori: Memori[];
+    }>;
+    /**
+     * Gets a list of Memori objects owned by the specified user.
+     * @param {string} tenantName - The name of the tenant
+     * @param {string} userName - The user name
+     * @param {string=} authToken - The login token
+     * @returns A list of Memori objects
+     */
+    getUserMemoriList: (tenantName: string, userName: string, authToken?: string | undefined) => Promise<ResponseSpec & {
+        memori: Memori[];
+    }>;
+    /**
      * Gets a list of Memori objects for the currently logged in User.
      * @param authToken - The login token
      * @returns A list of Memori objects
      */
-    getUserMemoriList: (authToken: string) => Promise<ResponseSpec & {
+    getMemoriList: (authToken: string) => Promise<ResponseSpec & {
         memori: Memori[];
     }>;
     /**
