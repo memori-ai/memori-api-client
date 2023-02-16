@@ -7,7 +7,7 @@ export default (apiUrl: string) => ({
    * @param user - The user object
    * @returns The created user object
    */
-  userSignIn: (user: User) =>
+  userSignUp: (user: User) =>
     apiFetcher('/User', {
       apiUrl,
       body: user,
@@ -19,7 +19,7 @@ export default (apiUrl: string) => ({
    * @param user - The user object
    * @returns The created user object
    */
-  userConfirmSignIn: (user: User) =>
+  userConfirmSignUp: (user: User) =>
     apiFetcher('/UserConfirm', {
       apiUrl,
       body: user,
