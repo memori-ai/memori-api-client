@@ -1,8 +1,8 @@
 import {
   ResponseSpec,
   ImportReponse,
-  ImportCSVParams,
   ExportCSVParams,
+  ImportParams,
 } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
@@ -16,19 +16,55 @@ export default (apiUrl: string) => ({
   /**
    * Imports memories from a CSV file.
    * @param {string} sessionId The session ID
-   * @param {string[]} csvRows Rows of the CSV file.
-   * @param {ImportCSVParams} params The specifications and content of the CSV file
+   * @param {string[]} rows Rows of the CSV file.
+   * @param {ImportParams} params The specifications and content of the CSV file
    */
-  importCSV: async (
-    sessionId: string,
-    csvRows: string[],
-    params: ImportCSVParams
-  ) =>
+  importCSV: async (sessionId: string, rows: string[], params: ImportParams) =>
     apiFetcher(`/ImportExport/ImportCSV/${sessionId}`, {
       method: 'POST',
       apiUrl,
       body: {
-        csvRows,
+        rows,
+        ...params,
+      },
+    }) as Promise<ResponseSpec & ImportReponse>,
+
+  /**
+   * Gets the status of an ongoing Import process.
+   * @param {string} importID The import process ID
+   */
+  importStatus: async (importID: string) =>
+    apiFetcher(`/ImportExport/ImportStatus/${importID}`, {
+      method: 'GET',
+      apiUrl,
+    }) as Promise<ResponseSpec & ImportReponse>,
+
+  /**
+   * Interrupts an ongoing Import process.
+   * @param {string} importID The import process ID
+   */
+  stopImport: async (importID: string) =>
+    apiFetcher(`/ImportExport/StopImport/${importID}`, {
+      method: 'POST',
+      apiUrl,
+    }) as Promise<ResponseSpec & ImportReponse>,
+
+  /**
+   * Imports memories from a TXT file.
+   * @param {string} sessionId The session ID
+   * @param {string[]} rows Rows of the TXT file.
+   * @param {ImportCSVParams} params The specifications and content of the TXT file
+   */
+  importTXT: async (
+    sessionId: string,
+    rows: string[],
+    params: Omit<ImportParams, 'csvSpecs'>
+  ) =>
+    apiFetcher(`/ImportExport/ImportTXT/${sessionId}`, {
+      method: 'POST',
+      apiUrl,
+      body: {
+        rows,
         ...params,
       },
     }) as Promise<ResponseSpec & ImportReponse>,

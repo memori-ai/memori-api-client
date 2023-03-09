@@ -1,17 +1,19 @@
-import { ImportCSVParams } from '../../src/types';
+import { ImportParams } from '../../src/types';
 import memori from '../../src';
 
 const client = memori('https://backend.memori.ai');
 
 describe('engine/importExport api', () => {
-  const importCsvParams: ImportCSVParams = {
+  const importCsvParams: ImportParams = {
     includedRows: [0, 1],
-    hasHeaders: false,
     forceImport: false,
-    questionColumnName: 'Title',
-    answerColumnName: 'Answers',
-    csvSeparator: ',',
-    questionTitleVariantsSeparator: '|',
+    csvSpecs: {
+      hasHeaders: false,
+      questionColumnName: 'Title',
+      answerColumnName: 'Answers',
+      csvSeparator: ',',
+      questionTitleVariantsSeparator: '|',
+    },
   };
 
   it('works on import apis', async () => {
