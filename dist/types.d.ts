@@ -805,34 +805,26 @@ export declare type CustomWord = {
     lastChangeTimestamp: string;
     lastChangeSessionID: string;
 };
-export declare type ImportWarning = {
-    warningType: 'Existing Similar Memory' | 'Internal Error';
-    rowNumber?: number;
-    csvRow: string;
-    text?: string;
-    similarTexts?: {
-        text: string;
-        similarityLevel: 'HIGH' | 'MEDIUM' | 'LOW';
-    }[];
-};
-export declare type ImportReponse = {
-    importID: string;
-    importedMemories?: number;
-    importWarnings?: ImportWarning[];
-};
-export declare type ImportCSVParams = {
-    includedRows?: number[];
+export interface ImportCSVParams {
     hasHeaders?: boolean;
     headerNames?: string[];
-    forceImport?: boolean;
     questionColumnName: string;
     answerColumnName: string;
     contextVarsToMatchColumnName?: string;
     contextVarsToSetColumnName?: string;
     csvSeparator?: string;
     questionTitleVariantsSeparator?: string;
-};
-export declare type ExportCSVParams = {
+}
+export interface ImportTxtParams {
+    newLinesPerParagraphs?: number;
+}
+export interface ImportParams {
+    includedRows?: number[];
+    forceImport?: boolean;
+    csvSpecs?: ImportCSVParams;
+    txtSpecs?: ImportTxtParams;
+}
+export interface ExportCSVParams {
     newLine: '\n' | '\r\n';
     hasHeaders?: boolean;
     questionColumnName: string;
@@ -841,4 +833,65 @@ export declare type ExportCSVParams = {
     contextVarsToSetColumnName?: string;
     csvSeparator?: string;
     questionTitleVariantsSeparator?: string;
-};
+}
+export interface ImportWarning {
+    warningType: 'Existing Similar Memory' | 'Internal Error';
+    rowNumber?: number;
+    row: string;
+    text?: string;
+    similarTexts?: {
+        text: string;
+        similarityLevel: 'HIGH' | 'MEDIUM' | 'LOW';
+    }[];
+}
+export interface ImportReponse {
+    importID: string;
+    status: {
+        /**
+         * @type {string}
+         * minLength: 1
+         * Current status of the Import process (starting, running etc.).
+         * May be one of the following:
+         * - Starting: the Import process is preparing to start, but has not started yet. Will advance to Running automatically.
+         * - Running: the Import process has been started and is actively processing Memory objects.
+         * - Stopped: the Import process has been stopped manually, not all Memory objects may have been processed.
+         * - Completed: the Import process finished successfully, all the Memory objects have been processed.
+         * - Failed: the Import process terminated due to an unexpected error, not all Memory objects may have been processed.
+         */
+        status: 'Starting' | 'Running' | 'Stopped' | 'Completed' | 'Failed';
+        /**
+         * @type {string=}
+         * If the Status is Failed, reports the error that caused the Import process to fail. Null otherwise.
+         */
+        error?: string;
+        /**
+         * @type {number}
+         * Progress of the Import process as a fraction of 1.
+         */
+        progress: number;
+        /**
+         * @type {string=}
+         * Timestamp of start of the Import process. Null until the Import process is in Starting status.
+         */
+        begin?: string;
+        /**
+         * @type {string=}
+         * Timestamp of end of the Import process. Null until the Import process is in Starting or Running status.
+         */
+        end?: string;
+        /**
+         * @type {number=}
+         * Estimated time required to complete the Import process, in seconds.
+         */
+        eta?: number;
+        /**
+         * @type {number=}
+         * Number of Imported Memory objects so far.
+         */
+        importedMemories?: number;
+        /**
+         * List of Import Warning objects. May be empty.
+         */
+        importWarnings?: ImportWarning[];
+    };
+}

@@ -1659,11 +1659,11 @@ var importExport = (function (apiUrl) {
     /**
      * Imports memories from a CSV file.
      * @param {string} sessionId The session ID
-     * @param {string[]} csvRows Rows of the CSV file.
-     * @param {ImportCSVParams} params The specifications and content of the CSV file
+     * @param {string[]} rows Rows of the CSV file.
+     * @param {ImportParams} params The specifications and content of the CSV file
      */
     importCSV: function () {
-      var _importCSV = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(sessionId, csvRows, params) {
+      var _importCSV = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(sessionId, rows, params) {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -1672,7 +1672,7 @@ var importExport = (function (apiUrl) {
                   method: 'POST',
                   apiUrl: apiUrl,
                   body: _extends({
-                    csvRows: csvRows
+                    rows: rows
                   }, params)
                 }));
 
@@ -1692,22 +1692,18 @@ var importExport = (function (apiUrl) {
     }(),
 
     /**
-     * Exports memories to a CSV file.
-     * @param {string} sessionID The session ID
-     * @param {ExportCSVParams} params - The specifications of the CSV file
-     * @returns The CSV file content
+     * Gets the status of an ongoing Import process.
+     * @param {string} importID The import process ID
      */
-    exportCSV: function () {
-      var _exportCSV = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(sessionID, params) {
+    importStatus: function () {
+      var _importStatus = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(importID) {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                return _context2.abrupt("return", apiFetcher("/ImportExport/ExportCSV/" + sessionID, {
-                  method: 'POST',
-                  apiUrl: apiUrl,
-                  body: params,
-                  text: true
+                return _context2.abrupt("return", apiFetcher("/ImportExport/ImportStatus/" + importID, {
+                  method: 'GET',
+                  apiUrl: apiUrl
                 }));
 
               case 1:
@@ -1718,7 +1714,106 @@ var importExport = (function (apiUrl) {
         }, _callee2);
       }));
 
-      function exportCSV(_x4, _x5) {
+      function importStatus(_x4) {
+        return _importStatus.apply(this, arguments);
+      }
+
+      return importStatus;
+    }(),
+
+    /**
+     * Interrupts an ongoing Import process.
+     * @param {string} importID The import process ID
+     */
+    stopImport: function () {
+      var _stopImport = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(importID) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", apiFetcher("/ImportExport/StopImport/" + importID, {
+                  method: 'POST',
+                  apiUrl: apiUrl
+                }));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function stopImport(_x5) {
+        return _stopImport.apply(this, arguments);
+      }
+
+      return stopImport;
+    }(),
+
+    /**
+     * Imports memories from a TXT file.
+     * @param {string} sessionId The session ID
+     * @param {string[]} rows Rows of the TXT file.
+     * @param {ImportCSVParams} params The specifications and content of the TXT file
+     */
+    importTXT: function () {
+      var _importTXT = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(sessionId, rows, params) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                return _context4.abrupt("return", apiFetcher("/ImportExport/ImportTXT/" + sessionId, {
+                  method: 'POST',
+                  apiUrl: apiUrl,
+                  body: _extends({
+                    rows: rows
+                  }, params)
+                }));
+
+              case 1:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function importTXT(_x6, _x7, _x8) {
+        return _importTXT.apply(this, arguments);
+      }
+
+      return importTXT;
+    }(),
+
+    /**
+     * Exports memories to a CSV file.
+     * @param {string} sessionID The session ID
+     * @param {ExportCSVParams} params - The specifications of the CSV file
+     * @returns The CSV file content
+     */
+    exportCSV: function () {
+      var _exportCSV = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(sessionID, params) {
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                return _context5.abrupt("return", apiFetcher("/ImportExport/ExportCSV/" + sessionID, {
+                  method: 'POST',
+                  apiUrl: apiUrl,
+                  body: params,
+                  text: true
+                }));
+
+              case 1:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }));
+
+      function exportCSV(_x9, _x10) {
         return _exportCSV.apply(this, arguments);
       }
 
