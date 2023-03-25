@@ -1,5 +1,26 @@
 
 
+## [2.0.0](https://github.com/memori-ai/memori-api-client/compare/v1.2.0...v2.0.0) (2023-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate to yarn 3, remove tsdx and go vanilla tslib, move tests, remove dist from git
+
+### Features
+
+* update import apis and typings ([630a8cf](https://github.com/memori-ai/memori-api-client/commit/630a8cfd1790d7222883df29a8ff92753b58ccdf))
+
+
+### Changes
+
+* migrate to yarn 3, remove tsdx and go vanilla tslib, move tests, remove dist from git ([9fd19fd](https://github.com/memori-ai/memori-api-client/commit/9fd19fdb612fe4e4cb0748d7659e5c513690abac))
+
+
+### Maintenance
+
+* remove coverage from git ([b7e2348](https://github.com/memori-ai/memori-api-client/commit/b7e2348055219e37f7aa7bdeec92f16ba8c03d00))
+
 ## [1.2.0](https://github.com/memori-ai/memori-api-client/compare/v1.1.0...v1.2.0) (2023-03-09)
 
 
