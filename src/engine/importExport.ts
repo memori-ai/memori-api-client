@@ -1,8 +1,8 @@
 import {
   ResponseSpec,
-  ImportReponse,
-  ExportCSVParams,
   ImportParams,
+  ImportResponse,
+  ExportCSVParams,
 } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
@@ -27,7 +27,25 @@ export default (apiUrl: string) => ({
         rows,
         ...params,
       },
-    }) as Promise<ResponseSpec & ImportReponse>,
+    }) as Promise<
+      ResponseSpec & {
+        status: ImportResponse;
+      }
+    >,
+
+  /**
+   * Gets the list of recent Import processes for the Memori object associated with the specified session ID.
+   * @param {string} sessionId The session ID
+   */
+  importProcesses: async (sessionId: string) =>
+    apiFetcher(`/ImportExport/ImportProcesses/${sessionId}`, {
+      method: 'GET',
+      apiUrl,
+    }) as Promise<
+      ResponseSpec & {
+        importProcesses: ImportResponse[];
+      }
+    >,
 
   /**
    * Gets the status of an ongoing Import process.
@@ -37,7 +55,11 @@ export default (apiUrl: string) => ({
     apiFetcher(`/ImportExport/ImportStatus/${importID}`, {
       method: 'GET',
       apiUrl,
-    }) as Promise<ResponseSpec & ImportReponse>,
+    }) as Promise<
+      ResponseSpec & {
+        status: ImportResponse;
+      }
+    >,
 
   /**
    * Interrupts an ongoing Import process.
@@ -47,7 +69,11 @@ export default (apiUrl: string) => ({
     apiFetcher(`/ImportExport/StopImport/${importID}`, {
       method: 'POST',
       apiUrl,
-    }) as Promise<ResponseSpec & ImportReponse>,
+    }) as Promise<
+      ResponseSpec & {
+        status: ImportResponse;
+      }
+    >,
 
   /**
    * Imports memories from a TXT file.
@@ -67,7 +93,11 @@ export default (apiUrl: string) => ({
         rows,
         ...params,
       },
-    }) as Promise<ResponseSpec & ImportReponse>,
+    }) as Promise<
+      ResponseSpec & {
+        status: ImportResponse;
+      }
+    >,
 
   /**
    * Exports memories to a CSV file.

@@ -864,6 +864,11 @@ export interface ImportParams {
   forceImport?: boolean;
   csvSpecs?: ImportCSVParams;
   txtSpecs?: ImportTxtParams;
+  conclusive?: boolean;
+  notPickable?: boolean;
+  contextVarsToSet?: {
+    [key: string]: string;
+  };
 }
 export interface ExportCSVParams {
   newLine: '\n' | '\r\n';
@@ -887,55 +892,57 @@ export interface ImportWarning {
   }[];
 }
 
-export interface ImportReponse {
+export interface ImportResponse {
+  /**
+   * @type {string}
+   * Import process ID.
+   */
   importID: string;
-  status: {
-    /**
-     * @type {string}
-     * minLength: 1
-     * Current status of the Import process (starting, running etc.).
-     * May be one of the following:
-     * - Starting: the Import process is preparing to start, but has not started yet. Will advance to Running automatically.
-     * - Running: the Import process has been started and is actively processing Memory objects.
-     * - Stopped: the Import process has been stopped manually, not all Memory objects may have been processed.
-     * - Completed: the Import process finished successfully, all the Memory objects have been processed.
-     * - Failed: the Import process terminated due to an unexpected error, not all Memory objects may have been processed.
-     */
-    status: 'Starting' | 'Running' | 'Stopped' | 'Completed' | 'Failed';
-    /**
-     * @type {string=}
-     * If the Status is Failed, reports the error that caused the Import process to fail. Null otherwise.
-     */
-    error?: string;
-    /**
-     * @type {number}
-     * Progress of the Import process as a fraction of 1.
-     */
-    progress: number;
-    /**
-     * @type {string=}
-     * Timestamp of start of the Import process. Null until the Import process is in Starting status.
-     */
-    begin?: string;
-    /**
-     * @type {string=}
-     * Timestamp of end of the Import process. Null until the Import process is in Starting or Running status.
-     */
-    end?: string;
-    /**
-     * @type {number=}
-     * Estimated time required to complete the Import process, in seconds.
-     */
-    eta?: number;
+  /**
+   * @type {string}
+   * minLength: 1
+   * Current status of the Import process (starting, running etc.).
+   * May be one of the following:
+   * - Starting: the Import process is preparing to start, but has not started yet. Will advance to Running automatically.
+   * - Running: the Import process has been started and is actively processing Memory objects.
+   * - Stopped: the Import process has been stopped manually, not all Memory objects may have been processed.
+   * - Completed: the Import process finished successfully, all the Memory objects have been processed.
+   * - Failed: the Import process terminated due to an unexpected error, not all Memory objects may have been processed.
+   */
+  status: 'Starting' | 'Running' | 'Stopped' | 'Completed' | 'Failed';
+  /**
+   * @type {string=}
+   * If the Status is Failed, reports the error that caused the Import process to fail. Null otherwise.
+   */
+  error?: string;
+  /**
+   * @type {number}
+   * Progress of the Import process as a fraction of 1.
+   */
+  progress: number;
+  /**
+   * @type {string=}
+   * Timestamp of start of the Import process. Null until the Import process is in Starting status.
+   */
+  begin?: string;
+  /**
+   * @type {string=}
+   * Timestamp of end of the Import process. Null until the Import process is in Starting or Running status.
+   */
+  end?: string;
+  /**
+   * @type {number=}
+   * Estimated time required to complete the Import process, in seconds.
+   */
+  eta?: number;
 
-    /**
-     * @type {number=}
-     * Number of Imported Memory objects so far.
-     */
-    importedMemories?: number;
-    /**
-     * List of Import Warning objects. May be empty.
-     */
-    importWarnings?: ImportWarning[];
-  };
+  /**
+   * @type {number=}
+   * Number of Imported Memory objects so far.
+   */
+  importedMemories?: number;
+  /**
+   * List of Import Warning objects. May be empty.
+   */
+  importWarnings?: ImportWarning[];
 }
