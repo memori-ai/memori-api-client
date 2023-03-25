@@ -8,25 +8,27 @@ jobs:
     strategy:
       matrix:
         node: ['16.x', '18.x']
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest, macOS-latest]
 
     steps:
-      - name: Checkout repo
+      - name: ⬇ Checkout repo
         uses: actions/checkout@v2
 
-      - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v1
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+          cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+      - name: ⚒ Install deps
+        run: corepack enable && yarn install --immutable
 
-      - name: Lint
+      - name: 🔎 Lint
         run: yarn lint
 
-      - name: Test
+      - name: 🧪 Test
         run: yarn test:ci --coverage --maxWorkers=2
 
-      - name: Build
+      - name: ⚙️ Build
         run: yarn build
