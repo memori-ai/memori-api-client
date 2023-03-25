@@ -31,16 +31,18 @@ See examples for [Node (TypeScript)](https://github.com/memori-ai/examples/blob/
 import memoriApiClient from '@memori.ai/memori-api-client';
 
 const memori = memoriApiClient('https://backend.memori.ai');
-
 (async () => {
-  const { sessionID, currentState, ...response } = await memori.initSession(
-    '768b9654-e781-4c3c-81fa-ae1529d1bfbe'
-  );
+  const { sessionID, currentState, ...response } = await memori.initSession({
+    memoriID: '768b9654-e781-4c3c-81fa-ae1529d1bfbe',
+  });
 
   const {
     currentState: dialogState,
     ...resp
-  } = await memori.postTextEnteredEvent(sessionID, 'Ciao, Memori!');
+  } = await memori.postTextEnteredEvent({
+    sessionId: sessionID,
+    text: 'Ciao, Memori!',
+  });
 })();
 ```
 
@@ -49,10 +51,6 @@ For the specification of the APIs, see the typings or the documentation from the
 ### Constants
 
 ```ts
-import memoriApiClient from '@memori.ai/memori-api-client';
-
-const memori = memoriApiClient('https://backend.memori.ai');
-
 memori.constants.allowedMediaTypes; // list of allowed media types in asset upload
 memori.constants.anonTag; // tag for anonymous users
 ```
@@ -62,13 +60,11 @@ memori.constants.anonTag; // tag for anonymous users
 There is a helper method parsing media urls from the DB, handling different cases
 
 ```ts
-const memori = memoriApiClient('https://backend.memori.ai');
-
 memori.asset.getResourceUrl({
   type: 'avatar',
   resourceURI: '768b9654-e781-4c3c-81fa-ae1529d1bfbe.png',
-  mediaType: 'image/png',
-  sessionId: 'be2e4a44-890b-483b-a26a-f6e122f36e2b',
+  sessionID: 'be2e4a44-890b-483b-a26a-f6e122f36e2b',
+  baseURL: 'https://app.twincreator.com',
 });
 ```
 
