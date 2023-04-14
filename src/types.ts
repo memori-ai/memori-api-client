@@ -151,7 +151,7 @@ export declare type User = {
   paying?: boolean;
   notificationPrefs?: NotificationPrefs[];
   birthDate?: string;
-  age?: integer;
+  age?: number;
   tnCAndPPAccepted?: boolean;
   tnCAndPPAcceptanceDate?: string;
 };
