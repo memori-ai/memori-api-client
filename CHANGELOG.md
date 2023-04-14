@@ -1,5 +1,13 @@
 
 
+## [2.1.1](https://github.com/memori-ai/memori-api-client/compare/v2.1.0...v2.1.1) (2023-04-14)
+
+
+### Maintenance
+
+* setup types for build ([d7e7203](https://github.com/memori-ai/memori-api-client/commit/d7e7203f5d2cd3b93e5ca1889147703c218231eb))
+* setup types for build ([2527080](https://github.com/memori-ai/memori-api-client/commit/25270801e8d777ee03d8a3577213609fc8d841ef))
+
 ## [2.1.0](https://github.com/memori-ai/memori-api-client/compare/v2.0.0...v2.1.0) (2023-04-14)
 
 
