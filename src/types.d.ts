@@ -60,6 +60,8 @@ export declare type Memori = {
   publishedInTheMetaverse?: boolean;
   metaverseEnvironment?: string;
   exposed?: boolean;
+  ageRescrition?: number;
+  nsfw?: boolean;
   disableR2R3Loop?: boolean;
   disableR4Loop?: boolean;
   disableR5Loop?: boolean;
@@ -148,6 +150,10 @@ export declare type User = {
   couponCode?: string;
   paying?: boolean;
   notificationPrefs?: NotificationPrefs[];
+  birthDate?: string;
+  age?: integer;
+  tnCAndPPAccepted?: boolean;
+  tnCAndPPAcceptanceDate?: string;
 };
 
 export declare type IntegrationResource = {
@@ -221,37 +227,47 @@ export interface UploadFile<T = any> {
   preview?: string;
 }
 
-export declare type TenantConfig = {
+export type TenantConfig = {
   name: string;
   showNewUser: boolean;
   requirePosition: boolean;
   feedbackURL?: string;
 };
 
-export declare type Tenant = {
-  id: string;
-  theme: string;
-  config: TenantConfig;
+export type TenantBase = {
+  tenantID?: string;
+  name?: string;
+  description?: string;
+  logoURL?: string;
+  adminCount?: number;
+  userCount?: number;
+  memoriCount?: number;
   disableRegistration?: boolean;
   maxMemoriPerAdmin?: number;
   maxMemoriPerUser?: number;
   maxTotalMemori?: number;
-  memoriCount?: number;
   maxAdmins?: number;
-  adminCount?: number;
   maxUsers?: number;
-  userCount?: number;
-  usersCanCreateMemori?: boolean;
-  usersCanAccessAPI?: boolean;
-  usersCanEditIntegrations?: boolean;
-  usersCanEditDynamicIntents?: boolean;
-  usersCanEditMemoriChaining?: boolean;
   maxFreeSessions?: number;
   maxFreeSessionsPerUser?: number;
   nonFreeSessionCost?: number;
   maxCompletions?: number;
   maxCompletionsPerUser?: number;
   paying?: boolean;
+  usersCanCreateMemori?: boolean;
+  usersCanAccessAPI?: boolean;
+  usersCanEditIntegrations?: boolean;
+  usersCanEditDynamicIntents?: boolean;
+  usersCanEditMemoriChaining?: boolean;
+  usersCanRunSnippets?: boolean;
+  creationTimestamp?: string;
+  lastChangeTimestamp?: string;
+};
+
+export type Tenant = TenantBase & {
+  id: string;
+  theme: string;
+  config: TenantConfig;
 };
 
 export declare type OpenSession = {
@@ -262,6 +278,8 @@ export declare type OpenSession = {
   pin?: string;
   initialContextVars?: { [key: string]: string };
   initialQuestion?: string;
+  forceCloseSessions?: boolean;
+  birthDate?: string;
 };
 
 export declare type MemoriSession = {
