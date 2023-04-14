@@ -1,5 +1,12 @@
 
 
+## [2.1.0](https://github.com/memori-ai/memori-api-client/compare/v2.0.0...v2.1.0) (2023-04-14)
+
+
+### Features
+
+* add new memori and user attributes ([40e6d16](https://github.com/memori-ai/memori-api-client/commit/40e6d16a56912a5add579ed5ad5245fce8ff0eea))
+
 ## [2.0.0](https://github.com/memori-ai/memori-api-client/compare/v1.2.0...v2.0.0) (2023-03-25)
 
 
