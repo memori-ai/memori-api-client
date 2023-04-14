@@ -20,7 +20,7 @@
   "author": "Memori Srl",
   "main": "dist/index.js",
   "module": "esm/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types.d.ts",
   "files": [
     "dist",
     "esm",
