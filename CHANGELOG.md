@@ -1,5 +1,12 @@
 
 
+## [2.1.3](https://github.com/memori-ai/memori-api-client/compare/v2.1.2...v2.1.3) (2023-04-17)
+
+
+### Bug Fixes
+
+* typo in backend memori specs ([2d12a38](https://github.com/memori-ai/memori-api-client/commit/2d12a38c16e0f18a0a0dd3e764fc0b4c76e96227))
+
 ## [2.1.2](https://github.com/memori-ai/memori-api-client/compare/v2.1.1...v2.1.2) (2023-04-14)
 
 
