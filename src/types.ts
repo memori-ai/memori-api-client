@@ -60,7 +60,7 @@ export declare type Memori = {
   publishedInTheMetaverse?: boolean;
   metaverseEnvironment?: string;
   exposed?: boolean;
-  ageRescrition?: number;
+  ageRestriction?: number;
   nsfw?: boolean;
   disableR2R3Loop?: boolean;
   disableR4Loop?: boolean;
