@@ -1,5 +1,12 @@
 
 
+## [2.1.5](https://github.com/memori-ai/memori-api-client/compare/v2.1.4...v2.1.5) (2023-04-17)
+
+
+### Maintenance
+
+* cleanup lockfile ([dd4cf88](https://github.com/memori-ai/memori-api-client/commit/dd4cf8851f07cfb97d0f77f0f4f214e63a4daf40))
+
 ## [2.1.4](https://github.com/memori-ai/memori-api-client/compare/v2.1.3...v2.1.4) (2023-04-17)
 
 
