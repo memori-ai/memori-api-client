@@ -1,5 +1,12 @@
 
 
+## [2.1.4](https://github.com/memori-ai/memori-api-client/compare/v2.1.3...v2.1.4) (2023-04-17)
+
+
+### Maintenance
+
+* add ts as peer dep ([415efbe](https://github.com/memori-ai/memori-api-client/commit/415efbe2ffa5612c56146301062d508b70072a9a))
+
 ## [2.1.3](https://github.com/memori-ai/memori-api-client/compare/v2.1.2...v2.1.3) (2023-04-17)
 
 
