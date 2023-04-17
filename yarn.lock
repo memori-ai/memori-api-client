@@ -1239,6 +1239,8 @@ __metadata:
     ts-jest: 29.0.3
     tslib: 2.4.1
     typescript: 4.9.3
+  peerDependencies:
+    typescript: ">=4.8"
   languageName: unknown
   linkType: soft
 
