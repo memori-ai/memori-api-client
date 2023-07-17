@@ -1,6 +1,5 @@
 import correlationPairs from './engine/correlationPairs';
 import dialog from './engine/dialog';
-import importExport from './engine/importExport';
 import intents from './engine/intents';
 import localizationKeys from './engine/localizationKeys';
 import media from './engine/media';
@@ -21,8 +20,6 @@ export default (apiUrl: string) => ({
   ...correlationPairs(apiUrl),
   dialog: dialog(apiUrl),
   ...dialog(apiUrl),
-  importExport: importExport(apiUrl),
-  ...importExport(apiUrl),
   intents: intents(apiUrl),
   ...intents(apiUrl),
   localizationKeys: localizationKeys(apiUrl),

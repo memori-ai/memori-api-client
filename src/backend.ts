@@ -5,6 +5,7 @@ import asset from './backend/asset';
 import invitation from './backend/invitation';
 import consumptionLogs from './backend/consumptionLogs';
 import notifications from './backend/notifications';
+import importExport from './backend/importExport';
 
 const backendAPI = (apiUrl: string) => ({
   asset: asset(apiUrl),
@@ -14,6 +15,7 @@ const backendAPI = (apiUrl: string) => ({
   invitation: invitation(apiUrl),
   consumptionLogs: consumptionLogs(apiUrl),
   notifications: notifications(apiUrl),
+  importExport: importExport(apiUrl),
   ...asset(apiUrl),
   ...memori(apiUrl),
   ...user(apiUrl),
@@ -21,6 +23,7 @@ const backendAPI = (apiUrl: string) => ({
   ...invitation(apiUrl),
   ...consumptionLogs(apiUrl),
   ...notifications(apiUrl),
+  ...importExport(apiUrl),
 });
 
 export default backendAPI;

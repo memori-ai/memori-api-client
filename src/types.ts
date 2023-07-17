@@ -280,6 +280,12 @@ export declare type OpenSession = {
   initialQuestion?: string;
   forceCloseSessions?: boolean;
   birthDate?: string;
+  additionalInfo?: {
+    userID?: string;
+    email?: string;
+    language?: string;
+    referral?: string;
+  };
 };
 
 export declare type MemoriSession = {
@@ -862,7 +868,8 @@ export type CustomWord = {
   lastChangeSessionID: string;
 };
 
-export interface ImportCSVParams {
+export interface CsvSpecs {
+  newLine: '\n' | '\r\n';
   hasHeaders?: boolean;
   headerNames?: string[];
   questionColumnName: string;
@@ -873,36 +880,48 @@ export interface ImportCSVParams {
   questionTitleVariantsSeparator?: string;
 }
 
-export interface ImportTxtParams {
-  newLinesPerParagraphs?: number;
+export interface TxtSpecs {
+  /**
+   * @type {string=}
+   * Proportion between the text size and the number of question-answers generated. If not specified it is assumed as MEDIUM.
+   * Must be one of:
+   * -  LOW: generates ~10 questions every 10K characters
+   * -  MEDIUM: generates ~20 questions every 10K characters
+   * -  HIGH: generates ~30 questions every 10K characters
+   */
+  granularity?: 'LOW' | 'MEDIUM' | 'HIGH';
+  /**
+   * @type {boolean=}
+   * If True, for every question-answer the excerpt of the original text from which they have been generated is included as an attachment.
+   * If not specified it is assumed as False.
+   */
+  attachSource?: boolean;
+  /**
+   * @type {string=}
+   * Title of the source attachment, when enabled with AttachSource. If not specified it will have no title.
+   */
+  sourceAttachmentTitle?: string;
+  /**
+   * @type {string=}
+   * If specified, these instructions are provided as part of the completion prompt to the generative AI when generating questions from the document.
+   */
+  questionsGenerationInstructions?: string;
 }
 
 export interface ImportParams {
-  includedRows?: number[];
   forceImport?: boolean;
-  csvSpecs?: ImportCSVParams;
-  txtSpecs?: ImportTxtParams;
+  csvSpecs?: CsvSpecs;
+  txtSpecs?: TxtSpecs;
   conclusive?: boolean;
   notPickable?: boolean;
   contextVarsToSet?: {
     [key: string]: string;
   };
 }
-export interface ExportCSVParams {
-  newLine: '\n' | '\r\n';
-  hasHeaders?: boolean;
-  questionColumnName: string;
-  answerColumnName: string;
-  contextVarsToMatchColumnName?: string;
-  contextVarsToSetColumnName?: string;
-  csvSeparator?: string;
-  questionTitleVariantsSeparator?: string;
-}
 
 export interface ImportWarning {
   warningType: 'Existing Similar Memory' | 'Internal Error';
   rowNumber?: number;
-  row: string;
   text?: string;
   similarTexts?: {
     text: string;
@@ -927,7 +946,13 @@ export interface ImportResponse {
    * - Completed: the Import process finished successfully, all the Memory objects have been processed.
    * - Failed: the Import process terminated due to an unexpected error, not all Memory objects may have been processed.
    */
-  status: 'Starting' | 'Running' | 'Stopped' | 'Completed' | 'Failed';
+  status:
+    | 'Pending'
+    | 'Starting'
+    | 'Running'
+    | 'Stopped'
+    | 'Completed'
+    | 'Failed';
   /**
    * @type {string=}
    * If the Status is Failed, reports the error that caused the Import process to fail. Null otherwise.
@@ -938,6 +963,18 @@ export interface ImportResponse {
    * Progress of the Import process as a fraction of 1.
    */
   progress: number;
+  /**
+   * @type {string}
+   * Import type.  Can be one of the following:
+   * -  CSV: for tabular documents
+   * -  TXT: for text documents
+   */
+  importType: 'CSV' | 'TXT';
+  /**
+   * @type {number}
+   * Size of the imported document in characters.
+   */
+  importSize: number;
   /**
    * @type {string=}
    * Timestamp of start of the Import process. Null until the Import process is in Starting status.
@@ -963,4 +1000,17 @@ export interface ImportResponse {
    * List of Import Warning objects. May be empty.
    */
   importWarnings?: ImportWarning[];
+}
+
+export interface Badge {
+  badgeID?: string;
+  date?: string;
+  name?: string;
+  description?: string;
+  imageURL?: string;
+  tags?: string[];
+  issuerName?: string;
+  issuerDescription?: string;
+  issuerEmail?: string;
+  issuerURL?: string;
 }
