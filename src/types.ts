@@ -493,7 +493,7 @@ export declare type Memory = {
   memoryID: string;
   memoryType: string;
   lastRead?: string;
-  readOccurrencies?: number;
+  readOccurrences?: number;
   receiverID?: string;
   receiverTag?: string;
   receiverName?: string;
@@ -533,7 +533,7 @@ export declare type Memory = {
 export declare type UnansweredQuestion = {
   unansweredQuestionID?: string;
   text: string;
-  occurrencies: number;
+  occurrences: number;
   receiverID?: string;
   receiverTag?: string;
   receiverName?: string;
@@ -685,7 +685,7 @@ export type CorrelationPair = {
   text1: string;
   text2: string;
   correlated: boolean;
-  occurrencies?: number;
+  occurrences?: number;
 };
 
 export type Utterance = {
