@@ -1,5 +1,12 @@
 
 
+## [2.2.2](https://github.com/memori-ai/memori-api-client/compare/v2.2.1...v2.2.2) (2023-08-25)
+
+
+### Changes
+
+* replace additionalInfo email + userID with loginToken ([10b2a03](https://github.com/memori-ai/memori-api-client/commit/10b2a03fd14104ca42c44f044327a8668b84eeb5))
+
 ## [2.2.1](https://github.com/memori-ai/memori-api-client/compare/v2.2.0...v2.2.1) (2023-08-22)
 
 
