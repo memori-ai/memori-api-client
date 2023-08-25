@@ -281,8 +281,7 @@ export declare type OpenSession = {
   forceCloseSessions?: boolean;
   birthDate?: string;
   additionalInfo?: {
-    userID?: string;
-    email?: string;
+    loginToken?: string;
     language?: string;
     referral?: string;
   };
