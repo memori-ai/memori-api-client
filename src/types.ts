@@ -913,6 +913,7 @@ export interface ImportParams {
   txtSpecs?: TxtSpecs;
   conclusive?: boolean;
   notPickable?: boolean;
+  importName?: string;
   contextVarsToSet?: {
     [key: string]: string;
   };
@@ -974,6 +975,16 @@ export interface ImportResponse {
    * Size of the imported document in characters.
    */
   importSize: number;
+  /**
+   * @type {string?}
+   * Name of this import, if set when the Import process was requested.
+   */
+  importName?: string;
+  /**
+   * @type {string?}
+   * Original parameters of the Import process request, as a JSON structure, excluding the document rows.
+   */
+  importSpecsJSON?: string;
   /**
    * @type {string=}
    * Timestamp of start of the Import process. Null until the Import process is in Starting status.
