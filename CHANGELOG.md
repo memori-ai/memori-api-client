@@ -1,5 +1,12 @@
 
 
+## [2.3.0](https://github.com/memori-ai/memori-api-client/compare/v2.2.2...v2.3.0) (2023-09-11)
+
+
+### Features
+
+* update import typings ([4bb0cdd](https://github.com/memori-ai/memori-api-client/commit/4bb0cddd0126fce7e210d4cca800c4f4cee3d7e3))
+
 ## [2.2.2](https://github.com/memori-ai/memori-api-client/compare/v2.2.1...v2.2.2) (2023-08-25)
 
 
