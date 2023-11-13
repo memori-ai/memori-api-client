@@ -3,6 +3,7 @@ import type {
   ImportParams,
   ImportResponse,
   CsvSpecs,
+  JSONLSpecs,
 } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
@@ -128,6 +129,30 @@ export default (apiUrl: string) => ({
       method: 'POST',
       body: {
         csvSpecs,
+        password,
+      },
+      text: true,
+    }) as Promise<string>,
+
+  /**
+   * Exports contents of a Memori object to a JSONL file, suitable for fine-tuning with generative AI platforms.
+   * @param {string} authToken - The login token.
+   * @param {string} memoriID - The ID of the Memori object.
+   * @param {JSONLSpecs} jsonlSpecs - Specifications for requests involving import/export of JSONL contents.
+   * @param {string=} password - Memori password, if its privacy model is set to Secret.
+   * @returns The JSONL file content
+   */
+  exportJSONL: async (
+    authToken: string,
+    memoriID: string,
+    jsonlSpecs: JSONLSpecs,
+    password?: string
+  ) =>
+    apiFetcher(`/ImportExport/ExportJSONL/${authToken}/${memoriID}`, {
+      apiUrl,
+      method: 'POST',
+      body: {
+        jsonlSpecs,
         password,
       },
       text: true,

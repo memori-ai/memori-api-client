@@ -60,17 +60,30 @@ export declare type Memori = {
   publishedInTheMetaverse?: boolean;
   metaverseEnvironment?: string;
   exposed?: boolean;
-  ageRestriction?: number;
-  nsfw?: boolean;
   disableR2R3Loop?: boolean;
   disableR4Loop?: boolean;
   disableR5Loop?: boolean;
+  ageRestriction?: number;
+  nsfw?: boolean;
   enableCompletions?: boolean;
   completionDescription?: string;
+  completionProvider?: '-' | 'OpenAI';
+  /**
+   * Format: chiave1:valore1|chiave2:valore2|...|chiaveN:valoreN
+   *
+   * OpenAI accetta i seguenti:
+   * - APIKey è l'API key
+   * - Model è il nome del modello: gpt-3.5-turbo, gpt-4 ecc.
+   * - MaxTokens è il numero massimo di token in output
+   * - Temperature è la temperature
+   */
+  completionProviderConfig?: string;
+  enableDeepThought?: boolean;
+  disableCompletionMediaExtraction?: boolean;
   chainingMemoriID?: string;
   chainingBaseURL?: string;
   chainingPassword?: string;
-  properties?: { [key: string]: any };
+  properties?: [{ [key: string]: string }];
   creationTimestamp?: string;
   lastChangeTimestamp?: string;
   blockedUntil?: string;
@@ -138,22 +151,39 @@ export declare type User = {
   canEditIntegrations?: boolean;
   canEditDynamicIntents?: boolean;
   canEditMemoriChaining?: boolean;
+  enableBadges?: boolean;
   monthSessions?: number;
   monthValidSessions?: number;
   maxFreeSessions?: number;
   nonFreeSessionCost?: number;
   monthCompletions?: number;
   maxCompletions?: number;
+  monthImportedSize?: number;
+  maxImportSize?: number;
   creationTimestamp?: string;
   lastChangeTimestamp?: string;
   referral?: string;
   couponCode?: string;
+  defaultCompletionProvider?: '-' | 'OpenAI';
+  /**
+   * Format: chiave1:valore1|chiave2:valore2|...|chiaveN:valoreN
+   *
+   * OpenAI accetta i seguenti:
+   * - APIKey è l'API key
+   * - Model è il nome del modello: gpt-3.5-turbo, gpt-4 ecc.
+   * - MaxTokens è il numero massimo di token in output
+   * - Temperature è la temperature
+   */
+  defaultCompletionProviderConfig?: string;
   paying?: boolean;
   notificationPrefs?: NotificationPrefs[];
   birthDate?: string;
   age?: number;
   tnCAndPPAccepted?: boolean;
   tnCAndPPAcceptanceDate?: string;
+  avatarURL?: string;
+  avatar3DURL?: string;
+  avatar3DURLType?: string;
 };
 
 export declare type IntegrationResource = {
@@ -568,6 +598,8 @@ export type ConsumptionLog = {
   totalSessions: number;
   validSessions: number;
   completions: number;
+  promptTokens: { [key: string]: number };
+  completionTokens: { [key: string]: number };
 };
 
 export type Notification = {
@@ -907,6 +939,21 @@ export interface TxtSpecs {
   questionsGenerationInstructions?: string;
 }
 
+export interface JSONLSpecs {
+  /**
+   * @type {string=}
+   * Name of the platform for which the JSONL is intended.
+   * Currently supported values are:
+   * - OpenAI: the OpenAI platform
+   */
+  platform?: string;
+  /**
+   * @type {boolean=}
+   * If True the JSONL includes the instructions for the generative AI, i.e. the "System" role of each message. Used only in Export operations.
+   */
+  includeInstructions?: boolean;
+}
+
 export interface ImportParams {
   forceImport?: boolean;
   csvSpecs?: CsvSpecs;
@@ -1006,6 +1053,10 @@ export interface ImportResponse {
    * Number of Imported Memory objects so far.
    */
   importedMemories?: number;
+  /**
+   * Number of Import Warning objects
+   */
+  importWarningsCount?: number;
   /**
    * List of Import Warning objects. May be empty.
    */

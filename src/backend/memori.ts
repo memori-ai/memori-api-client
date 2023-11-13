@@ -8,7 +8,7 @@ export default (apiUrl: string) => ({
    * @returns A list of Memori objects
    */
   getTenantPublicMemoriList: (tenant: string) =>
-    apiFetcher(`/TenantPublicMemori/${encodeURI(tenant)}`, {
+    apiFetcher(`/TenantPublicMemori/${encodeURIComponent(tenant)}`, {
       apiUrl,
     }) as Promise<
       ResponseSpec & {
@@ -22,7 +22,7 @@ export default (apiUrl: string) => ({
    * @returns A list of Memori objects
    */
   getTenantMetaverseMemoriList: (tenant: string) =>
-    apiFetcher(`/TenantMetaverseMemori/${encodeURI(tenant)}`, {
+    apiFetcher(`/TenantMetaverseMemori/${encodeURIComponent(tenant)}`, {
       apiUrl,
     }) as Promise<
       ResponseSpec & {
@@ -142,7 +142,7 @@ export default (apiUrl: string) => ({
    * @returns A list of Memori categories
    */
   getTenantCategories: (tenant: string) =>
-    apiFetcher(`/TenantMemoriCategories/${encodeURI(tenant)}`, {
+    apiFetcher(`/TenantMemoriCategories/${encodeURIComponent(tenant)}`, {
       apiUrl,
     }) as Promise<
       ResponseSpec & {
@@ -253,9 +253,9 @@ export default (apiUrl: string) => ({
     authToken?: string
   ) =>
     apiFetcher(
-      `/Memori/${encodeURI(tenant)}/${encodeURI(userName)}/${encodeURI(
-        memoriName
-      )}/${authToken ?? ''}`,
+      `/Memori/${encodeURIComponent(tenant)}/${encodeURIComponent(
+        userName
+      )}/${encodeURIComponent(memoriName)}/${authToken ?? ''}`,
       {
         apiUrl,
       }

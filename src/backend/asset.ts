@@ -5,17 +5,23 @@ export default (apiUrl: string) => ({
   /**
    * URL to upload a file creating a new Asset object to access it.
    * @param {string} authToken - The login token
-   * @param {string} memoriID - The memori ID
+   * @param {string=} memoriID - The memori ID
    * @param {string=} memoryID - The memory ID
    * @returns The URL to upload a file
    */
-  getUploadAssetURL: (authToken: string, memoriID: string, memoryID?: string) =>
-    `${apiUrl}/Asset/${authToken}/${memoriID}${memoryID ? `/${memoryID}` : ''}`,
+  getUploadAssetURL: (
+    authToken: string,
+    memoriID?: string,
+    memoryID?: string
+  ) =>
+    `${apiUrl}/Asset/${authToken}${memoriID ? `/${memoriID}` : ''}${
+      memoryID ? `/${memoryID}` : ''
+    }`,
 
   /**
    * Uploads a file and creates a new Asset object to access it.
    * @param {string} authToken - The login token
-   * @param {string} memoriID - The memori ID
+   * @param {string=} memoriID - The memori ID
    * @param {string=} memoryID - The memory ID
    * @returns Response of an Upload Asset request.
    */
@@ -23,7 +29,7 @@ export default (apiUrl: string) => ({
     fileName: string,
     fileUrl: string,
     authToken: string,
-    memoriID: string,
+    memoriID?: string,
     memoryID?: string
   ) => {
     const data = new FormData();
@@ -33,7 +39,7 @@ export default (apiUrl: string) => ({
     data.append(fileName, fileBlob, fileName);
 
     const upload = await fetch(
-      `${apiUrl}/Asset/${authToken}/${memoriID}${
+      `${apiUrl}/Asset/${authToken}${memoriID ? `/${memoriID}` : ''}${
         memoryID ? `/${memoryID}` : ''
       }`,
       {
