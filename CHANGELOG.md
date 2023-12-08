@@ -1,5 +1,12 @@
 
 
+## [2.6.0](https://github.com/memori-ai/memori-api-client/compare/v2.5.0...v2.6.0) (2023-12-08)
+
+
+### Features
+
+* add boe flag on memori type ([71fc3fc](https://github.com/memori-ai/memori-api-client/commit/71fc3fc9a891beae66a7518ac91bad633166bf27))
+
 ## [2.5.0](https://github.com/memori-ai/memori-api-client/compare/v2.4.0...v2.5.0) (2023-12-08)
 
 
