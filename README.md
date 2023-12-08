@@ -55,6 +55,14 @@ memori.constants.allowedMediaTypes; // list of allowed media types in asset uplo
 memori.constants.anonTag; // tag for anonymous users
 ```
 
+Endpoint passed during initialization:
+
+```ts
+memori.constants.HOSTNAME; // host name of the API, parameter of the constructor
+memori.constants.BACKEND_URL;
+memori.constants.ENGINE_URL;
+```
+
 ### Asset
 
 There is a helper method parsing media urls from the DB, handling different cases
