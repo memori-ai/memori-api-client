@@ -14,6 +14,7 @@ import unansweredQuestions from './engine/unansweredQuestions';
 import contextVars from './engine/contextVars';
 import customDictionary from './engine/customDictionary';
 import chatLogs from './engine/chatLogs';
+import expertReferences from './engine/expertReferences';
 
 export default (apiUrl: string) => ({
   correlationPairs: correlationPairs(apiUrl),
@@ -48,4 +49,6 @@ export default (apiUrl: string) => ({
   ...customDictionary(apiUrl),
   chatLogs: chatLogs(apiUrl),
   ...chatLogs(apiUrl),
+  expertReferences: expertReferences(apiUrl),
+  ...expertReferences(apiUrl),
 });

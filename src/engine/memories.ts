@@ -11,11 +11,11 @@ export default (apiUrl: string) => ({
   /**
    * Lists all Memory objects.
    * @param {string} sessionId The session ID
-   * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS, DRAFTS
+   * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS, DRAFTS, EXPERT_REFERENCES
    */
   getMemories: async (
     sessionId: string,
-    type?: 'ALL' | 'CONTENTS' | 'DEFAULTS' | 'DRAFTS'
+    type?: 'ALL' | 'CONTENTS' | 'DEFAULTS' | 'DRAFTS' | 'EXPERT_REFERENCES'
   ) =>
     apiFetcher(`/Memories/${sessionId}${type ? `/${type}` : ''}`, {
       method: 'GET',
@@ -31,13 +31,13 @@ export default (apiUrl: string) => ({
    * @param {string} sessionId The session ID
    * @param {number} from The starting index
    * @param {number} howMany The number of items to return
-   * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS, DRAFTS
+   * @param {string=} type Optional type of the Memory objects to list: ALL, CONTENTS, DEFAULTS, DRAFTS, EXPERT_REFERENCES
    */
   getMemoriesPaginated: async (
     sessionId: string,
     from: number,
     howMany: number,
-    type?: 'ALL' | 'CONTENTS' | 'DEFAULTS' | 'DRAFTS'
+    type?: 'ALL' | 'CONTENTS' | 'DEFAULTS' | 'DRAFTS' | 'EXPERT_REFERENCES'
   ) =>
     apiFetcher(
       `/Memories/${sessionId}/${from}/${howMany}${type ? `/${type}` : ''}`,

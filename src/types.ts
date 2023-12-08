@@ -401,6 +401,7 @@ export declare type DialogState = {
   confidence?: number;
   confidenceLevel?: 'NONE' | 'LOW' | 'MEDIUM' | 'HIGH';
   emission?: string;
+  emitter?: string;
   completion?: boolean;
   continuationEmitted?: boolean;
   lastMatchedMemoryID?: string;
@@ -520,7 +521,12 @@ export declare type Answer = {
 
 export declare type Memory = {
   memoryID: string;
-  memoryType: string;
+  memoryType:
+    | 'Question'
+    | 'Story'
+    | 'Default'
+    | 'CompletionDraft'
+    | 'ExpertReference';
   lastRead?: string;
   readOccurrences?: number;
   receiverID?: string;
@@ -584,6 +590,7 @@ export declare type Message = {
   fromUser?: boolean;
   media?: Medium[];
   initial?: boolean;
+  emitter?: string;
   timestamp?: string;
   contextVars?: { [key: string]: string };
 };
@@ -1074,4 +1081,47 @@ export interface Badge {
   issuerDescription?: string;
   issuerEmail?: string;
   issuerURL?: string;
+}
+
+export interface ExpertReference {
+  /**
+   * @type {string}
+   * Expert Reference object ID. Returned during Get operations. Ignored in other cases.
+   */
+  expertID: string;
+  /**
+   * @type {string}
+   * Name of the expert. Returned during Get operations. Required during Add operations. Optional during Update operations.
+   */
+  name: string;
+  /**
+   * @type {string}
+   * Description of the expert, i.e. a list of the expert's skills and knowledge. Returned during Get operations. Required during Add operations. Optional during Update operations.
+   */
+  description: string;
+  /**
+   * @type {boolean}
+   * If True, this expert is used when no other expert is competent for the current question. Returned during Get operations. Optional during Add operations. Optional during Update operations.
+   */
+  default?: boolean;
+  /**
+   * @type {string}
+   * ID of the expert Memori. Returned during Get operations. Required during Add operations. Optional during Update operations.
+   * NOTE: engine memroi ID
+   */
+  expertMemoriID: string;
+  /**
+   * @type {string=}
+   * Password of the expert Memori. Required if the chained Memori is private or secret. Optional during Add operations and Update operations. Ignore in other cases.
+   */
+  expertPassword?: string;
+  /**
+   * @type {string}
+   * Base URL of a chained Memori, typically https://engine.memori.ai/. Returned during Get operations. Required during Add operations. Optional during Update operations.
+   */
+  expertBaseURL: string;
+  creationTimestamp?: string;
+  creationSessionID?: string;
+  lastChangeTimestamp?: string;
+  lastChangeSessionID?: string;
 }
