@@ -65,6 +65,7 @@ export declare type Memori = {
   disableR5Loop?: boolean;
   ageRestriction?: number;
   nsfw?: boolean;
+  enableBoardOfExperts?: boolean;
   enableCompletions?: boolean;
   completionDescription?: string;
   completionProvider?: '-' | 'OpenAI';
