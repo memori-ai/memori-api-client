@@ -1,5 +1,12 @@
 
 
+## [2.6.1](https://github.com/memori-ai/memori-api-client/compare/v2.6.0...v2.6.1) (2023-12-08)
+
+
+### Maintenance
+
+* add endpoints as constants ([de513a2](https://github.com/memori-ai/memori-api-client/commit/de513a2662c163f3ad0181c1406d7f9da0dd72b7))
+
 ## [2.6.0](https://github.com/memori-ai/memori-api-client/compare/v2.5.0...v2.6.0) (2023-12-08)
 
 
