@@ -1,5 +1,12 @@
 
 
+## [2.5.0](https://github.com/memori-ai/memori-api-client/compare/v2.4.0...v2.5.0) (2023-12-08)
+
+
+### Features
+
+* add expert references api + new attributes for boards of experts ([c09c317](https://github.com/memori-ai/memori-api-client/commit/c09c31796dd8107075786b60a337da1b0c59cec7))
+
 ## [2.4.0](https://github.com/memori-ai/memori-api-client/compare/v2.3.0...v2.4.0) (2023-11-13)
 
 
