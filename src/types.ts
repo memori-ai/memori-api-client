@@ -661,6 +661,12 @@ export type ChatLogLine = {
    */
   text: string;
   /**
+   * @type {string=}
+   * Name of the Memori that provided the text. Used with Board of Experts model.
+   * Null for inbound lines, if no Board of Experts is configured, or if the Memori providing the text is the chairman of the Board.
+   */
+  emitter?: string;
+  /**
    * Media attached with the Dialog State Machine emission, if present. Empty if the line is inbound.
    */
   media?: ChatMedium[];
@@ -712,6 +718,11 @@ export type ChatLog = {
    * Tag of the Person object authenticated in the session. Null if the chat was performed by anonymous.
    */
   receiverTag?: string;
+  /**
+   * @type {?boolean}
+   * True if this chat log was performed with the Memori configured as a Board of Experts.
+   */
+  boardOfExperts?: boolean;
 
   /**
    * List of Chat Line objects of this chat.
