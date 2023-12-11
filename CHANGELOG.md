@@ -1,5 +1,12 @@
 
 
+## [2.6.2](https://github.com/memori-ai/memori-api-client/compare/v2.6.1...v2.6.2) (2023-12-11)
+
+
+### Changes
+
+* add chatlogs attributes for board of experts ([3d746a7](https://github.com/memori-ai/memori-api-client/commit/3d746a7ec97cfe05bc584b2f8b1fc5b6ca450d80))
+
 ## [2.6.1](https://github.com/memori-ai/memori-api-client/compare/v2.6.0...v2.6.1) (2023-12-08)
 
 
