@@ -15,6 +15,7 @@ import contextVars from './engine/contextVars';
 import customDictionary from './engine/customDictionary';
 import chatLogs from './engine/chatLogs';
 import expertReferences from './engine/expertReferences';
+import knownFacts from './engine/knownFacts';
 
 export default (apiUrl: string) => ({
   correlationPairs: correlationPairs(apiUrl),
@@ -51,4 +52,6 @@ export default (apiUrl: string) => ({
   ...chatLogs(apiUrl),
   expertReferences: expertReferences(apiUrl),
   ...expertReferences(apiUrl),
+  knownFacts: knownFacts(apiUrl),
+  ...knownFacts(apiUrl),
 });

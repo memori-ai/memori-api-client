@@ -1137,3 +1137,26 @@ export interface ExpertReference {
   lastChangeTimestamp?: string;
   lastChangeSessionID?: string;
 }
+
+export interface KnownFact {
+  /**
+   * Known Fact object ID.
+   * @type {string}
+   */
+  knownFactID: string;
+  /**
+   * Known Fact type, e.g. ShortTerm or LongTerm.
+   * Currently possible values are:
+   * - ShortTerm: this Known Fact is always used during conversations
+   * - LongTerm: this Known Fact is used during conversations only if relevant to the current question
+   */
+  knownFactType: 'ShortTerm' | 'LongTerm';
+  /**
+   * Text of the Known Fact.
+   */
+  text: string;
+  creationTimestamp?: string;
+  creationSessionID?: string;
+  lastChangeTimestamp?: string;
+  lastChangeSessionID?: string;
+}
