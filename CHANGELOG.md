@@ -1,5 +1,12 @@
 
 
+## [2.7.0](https://github.com/memori-ai/memori-api-client/compare/v2.6.2...v2.7.0) (2023-12-22)
+
+
+### Features
+
+* add known facts api and typings ([3c16827](https://github.com/memori-ai/memori-api-client/commit/3c16827dd2d9dfc114edfe094f984e4492d1cdaf))
+
 ## [2.6.2](https://github.com/memori-ai/memori-api-client/compare/v2.6.1...v2.6.2) (2023-12-11)
 
 
