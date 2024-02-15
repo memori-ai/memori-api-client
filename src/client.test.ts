@@ -43,6 +43,6 @@ describe('client', () => {
       client.asset.getResourceUrl({
         type: 'avatar',
       })
-    ).toBe('https://app.twincreator.com/images/memoriAvatar.png');
+    ).toBe('https://aisuru.com/images/memoriAvatar.png');
   });
 });

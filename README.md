@@ -6,10 +6,7 @@
 
 TypeScript client to integrate with [Memori](https://memori.ai) API.
 
-Platforms:
-
-- [MemoryTwin](https://app.memorytwin.com/en): consumer / creator platform
-- [TwinCreator](https://app.twincreator.com/en): developer-oriented platform
+Web Platform: [AIsuru](https://aisuru.com)
 
 ## Installation
 
@@ -36,13 +33,11 @@ const memori = memoriApiClient('https://backend.memori.ai');
     memoriID: '768b9654-e781-4c3c-81fa-ae1529d1bfbe',
   });
 
-  const {
-    currentState: dialogState,
-    ...resp
-  } = await memori.postTextEnteredEvent({
-    sessionId: sessionID,
-    text: 'Ciao, Memori!',
-  });
+  const { currentState: dialogState, ...resp } =
+    await memori.postTextEnteredEvent({
+      sessionId: sessionID,
+      text: 'Ciao, Memori!',
+    });
 })();
 ```
 
@@ -72,7 +67,7 @@ memori.asset.getResourceUrl({
   type: 'avatar',
   resourceURI: '768b9654-e781-4c3c-81fa-ae1529d1bfbe.png',
   sessionID: 'be2e4a44-890b-483b-a26a-f6e122f36e2b',
-  baseURL: 'https://app.twincreator.com',
+  baseURL: 'https://aisuru.com',
 });
 ```
 

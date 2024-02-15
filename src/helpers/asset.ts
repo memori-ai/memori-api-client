@@ -13,14 +13,14 @@ export default (apiUrl: string) => ({
    * @param {string=} params.type - wheather is the avatar or the cover
    * @param {string=} params.resourceURI - the resource URI
    * @param {string=} params.sessionID - the session ID, required for memory media attachments
-   * @param {string=} params.baseURL - the base URL for default static assets (defaults to https://app.twincreator.com)
+   * @param {string=} params.baseURL - the base URL for default static assets (defaults to https://aisuru.com)
    * @returns {string}
    */
   getResourceUrl: ({
     type,
     resourceURI,
     sessionID,
-    baseURL = 'https://app.twincreator.com',
+    baseURL = 'https://aisuru.com',
   }: ResourceURLParams): string => {
     let defaultUri =
       type === 'cover'
