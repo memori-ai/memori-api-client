@@ -1,7 +1,6 @@
 import memori from '../index';
 
-// FIXME: switch back to production when backend fixes request processing issue
-const client = memori('https://backend-staging.memori.ai');
+const client = memori('https://backend.memori.ai');
 
 describe('engine/knownFacts api', () => {
   it('works on knownFacts apis', async () => {

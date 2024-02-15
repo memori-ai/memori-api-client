@@ -6,7 +6,6 @@ import media from './engine/media';
 import memories from './engine/memories';
 import nlp from './engine/nlp';
 import people from './engine/people';
-import promptedQuestions from './engine/promptedQuestions';
 import search from './engine/search';
 import session from './engine/session';
 import stats from './engine/stats';
@@ -16,6 +15,8 @@ import customDictionary from './engine/customDictionary';
 import chatLogs from './engine/chatLogs';
 import expertReferences from './engine/expertReferences';
 import knownFacts from './engine/knownFacts';
+import user from './engine/user';
+import topics from './engine/topics';
 
 export default (apiUrl: string) => ({
   correlationPairs: correlationPairs(apiUrl),
@@ -34,8 +35,6 @@ export default (apiUrl: string) => ({
   ...nlp(apiUrl),
   people: people(apiUrl),
   ...people(apiUrl),
-  promptedQuestions: promptedQuestions(apiUrl),
-  ...promptedQuestions(apiUrl),
   search: search(apiUrl),
   ...search(apiUrl),
   session: session(apiUrl),
@@ -54,4 +53,8 @@ export default (apiUrl: string) => ({
   ...expertReferences(apiUrl),
   knownFacts: knownFacts(apiUrl),
   ...knownFacts(apiUrl),
+  user: user(apiUrl),
+  ...user(apiUrl),
+  topics: topics(apiUrl),
+  ...topics(apiUrl),
 });

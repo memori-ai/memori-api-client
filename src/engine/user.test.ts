@@ -2,19 +2,19 @@ import memori from '../index';
 
 const client = memori('https://backend.memori.ai');
 
-describe('engine/promptedQuestions api', () => {
-  it('works on promptedQuestions apis', async () => {
+describe('engine/user api', () => {
+  it('works on user apis', async () => {
     expect(
-      await client.promptedQuestions.getPromptedQuestion(
+      await client.user.getMemoriUser(
         '768b9654-e781-4c3c-81fa-ae1529d1bfbe',
         'be2e4a44-890b-483b-a26a-f6e122f36e2b'
       )
     ).not.toBeNull();
   });
 
-  it('works on promptedQuestions apis with shorthand version', async () => {
+  it('works on user apis with shorthand version', async () => {
     expect(
-      await client.getPromptedQuestion(
+      await client.getMemoriUser(
         '768b9654-e781-4c3c-81fa-ae1529d1bfbe',
         'be2e4a44-890b-483b-a26a-f6e122f36e2b'
       )

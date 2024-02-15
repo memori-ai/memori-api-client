@@ -65,10 +65,9 @@ export declare type Memori = {
   disableR5Loop?: boolean;
   ageRestriction?: number;
   nsfw?: boolean;
-  enableBoardOfExperts?: boolean;
   enableCompletions?: boolean;
   completionDescription?: string;
-  completionProvider?: '-' | 'OpenAI';
+  completionProvider?: '-' | 'Mistral' | 'OpenAI';
   /**
    * Format: chiave1:valore1|chiave2:valore2|...|chiaveN:valoreN
    *
@@ -80,10 +79,30 @@ export declare type Memori = {
    */
   completionProviderConfig?: string;
   enableDeepThought?: boolean;
+  enableBoardOfExperts?: boolean;
   disableCompletionMediaExtraction?: boolean;
   chainingMemoriID?: string;
   chainingBaseURL?: string;
   chainingPassword?: string;
+  /**
+   * @type {string=}
+   * User name of the optional integration with the DCM platform.
+   * If set, this Memori will be able send outcomes to the DCM platform when specific contents are emitted during the conversation.
+   * When updating, set it to a single dash character (-) to remove a previously set integration.
+   */
+  dcmUser?: string;
+  /**
+   * @type {string=}
+   * Shared secret of the optional integration with the DCM platform.
+   * Required if DCMUser is set.
+   */
+  dcmSecret?: string;
+  /**
+   * @type {string=}
+   * Application context of the optional integration with the DCM platform.
+   * Required if DCMUser is set.
+   */
+  dcmAppContext?: string;
   properties?: [{ [key: string]: string }];
   creationTimestamp?: string;
   lastChangeTimestamp?: string;
@@ -165,7 +184,7 @@ export declare type User = {
   lastChangeTimestamp?: string;
   referral?: string;
   couponCode?: string;
-  defaultCompletionProvider?: '-' | 'OpenAI';
+  defaultCompletionProvider?: '-' | 'Mistral' | 'OpenAI';
   /**
    * Format: chiave1:valore1|chiave2:valore2|...|chiaveN:valoreN
    *
@@ -182,6 +201,8 @@ export declare type User = {
   age?: number;
   tnCAndPPAccepted?: boolean;
   tnCAndPPAcceptanceDate?: string;
+  pAndCUAccepted?: boolean;
+  pAndCUAcceptanceDate?: string;
   avatarURL?: string;
   avatar3DURL?: string;
   avatar3DURLType?: string;
@@ -262,7 +283,6 @@ export type TenantConfig = {
   name: string;
   showNewUser: boolean;
   requirePosition: boolean;
-  feedbackURL?: string;
 };
 
 export type TenantBase = {
@@ -270,6 +290,11 @@ export type TenantBase = {
   name?: string;
   description?: string;
   logoURL?: string;
+  /**
+   * Additional Tenant names.
+   * Usually host names, e.g. app.memorytwin.com.
+   */
+  aliases?: string[];
   adminCount?: number;
   userCount?: number;
   memoriCount?: number;
@@ -282,15 +307,28 @@ export type TenantBase = {
   maxFreeSessions?: number;
   maxFreeSessionsPerUser?: number;
   nonFreeSessionCost?: number;
+  maxImportSize?: number;
+  maxImportSizePerUser?: number;
   maxCompletions?: number;
   maxCompletionsPerUser?: number;
+  defaultCompletionProvider?: '-' | 'Mistral' | 'OpenAI';
+  /**
+   * Format: chiave1:valore1|chiave2:valore2|...|chiaveN:valoreN
+   *
+   * OpenAI accetta i seguenti:
+   * - APIKey è l'API key
+   * - Model è il nome del modello: gpt-3.5-turbo, gpt-4 ecc.
+   * - MaxTokens è il numero massimo di token in output
+   * - Temperature è la temperature
+   */
+  defaultCompletionProviderConfig?: string;
   paying?: boolean;
-  usersCanCreateMemori?: boolean;
-  usersCanAccessAPI?: boolean;
-  usersCanEditIntegrations?: boolean;
-  usersCanEditDynamicIntents?: boolean;
-  usersCanEditMemoriChaining?: boolean;
-  usersCanRunSnippets?: boolean;
+  enableUserMemoriCreation?: boolean;
+  enableBoardOfExperts?: boolean;
+  enableDCMIntegration?: boolean;
+  enableBadges?: boolean;
+  enableVirtualSpaces?: boolean;
+  enableDeepThought?: boolean;
   creationTimestamp?: string;
   lastChangeTimestamp?: string;
 };
@@ -1159,4 +1197,35 @@ export interface KnownFact {
   creationSessionID?: string;
   lastChangeTimestamp?: string;
   lastChangeSessionID?: string;
+}
+
+export interface MemoriUser {
+  userID: string;
+  email: string;
+  userName: string;
+  tenantName: string;
+  disableDeepThought: boolean;
+
+  creationTimestamp: string;
+  creationSessionID: string;
+  lastChangeTimestamp: string;
+  lastChangeSessionID: string;
+}
+
+export interface Topic {
+  topicID: string;
+  /**
+   * Topic name.
+   */
+  name: string;
+  /**
+     * Topic weight, i.e. the ratio between the number of times this topic has been referenced versus to
+  total number of references.
+     */
+  weight: number;
+
+  creationTimestamp: string;
+  creationSessionID: string;
+  lastChangeTimestamp: string;
+  lastChangeSessionID: string;
 }
