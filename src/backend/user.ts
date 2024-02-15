@@ -51,6 +51,20 @@ export default (apiUrl: string) => ({
     }) as Promise<ResponseSpec>,
 
   /**
+   * Gets the details of the currently logged in User object.
+   * @param authToken - The login token
+   * @returns The user object
+   */
+  getCurrentUser: (authToken: string) =>
+    apiFetcher(`/User/${authToken}`, {
+      apiUrl,
+    }) as Promise<
+      ResponseSpec & {
+        user: User;
+      }
+    >,
+
+  /**
    * Gets the details of a User object.
    * @param authToken - The login token
    * @param userID - The user ID
