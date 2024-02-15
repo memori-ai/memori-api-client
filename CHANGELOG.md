@@ -1,5 +1,18 @@
 
 
+## [3.0.0](https://github.com/memori-ai/memori-api-client/compare/v2.7.0...v3.0.0) (2024-02-15)
+
+
+### Features
+
+* add get current backend user api ([0bbcebd](https://github.com/memori-ai/memori-api-client/commit/0bbcebda387975264d3bc49d3881dfa4e1e5ceae))
+* add new apis and typings, remove obsolete ones ([c5a028a](https://github.com/memori-ai/memori-api-client/commit/c5a028a7ed2218d3d6ca6bbd22f73f7d3a9cd3c4))
+
+
+### Maintenance
+
+* rename refs and defaults to aisuru.com ([25a3222](https://github.com/memori-ai/memori-api-client/commit/25a32225d5046d0ef6a000ebcda99730a899fa44))
+
 ## [2.7.0](https://github.com/memori-ai/memori-api-client/compare/v2.6.2...v2.7.0) (2023-12-22)
 
 
