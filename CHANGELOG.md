@@ -1,5 +1,12 @@
 
 
+## [3.0.1](https://github.com/memori-ai/memori-api-client/compare/v3.0.0...v3.0.1) (2024-02-16)
+
+
+### Maintenance
+
+* update user typings ([6a357ee](https://github.com/memori-ai/memori-api-client/commit/6a357eea7d0013dfba3b629fb8101a404782bfec))
+
 ## [3.0.0](https://github.com/memori-ai/memori-api-client/compare/v2.7.0...v3.0.0) (2024-02-15)
 
 
