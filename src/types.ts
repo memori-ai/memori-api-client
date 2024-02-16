@@ -165,13 +165,12 @@ export declare type User = {
   newsletterSubscribed?: boolean;
   maxMemori?: number;
   numMemori?: number;
-  canCreateMemori?: boolean;
-  canAccessAPI?: boolean;
-  canRunSnippets?: boolean;
-  canEditIntegrations?: boolean;
-  canEditDynamicIntents?: boolean;
-  canEditMemoriChaining?: boolean;
+  enableMemoriCreation?: boolean;
+  enableBoardOfExperts?: boolean;
+  enableDCMIntegration?: boolean;
   enableBadges?: boolean;
+  enableVirtualSpaces?: boolean;
+  enableDeepThought?: boolean;
   monthSessions?: number;
   monthValidSessions?: number;
   maxFreeSessions?: number;
