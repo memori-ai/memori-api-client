@@ -1,5 +1,21 @@
 
 
+## [4.0.0](https://github.com/memori-ai/memori-api-client/compare/v3.0.1...v4.0.0) (2024-03-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* add new processes and analysis api, moving import status, refactor api code
+
+### Features
+
+* add new processes and analysis api, moving import status, refactor api code ([2cc81c0](https://github.com/memori-ai/memori-api-client/commit/2cc81c0512bbf7445d8e71cfacc41961fbbf0251))
+
+
+### Maintenance
+
+* add new tenant attribute ([5829c53](https://github.com/memori-ai/memori-api-client/commit/5829c5337dd3aeb1fc3de462065b3f1dc6e2b8f9))
+
 ## [3.0.1](https://github.com/memori-ai/memori-api-client/compare/v3.0.0...v3.0.1) (2024-02-16)
 
 
