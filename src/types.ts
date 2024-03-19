@@ -289,6 +289,7 @@ export type TenantBase = {
   name?: string;
   description?: string;
   logoURL?: string;
+  adminEmail?: string;
   /**
    * Additional Tenant names.
    * Usually host names, e.g. app.memorytwin.com.
