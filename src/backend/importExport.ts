@@ -1,7 +1,7 @@
 import type {
   ResponseSpec,
   ImportParams,
-  ImportResponse,
+  ImportStatus,
   CsvSpecs,
   JSONLSpecs,
 } from '../types';
@@ -36,7 +36,7 @@ export default (apiUrl: string) => ({
       },
     }) as Promise<
       ResponseSpec & {
-        status: ImportResponse;
+        status: ImportStatus;
       }
     >,
 
@@ -62,51 +62,7 @@ export default (apiUrl: string) => ({
       },
     }) as Promise<
       ResponseSpec & {
-        status: ImportResponse;
-      }
-    >,
-
-  /**
-   * Gets a list of Import processes started by the currently logged in User.
-   * @param {string} authToken - The login token.
-   */
-  importProcesses: async (authToken: string) =>
-    apiFetcher(`/ImportExport/ImportProcesses/${authToken}`, {
-      apiUrl,
-      method: 'GET',
-    }) as Promise<
-      ResponseSpec & {
-        importProcesses: ImportResponse[];
-      }
-    >,
-
-  /**
-   * Gets the status of an Import process.
-   * @param {string} authToken - The login token.
-   * @param {string} importID The import process ID
-   */
-  importStatus: async (authToken: string, importID: string) =>
-    apiFetcher(`/ImportExport/ImportStatus/${authToken}/${importID}`, {
-      apiUrl,
-      method: 'GET',
-    }) as Promise<
-      ResponseSpec & {
-        status: ImportResponse;
-      }
-    >,
-
-  /**
-   * Interrupts an ongoing Import process.
-   * @param {string} authToken - The login token.
-   * @param {string} importID The import process ID
-   */
-  stopImport: async (authToken: string, importID: string) =>
-    apiFetcher(`/ImportExport/StopImport/${authToken}/${importID}`, {
-      apiUrl,
-      method: 'POST',
-    }) as Promise<
-      ResponseSpec & {
-        status: ImportResponse;
+        status: ImportStatus;
       }
     >,
 

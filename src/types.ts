@@ -1033,12 +1033,65 @@ export interface ImportWarning {
   }[];
 }
 
-export interface ImportResponse {
+export interface AnalysisParams {
+  query: string;
+}
+
+export interface AnalysisWarning {
   /**
    * @type {string}
-   * Import process ID.
+   * Type of warning.
+   * Currently supported types are:
+   * - Error: an error occurred while performing analysis
    */
-  importID: string;
+  warningType: 'Error' | string;
+  /**
+   * @type {string=}
+   * When WarningType is Error reports the text of the error.
+   */
+  text?: string;
+}
+
+export interface AnalysisWarning {
+  /**
+   * @type {string}
+   * Type of warning.
+   * Currently supported types are:
+   * - Error: an error occurred while performing analysis
+   */
+  warningType: 'Error' | string;
+  /**
+   * @type {string=}
+   * When WarningType is Error reports the text of the error.
+   */
+  text?: string;
+}
+
+export interface ProcessStatus {
+  /**
+   * @type {string}
+   * Process ID.
+   */
+  processID: string;
+  /**
+   * @type {string}
+   * ID of the Memori object this process refers to.
+   */
+  memoriID: string;
+  /**
+   * @type {string}
+   * Name of the user that started the process.
+   */
+  processUserName: string;
+  /**
+   * @type {string}
+   * Process type.
+   * Can be one of the following:
+   *
+   * - Import: for file import processes
+   * - Analysis: for Deep Thought user/query analysis processes
+   */
+  processType: 'Import' | 'Analysis';
   /**
    * @type {string}
    * minLength: 1
@@ -1068,6 +1121,31 @@ export interface ImportResponse {
    */
   progress: number;
   /**
+   * @type {string?}
+   * Original parameters of the Import process request, as a JSON structure, excluding the document rows.
+   */
+  processSpecsJSON?: string;
+  /**
+   * @type {string=}
+   * Timestamp of start of the Import process. Null until the Import process is in Starting status.
+   */
+  begin?: string;
+  /**
+   * @type {string=}
+   * Timestamp of end of the Import process. Null until the Import process is in Starting or Running status.
+   */
+  end?: string;
+  /**
+   * @type {number=}
+   * Estimated time required to complete the Import process, in seconds.
+   */
+  eta?: number;
+  creationTimestamp?: string;
+  lastChangeTimestamp?: string;
+}
+
+export interface ImportStatus extends ProcessStatus {
+  /**
    * @type {string}
    * Import type.  Can be one of the following:
    * -  CSV: for tabular documents
@@ -1085,27 +1163,6 @@ export interface ImportResponse {
    */
   importName?: string;
   /**
-   * @type {string?}
-   * Original parameters of the Import process request, as a JSON structure, excluding the document rows.
-   */
-  importSpecsJSON?: string;
-  /**
-   * @type {string=}
-   * Timestamp of start of the Import process. Null until the Import process is in Starting status.
-   */
-  begin?: string;
-  /**
-   * @type {string=}
-   * Timestamp of end of the Import process. Null until the Import process is in Starting or Running status.
-   */
-  end?: string;
-  /**
-   * @type {number=}
-   * Estimated time required to complete the Import process, in seconds.
-   */
-  eta?: number;
-
-  /**
    * @type {number=}
    * Number of Imported Memory objects so far.
    */
@@ -1120,6 +1177,72 @@ export interface ImportResponse {
   importWarnings?: ImportWarning[];
 }
 
+export interface AnalysisStatus extends ProcessStatus {
+  /**
+   * @type {string}
+   * Analysis type.  Can be one of the following:
+   * - UserQuery: for Deep Thought User/query Match analysis
+   */
+  analysisType: 'UserQuery';
+  /**
+   * @type {string}
+   * Query to be used in the analysis. Used when AnalysisType is UserQuery.
+   */
+  query?: string;
+  /**
+   * @type {number=}
+   * Number of Import Warning objects
+   */
+  analysisWarningsCount?: number;
+  /**
+   * @type {AnalysisWarning[]=}
+   * List of Import Warning objects. May be empty.
+   */
+  analysisWarnings?: AnalysisWarning[];
+}
+
+export interface UserQueryMatch {
+  /**
+   * @type {string}
+   * Match ID. Unique and assigned by the system.
+   */
+  userQueryMatchID: string;
+  /**
+   * @type {string}
+   * ID of the Analysis object this match refers to.
+   */
+  analysisID: string;
+  /**
+   * @type {string}
+   * ID of the Memori object this match refers to.
+   */
+  memoriID: string;
+  /**
+   * @type {string}
+   * ID of the corresponding User object on the Engine.
+   */
+  engineUserID: string;
+  /**
+   * @type {string}
+   * User name.
+   */
+  userName: string;
+  /**
+   * @type {string}
+   * User's Tenant name.
+   */
+  userTenantName: string;
+  /**
+   * @type {string}
+   * User's e-mail.
+   */
+  userEmail: string;
+  /**
+   * @type {number}
+   * Match level between the Analysis query and this User. Value is between 0 and 1, with 0.0 meaning no match and 1.0 meaning perfect match.
+   */
+  match: number;
+}
 export interface Badge {
   badgeID?: string;
   date?: string;
