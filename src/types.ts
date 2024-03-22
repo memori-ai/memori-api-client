@@ -67,7 +67,7 @@ export declare type Memori = {
   nsfw?: boolean;
   enableCompletions?: boolean;
   completionDescription?: string;
-  completionProvider?: '-' | 'Mistral' | 'OpenAI';
+  completionProvider?: '-' | 'Mistral' | 'Anthropic' | 'OpenAI';
   /**
    * Format: chiave1:valore1|chiave2:valore2|...|chiaveN:valoreN
    *
@@ -183,7 +183,7 @@ export declare type User = {
   lastChangeTimestamp?: string;
   referral?: string;
   couponCode?: string;
-  defaultCompletionProvider?: '-' | 'Mistral' | 'OpenAI';
+  defaultCompletionProvider?: '-' | 'Mistral' | 'Anthropic' | 'OpenAI';
   /**
    * Format: chiave1:valore1|chiave2:valore2|...|chiaveN:valoreN
    *
@@ -311,7 +311,7 @@ export type TenantBase = {
   maxImportSizePerUser?: number;
   maxCompletions?: number;
   maxCompletionsPerUser?: number;
-  defaultCompletionProvider?: '-' | 'Mistral' | 'OpenAI';
+  defaultCompletionProvider?: '-' | 'Mistral' | 'Anthropic' | 'OpenAI';
   /**
    * Format: chiave1:valore1|chiave2:valore2|...|chiaveN:valoreN
    *
