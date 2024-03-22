@@ -1,5 +1,12 @@
 
 
+## [4.0.1](https://github.com/memori-ai/memori-api-client/compare/v4.0.0...v4.0.1) (2024-03-22)
+
+
+### Maintenance
+
+* adapt completion provider adding Anthropic ([4935dc2](https://github.com/memori-ai/memori-api-client/commit/4935dc22778266ae177078c286567c040e5ab584))
+
 ## [4.0.0](https://github.com/memori-ai/memori-api-client/compare/v3.0.1...v4.0.0) (2024-03-19)
 
 
