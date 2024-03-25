@@ -1,5 +1,12 @@
 
 
+## [4.0.2](https://github.com/memori-ai/memori-api-client/compare/v4.0.1...v4.0.2) (2024-03-25)
+
+
+### Maintenance
+
+* add attributes to ProcessStatus ([c72da0a](https://github.com/memori-ai/memori-api-client/commit/c72da0adca92f7a799cbdba640b010ef3f9040ee))
+
 ## [4.0.1](https://github.com/memori-ai/memori-api-client/compare/v4.0.0...v4.0.1) (2024-03-22)
 
 
