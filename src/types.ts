@@ -1140,6 +1140,16 @@ export interface ProcessStatus {
    * Estimated time required to complete the Import process, in seconds.
    */
   eta?: number;
+  /**
+   * @type {number=}
+   * Number of elements this Process has processed so far.
+   */
+  processedElements?: number;
+  /**
+   * @type {number=}
+   * Total elements this Process is processing.
+   */
+  totalElements?: number;
   creationTimestamp?: string;
   lastChangeTimestamp?: string;
 }
