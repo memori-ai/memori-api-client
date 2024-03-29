@@ -36,15 +36,19 @@ export default (apiUrl: string) => ({
    * @param {string} analysisID - The Analysis process ID
    * @param {number} from The 0-based index of the first Expert Reference object to list
    * @param {number} howMany The number of the Expert Reference objects to list
+   * @param {number=} threshold Threshold between 0.0 and 1.0. User objects whose match level is below this threshold will be discarded. If null, all User objects will be returned.
    */
   getUserQueryMatches: async (
     authToken: string,
     analysisID: string,
     from: number,
-    howMany: number
+    howMany: number,
+    threshold?: number
   ) =>
     apiFetcher(
-      `/Analysis/AnalyzeUserQuery/${authToken}/${analysisID}/${from}/${howMany}`,
+      `/Analysis/AnalyzeUserQuery/${authToken}/${analysisID}/${from}/${howMany}${
+        threshold ? `/${threshold}` : ''
+      }`,
       {
         apiUrl,
         method: 'GET',

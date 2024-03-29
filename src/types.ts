@@ -1034,7 +1034,17 @@ export interface ImportWarning {
 }
 
 export interface AnalysisParams {
+  /**
+   * @type {string}
+   * Query to be matched with User objects in the analysis.
+   */
   query: string;
+  /**
+   * @type {number=}
+   * Threshold between 0.0 and 1.0. User objects whose match level is below this threshold will be discarded.
+   * If null, all User objects will be returned.
+   */
+  threshold?: number;
 }
 
 export interface AnalysisWarning {
