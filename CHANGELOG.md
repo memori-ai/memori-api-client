@@ -1,5 +1,12 @@
 
 
+## [4.0.3](https://github.com/memori-ai/memori-api-client/compare/v4.0.2...v4.0.3) (2024-03-29)
+
+
+### Changes
+
+* add threshold in followers search apis ([4cf6140](https://github.com/memori-ai/memori-api-client/commit/4cf6140a80b7748b73d50a79aa8251bcc0661b6b))
+
 ## [4.0.2](https://github.com/memori-ai/memori-api-client/compare/v4.0.1...v4.0.2) (2024-03-25)
 
 
