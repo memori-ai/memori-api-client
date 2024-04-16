@@ -1,5 +1,12 @@
 
 
+## [4.1.0](https://github.com/memori-ai/memori-api-client/compare/v4.0.3...v4.1.0) (2024-04-16)
+
+
+### Features
+
+* add new typings, implement date changed api call ([51ee854](https://github.com/memori-ai/memori-api-client/commit/51ee8546ee9b971cadb53a3d5caed71a9792a9d0))
+
 ## [4.0.3](https://github.com/memori-ai/memori-api-client/compare/v4.0.2...v4.0.3) (2024-03-29)
 
 
