@@ -73,12 +73,19 @@ export default (apiUrl: string) => ({
   /**
    * Submits a Date Changed event to the session's Dialog State Machine.
    * @param {string} sessionId The session ID
+   * @param {string} date Specifications for a Date Changed event. A Date Changed event changes the Current Date: the State Machine will use the new date for subsequent question resolution.
+   * New date, in the format yyyy/MM/dd HH:mm:ss zzz, e.g. 2020/01/01 09:30:00 +02.
    */
-  postDateChangedEvent: async (sessionId: string) =>
+  postDateChangedEvent: async (sessionId: string, date: string) =>
     apiFetcher(`/DateChangedEvent/${sessionId}`, {
       method: 'POST',
       apiUrl,
-    }) as Promise<ResponseSpec>,
+      body: { date },
+    }) as Promise<
+      ResponseSpec & {
+        currentState: DialogState;
+      }
+    >,
 
   /**
    * Submits a Tag Changed event to the session's Dialog State Machine.

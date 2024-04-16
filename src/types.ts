@@ -55,6 +55,7 @@ export declare type Memori = {
    */
   avatarOriginal3DURL?: string;
   needsPosition?: boolean;
+  needsDateTime?: boolean;
   voiceType: string;
   culture?: string;
   publishedInTheMetaverse?: boolean;
@@ -528,24 +529,115 @@ export declare type Asset = {
   lastChangeTimestamp: string;
 };
 
-export declare type SearchQuery = {
-  text: string;
+export type SearchQuery = {
+  /**
+   * @type {string}
+   * Search query. If omitted, either a Date or a Place must be set. Used only for Search, ignored for Random picking and Memory Hints.
+   */
+  text?: string;
+
+  /**
+   * @type {?string=Literal}
+   * How to interpret the search query in the Text property:
+   * - If "Semantic", the query is interpreted as a full question in natural language, and the search is performed in the same way a question would be posed to the Dialog State Machine.
+   * - If "Literal", the query is intented as keyword, or part of keyword, and the search is perfomed by looking for it as a substring in the text and titles of Memories.
+   * - If omitted the search is Semantic by default. Used only for Search, ignored for Random picking and Memory Hints.
+   */
   searchType?: 'Literal' | 'Semantic';
+
+  /**
+   * @type {?string}
+   * Approximate date of Memories to limit the search to. Applies only to Stories. Used for Search and Random picking, ignored for Memory Hints.
+   */
   date?: string;
+
+  /**
+   * @type {?number}
+   * Uncertainty of the date, in days. Required if Date is specified. Used for Search and Random picking, ignored for Memory Hints.
+   */
   dateUncertaintyDays?: number;
+
+  /**
+   * @type {?string}
+   * Name of the approximate place of Memories to limit the search to. Applies only to Stories. Used for Search and Random picking, ignored for Memory Hints.
+   */
   placeName?: string;
+
+  /**
+   * @type {?number}
+   * Latitude of the approximate place of Memories to limit the search to. Applies only to Stories. Used for Search and Random picking, ignored for Memory Hints.
+   */
   placeLatitude?: number;
+
+  /**
+   * @type {?number}
+   * Longitude of the approximate place of Memories to limit the search to. Applies only to Stories. Used for Search and Random picking, ignored for Memory Hints.
+   */
   placeLongitude?: number;
+
+  /**
+   * @type {?number}
+   * Uncertainty of place, in kilometers. Required if PlaceName or PlaceLatitude and PlaceLongitude are specified. Used for Search and Random picking, ignored for Memory Hints.
+   */
   placeUncertaintyKm?: number;
+
+  /**
+   * @type {?string}
+   * If specified, the search is extended to Memories associated with a Receiver with this tag. If omitted the search is limited to public Memories. As a special case, if the Giver tag is specified then the search is extended to all Memories, whoever they are associated to.
+   */
   tag?: string;
+
+  /**
+   * @type {?boolean}
+   * If set to True, recently picked Memories will not be deprioritized. This means that a Memory never picked and a Memory picked just a moment ago will have the same probability to be picked again. If omitted or set to False, recently picked Memories will be much less probable to be picked again. Used only for Random picking, ignored for Search and Memory Hints.
+   */
   ignoreLastRead?: boolean;
+
+  /**
+   * @type {?string[]}
+   * Optional list of Memory IDs that must be excluded from the search result.
+   */
   excludedMemoryIDs?: string[];
+
+  /**
+   * @type {?number=5}
+   * Optional number of results. If omitted defaults to 5.
+   */
   numberOfResults?: number;
+
+  /**
+   * Optional context to be matched with ContextVarsToMatch of Memories. Used for Search, Random picking and Memory Hints.
+   */
+  contextVars?: { [variable: string]: string };
+
+  /**
+   * Optional context to be matched with ContextVarsToSet of Memories. Used only for Search, ignored for Random picking and Memory Hints.
+   */
+  contextVarsToSet?: { [variable: string]: string };
+
+  /**
+   * @type {?string[]}
+   * Optional list of memory tags. If specified, the search is limited to Memories including ALL the specified tags.
+   */
+  memoryTags?: string[];
 };
 
-export declare type SearchMatches = {
+export type SearchMatches = {
+  /**
+   * @type {number}
+   * Match confidence, between 0.0 (no confidence) and 1.0 (full confidence).
+   */
   confidence: number;
+
+  /**
+   * @type {?string}
+   * Confidence level, e.g. LOW, MEDIUM or HIGH.
+   */
   confidenceLevel?: 'LOW' | 'MEDIUM' | 'HIGH';
+
+  /**
+   * @type {Memory}
+   */
   memory: Memory;
 };
 
