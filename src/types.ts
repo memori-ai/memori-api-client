@@ -724,6 +724,12 @@ export declare type Message = {
   emitter?: string;
   timestamp?: string;
   contextVars?: { [key: string]: string };
+  date?: string;
+  dateUncertaintyDays?: number;
+  placeName?: string;
+  placeLatitude?: number;
+  placeLongitude?: number;
+  placeUncertaintyKm?: number;
 };
 
 export type ConsumptionLog = {
