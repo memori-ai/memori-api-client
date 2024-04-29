@@ -1,5 +1,12 @@
 
 
+## [4.1.1](https://github.com/memori-ai/memori-api-client/compare/v4.1.0...v4.1.1) (2024-04-29)
+
+
+### Maintenance
+
+* add new attributes to history message ([477420d](https://github.com/memori-ai/memori-api-client/commit/477420dd6fceba55189ff18b44ad4ee8c03c71e0))
+
 ## [4.1.0](https://github.com/memori-ai/memori-api-client/compare/v4.0.3...v4.1.0) (2024-04-16)
 
 
