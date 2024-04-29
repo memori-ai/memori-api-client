@@ -716,6 +716,7 @@ export declare type Message = {
   memoryID?: string;
   text: string;
   translatedText?: string;
+  questionAnswered?: string;
   acceptsFeedback?: boolean;
   generatedByAI?: boolean;
   fromUser?: boolean;
