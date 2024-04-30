@@ -731,6 +731,8 @@ export declare type Message = {
   placeLatitude?: number;
   placeLongitude?: number;
   placeUncertaintyKm?: number;
+  tag?: string;
+  memoryTags?: string[];
 };
 
 export type ConsumptionLog = {
