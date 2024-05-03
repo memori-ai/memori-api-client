@@ -1,5 +1,12 @@
 
 
+## [4.2.0](https://github.com/memori-ai/memori-api-client/compare/v4.1.3...v4.2.0) (2024-05-03)
+
+
+### Features
+
+* add functions apis ([9a9a8ba](https://github.com/memori-ai/memori-api-client/commit/9a9a8bafbf8d75c2421e27ff539482204f43f265))
+
 ## [4.1.3](https://github.com/memori-ai/memori-api-client/compare/v4.1.2...v4.1.3) (2024-04-30)
 
 
