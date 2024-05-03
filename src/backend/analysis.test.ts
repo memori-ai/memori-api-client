@@ -1,6 +1,6 @@
 import memori from '../index';
 
-const client = memori('https://backend-staging.memori.ai');
+const client = memori('https://backend.memori.ai');
 
 describe('backend/analysis api', () => {
   it('works on analysis apis', async () => {
