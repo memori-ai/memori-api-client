@@ -1037,6 +1037,92 @@ export type IntentSlot = {
   lastChangeSessionID?: string;
 };
 
+export type FunctionParameter = {
+  /**
+   * Function Parameter object ID.
+   */
+  parameterID?: string;
+  /**
+   * Name of the Function Parameter object.
+   */
+  name: string;
+  /**
+   * Description of the Function Parameter object. The description is provided to the generative AI to help it understand the purpose of the parameter.
+   */
+  description: string;
+  /**
+   * Parameter type, e.g. "string", "number", "integer", "boolean".
+   * Currently supported types are:
+   * - string: string value
+   * - number: floating point value
+   * - integer: integer value
+   * - boolean: boolean value
+   */
+  parameterType: 'string' | 'number' | 'integer' | 'boolean';
+  /**
+   * Optional list of possible values of the parameter. If empty or null, the parameter accepts any value of the specified type.
+   */
+  possibleValues?: string[];
+  /**
+   * Whether the parameter is required or not. Default is not required.
+   */
+  required?: boolean;
+};
+
+export type Function = {
+  /**
+   * Function object ID.
+   */
+  functionID?: string;
+  /**
+   * Function type, e.g. Internal or WebHook.
+   * Internal functions are a limited subset implemented internally,
+   * while WebHook intents perform an external HTTP call to the specified web hook, using the specified templates.
+   */
+  functionType: 'Internal' | 'WebHook';
+  /**
+   * Name of the Function object.
+   */
+  name: string;
+  /**
+   * Description of the Function object. The description is provided to the generative AI to help it understand the purpose of the function.
+   */
+  description: string;
+  /**
+   * List of its Function Parameter objects. May be empty.
+   */
+  parameters?: FunctionParameter[];
+  /**
+   * HTTP URL of the web hook to be called when the function is invoked, up to the path part.
+   * The query string part is specified separately.
+   * It may include the value of function parameters using the syntax {parameter}, where "parameter" is the parameter name.
+   * E.g.: http://example.com/{param}/something.
+   */
+  webHook: string;
+  /**
+   * HTTP method to be used when calling the web hook, e.g. "GET", "POST" etc.
+   */
+  httpMethod?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+  /**
+   * Optional set of HTTP headers to be passed to the web hook.
+   */
+  httpHeaders?: { [key: string]: string };
+  /**
+   * Template of the HTTP query string to be passed to the web hook.
+   * It may include the value of function parameters using the syntax {parameter}, where "parameter" is the parameter name.
+   * E.g.: param1={param1}&param2={param2}.
+   */
+  httpQueryStringTemplate?: string;
+  /**
+   * Template of the HTTP request body to be passed to the web hook.
+   * It may be in any format (JSON, XML etc.), and may include the value of function parameters using the syntax {parameter},
+   * where "parameter" is the parameter name.
+   * E.g.: { "param1": "{param1}", "param2": "{param2}" },
+   * or: <request><param1>{param1}</param1><param2>{param2}</param2></request>.
+   */
+  httpBodyTemplate?: string;
+};
+
 export type CustomWord = {
   customWordID: string;
   word: string;

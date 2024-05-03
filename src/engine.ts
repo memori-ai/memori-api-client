@@ -17,6 +17,7 @@ import expertReferences from './engine/expertReferences';
 import knownFacts from './engine/knownFacts';
 import user from './engine/user';
 import topics from './engine/topics';
+import functions from './engine/functions';
 
 export default (apiUrl: string) => ({
   correlationPairs: correlationPairs(apiUrl),
@@ -57,4 +58,6 @@ export default (apiUrl: string) => ({
   ...user(apiUrl),
   topics: topics(apiUrl),
   ...topics(apiUrl),
+  functions: functions(apiUrl),
+  ...functions(apiUrl),
 });
