@@ -1,5 +1,18 @@
 
 
+## [4.2.1](https://github.com/memori-ai/memori-api-client/compare/v4.2.0...v4.2.1) (2024-05-06)
+
+
+### Maintenance
+
+* add memoryTags in DialogState ([081628d](https://github.com/memori-ai/memori-api-client/commit/081628dd4b8e7c37ba7f0fdde493defe11e4ddd9))
+* add new Memory attributes ([b5081a6](https://github.com/memori-ai/memori-api-client/commit/b5081a6fd6a3e8d8a81b8046fc7d594553e42761))
+
+
+### Changes
+
+* update search apis ([becc45f](https://github.com/memori-ai/memori-api-client/commit/becc45fa54cd52238e6aa44714bf2541476969f5))
+
 ## [4.2.0](https://github.com/memori-ai/memori-api-client/compare/v4.1.3...v4.2.0) (2024-05-03)
 
 
