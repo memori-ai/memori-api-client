@@ -467,6 +467,7 @@ export declare type DialogState = {
   media?: Medium[];
   knownTags?: { [key: string]: string };
   contextVars?: { [key: string]: string };
+  memoryTags?: string[];
 };
 
 export declare type Person = {
