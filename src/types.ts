@@ -680,6 +680,7 @@ export declare type Memory = {
   help?: boolean;
   notPickable?: boolean;
   hints?: string[];
+  tags?: string[];
   minTimeout?: number;
   maxTimeout?: number;
   contextVarsToSet?: { [variable: string]: string };
@@ -688,6 +689,15 @@ export declare type Memory = {
    * Used for Unanswered Questions
    */
   contextVars?: { [variable: string]: string };
+  /**
+   * Optional type of the outcome to be sent to the DCM platform when this Memory is emitted.
+   * @default "COMMON"
+   */
+  dcmOutcomeType?: string;
+  /**
+   * Optional code of the outcome to be sent to the DCM platform when this Memory is emitted.
+   */
+  dcmOutcomeCode?: string;
   creationTimestamp?: string;
   creationName?: string;
   creationSessionID?: string;
