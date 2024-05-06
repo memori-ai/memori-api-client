@@ -1,4 +1,4 @@
-import { ResponseSpec, SearchQuery, SearchMatches } from '../types';
+import { ResponseSpec, SearchQuery, SearchMatches, Memory } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /******************
@@ -28,22 +28,48 @@ export default (apiUrl: string) => ({
    * Picks up to 5 random Memory objects using the same algorithm employed in the
    * Timeout event of the R1 state of the Dialog State Machine.
    * @param {string} sessionId The session ID
+   * @param {SearchQuery} query Search query params
    */
-  postRandom: async (sessionId: string) =>
+  getRandomMemory: async (sessionId: string, query?: SearchQuery) =>
     apiFetcher(`/Random/${sessionId}`, {
       method: 'POST',
+      body: query,
       apiUrl,
-    }) as Promise<ResponseSpec>,
+    }) as Promise<
+      ResponseSpec & {
+        memories: Memory[];
+      }
+    >,
 
   /**
    * Picks up to 20 Memory Hint objects, obtained by searching for Story objects with a date or place set,
    * and clustering dates and places within an uncertainty of at least 1 year or at least 100 km.
    * Each Memory Hint may either suggest a date or a place, but not both.
    * @param {string} sessionId The session ID
+   * @param {SearchQuery} query Search query params
    */
-  postHints: async (sessionId: string) =>
+  getHints: async (sessionId: string, query?: SearchQuery) =>
     apiFetcher(`/Hints/${sessionId}`, {
+      method: 'POST',
+      body: query,
+      apiUrl,
+    }) as Promise<
+      ResponseSpec & {
+        memoryHints: string[];
+      }
+    >,
+
+  /**
+   * Gets a list of all available memory tags.
+   * @param {string} sessionId The session ID
+   */
+  getMemoryTags: async (sessionId: string) =>
+    apiFetcher(`/MemoryTags/${sessionId}`, {
       method: 'GET',
       apiUrl,
-    }) as Promise<ResponseSpec>,
+    }) as Promise<
+      ResponseSpec & {
+        memoryTags: string[];
+      }
+    >,
 });
