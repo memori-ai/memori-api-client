@@ -1,5 +1,12 @@
 
 
+## [4.2.2](https://github.com/memori-ai/memori-api-client/compare/v4.2.1...v4.2.2) (2024-06-12)
+
+
+### Maintenance
+
+* add billingDelegation to tenant ([280fd19](https://github.com/memori-ai/memori-api-client/commit/280fd190ceb99976ec5d5a75e06ae77b3da863c2))
+
 ## [4.2.1](https://github.com/memori-ai/memori-api-client/compare/v4.2.0...v4.2.1) (2024-05-06)
 
 
