@@ -330,6 +330,7 @@ export type TenantBase = {
   enableBadges?: boolean;
   enableVirtualSpaces?: boolean;
   enableDeepThought?: boolean;
+  billingDelegation?: boolean;
   creationTimestamp?: string;
   lastChangeTimestamp?: string;
 };
