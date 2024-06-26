@@ -1,5 +1,16 @@
 
 
+## [5.0.0](https://github.com/memori-ai/memori-api-client/compare/v4.2.2...v5.0.0) (2024-06-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* split engine and backend endpoints, fallbacks with defaults and replace
+
+### Changes
+
+* split engine and backend endpoints, fallbacks with defaults and replace ([aa0c03d](https://github.com/memori-ai/memori-api-client/commit/aa0c03d857f3a936120fee42154c81d1e1aee1d3))
+
 ## [4.2.2](https://github.com/memori-ai/memori-api-client/compare/v4.2.1...v4.2.2) (2024-06-12)
 
 
