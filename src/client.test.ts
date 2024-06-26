@@ -3,6 +3,32 @@ import memori from './index';
 const client = memori();
 
 describe('client', () => {
+  it('has backend url', () => {
+    expect(client.constants.BACKEND_URL).toBe(
+      'https://backend.memori.ai/api/v2'
+    );
+  });
+  it('has engine url', () => {
+    expect(client.constants.ENGINE_URL).toBe(
+      'https://engine.memori.ai/memori/v2'
+    );
+  });
+  it('works with custom backend url', () => {
+    const customClient = memori('https://custom.backend.com/api/v2');
+    expect(customClient.constants.BACKEND_URL).toBe(
+      'https://custom.backend.com/api/v2'
+    );
+  });
+  it('works with custom engine url', () => {
+    const customClient = memori(
+      undefined,
+      'https://custom.engine.com/memori/v2'
+    );
+    expect(customClient.constants.ENGINE_URL).toBe(
+      'https://custom.engine.com/memori/v2'
+    );
+  });
+
   it('works', async () => {
     expect(
       await client.backend.memori.getMemoriById(

@@ -27,10 +27,12 @@ See examples for [Node (TypeScript)](https://github.com/memori-ai/examples/blob/
 ```ts
 import memoriApiClient from '@memori.ai/memori-api-client';
 
-const memori = memoriApiClient('https://backend.memori.ai');
+const memori = memoriApiClient('https://backend.memori.ai', 'https://engine.memori.ai');
+// or just memoriApiClient() as defaults to production
 (async () => {
   const { sessionID, currentState, ...response } = await memori.initSession({
     memoriID: '768b9654-e781-4c3c-81fa-ae1529d1bfbe',
+    birthdate: '1900-01-01T00:00:00.000Z',
   });
 
   const { currentState: dialogState, ...resp } =
@@ -50,10 +52,9 @@ memori.constants.allowedMediaTypes; // list of allowed media types in asset uplo
 memori.constants.anonTag; // tag for anonymous users
 ```
 
-Endpoint passed during initialization:
+Endpoints passed during initialization:
 
 ```ts
-memori.constants.HOSTNAME; // host name of the API, parameter of the constructor
 memori.constants.BACKEND_URL;
 memori.constants.ENGINE_URL;
 ```

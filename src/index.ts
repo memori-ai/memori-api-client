@@ -4,17 +4,20 @@ import engine from './engine';
 import * as constants from './constants';
 import asset from './helpers/asset';
 
-const api = (hostname?: string) => {
-  const apiUrl = getApiUrl(hostname);
-  const engineUrl = `${apiUrl}/memori/v2`;
+const api = (backendEndpoint?: string, engineEndpoint?: string) => {
+  const apiUrl = getApiUrl(backendEndpoint);
+  const engineApiUrl = getApiUrl(engineEndpoint);
+
   const backendUrl = `${apiUrl}/api/v2`;
+  const engineUrl = engineEndpoint
+    ? `${engineApiUrl}/memori/v2`
+    : `${apiUrl.replace('backend', 'engine')}/memori/v2`;
 
   return {
     backend: backend(backendUrl),
     ...engine(engineUrl),
     constants: {
       ...constants,
-      HOSTNAME: apiUrl,
       BACKEND_URL: backendUrl,
       ENGINE_URL: engineUrl,
     },
