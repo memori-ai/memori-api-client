@@ -442,6 +442,7 @@ export declare type DialogState = {
   confidence?: number;
   confidenceLevel?: 'NONE' | 'LOW' | 'MEDIUM' | 'HIGH';
   emission?: string;
+  translatedEmission?: string;
   emitter?: string;
   completion?: boolean;
   continuationEmitted?: boolean;
