@@ -1,5 +1,12 @@
 
 
+## [5.0.1](https://github.com/memori-ai/memori-api-client/compare/v5.0.0...v5.0.1) (2024-08-02)
+
+
+### Maintenance
+
+* add translatedEmission in DialogState ([6a77d1d](https://github.com/memori-ai/memori-api-client/commit/6a77d1df713abdf7e25a3e28877cb2e04eb6abdb))
+
 ## [5.0.0](https://github.com/memori-ai/memori-api-client/compare/v4.2.2...v5.0.0) (2024-06-26)
 
 
