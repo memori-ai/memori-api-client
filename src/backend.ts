@@ -8,6 +8,7 @@ import notifications from './backend/notifications';
 import importExport from './backend/importExport';
 import process from './backend/process';
 import analysis from './backend/analysis';
+import completionConfig from './backend/completionConfig';
 
 const backendAPI = (apiUrl: string) => ({
   asset: asset(apiUrl),
@@ -20,6 +21,7 @@ const backendAPI = (apiUrl: string) => ({
   importExport: importExport(apiUrl),
   process: process(apiUrl),
   analysis: analysis(apiUrl),
+  completionConfig: completionConfig(apiUrl),
   ...asset(apiUrl),
   ...memori(apiUrl),
   ...user(apiUrl),
@@ -30,6 +32,7 @@ const backendAPI = (apiUrl: string) => ({
   ...importExport(apiUrl),
   ...process(apiUrl),
   ...analysis(apiUrl),
+  ...completionConfig(apiUrl),
 });
 
 export default backendAPI;

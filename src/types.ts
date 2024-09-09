@@ -68,17 +68,14 @@ export declare type Memori = {
   nsfw?: boolean;
   enableCompletions?: boolean;
   completionDescription?: string;
-  completionProvider?: '-' | 'Mistral' | 'Anthropic' | 'OpenAI';
-  /**
-   * Format: chiave1:valore1|chiave2:valore2|...|chiaveN:valoreN
-   *
-   * OpenAI accetta i seguenti:
-   * - APIKey è l'API key
-   * - Model è il nome del modello: gpt-3.5-turbo, gpt-4 ecc.
-   * - MaxTokens è il numero massimo di token in output
-   * - Temperature è la temperature
-   */
-  completionProviderConfig?: string;
+  completionConfigNameForQuestionAnswering?: string;
+  completionConfigForQuestionAnswering?: CompletionConfig;
+  completionConfigNameForImportExport?: string;
+  completionConfigForImportExport?: CompletionConfig;
+  completionConfigNameForDeepThought?: string;
+  completionConfigForDeepThought?: CompletionConfig;
+  completionTemperature?: number;
+  completionMaxTokens?: number;
   enableDeepThought?: boolean;
   enableBoardOfExperts?: boolean;
   disableCompletionMediaExtraction?: boolean;
@@ -116,6 +113,93 @@ export declare type Memori = {
   gamificationLevel?: GamificationLevel;
   contentQualityIndex?: number;
   contentQualityIndexTimestamp?: string;
+};
+
+export type CompletionConfig = {
+  /**
+   * @type {string}
+   * Completion Config object ID.
+   */
+  completionConfigID: string;
+  /**
+   * @type {string}
+   * Completion Config unique name.
+   */
+  configName: string;
+  /**
+   * @type {string=}
+   * Optional Completion Config description.
+   */
+  description?: string;
+  /**
+   * @type {string}
+   * Name of the Completion Provider. Currently possible values are:
+   * - OpenAI
+   * - Anthropic
+   * - Mistral
+   * - Azure_OpenAI
+   */
+  provider: 'OpenAI' | 'Anthropic' | 'Mistral' | 'Azure_OpenAI';
+  /**
+   * @type {string=}
+   * URL of the Completion Provider API end-point. If not specified, the default end-point for the provider is used.
+   */
+  endPoint?: string;
+  /**
+   * @type {string=}
+   * API key of the Completion Provider API end-point.
+   */
+  apiKey?: string;
+  /**
+   * @type {string}
+   * Name of the Completion Model. This is provider-specific, and for some providers (e.g. Azure) it is also part of the end-point URL.
+   */
+  model: string;
+  /**
+   * @type {boolean=}
+   * If True this configuration can be used for Question & Answer operations.
+   * If not specified False is assumed. At least one use must be enabled.
+   */
+  questionAnsweringEnabled?: boolean;
+  /**
+   * @type {boolean=}
+   * If True this configuration can be used for Import/Export operations.
+   * If not specified False is assumed. At least one use must be enabled.
+   */
+  importExportEnabled?: boolean;
+  /**
+   * @type {boolean=}
+   * If True this configuration can be used for Deep Thought operations.
+   * If not specified False is assumed. At least one use must be enabled.
+   */
+  deepThoughtEnabled?: boolean;
+  /**
+   * @type {string=}
+   * ID of the User this Config belongs to. Returned during Get operations if the user is the owner or an administrator.
+   */
+  ownerUserID?: string;
+  /**
+   * @type {string=}
+   * Name of the User this Config belongs to.
+   */
+  ownerUserName?: string;
+  /**
+   * @type {string=}
+   * Name of the Tenant this Config belongs to.
+   */
+  ownerTenantName?: string;
+  /**
+   * @type {boolean=}
+   * If True this configuration can be used by other users of the owner's Tenant.
+   * If not specified False is assumed.
+   */
+  visibleToTenantUsers?: boolean;
+  /**
+   * @type {boolean=}
+   * If True this configuration can be used by users of other Tenants.
+   * If not specified False is assumed.
+   */
+  visibleToOtherUsers?: boolean;
 };
 
 export declare type Venue = {
@@ -184,17 +268,6 @@ export declare type User = {
   lastChangeTimestamp?: string;
   referral?: string;
   couponCode?: string;
-  defaultCompletionProvider?: '-' | 'Mistral' | 'Anthropic' | 'OpenAI';
-  /**
-   * Format: chiave1:valore1|chiave2:valore2|...|chiaveN:valoreN
-   *
-   * OpenAI accetta i seguenti:
-   * - APIKey è l'API key
-   * - Model è il nome del modello: gpt-3.5-turbo, gpt-4 ecc.
-   * - MaxTokens è il numero massimo di token in output
-   * - Temperature è la temperature
-   */
-  defaultCompletionProviderConfig?: string;
   paying?: boolean;
   notificationPrefs?: NotificationPrefs[];
   birthDate?: string;
@@ -312,17 +385,6 @@ export type TenantBase = {
   maxImportSizePerUser?: number;
   maxCompletions?: number;
   maxCompletionsPerUser?: number;
-  defaultCompletionProvider?: '-' | 'Mistral' | 'Anthropic' | 'OpenAI';
-  /**
-   * Format: chiave1:valore1|chiave2:valore2|...|chiaveN:valoreN
-   *
-   * OpenAI accetta i seguenti:
-   * - APIKey è l'API key
-   * - Model è il nome del modello: gpt-3.5-turbo, gpt-4 ecc.
-   * - MaxTokens è il numero massimo di token in output
-   * - Temperature è la temperature
-   */
-  defaultCompletionProviderConfig?: string;
   paying?: boolean;
   enableUserMemoriCreation?: boolean;
   enableBoardOfExperts?: boolean;
