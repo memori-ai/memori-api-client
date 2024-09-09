@@ -1,5 +1,12 @@
 
 
+## [5.1.0](https://github.com/memori-ai/memori-api-client/compare/v5.0.1...v5.1.0) (2024-09-09)
+
+
+### Features
+
+* add completions config apis, update typings ([493a69a](https://github.com/memori-ai/memori-api-client/commit/493a69abaef7432b1463f6b034f708eaecf35956))
+
 ## [5.0.1](https://github.com/memori-ai/memori-api-client/compare/v5.0.0...v5.0.1) (2024-08-02)
 
 
