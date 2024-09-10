@@ -307,16 +307,4 @@ export default (apiUrl: string) => ({
       body: memori,
       method: 'POST',
     }) as Promise<ResponseSpec>,
-
-  /**
-   * Signals that the content of a Memori object has been updated.
-   * Consequently, a run of the Content Quality Job will be scheduled as soon as possible.
-   * @param {string} authToken - The login token
-   * @param {string} memoriID - The ID of the Memori object
-   */
-  memoriContentUpdated: (authToken: string, memoriID: string) =>
-    apiFetcher(`/MemoriContentUpdated/${authToken}/${memoriID}`, {
-      apiUrl,
-      method: 'POST',
-    }) as Promise<ResponseSpec>,
 });

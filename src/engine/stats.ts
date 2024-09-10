@@ -9,50 +9,6 @@ import { apiFetcher } from '../apiFetcher';
 
 export default (apiUrl: string) => ({
   /**
-   * Computes usage statistics for the Memori of the current session.
-   * @param {string} sessionId The session ID
-   */
-  getStatistics: async (sessionId: string) =>
-    apiFetcher(`/Statistics/${sessionId}`, {
-      method: 'GET',
-      apiUrl,
-    }) as Promise<
-      ResponseSpec & {
-        statistics: Stats;
-      }
-    >,
-
-  /**
-   * Computes content quality indexes for a Memori.
-   * @param {string} memoriID - The Memori object ID
-   */
-  getContentQualityIndexes: async (memoriID: string) =>
-    apiFetcher(`/ContentQualityIndexes/${memoriID}`, {
-      method: 'GET',
-      apiUrl,
-    }) as Promise<
-      ResponseSpec & {
-        /**
-         * @type {number}
-         * An index of content quality of this Memori. The more content is added (and especially content with media, or stories with dates and places) the more the index grows.
-         */
-        contentQualityIndex: number;
-
-        /**
-         * @type {number}
-         * An index of answer quality of this Memori. It is the ratio of the number of successful answer vs. the total of answers (successful, wrongful or missing).
-         */
-        answerQualityIndex: number;
-
-        /**
-         * @type {number}
-         * The current number of unanswered questions.
-         */
-        unansweredQuestions: number;
-      }
-    >,
-
-  /**
    * Computes text quality indexes for a Memori.
    * @param {string} sessionId - The session ID
    */
