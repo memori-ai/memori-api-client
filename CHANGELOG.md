@@ -1,5 +1,12 @@
 
 
+## [5.1.1](https://github.com/memori-ai/memori-api-client/compare/v5.1.0...v5.1.1) (2024-09-10)
+
+
+### Maintenance
+
+* remove stats and content quality apis ([aafe761](https://github.com/memori-ai/memori-api-client/commit/aafe76140afb4f0ede10411ed8b8f7dae3a1da9e))
+
 ## [5.1.0](https://github.com/memori-ai/memori-api-client/compare/v5.0.1...v5.1.0) (2024-09-09)
 
 
