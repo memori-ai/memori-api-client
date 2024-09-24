@@ -533,6 +533,9 @@ export declare type Asset = {
 };
 
 export type SearchQuery = {
+
+  
+
   /**
    * @type {string}
    * Search query. If omitted, either a Date or a Place must be set. Used only for Search, ignored for Random picking and Memory Hints.
@@ -601,6 +604,12 @@ export type SearchQuery = {
    * Optional list of Memory IDs that must be excluded from the search result.
    */
   excludedMemoryIDs?: string[];
+
+  /**
+   * @type {number=0}
+   * Index of the first Memory to return. Used for pagination.
+   */
+     startFrom?: number;
 
   /**
    * @type {?number=5}

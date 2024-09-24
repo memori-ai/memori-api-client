@@ -23,6 +23,66 @@ export default (apiUrl: string) => ({
         matches: SearchMatches[];
       }
     >,
+    
+
+    /**
+     * 
+     * @param sessionId 
+     * @param pageIndex 
+     * @param pageSize 
+     * @param query 
+     * @returns 
+     */
+    searchMemoryPaginated: async (
+      sessionId: string,
+      pageIndex: number,
+      pageSize: number,
+      query?: SearchQuery
+    ) =>
+      apiFetcher(`/Search/${sessionId}/${pageIndex}/${pageSize}`, {
+        method: 'POST',
+        body: query,
+        apiUrl,
+      }) as Promise<
+        ResponseSpec & {
+          count: number;
+          matches: SearchMatches[];
+        }
+      >,
+
+      /**
+ * Searches for matching Memory objects using the same algorithm employed in the Text Entered event of the R1 state of the Dialog State Machine.
+ * @param {string} sessionId The session ID
+ * @param {SearchQuery} query Search query params
+ */
+filterMemories: async (sessionId: string, query?: SearchQuery) =>
+  apiFetcher(`/FilterMemories/${sessionId}`, {
+    method: 'POST',
+    body: query,
+    apiUrl,
+  }) as Promise<
+    ResponseSpec & {
+      count: number;
+      matches: SearchMatches[];
+    }
+  >,
+
+filterMemoriesPaginated: async (
+  sessionId: string,
+  pageIndex: number,
+  pageSize: number,
+  query?: SearchQuery,
+) =>
+  apiFetcher(`/FilterMemories/${sessionId}/${pageIndex}/${pageSize}`, {
+    method: 'POST',
+    body: query,
+    apiUrl:,
+  }) as Promise<
+    ResponseSpec & {
+      count: number;
+      matches: SearchMatches[];
+    }
+  >,
 
   /**
    * Picks up to 5 random Memory objects using the same algorithm employed in the
