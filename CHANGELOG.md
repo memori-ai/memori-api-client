@@ -1,5 +1,17 @@
 
 
+## [5.2.0](https://github.com/memori-ai/memori-api-client/compare/v5.1.1...v5.2.0) (2024-09-25)
+
+
+### Features
+
+* added pagination search and filter apis ([419397e](https://github.com/memori-ai/memori-api-client/commit/419397e3bf4a096c6a3fcfc9e70d26e15ab9563f))
+
+
+### Maintenance
+
+* fix typo + format code ([95bcf01](https://github.com/memori-ai/memori-api-client/commit/95bcf011079c0f9cb97dda5595c5086f43f2e27a))
+
 ## [5.1.1](https://github.com/memori-ai/memori-api-client/compare/v5.1.0...v5.1.1) (2024-09-10)
 
 
