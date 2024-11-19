@@ -414,9 +414,27 @@ export declare type OpenSession = {
   forceCloseSessions?: boolean;
   birthDate?: string;
   additionalInfo?: {
+    /**
+     * a valid Memori.AI login token for the user, from which information like
+     * the user's unique ID, their birth date and e-mail are retrieved
+     * (for age verification and DCM integration purposes)
+     */
     loginToken?: string;
+    /**
+     * the language ISO code used to open the session
+     * (may be different from the Memori language if a translation layer is in place)
+     */
     language?: string;
+    /**
+     * the referral URL, as reported by the hosting web application
+     */
     referral?: string;
+    /**
+     * the offset in minutes of the UTC time zone from the user's local time zone.
+     * Note: the offset is subtracted from UTC to obtain the user's local time, not added.
+     * E.g.: it should be -120 for CEST, not +120.
+     */
+    timeZoneOffset?: string;
   };
 };
 
@@ -595,9 +613,6 @@ export declare type Asset = {
 };
 
 export type SearchQuery = {
-
-  
-
   /**
    * @type {string}
    * Search query. If omitted, either a Date or a Place must be set. Used only for Search, ignored for Random picking and Memory Hints.
@@ -671,7 +686,7 @@ export type SearchQuery = {
    * @type {number=0}
    * Index of the first Memory to return. Used for pagination.
    */
-     startFrom?: number;
+  startFrom?: number;
 
   /**
    * @type {?number=5}
