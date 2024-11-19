@@ -1,5 +1,12 @@
 
 
+## [5.2.1](https://github.com/memori-ai/memori-api-client/compare/v5.2.0...v5.2.1) (2024-11-19)
+
+
+### Maintenance
+
+* add timeZoneOffset in open session additionalInfo ([164e5bb](https://github.com/memori-ai/memori-api-client/commit/164e5bbf157c74c73099c3e04b2232af6d4ea500))
+
 ## [5.2.0](https://github.com/memori-ai/memori-api-client/compare/v5.1.1...v5.2.0) (2024-09-25)
 
 
