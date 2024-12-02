@@ -19,6 +19,36 @@ describe('client', () => {
       'https://custom.backend.com/api/v2'
     );
   });
+  it('works with staging backend url', () => {
+    const customClient = memori('https://backend-staging.memori.ai/api/v2');
+    expect(customClient.constants.BACKEND_URL).toBe(
+      'https://backend-staging.memori.ai/api/v2'
+    );
+    expect(customClient.constants.ENGINE_URL).toBe(
+      'https://engine-staging.memori.ai/memori/v2'
+    );
+  });
+  it('works with staging engine url', () => {
+    const customClient = memori(
+      undefined,
+      'https://engine-staging.memori.ai/memori/v2'
+    );
+    expect(customClient.constants.ENGINE_URL).toBe(
+      'https://engine-staging.memori.ai/memori/v2'
+    );
+  });
+  it('works with staging endpoints url', () => {
+    const customClient = memori(
+      'https://backend-staging.memori.ai/api/v2',
+      'https://engine-staging.memori.ai/memori/v2'
+    );
+    expect(customClient.constants.ENGINE_URL).toBe(
+      'https://engine-staging.memori.ai/memori/v2'
+    );
+    expect(customClient.constants.BACKEND_URL).toBe(
+      'https://backend-staging.memori.ai/api/v2'
+    );
+  });
   it('works with custom engine url', () => {
     const customClient = memori(
       undefined,
@@ -26,6 +56,18 @@ describe('client', () => {
     );
     expect(customClient.constants.ENGINE_URL).toBe(
       'https://custom.engine.com/memori/v2'
+    );
+  });
+  it('works with custom endpoints url', () => {
+    const customClient = memori(
+      'https://custom.backend.com/api/v2',
+      'https://custom.engine.com/memori/v2'
+    );
+    expect(customClient.constants.ENGINE_URL).toBe(
+      'https://custom.engine.com/memori/v2'
+    );
+    expect(customClient.constants.BACKEND_URL).toBe(
+      'https://custom.backend.com/api/v2'
     );
   });
 
