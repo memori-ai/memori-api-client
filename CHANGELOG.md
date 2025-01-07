@@ -1,5 +1,12 @@
 
 
+## [5.3.0](https://github.com/memori-ai/memori-api-client/compare/v5.2.1...v5.3.0) (2025-01-07)
+
+
+### Features
+
+* sync typings and apis ([f3926ff](https://github.com/memori-ai/memori-api-client/commit/f3926ff3ccc3416d16452c5a471bf9a145ae08b6))
+
 ## [5.2.1](https://github.com/memori-ai/memori-api-client/compare/v5.2.0...v5.2.1) (2024-11-19)
 
 
