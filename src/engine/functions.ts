@@ -113,4 +113,25 @@ export default (apiUrl: string) => ({
         functionID: string;
       }
     >,
+
+  /**
+   * Lists all Macro Function objects.
+   * @param {string} sessionId The session ID
+   */
+  getMacroFunctions: async (sessionId: string) =>
+    apiFetcher(`/MacroFunctions/${sessionId}`, {
+      method: 'GET',
+      apiUrl,
+    }) as Promise<
+      ResponseSpec & {
+        /**
+         * Total number of Macro Function objects.
+         */
+        count: number;
+        /**
+         * List of Function objects. May be empty.
+         */
+        macroFunctions: Function[];
+      }
+    >,
 });

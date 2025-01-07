@@ -1,4 +1,4 @@
-import { ResponseSpec, Tenant, User } from '../types';
+import { ResponseSpec, Tenant, User, UserFilters } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 export default (apiUrl: string) => ({
@@ -90,6 +90,25 @@ export default (apiUrl: string) => ({
     }) as Promise<
       ResponseSpec & {
         users: User[];
+      }
+    >,
+
+  /**
+   * Gets a list of all the existing User objects paginated.
+   * @param authToken - The login token
+   * @param from - The 0-based index of the first User object to list
+   * @param howMany - The number of User objects to list
+   * @returns A list of User objects
+   */
+  getUsersListPaginated: (authToken: string, filters: UserFilters) =>
+    apiFetcher(`/FilterUsers/${authToken}`, {
+      apiUrl,
+      body: filters,
+      method: 'POST',
+    }) as Promise<
+      ResponseSpec & {
+        users: User[];
+        count: number;
       }
     >,
 

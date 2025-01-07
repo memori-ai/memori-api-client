@@ -20,6 +20,7 @@ export default (apiUrl: string) => ({
       apiUrl,
     }) as Promise<
       ResponseSpec & {
+        count: number;
         matches: SearchMatches[];
       }
     >,

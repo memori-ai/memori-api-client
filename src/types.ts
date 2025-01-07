@@ -4,6 +4,7 @@ export declare type Error = {
 };
 
 export declare type ResponseSpec = {
+  count?: number;
   requestID: string;
   requestDateTime: string;
   resultCode: number;
@@ -65,9 +66,13 @@ export declare type Memori = {
   disableR4Loop?: boolean;
   disableR5Loop?: boolean;
   ageRestriction?: number;
+  confidenceOffset?: number;
   nsfw?: boolean;
   enableCompletions?: boolean;
   completionDescription?: string;
+  enableDeepThought?: boolean;
+  enableBoardOfExperts?: boolean;
+  disableCompletionMediaExtraction?: boolean;
   completionConfigNameForQuestionAnswering?: string;
   completionConfigForQuestionAnswering?: CompletionConfig;
   completionConfigNameForImportExport?: string;
@@ -76,9 +81,6 @@ export declare type Memori = {
   completionConfigForDeepThought?: CompletionConfig;
   completionTemperature?: number;
   completionMaxTokens?: number;
-  enableDeepThought?: boolean;
-  enableBoardOfExperts?: boolean;
-  disableCompletionMediaExtraction?: boolean;
   chainingMemoriID?: string;
   chainingBaseURL?: string;
   chainingPassword?: string;
@@ -109,13 +111,16 @@ export declare type Memori = {
   sentInvitations?: Invitation[];
   receivedInvitations?: Invitation[];
   categories?: string[];
+  enableMacroFunctions?: string[];
+  macroParameters?: { [key: string]: any };
   ownerUserName?: string;
   gamificationLevel?: GamificationLevel;
   contentQualityIndex?: number;
   contentQualityIndexTimestamp?: string;
+  alwaysAnswerWithCompletion?: boolean;
 };
 
-export type CompletionConfig = {
+export declare type CompletionConfig = {
   /**
    * @type {string}
    * Completion Config object ID.
@@ -139,7 +144,12 @@ export type CompletionConfig = {
    * - Mistral
    * - Azure_OpenAI
    */
-  provider: 'OpenAI' | 'Anthropic' | 'Mistral' | 'Azure_OpenAI';
+  provider:
+    | 'OpenAI'
+    | 'Anthropic'
+    | 'Mistral'
+    | 'Azure_OpenAI'
+    | 'AWS_Anthropic';
   /**
    * @type {string=}
    * URL of the Completion Provider API end-point. If not specified, the default end-point for the provider is used.
@@ -200,13 +210,81 @@ export type CompletionConfig = {
    * If not specified False is assumed.
    */
   visibleToOtherUsers?: boolean;
+  /**
+   * @type {boolean=}
+   * If True this configuration is used as the default (for the operations it is enabled for) when a new Memori is created.
+   * The use as default requires that the configuration is visible at least to the owner's Tenant users.
+   */
+  useAsDefault?: boolean;
+  /**
+   * @type {boolean=}
+   * If True the use of this configuration is chargeable to the customer.
+   */
+  chargeable?: boolean;
+  /**
+   * @type {string=}
+   * Region of the AWS Anthropic model.
+   */
+  region?: string;
+  /**
+   * @type {string=}
+   * Model ID of the AWS Anthropic model.
+   */
+  modelId?: string;
+  /**
+   * @type {string=}
+   * Access Key ID of the AWS Anthropic model.
+   */
+  accessKeyId?: string;
+  /**
+   * @type {string=}
+   * Secret Access Key of the AWS Anthropic model.
+   */
+  secretAccessKey?: string;
+
+  /**
+   * @type {string=}
+   * If True this configuration is applied to all Memori of the Tenant.
+   */
+  applyTo?: ApplyToOption;
 };
+
+export declare type ApplyToOption =
+  | 'ALL_TENANT_MEMORI_ONLY_QA_PURPOSE'
+  | 'ALL_TENANT_MEMORI_ONLY_IE_PURPOSE'
+  | 'ALL_TENANT_MEMORI_ONLY_DT_PURPOSE'
+  | 'ALL_TENANT_MEMORI_ALL_ENABLED_PURPOSES';
 
 export declare type Venue = {
   placeName: string;
   latitude: number;
   longitude: number;
   uncertainty?: number;
+};
+
+export declare type NominatimItem = {
+  place_id: number;
+  lat: number;
+  lon: number;
+  display_name: string;
+  type: string;
+  category: string;
+  importance: number;
+  place_rank: number;
+  address?: {
+    house_number?: string;
+    road?: string;
+    hamlet?: string;
+    village?: string;
+    suburb?: string;
+    town?: string;
+    city?: string;
+    municipality?: string;
+    county?: string;
+    state?: string;
+    country: string;
+  };
+  boundingbox: [number, number, number, number];
 };
 
 export declare type NotificationPrefs = {
@@ -281,6 +359,56 @@ export declare type User = {
   avatar3DURLType?: string;
 };
 
+export declare type UserFilters = {
+  periodFrom?: string | undefined; //
+  periodTo?: string | undefined; //
+  tenantName?: string | undefined; //
+  text?: string | undefined; //
+  numberOfResults: number; //
+  startFrom: number; //
+  orderBy?: OrderBy | undefined; //
+};
+
+export declare type OrderBy =
+  | 'CreationDateAscending'
+  | 'CreationDateDescending'
+  | 'MemoriCountAscending'
+  | 'MemoriCountDescending'
+  | 'MonthCompletionsAscending'
+  | 'MonthCompletionsDescending'
+  | 'MonthImportSizeAscending'
+  | 'MonthImportSizeDescending';
+
+export declare type MemoriUser = {
+  userID: string;
+  email: string;
+  userName: string;
+  tenantName: string;
+  disableDeepThought: boolean;
+
+  creationTimestamp: string;
+  creationSessionID: string;
+  lastChangeTimestamp: string;
+  lastChangeSessionID: string;
+};
+
+export declare type Topic = {
+  topicID: string;
+  /**
+   * Topic name.
+   */
+  name: string;
+  /**
+   * Topic weight, i.e. the ratio between the number of times this topic has been referenced versus to total number of references.
+   */
+  weight: number;
+
+  creationTimestamp: string;
+  creationSessionID: string;
+  lastChangeTimestamp: string;
+  lastChangeSessionID: string;
+};
+
 export declare type IntegrationResource = {
   name: string;
   url: string;
@@ -352,13 +480,14 @@ export interface UploadFile<T = any> {
   preview?: string;
 }
 
-export type TenantConfig = {
+export declare type TenantConfig = {
   name: string;
   showNewUser: boolean;
   requirePosition: boolean;
+  showVirtualSpaces?: boolean;
 };
 
-export type TenantBase = {
+export declare type TenantBase = {
   tenantID?: string;
   name?: string;
   description?: string;
@@ -397,195 +526,10 @@ export type TenantBase = {
   lastChangeTimestamp?: string;
 };
 
-export type Tenant = TenantBase & {
+export declare type Tenant = TenantBase & {
   id: string;
   theme: string;
   config: TenantConfig;
-};
-
-export declare type OpenSession = {
-  memoriID: string;
-  password?: string;
-  recoveryTokens?: string[];
-  tag?: string;
-  pin?: string;
-  initialContextVars?: { [key: string]: string };
-  initialQuestion?: string;
-  forceCloseSessions?: boolean;
-  birthDate?: string;
-  additionalInfo?: {
-    /**
-     * a valid Memori.AI login token for the user, from which information like
-     * the user's unique ID, their birth date and e-mail are retrieved
-     * (for age verification and DCM integration purposes)
-     */
-    loginToken?: string;
-    /**
-     * the language ISO code used to open the session
-     * (may be different from the Memori language if a translation layer is in place)
-     */
-    language?: string;
-    /**
-     * the referral URL, as reported by the hosting web application
-     */
-    referral?: string;
-    /**
-     * the offset in minutes of the UTC time zone from the user's local time zone.
-     * Note: the offset is subtracted from UTC to obtain the user's local time, not added.
-     * E.g.: it should be -120 for CEST, not +120.
-     */
-    timeZoneOffset?: string;
-  };
-};
-
-export declare type MemoriSession = {
-  sessionID: string;
-  currentState: DialogState;
-  stats?: Stats;
-};
-
-export declare type Medium = {
-  mediumID: string;
-  url?: string;
-  content?: string;
-  mimeType: string;
-  title?: string;
-  properties?: { [key: string]: any };
-  creationTimestamp?: string;
-  creationName?: string;
-  lastChangeTimestamp?: string;
-  lastChangeName?: string;
-};
-
-export declare type Stats = {
-  totalReceivers: number;
-  receiversWithMemories: number;
-  totalMemories: number;
-  publicMemories: number;
-  memoriesWithMedia: number;
-  totalQuestions: number;
-  publicQuestions: number;
-  questionsWithMoreThanOneAnswer: number;
-  totalStories: number;
-  publicStories: number;
-  storiesWithDate: number;
-  storiesWithPlace: number;
-  storiesWithDateAndPlace: number;
-  unansweredQuestions: number;
-  successfulCorrelations: number;
-  failedCorrelations: number;
-};
-
-export declare type GamificationLevel = {
-  points: number;
-  badge: string;
-  pointsForCurrentBadge: number;
-  nextBadge?: {
-    points: number;
-    badge: string;
-  };
-};
-
-export declare type EventLog = {
-  eventLogID: string;
-  timestamp: string;
-  eventType: string;
-  memoriID: string;
-  userAgent?: string;
-  ipAddress?: string;
-  memoryID?: string;
-  intentID?: string;
-  enteredText?: string;
-  receiverTag?: string;
-};
-
-export declare type UserLog = {
-  timestamp: string;
-  count: number;
-};
-
-export declare type UsersLog = {
-  timestamp: string;
-  countUsers: number;
-  countRecurrentUsers: number;
-};
-
-export declare type TranslatedHint = {
-  text: string;
-  originalText: string;
-};
-
-export declare type DialogState = {
-  state: string;
-  stateName: string;
-  previousState: string;
-  confidence?: number;
-  confidenceLevel?: 'NONE' | 'LOW' | 'MEDIUM' | 'HIGH';
-  emission?: string;
-  translatedEmission?: string;
-  emitter?: string;
-  completion?: boolean;
-  continuationEmitted?: boolean;
-  lastMatchedMemoryID?: string;
-  acceptsTimeout?: boolean;
-  acceptsAbort?: boolean;
-  acceptsMedia?: boolean;
-  acceptsDate?: boolean;
-  acceptsPlace?: boolean;
-  acceptsTag?: boolean;
-  acceptsFeedback?: boolean;
-  hints?: string[];
-  timeout?: number;
-  translatedHints?: TranslatedHint[];
-  currentTag?: string;
-  currentDate?: string;
-  currentPlaceName?: string;
-  currentLatitude?: number;
-  currentLongitude?: number;
-  currentUncertaintyKm?: number;
-  giverID?: string;
-  currentReceiverID?: string;
-  currentMemoryID?: string;
-  media?: Medium[];
-  knownTags?: { [key: string]: string };
-  contextVars?: { [key: string]: string };
-  memoryTags?: string[];
-};
-
-export declare type Person = {
-  personID?: string;
-  personType: 'Giver' | 'Receiver';
-  name?: string;
-  information?: string;
-  pin: string;
-  tag: string;
-  creationTimestamp?: string;
-  creationName?: string;
-  lastChangeTimestamp?: string;
-  lastChangeName?: string;
-};
-
-export declare type PersonificationProfile = {
-  tag?: string;
-  pin?: string;
-  name?: string;
-  sessionID: string;
-};
-
-export declare type Invitation = {
-  invitationID?: string;
-  memoriID: string;
-  isInviter?: boolean;
-  isInvitee?: boolean;
-  text?: string;
-  destinationEMail: string;
-  destinationName: string;
-  tag: string;
-  pin: string;
-  type: string;
-  state?: 'PENDING' | 'ACCEPTED' | 'REJECTED';
-  creationTimestamp?: string;
-  lastChangeTimestamp?: string;
 };
 
 export declare type LocalizationKeyContent = {
@@ -612,7 +556,67 @@ export declare type Asset = {
   lastChangeTimestamp: string;
 };
 
-export type SearchQuery = {
+export declare type CustomWord = {
+  customWordID: string;
+  word: string;
+
+  /**
+   * Definition of the Custom Word, in terms of sums and subtractions of existing words or custom words.
+   * The syntax for a Custom Word definition is as follows: word1 [+-] word2 [+-] word3...
+   * If the operator is omitted it is assumed to be the last specified from the left, and if no operator has been specified it is assumed to be the sum.
+   * E.g.:
+   *  - alpha beta gamma is equivalent to alpha + beta + gamma
+   *  - alpha beta - gamma deta is equivalent to alpha + beta - gamma - delta
+   */
+  definition: string;
+
+  creationTimestamp: string;
+  creationSessionID: string;
+  lastChangeTimestamp: string;
+  lastChangeSessionID: string;
+};
+
+export declare type ConsumptionLog = {
+  consumptionLogID: string;
+  from: string;
+  to: string;
+  type: 'Daily' | 'Monthly';
+  userID?: string;
+  userName?: string;
+  tenantName?: string;
+  memoriID?: string;
+  memoriName?: string;
+  totalSessions: number;
+  validSessions: number;
+  completions: number;
+  deepThoughtValidSessions: number;
+  deepThoughtCompletions: number;
+  importedSize: number;
+  nonChargeableCompletions?: number;
+  nonChargeableDeepThoughtCompletions?: number;
+  nonChargeableImportedSize?: number;
+  promptTokens: { [key: string]: number };
+  completionTokens: { [key: string]: number };
+};
+
+export declare type Notification = {
+  notificationID: string;
+  timestamp: string;
+  severity: 'INFO' | 'WARN' | 'ALERT' | 'AWARD';
+  texts: {
+    'it-IT': string;
+    'en-US': string;
+    [lang: string]: string;
+  };
+  additionalInfo?: {
+    [key: string]: string;
+  };
+};
+
+/**
+ * Specifications for a Memory search.
+ */
+export declare type SearchQuery = {
   /**
    * @type {string}
    * Search query. If omitted, either a Date or a Place must be set. Used only for Search, ignored for Random picking and Memory Hints.
@@ -683,12 +687,6 @@ export type SearchQuery = {
   excludedMemoryIDs?: string[];
 
   /**
-   * @type {number=0}
-   * Index of the first Memory to return. Used for pagination.
-   */
-  startFrom?: number;
-
-  /**
    * @type {?number=5}
    * Optional number of results. If omitted defaults to 5.
    */
@@ -709,9 +707,30 @@ export type SearchQuery = {
    * Optional list of memory tags. If specified, the search is limited to Memories including ALL the specified tags.
    */
   memoryTags?: string[];
+
+  /**
+   * @type {?boolean}
+   * If set to True, the search is limited to Memories with media.
+   */
+  withMediaOnly?: boolean;
+
+  /**
+   * @type {?string}
+   * If specified, the search is limited to Memories of this type.
+   */
+  memoryType?:
+    | 'Question'
+    | 'Story'
+    | 'Default'
+    | 'CompletionDraft'
+    | 'CompletionPlaceholder'
+    | 'ExpertReference';
 };
 
-export type SearchMatches = {
+/**
+ * 	Specifications of a Match object.
+ */
+export declare type SearchMatches = {
   /**
    * @type {number}
    * Match confidence, between 0.0 (no confidence) and 1.0 (full confidence).
@@ -730,6 +749,9 @@ export type SearchMatches = {
   memory: Memory;
 };
 
+/**
+ * Specifications of an Answer object.
+ */
 export declare type Answer = {
   text: string;
   preformatted?: boolean;
@@ -739,6 +761,9 @@ export declare type Answer = {
   lastChangeName?: string;
 };
 
+/**
+ * Specifications of a Memory object.
+ */
 export declare type Memory = {
   memoryID: string;
   memoryType:
@@ -753,7 +778,13 @@ export declare type Memory = {
   receiverTag?: string;
   receiverName?: string;
   media?: Medium[];
+  /**
+   * @deprecated
+   */
   text?: string;
+  /**
+   * @deprecated
+   */
   textVariants?: string[];
   answers?: Answer[];
   title?: string;
@@ -772,12 +803,12 @@ export declare type Memory = {
   tags?: string[];
   minTimeout?: number;
   maxTimeout?: number;
-  contextVarsToSet?: { [variable: string]: string };
-  contextVarsToMatch?: { [variable: string]: string };
   /**
    * Used for Unanswered Questions
    */
   contextVars?: { [variable: string]: string };
+  contextVarsToSet?: { [variable: string]: string };
+  contextVarsToMatch?: { [variable: string]: string };
   /**
    * Optional type of the outcome to be sent to the DCM platform when this Memory is emitted.
    * @default "COMMON"
@@ -809,57 +840,120 @@ export declare type UnansweredQuestion = {
   lastChangeName?: string;
   lastChangeSessionID?: string;
   suggestions?: SearchMatches[];
+  contextVars?: { [variable: string]: string };
+};
+
+export declare type OpenSession = {
+  memoriID: string;
+  password?: string;
+  recoveryTokens?: string[];
+  tag?: string;
+  pin?: string;
+  initialContextVars?: { [key: string]: string };
+  initialQuestion?: string;
+  forceCloseSessions?: boolean;
+  birthDate?: string;
+  additionalInfo?: {
+    /**
+     * a valid Memori.AI login token for the user, from which information like
+     * the user's unique ID, their birth date and e-mail are retrieved
+     * (for age verification and DCM integration purposes)
+     */
+    loginToken?: string;
+    /**
+     * the language ISO code used to open the session
+     * (may be different from the Memori language if a translation layer is in place)
+     */
+    language?: string;
+    /**
+     * the referral URL, as reported by the hosting web application
+     */
+    referral?: string;
+    /**
+     * the offset in minutes of the UTC time zone from the user's local time zone.
+     * Note: the offset is subtracted from UTC to obtain the user's local time, not added.
+     * E.g.: it should be -120 for CEST, not +120.
+     */
+    timeZoneOffset?: string;
+    [key: string]: string | undefined;
+  };
+};
+export declare type MemoriSession = {
+  sessionID: string;
+  currentState: DialogState;
+  gamificationPoints?: number;
+  undefinedWords?: string[];
+  lastUpdateTimestamp?: string;
+};
+
+export declare type Medium = {
+  mediumID: string;
+  url?: string;
+  content?: string;
+  mimeType: string;
+  title?: string;
+  properties?: { [key: string]: string };
+  creationTimestamp?: string;
+  creationName?: string;
+  lastChangeTimestamp?: string;
+  lastChangeName?: string;
+};
+
+export declare type TranslatedHint = {
+  text: string;
+  originalText: string;
+};
+
+export declare type DialogState = {
+  state: string;
+  stateName: string;
+  previousState: string;
+  confidence?: number;
+  confidenceLevel?: 'NONE' | 'LOW' | 'MEDIUM' | 'HIGH';
+  emission?: string;
+  continuationEmitted?: boolean;
+  emitter?: string;
+  completion?: boolean;
+  lastMatchedMemoryID?: string;
+  acceptsTimeout?: boolean;
+  acceptsAbort?: boolean;
+  acceptsMedia?: boolean;
+  acceptsDate?: boolean;
+  acceptsPlace?: boolean;
+  acceptsTag?: boolean;
+  acceptsFeedback?: boolean;
+  hints?: string[];
+  timeout?: number;
+  translatedHints?: TranslatedHint[];
+  currentTag?: string;
+  currentDate?: string;
+  currentPlaceName?: string;
+  currentLatitude?: number;
+  currentLongitude?: number;
+  currentUncertaintyKm?: number;
+  giverID?: string;
+  currentReceiverID?: string;
+  currentMemoryID?: string;
+  media?: Medium[];
+  knownTags?: { [key: string]: string };
+  contextVars?: { [key: string]: string };
 };
 
 export declare type Message = {
   memoryID?: string;
   text: string;
   translatedText?: string;
-  questionAnswered?: string;
   acceptsFeedback?: boolean;
   generatedByAI?: boolean;
   fromUser?: boolean;
   media?: Medium[];
-  initial?: boolean;
   emitter?: string;
+  initial?: boolean;
   timestamp?: string;
   contextVars?: { [key: string]: string };
-  date?: string;
-  dateUncertaintyDays?: number;
-  placeName?: string;
-  placeLatitude?: number;
-  placeLongitude?: number;
-  placeUncertaintyKm?: number;
-  tag?: string;
-  memoryTags?: string[];
 };
 
-export type ConsumptionLog = {
-  consumptionLogID: string;
-  from: string;
-  to: string;
-  type: 'Daily' | 'Monthly';
-  userID?: string;
-  memoriID?: string;
-  totalSessions: number;
-  validSessions: number;
-  completions: number;
-  promptTokens: { [key: string]: number };
-  completionTokens: { [key: string]: number };
-};
-
-export type Notification = {
-  notificationID: string;
-  timestamp: string;
-  severity: 'INFO' | 'WARN' | 'ALERT';
-  texts: {
-    'it-IT': string;
-    'en-US': string;
-    [lang: string]: string;
-  };
-};
-
-export type ChatMedium = {
+export declare type ChatMedium = {
   /**
    * URL of the Medium. If specified, the Content property is Null.
    */
@@ -879,10 +973,10 @@ export type ChatMedium = {
   /**
    * Key-value pairs for additional structured content storage.
    */
-  properties?: { [key: string]: any };
+  properties?: { [key: string]: string };
 };
 
-export type ChatLogLine = {
+export declare type ChatLogLine = {
   /**
    * @type {string}
    * Timestamp UTC of the line.
@@ -910,6 +1004,7 @@ export type ChatLogLine = {
   media?: ChatMedium[];
   /**
    * ID of the Memory object referenced in this line.
+   * @type {string}
    */
   memoryID?: string;
   /**
@@ -929,7 +1024,7 @@ export type ChatLogLine = {
   acceptsFeedback?: boolean;
 };
 
-export type ChatLog = {
+export declare type ChatLog = {
   /**
    * @param {string}
    * Chat Log object ID.
@@ -968,15 +1063,7 @@ export type ChatLog = {
   lines: ChatLogLine[];
 };
 
-export type CorrelationPair = {
-  pairID?: string;
-  text1: string;
-  text2: string;
-  correlated: boolean;
-  occurrences?: number;
-};
-
-export type Utterance = {
+export declare type Utterance = {
   /**
    * Utterance object ID.
    */
@@ -1014,7 +1101,7 @@ export type Utterance = {
   lastChangeSessionID?: string;
 };
 
-export type Intent = {
+export declare type Intent = {
   /**
    * Intent object ID.
    */
@@ -1083,7 +1170,7 @@ export type Intent = {
   lastChangeSessionID?: string;
 };
 
-export type IntentSlot = {
+export declare type IntentSlot = {
   /**
    * Intent Slot object ID.
    */
@@ -1136,7 +1223,7 @@ export type IntentSlot = {
   lastChangeSessionID?: string;
 };
 
-export type FunctionParameter = {
+export declare type FunctionParameter = {
   /**
    * Function Parameter object ID.
    */
@@ -1168,7 +1255,7 @@ export type FunctionParameter = {
   required?: boolean;
 };
 
-export type Function = {
+export declare type Function = {
   /**
    * Function object ID.
    */
@@ -1220,26 +1307,135 @@ export type Function = {
    * or: <request><param1>{param1}</param1><param2>{param2}</param2></request>.
    */
   httpBodyTemplate?: string;
+  /**
+   * MIME type of the HTTP request body to be passed to the web hook.
+   * If not specified "text/plain" is assumed.
+   */
+  httpBodyContentType?: string;
+  /**
+   * List of extension headers to be sent to the web hook.
+   * Extension headers let the web hook receive internal information on the current state of the conversation,
+   * such as the session ID, current date and place, context variables etc.
+   * If the function is of Internal type, it is ignored.
+   * Currently supported extension headers are:
+   *   - SESSION-ID: the current session ID, sent with header X-Memori-Session-ID
+   *   - CURRENT-TAG: the current tag, sent with headers X-Memori-Current-Tag and X-Memori-Current-Tag-Authenticated
+   *   - CURRENT-DATE: the current date in UTC, sent with header X-Memori-Current-Date
+   *   - CURRENT-PLACE: the current place, sent with headers X-Memori-Current-Place-Name, X-Memori-Current-Place-Latitude, X-Memori-Current-Place-Longitude and X-Memori-Current-Place-UncertaintyKm
+   *   - CONTEXT-VARS: the current context variables, sent with header X-Memori-Context-Vars, with the format NAME1:VALUE1,NAME2:VALUE2,...,NAMEn:VALUEn
+   *   - USER-EMAIL: the current user email, sent with header X-Memori-User-Email
+   */
+  sendExtensionHeaders?: string[];
 };
 
-export type CustomWord = {
-  customWordID: string;
-  word: string;
+export declare type CorrelationPair = {
+  pairID?: string;
+  text1: string;
+  text2: string;
+  correlated: boolean;
+  occurrences?: number;
+};
 
-  /**
-   * Definition of the Custom Word, in terms of sums and subtractions of existing words or custom words.
-   * The syntax for a Custom Word definition is as follows: word1 [+-] word2 [+-] word3...
-   * If the operator is omitted it is assumed to be the last specified from the left, and if no operator has been specified it is assumed to be the sum.
-   * E.g.:
-   *  - alpha beta gamma is equivalent to alpha + beta + gamma
-   *  - alpha beta - gamma deta is equivalent to alpha + beta - gamma - delta
-   */
-  definition: string;
+export declare type Person = {
+  personID?: string;
+  personType: 'Giver' | 'Receiver';
+  name?: string;
+  information?: string;
+  pin: string;
+  tag: string;
+  creationTimestamp?: string;
+  creationName?: string;
+  lastChangeTimestamp?: string;
+  lastChangeName?: string;
+};
 
-  creationTimestamp: string;
-  creationSessionID: string;
-  lastChangeTimestamp: string;
-  lastChangeSessionID: string;
+export declare type PersonificationProfile = {
+  tag?: string;
+  pin?: string;
+  name?: string;
+  sessionID?: string;
+};
+
+export interface Invitation {
+  invitationID?: string;
+  memoriID: string;
+  isInviter?: boolean;
+  isInvitee?: boolean;
+  text?: string;
+  destinationEMail: string;
+  destinationName: string;
+  tag: string;
+  pin: string;
+  type: string;
+  state?: 'PENDING' | 'ACCEPTED' | 'REJECTED';
+  creationTimestamp?: string;
+  lastChangeTimestamp?: string;
+}
+
+export declare type Stats = {
+  totalReceivers: number;
+  receiversWithMemories: number;
+  totalMemories: number;
+  publicMemories: number;
+  memoriesWithMedia: number;
+  totalQuestions: number;
+  publicQuestions: number;
+  questionsWithMoreThanOneAnswer: number;
+  totalStories: number;
+  publicStories: number;
+  storiesWithDate: number;
+  storiesWithPlace: number;
+  storiesWithDateAndPlace: number;
+  unansweredQuestions: number;
+  successfulCorrelations: number;
+  failedCorrelations: number;
+};
+
+export declare type GamificationLevel = {
+  points: number;
+  badge: string;
+  pointsForCurrentBadge: number;
+  nextBadge?: {
+    points: number;
+    badge: string;
+  };
+};
+
+export declare type EventLog = {
+  eventLogID: string;
+  timestamp: string;
+  eventType:
+    | 'MemoriOpened'
+    | 'MemoriClosed'
+    | 'QuestionAnsweredCorrectly'
+    | 'QuestionAnsweredIncorrectly'
+    | 'QuestionNotAnswered'
+    | 'IntentMatched';
+  memoriID: string;
+  sessionID: string;
+  maintenanceType?:
+    | 'None'
+    | 'ConsumptionJob'
+    | 'ChatLogExtractionJob'
+    | 'ContentQualityJob';
+  userAgent?: string;
+  ipAddress?: string;
+  additionalInfo?: OpenSession['additionalInfo'];
+  memoryID?: string;
+  intentID?: string;
+  enteredText?: string;
+  receiverTag?: string;
+};
+
+export declare type UserLog = {
+  timestamp: string;
+  count: number;
+};
+
+export declare type UsersLog = {
+  timestamp: string;
+  countUsers: number;
+  countRecurrentUsers: number;
 };
 
 export interface CsvSpecs {
@@ -1252,6 +1448,27 @@ export interface CsvSpecs {
   contextVarsToSetColumnName?: string;
   csvSeparator?: string;
   questionTitleVariantsSeparator?: string;
+  memoryTagsColumnName?: string;
+}
+
+export interface JSONLSpecs {
+  /**
+   * @type {string=}
+   * Name of the platform for which the JSONL is intended.
+   * Currently supported values are:
+   * - OpenAI: the OpenAI platform
+   */
+  platform?: string;
+  /**
+   * @type {boolean=}
+   * If True the JSONL includes the instructions for the generative AI, i.e. the "System" role of each message. Used only in Export operations.
+   */
+  includeInstructions?: boolean;
+  /**
+   * @type {string=}
+   * If specified, only contents created or changed after this date will be included in the export.
+   */
+  createdOrChangedAfter?: string;
 }
 
 export interface TxtSpecs {
@@ -1282,21 +1499,6 @@ export interface TxtSpecs {
   questionsGenerationInstructions?: string;
 }
 
-export interface JSONLSpecs {
-  /**
-   * @type {string=}
-   * Name of the platform for which the JSONL is intended.
-   * Currently supported values are:
-   * - OpenAI: the OpenAI platform
-   */
-  platform?: string;
-  /**
-   * @type {boolean=}
-   * If True the JSONL includes the instructions for the generative AI, i.e. the "System" role of each message. Used only in Export operations.
-   */
-  includeInstructions?: boolean;
-}
-
 export interface ImportParams {
   forceImport?: boolean;
   csvSpecs?: CsvSpecs;
@@ -1304,19 +1506,18 @@ export interface ImportParams {
   conclusive?: boolean;
   notPickable?: boolean;
   importName?: string;
+  notes?: string;
   contextVarsToSet?: {
-    [key: string]: string;
+    [variable: string]: string;
   };
-}
-
-export interface ImportWarning {
-  warningType: 'Existing Similar Memory' | 'Internal Error';
-  rowNumber?: number;
-  text?: string;
-  similarTexts?: {
-    text: string;
-    similarityLevel: 'HIGH' | 'MEDIUM' | 'LOW';
-  }[];
+  contextVarsToMatch?: {
+    [variable: string]: string;
+  };
+  receiverID?: string;
+  addMediaLink?: string;
+  linkTitleHandling?: 'FixedTitle' | 'HostName' | 'FetchFromUrl';
+  linkTitle?: string;
+  memoryTags?: string[];
 }
 
 export interface AnalysisParams {
@@ -1333,19 +1534,14 @@ export interface AnalysisParams {
   threshold?: number;
 }
 
-export interface AnalysisWarning {
-  /**
-   * @type {string}
-   * Type of warning.
-   * Currently supported types are:
-   * - Error: an error occurred while performing analysis
-   */
-  warningType: 'Error' | string;
-  /**
-   * @type {string=}
-   * When WarningType is Error reports the text of the error.
-   */
+export interface ImportWarning {
+  warningType: 'Existing Similar Memory' | 'Internal Error';
+  rowNumber?: number;
   text?: string;
+  similarTexts?: {
+    text: string;
+    similarityLevel: 'HIGH' | 'MEDIUM' | 'LOW';
+  }[];
 }
 
 export interface AnalysisWarning {
@@ -1549,6 +1745,7 @@ export interface UserQueryMatch {
    */
   match: number;
 }
+
 export interface Badge {
   badgeID?: string;
   date?: string;
@@ -1560,6 +1757,24 @@ export interface Badge {
   issuerDescription?: string;
   issuerEmail?: string;
   issuerURL?: string;
+}
+
+export interface ConsumptionItem {
+  key: string;
+  id: string;
+  promptTokens: number;
+  completionTokens: number;
+  totalTokens: number;
+  validSessions: number;
+  completions: number;
+  deepThoughtValidSessions: number;
+  deepThoughtCompletions: number;
+  importedSize: number;
+  nonChargeableCompletions?: number;
+  nonChargeableDeepThoughtCompletions?: number;
+  nonChargeableImportedSize?: number;
+  cost?: number;
+  children?: ConsumptionItem[];
 }
 
 export interface ExpertReference {
@@ -1628,33 +1843,28 @@ export interface KnownFact {
   lastChangeSessionID?: string;
 }
 
-export interface MemoriUser {
-  userID: string;
-  email: string;
-  userName: string;
-  tenantName: string;
-  disableDeepThought: boolean;
+export declare type ConsumptionData = {
+  id: string;
+  key: string;
+  promptTokens: number;
+  completionTokens: number;
+  totalTokens: number;
+  validSessions: number;
+  completions: number;
+  deepThoughtValidSessions: number;
+  deepThoughtCompletions: number;
+  importedSize: number;
+  nonChargeableCompletions: number;
+  nonChargeableDeepThoughtCompletions: number;
+  nonChargeableImportedSize: number;
+  children?: ConsumptionData[];
+};
 
-  creationTimestamp: string;
-  creationSessionID: string;
-  lastChangeTimestamp: string;
-  lastChangeSessionID: string;
-}
-
-export interface Topic {
-  topicID: string;
-  /**
-   * Topic name.
-   */
+export declare type MacroFunction = {
   name: string;
-  /**
-     * Topic weight, i.e. the ratio between the number of times this topic has been referenced versus to
-  total number of references.
-     */
-  weight: number;
-
-  creationTimestamp: string;
-  creationSessionID: string;
-  lastChangeTimestamp: string;
-  lastChangeSessionID: string;
-}
+  description: string;
+  macroParameters?: {
+    name: string;
+    description: string;
+  }[];
+};
