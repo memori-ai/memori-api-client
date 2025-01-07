@@ -1,5 +1,12 @@
 
 
+## [5.3.1](https://github.com/memori-ai/memori-api-client/compare/v5.3.0...v5.3.1) (2025-01-07)
+
+
+### Changes
+
+* add badge apis ([3802ba3](https://github.com/memori-ai/memori-api-client/commit/3802ba3bc0846497d691354aac65bd7bacd50eee))
+
 ## [5.3.0](https://github.com/memori-ai/memori-api-client/compare/v5.2.1...v5.3.0) (2025-01-07)
 
 
