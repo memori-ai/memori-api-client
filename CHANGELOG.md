@@ -1,5 +1,17 @@
 
 
+## [5.4.1](https://github.com/memori-ai/memori-api-client/compare/v5.4.0...v5.4.1) (2025-01-08)
+
+
+### Bug Fixes
+
+* typo in context vars result type ([2f6290b](https://github.com/memori-ai/memori-api-client/commit/2f6290bca70fb0c7cb21495aa66c13c7c39195d6))
+
+
+### Changes
+
+* add optional param to text quality indexes ([6b99914](https://github.com/memori-ai/memori-api-client/commit/6b999148d1f50f79d6e8f283e5a39c3cff83b642))
+
 ## [5.4.0](https://github.com/memori-ai/memori-api-client/compare/v5.3.1...v5.4.0) (2025-01-08)
 
 
