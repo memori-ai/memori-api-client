@@ -11,12 +11,16 @@ export default (apiUrl: string) => ({
   /**
    * Computes text quality indexes for a Memori.
    * @param {string} sessionId - The session ID
+   * @param {string=} timestamp - The optional latest update timestamp, in UTC time, in the format yyyyMMddHHmmssfff
    */
-  getTextQualityIndexes: async (sessionId: string) =>
-    apiFetcher(`/TextQualityIndexes/${sessionId}`, {
-      method: 'GET',
-      apiUrl,
-    }) as Promise<
+  getTextQualityIndexes: async (sessionId: string, timestamp?: string) =>
+    apiFetcher(
+      `/TextQualityIndexes/${sessionId}${timestamp ? `/${timestamp}` : ''}`,
+      {
+        method: 'GET',
+        apiUrl,
+      }
+    ) as Promise<
       ResponseSpec & {
         /**
          * @type {number}
