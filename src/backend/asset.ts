@@ -67,6 +67,17 @@ export default (apiUrl: string) => ({
     }),
 
   /**
+   * Gets a list of Asset objects owned the currently logged in User.
+   * @param {string} authToken - The login token
+   * @returns The list of Asset objects.
+   */
+  getAssetList: (authToken: string) =>
+    apiFetcher(`/Assets/${authToken}`, {
+      apiUrl,
+      method: 'GET',
+    }) as Promise<ResponseSpec & { assets: Asset[] }>,
+
+  /**
    * Updates an Asset object
    * @param {string} authToken - The login token
    * @param {string} assetURL - The asset URL

@@ -10,6 +10,7 @@ import process from './backend/process';
 import analysis from './backend/analysis';
 import completionConfig from './backend/completionConfig';
 import badge from './backend/badge';
+import tenant from './backend/tenant';
 
 const backendAPI = (apiUrl: string) => ({
   asset: asset(apiUrl),
@@ -24,6 +25,7 @@ const backendAPI = (apiUrl: string) => ({
   analysis: analysis(apiUrl),
   completionConfig: completionConfig(apiUrl),
   badge: badge(apiUrl),
+  tenant: tenant(apiUrl),
   ...asset(apiUrl),
   ...memori(apiUrl),
   ...user(apiUrl),
@@ -36,6 +38,7 @@ const backendAPI = (apiUrl: string) => ({
   ...analysis(apiUrl),
   ...completionConfig(apiUrl),
   ...badge(apiUrl),
+  ...tenant(apiUrl),
 });
 
 export default backendAPI;

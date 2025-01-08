@@ -49,7 +49,13 @@ export default (apiUrl: string) => ({
       apiUrl,
       method: 'PATCH',
       body: config,
-    }) as Promise<ResponseSpec>,
+    }) as Promise<
+      ResponseSpec & {
+        config: CompletionConfig;
+        appliedMemoriIDs?: string[];
+        appliedMemoriNames?: string[];
+      }
+    >,
 
   /**
    * Deletes an existing Completion Config object.
@@ -73,5 +79,11 @@ export default (apiUrl: string) => ({
       apiUrl,
       method: 'POST',
       body: config,
-    }) as Promise<ResponseSpec & { config: CompletionConfig }>,
+    }) as Promise<
+      ResponseSpec & {
+        config: CompletionConfig;
+        appliedMemoriIDs?: string[];
+        appliedMemoriNames?: string[];
+      }
+    >,
 });

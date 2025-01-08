@@ -183,19 +183,6 @@ export default (apiUrl: string) => ({
     }) as Promise<ResponseSpec>,
 
   /**
-   * Gets the details of a Tenant object.
-   * @param tenantName - The name of the tenant
-   */
-  getTenantConfig: (tenantName: string) =>
-    apiFetcher(`/Tenant/${tenantName}`, {
-      apiUrl,
-    }) as Promise<
-      ResponseSpec & {
-        tenant: Tenant;
-      }
-    >,
-
-  /**
    * Re-sends the verification code to confirm a pending User registration.
    * @param {User} user - The user object
    */

@@ -113,4 +113,70 @@ export default (apiUrl: string) => ({
         undefinedWords: string[];
       }
     >,
+
+  /**
+   * Tries to suggest the answer for a question, using as much content as possible from the session's associated Memori object.
+   * @param {string} sessionId The session ID
+   * @param {string} text Text of the sentence.
+   */
+  suggestAnswer: async (sessionId: string, text: string) =>
+    apiFetcher(`/SuggestAnswer/${sessionId}`, {
+      method: 'POST',
+      apiUrl,
+      body: { text },
+    }) as Promise<
+      ResponseSpec & {
+        /**
+         * Suggested answer. May be null if no answer could be suggested.
+         */
+        answer: string;
+      }
+    >,
+
+  /**
+   * Tries to suggest tags for a a question and its answer.
+   * Differently from ```SuggestAnswer```, no content from the session's associated Memori object is used.
+   * @param {string} sessionId The session ID
+   * @param {string} question Text of question.
+   * @param {string} answer Answer to the question (and its variants).
+   * @param {string[]=} questionVariants Optional list of question variants.
+   */
+  suggestTags: async (
+    sessionId: string,
+    question: string,
+    answer: string,
+    questionVariants?: string[]
+  ) =>
+    apiFetcher(`/SuggestTags/${sessionId}`, {
+      method: 'POST',
+      apiUrl,
+      body: { question, answer, questionVariants },
+    }) as Promise<
+      ResponseSpec & {
+        /**
+         * Suggested tags. May be null or empty if no tags could be suggested.
+         */
+        tags: string[];
+      }
+    >,
+
+  /**
+   * Tries to suggest questions for an answer.
+   * Differently from ```SuggestAnswer```, no content from the session's associated Memori object is used.
+   * @param {string} sessionId The session ID
+   * @param {string} text Text of the sentence.
+   */
+  suggestQuestions: async (sessionId: string, text: string) =>
+    apiFetcher(`/SuggestQuestions/${sessionId}`, {
+      method: 'POST',
+      apiUrl,
+      body: { text },
+    }) as Promise<
+      ResponseSpec & {
+        /**
+         * Suggested questions. May be null or empty if no questions could be suggested.
+         */
+        questions: string[];
+      }
+    >,
 });

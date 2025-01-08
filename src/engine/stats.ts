@@ -113,4 +113,19 @@ export default (apiUrl: string) => ({
         eventLogs: EventLog[];
       }
     >,
+
+  /**
+   * Gets the Event Log objects for the Memori of the current session recorded during a specific other session.
+   * @param {string} sessionID The session ID
+   * @param {string} eventLogSessionID The session ID for which Event Log objects are being searched
+   */
+  getSessionEventLogs: async (sessionID: string, eventLogSessionID: string) =>
+    apiFetcher(`/SessionEventLogs/${sessionID}/${eventLogSessionID}`, {
+      method: 'GET',
+      apiUrl,
+    }) as Promise<
+      ResponseSpec & {
+        eventLogs: EventLog[];
+      }
+    >,
 });
