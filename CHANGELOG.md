@@ -1,5 +1,12 @@
 
 
+## [5.4.0](https://github.com/memori-ai/memori-api-client/compare/v5.3.1...v5.4.0) (2025-01-08)
+
+
+### Features
+
+* add missing apis ([f2ea77f](https://github.com/memori-ai/memori-api-client/commit/f2ea77f5195865d8bde00ae992cb195e5ea644b6))
+
 ## [5.3.1](https://github.com/memori-ai/memori-api-client/compare/v5.3.0...v5.3.1) (2025-01-07)
 
 
