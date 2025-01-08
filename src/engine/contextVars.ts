@@ -18,7 +18,9 @@ export default (apiUrl: string) => ({
       apiUrl,
     }) as Promise<
       ResponseSpec & {
-        [variable: string]: string[];
+        contextVars: {
+          [variable: string]: string[];
+        };
       }
     >,
 
