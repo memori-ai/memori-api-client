@@ -1,5 +1,12 @@
 
 
+## [5.4.2](https://github.com/memori-ai/memori-api-client/compare/v5.4.1...v5.4.2) (2025-01-09)
+
+
+### Maintenance
+
+* add missing types ([4dbabef](https://github.com/memori-ai/memori-api-client/commit/4dbabefcbec0450666abc41962411647433e8d8f))
+
 ## [5.4.1](https://github.com/memori-ai/memori-api-client/compare/v5.4.0...v5.4.1) (2025-01-08)
 
 
