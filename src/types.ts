@@ -892,7 +892,7 @@ export declare type Medium = {
   content?: string;
   mimeType: string;
   title?: string;
-  properties?: { [key: string]: string };
+  properties?: { [key: string]: any };
   creationTimestamp?: string;
   creationName?: string;
   lastChangeTimestamp?: string;
@@ -911,6 +911,7 @@ export declare type DialogState = {
   confidence?: number;
   confidenceLevel?: 'NONE' | 'LOW' | 'MEDIUM' | 'HIGH';
   emission?: string;
+  translatedEmission?: string;
   continuationEmitted?: boolean;
   emitter?: string;
   completion?: boolean;
@@ -937,20 +938,30 @@ export declare type DialogState = {
   media?: Medium[];
   knownTags?: { [key: string]: string };
   contextVars?: { [key: string]: string };
+  memoryTags?: string[];
 };
 
 export declare type Message = {
   memoryID?: string;
   text: string;
   translatedText?: string;
+  questionAnswered?: string;
   acceptsFeedback?: boolean;
   generatedByAI?: boolean;
   fromUser?: boolean;
   media?: Medium[];
-  emitter?: string;
   initial?: boolean;
+  emitter?: string;
   timestamp?: string;
   contextVars?: { [key: string]: string };
+  date?: string;
+  dateUncertaintyDays?: number;
+  placeName?: string;
+  placeLatitude?: number;
+  placeLongitude?: number;
+  placeUncertaintyKm?: number;
+  tag?: string;
+  memoryTags?: string[];
 };
 
 export declare type ChatMedium = {
@@ -973,7 +984,7 @@ export declare type ChatMedium = {
   /**
    * Key-value pairs for additional structured content storage.
    */
-  properties?: { [key: string]: string };
+  properties?: { [key: string]: any };
 };
 
 export declare type ChatLogLine = {
