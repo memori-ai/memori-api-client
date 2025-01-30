@@ -1,5 +1,17 @@
 
 
+## [5.5.0](https://github.com/memori-ai/memori-api-client/compare/v5.4.2...v5.5.0) (2025-01-30)
+
+
+### Features
+
+* add import methods for dictionaries and functions/intents ([c65f477](https://github.com/memori-ai/memori-api-client/commit/c65f477d1d9ae466d6b5ef5a8086d560a10831c0))
+
+
+### Maintenance
+
+* add missing types ([ede48bd](https://github.com/memori-ai/memori-api-client/commit/ede48bd4e6936e94b6552e6bf22bd16f588b8157))
+
 ## [5.4.2](https://github.com/memori-ai/memori-api-client/compare/v5.4.1...v5.4.2) (2025-01-09)
 
 
