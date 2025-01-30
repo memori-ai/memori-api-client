@@ -66,6 +66,58 @@ export default (apiUrl: string) => ({
       }
     >,
 
+    /**
+     * Imports a dictionary to a Memori object.
+     * @param {string} authToken - The login token.
+     * @param {string} memoriID - The ID of the Memori object.
+     * @param {string[]} rows Rows of the CSV file.
+     * @param {ImportParams} params The specifications and content of the CSV file
+     */
+    importDictionary: async (
+      authToken: string,
+      memoriID: string,
+      rows: string[],
+      params: Omit<ImportParams, 'txtSpecs'>
+    ) =>
+    apiFetcher(`/ImportExport/ImportDictionary/${authToken}/${memoriID}`, {
+      apiUrl,
+      method: 'POST',
+      body: {
+        rows,
+        ...params,
+      },
+    }) as Promise<
+      ResponseSpec & {
+        status: ImportStatus;
+      }
+    >,
+
+    /**
+     * Starts an Import process for functions and intents from a jsonl file.
+     * @param {string} authToken - The login token.
+     * @param {string} memoriID - The ID of the Memori object.
+     * @param {string[]} rows Rows of the jsonl file.
+     * @param {ImportParams} params The specifications and content of the jsonl file
+     */
+    importFunctionsIntents: async (
+      authToken: string,
+      memoriID: string,
+      rows: string[],
+      params: Omit<ImportParams, 'txtSpecs'>
+    ) =>
+    apiFetcher(`/ImportExport/ImportFunctionsIntents/${authToken}/${memoriID}`, {
+      apiUrl,
+      method: 'POST',
+      body: {
+        rows,
+        ...params,
+      },
+    }) as Promise<
+      ResponseSpec & {
+        status: ImportStatus;
+      }
+    >,
+
   /**
    * Exports contents of a Memori object to a CSV file.
    * @param {string} authToken - The login token.
