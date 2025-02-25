@@ -46,7 +46,7 @@ export default (apiUrl: string) => ({
     threshold?: number
   ) =>
     apiFetcher(
-      `/Analysis/AnalyzeUserQuery/${authToken}/${analysisID}/${from}/${howMany}${
+      `/Analysis/UserQueryMatches/${authToken}/${analysisID}/${from}/${howMany}${
         threshold ? `/${threshold}` : ''
       }`,
       {
