@@ -1,5 +1,12 @@
 
 
+## [5.5.1](https://github.com/memori-ai/memori-api-client/compare/v5.5.0...v5.5.1) (2025-02-25)
+
+
+### Bug Fixes
+
+* typo in analysis query pathname ([be4a71f](https://github.com/memori-ai/memori-api-client/commit/be4a71f87248171ac2775ed0b4251a4ff8488470))
+
 ## [5.5.0](https://github.com/memori-ai/memori-api-client/compare/v5.4.2...v5.5.0) (2025-01-30)
 
 
