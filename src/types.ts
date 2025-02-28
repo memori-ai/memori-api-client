@@ -1881,5 +1881,6 @@ export declare type MacroFunction = {
       descriptions: {
           [key: string]: string;
       };
+      obfuscated?: boolean;
   }[];
 };
