@@ -1,5 +1,13 @@
 
 
+## [5.6.0](https://github.com/memori-ai/memori-api-client/compare/v5.5.1...v5.6.0) (2025-02-28)
+
+
+### Features
+
+* add optional obfuscation flag to macro function type ([bfc0c0e](https://github.com/memori-ai/memori-api-client/commit/bfc0c0e623f70ddde7b6981a51d7bcca10a9fc2e))
+* support multilingual descriptions for macro functions ([ac063a8](https://github.com/memori-ai/memori-api-client/commit/ac063a872c0433f3c3c6a7cac93520e04203803c))
+
 ## [5.5.1](https://github.com/memori-ai/memori-api-client/compare/v5.5.0...v5.5.1) (2025-02-25)
 
 
