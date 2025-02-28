@@ -1873,9 +1873,13 @@ export declare type ConsumptionData = {
 
 export declare type MacroFunction = {
   name: string;
-  description: string;
+  descriptions: {
+      [key: string]: string;
+  };
   macroParameters?: {
-    name: string;
-    description: string;
+      name: string;
+      descriptions: {
+          [key: string]: string;
+      };
   }[];
 };
