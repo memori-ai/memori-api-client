@@ -1,5 +1,16 @@
 
 
+## [6.0.0](https://github.com/memori-ai/memori-api-client/compare/v5.6.0...v6.0.0) (2025-03-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* tenant types from backend, remove customizations from dashboard + add alias
+
+### Changes
+
+* tenant types from backend, remove customizations from dashboard + add alias ([a2d50d9](https://github.com/memori-ai/memori-api-client/commit/a2d50d9bbcafcda5d60fbe9fb7754dc4d07c1b57))
+
 ## [5.6.0](https://github.com/memori-ai/memori-api-client/compare/v5.5.1...v5.6.0) (2025-02-28)
 
 
