@@ -481,10 +481,10 @@ export interface UploadFile<T = any> {
 }
 
 export declare type Tenant = {
-  tenantID?: string;
-  name?: string;
+  tenantID: string;
+  name: string;
   aliases?: string[];
-  description?: string;
+  description: string;
   logoURL?: string;
   adminEmail?: string;
   theme?: string;
