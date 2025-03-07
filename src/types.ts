@@ -480,24 +480,15 @@ export interface UploadFile<T = any> {
   preview?: string;
 }
 
-export declare type TenantConfig = {
-  name: string;
-  showNewUser: boolean;
-  requirePosition: boolean;
-  showVirtualSpaces?: boolean;
-};
-
-export declare type TenantBase = {
+export declare type Tenant = {
   tenantID?: string;
   name?: string;
+  aliases?: string[];
   description?: string;
   logoURL?: string;
   adminEmail?: string;
-  /**
-   * Additional Tenant names.
-   * Usually host names, e.g. app.memorytwin.com.
-   */
-  aliases?: string[];
+  theme?: string;
+  feedbackURL?: string;
   adminCount?: number;
   userCount?: number;
   memoriCount?: number;
@@ -510,26 +501,20 @@ export declare type TenantBase = {
   maxFreeSessions?: number;
   maxFreeSessionsPerUser?: number;
   nonFreeSessionCost?: number;
-  maxImportSize?: number;
-  maxImportSizePerUser?: number;
   maxCompletions?: number;
   maxCompletionsPerUser?: number;
+  maxImportSize?: number;
+  maxImportSizePerUser?: number;
   paying?: boolean;
   enableUserMemoriCreation?: boolean;
   enableBoardOfExperts?: boolean;
   enableDCMIntegration?: boolean;
   enableBadges?: boolean;
-  enableVirtualSpaces?: boolean;
   enableDeepThought?: boolean;
+  enableVirtualSpaces?: boolean;
   billingDelegation?: boolean;
   creationTimestamp?: string;
   lastChangeTimestamp?: string;
-};
-
-export declare type Tenant = TenantBase & {
-  id: string;
-  theme: string;
-  config: TenantConfig;
 };
 
 export declare type LocalizationKeyContent = {
@@ -1874,13 +1859,13 @@ export declare type ConsumptionData = {
 export declare type MacroFunction = {
   name: string;
   descriptions: {
-      [key: string]: string;
+    [key: string]: string;
   };
   macroParameters?: {
-      name: string;
-      descriptions: {
-          [key: string]: string;
-      };
-      obfuscated?: boolean;
+    name: string;
+    descriptions: {
+      [key: string]: string;
+    };
+    obfuscated?: boolean;
   }[];
 };

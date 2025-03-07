@@ -1,4 +1,4 @@
-import { ResponseSpec, TenantBase } from '../types';
+import { ResponseSpec, Tenant } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 export default (apiUrl: string) => ({
@@ -14,11 +14,24 @@ export default (apiUrl: string) => ({
   /**
    * Gets the details of a Tenant object.
    * @param tenantName - The name of the tenant
+   * @alias getTenant
+   * @deprecated
    */
   getTenantConfig: (tenantName: string) =>
     apiFetcher(`/Tenant/${tenantName}`, { apiUrl }) as Promise<
       ResponseSpec & {
-        tenant: TenantBase;
+        tenant: Tenant;
+      }
+    >,
+
+  /**
+   * Gets the details of a Tenant object.
+   * @param tenantName - The name of the tenant
+   */
+  getTenant: (tenantName: string) =>
+    apiFetcher(`/Tenant/${tenantName}`, { apiUrl }) as Promise<
+      ResponseSpec & {
+        tenant: Tenant;
       }
     >,
 
@@ -30,7 +43,7 @@ export default (apiUrl: string) => ({
     apiFetcher(`/Tenants/${authToken}`, {
       apiUrl,
       method: 'GET',
-    }) as Promise<ResponseSpec & { tenants: TenantBase[] }>,
+    }) as Promise<ResponseSpec & { tenants: Tenant[] }>,
 
   /**
    * Duplicates a Tenant object.
@@ -39,18 +52,14 @@ export default (apiUrl: string) => ({
    * @param {TenantBase} tenant
    * @returns The specifications of the new Tenant object
    */
-  createTenant: (
-    authToken: string,
-    name: string,
-    tenant: Partial<TenantBase>
-  ) =>
+  createTenant: (authToken: string, name: string, tenant: Partial<Tenant>) =>
     apiFetcher(`/Tenant/${authToken}/${name}`, {
       apiUrl,
       method: 'POST',
       body: tenant,
     }) as Promise<
       ResponseSpec & {
-        tenant: TenantBase;
+        tenant: Tenant;
       }
     >,
 
@@ -58,17 +67,17 @@ export default (apiUrl: string) => ({
    * Updates the details of a Tenant object.
    * @param {string} authToken  - The login token
    * @param {string} name - The name of the Tenant to update
-   * @param {TenantBase} tenant
+   * @param {Tenant} tenant
    * @returns The new specifications of the Tenant object
    */
-  patchTenant: (authToken: string, name: string, tenant: Partial<TenantBase>) =>
+  patchTenant: (authToken: string, name: string, tenant: Partial<Tenant>) =>
     apiFetcher(`/Tenant/${authToken}/${name}`, {
       apiUrl,
       method: 'PATCH',
       body: tenant,
     }) as Promise<
       ResponseSpec & {
-        tenant: TenantBase;
+        tenant: Tenant;
       }
     >,
 });
