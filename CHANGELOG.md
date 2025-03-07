@@ -1,5 +1,12 @@
 
 
+## [6.0.1](https://github.com/memori-ai/memori-api-client/compare/v6.0.0...v6.0.1) (2025-03-07)
+
+
+### Changes
+
+* tenant non optional attributes ([791dd66](https://github.com/memori-ai/memori-api-client/commit/791dd669e90a9d08743f365a4a7f574e0014260d))
+
 ## [6.0.0](https://github.com/memori-ai/memori-api-client/compare/v5.6.0...v6.0.0) (2025-03-07)
 
 
