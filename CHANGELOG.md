@@ -1,5 +1,12 @@
 
 
+## [6.0.2](https://github.com/memori-ai/memori-api-client/compare/v6.0.1...v6.0.2) (2025-03-13)
+
+
+### Features
+
+* add getChatLogsByUser function to retrieve chat logs for the current user session ([5015257](https://github.com/memori-ai/memori-api-client/commit/5015257c2e7db97cb3b317ce9693577f89941104))
+
 ## [6.0.1](https://github.com/memori-ai/memori-api-client/compare/v6.0.0...v6.0.1) (2025-03-07)
 
 
