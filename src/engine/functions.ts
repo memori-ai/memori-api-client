@@ -1,4 +1,4 @@
-import type { ResponseSpec, Function } from '../types';
+import type { ResponseSpec, Function, MacroFunction } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /*********************
@@ -131,7 +131,7 @@ export default (apiUrl: string) => ({
         /**
          * List of Function objects. May be empty.
          */
-        macroFunctions: Function[];
+        macroFunctions: MacroFunction[];
       }
     >,
 });
