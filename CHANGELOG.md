@@ -1,5 +1,12 @@
 
 
+## [6.0.3](https://github.com/memori-ai/memori-api-client/compare/v6.0.2...v6.0.3) (2025-03-13)
+
+
+### Features
+
+* add ImportMemoriParams interface and import/export functions for Memori objects ([e3d641b](https://github.com/memori-ai/memori-api-client/commit/e3d641b288947cf8ee413b756f84e44cccc7ee36))
+
 ## [6.0.2](https://github.com/memori-ai/memori-api-client/compare/v6.0.1...v6.0.2) (2025-03-13)
 
 
