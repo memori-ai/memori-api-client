@@ -4,6 +4,7 @@ import type {
   ImportStatus,
   CsvSpecs,
   JSONLSpecs,
+  ImportMemoriParams,
 } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
@@ -118,6 +119,31 @@ export default (apiUrl: string) => ({
       }
     >,
 
+     /**
+     * Starts an Import process for functions and intents from a jsonl file.
+     * @param {string} authToken - The login token.
+     * @param {string} memoriID - The ID of the Memori object.
+     * @param {string[]} rows Rows of the jsonl file.
+     * @param {ImportParams} params The specifications and content of the jsonl file
+     */
+     importMemori: async (
+      authToken: string,
+      rows: string[],
+      params: ImportMemoriParams
+    ) =>
+    apiFetcher(`/ImportExport/ImportMemori/${authToken}`, {
+      apiUrl,
+      method: 'POST',
+      body: {
+        rows,
+        ...params,
+      },
+    }) as Promise<
+      ResponseSpec & {
+        status: ImportStatus;
+      }
+    >,
+
   /**
    * Exports contents of a Memori object to a CSV file.
    * @param {string} authToken - The login token.
@@ -165,4 +191,19 @@ export default (apiUrl: string) => ({
       },
       text: true,
     }) as Promise<string>,
+
+
+    exportMemori: async (
+    authToken: string,
+    memoriID: string,
+    password?: string
+  ) =>
+      apiFetcher(`/ImportExport/ExportMemori/${authToken}/${memoriID}`, {
+        apiUrl,
+        method: 'POST',
+        text: true,
+        body: {
+          password,
+        },
+      }) as Promise<string>,
 });

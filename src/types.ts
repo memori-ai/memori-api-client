@@ -1516,6 +1516,16 @@ export interface ImportParams {
   memoryTags?: string[];
 }
 
+export interface ImportMemoriParams {
+  memoriName: string;
+  memoriPassword: string;
+  privacyType: string;
+  memoriZipAssetId: string;
+  importName: string;
+  forceImport: boolean;
+  notes: string;
+}
+
 export interface AnalysisParams {
   /**
    * @type {string}
@@ -1649,7 +1659,7 @@ export interface ImportStatus extends ProcessStatus {
    * -  CSV: for tabular documents
    * -  TXT: for text documents
    */
-  importType: 'CSV' | 'TXT';
+  importType: 'CSV' | 'TXT' | 'Memori';
   /**
    * @type {number}
    * Size of the imported document in characters.
