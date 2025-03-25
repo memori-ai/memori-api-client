@@ -67,19 +67,19 @@ export default (apiUrl: string) => ({
       }
     >,
 
-    /**
-     * Imports a dictionary to a Memori object.
-     * @param {string} authToken - The login token.
-     * @param {string} memoriID - The ID of the Memori object.
-     * @param {string[]} rows Rows of the CSV file.
-     * @param {ImportParams} params The specifications and content of the CSV file
-     */
-    importDictionary: async (
-      authToken: string,
-      memoriID: string,
-      rows: string[],
-      params: Omit<ImportParams, 'txtSpecs'>
-    ) =>
+  /**
+   * Imports a dictionary to a Memori object.
+   * @param {string} authToken - The login token.
+   * @param {string} memoriID - The ID of the Memori object.
+   * @param {string[]} rows Rows of the CSV file.
+   * @param {ImportParams} params The specifications and content of the CSV file
+   */
+  importDictionary: async (
+    authToken: string,
+    memoriID: string,
+    rows: string[],
+    params: Omit<ImportParams, 'txtSpecs'>
+  ) =>
     apiFetcher(`/ImportExport/ImportDictionary/${authToken}/${memoriID}`, {
       apiUrl,
       method: 'POST',
@@ -93,44 +93,47 @@ export default (apiUrl: string) => ({
       }
     >,
 
-    /**
-     * Starts an Import process for functions and intents from a jsonl file.
-     * @param {string} authToken - The login token.
-     * @param {string} memoriID - The ID of the Memori object.
-     * @param {string[]} rows Rows of the jsonl file.
-     * @param {ImportParams} params The specifications and content of the jsonl file
-     */
-    importFunctionsIntents: async (
-      authToken: string,
-      memoriID: string,
-      rows: string[],
-      params: Omit<ImportParams, 'txtSpecs'>
-    ) =>
-    apiFetcher(`/ImportExport/ImportFunctionsIntents/${authToken}/${memoriID}`, {
-      apiUrl,
-      method: 'POST',
-      body: {
-        rows,
-        ...params,
-      },
-    }) as Promise<
+  /**
+   * Starts an Import process for functions and intents from a jsonl file.
+   * @param {string} authToken - The login token.
+   * @param {string} memoriID - The ID of the Memori object.
+   * @param {string[]} rows Rows of the jsonl file.
+   * @param {ImportParams} params The specifications and content of the jsonl file
+   */
+  importFunctionsIntents: async (
+    authToken: string,
+    memoriID: string,
+    rows: string[],
+    params: Omit<ImportParams, 'txtSpecs'>
+  ) =>
+    apiFetcher(
+      `/ImportExport/ImportFunctionsIntents/${authToken}/${memoriID}`,
+      {
+        apiUrl,
+        method: 'POST',
+        body: {
+          rows,
+          ...params,
+        },
+      }
+    ) as Promise<
       ResponseSpec & {
         status: ImportStatus;
       }
     >,
 
-     /**
-     * Starts an Import process for functions and intents from a jsonl file.
-     * @param {string} authToken - The login token.
-     * @param {string} memoriID - The ID of the Memori object.
-     * @param {string[]} rows Rows of the jsonl file.
-     * @param {ImportParams} params The specifications and content of the jsonl file
-     */
-     importMemori: async (
-      authToken: string,
-      rows: string[],
-      params: ImportMemoriParams
-    ) =>
+  /**
+   * Starts an Import process for functions and intents from a jsonl file.
+   * @param {string} authToken - The login token.
+   * @param {string} memoriID - The ID of the Memori object.
+   * @param {string[]} rows Rows of the jsonl file.
+   * @param {ImportParams} params The specifications and content of the jsonl file
+   */
+  importMemori: async (
+    authToken: string,
+    rows?: string[],
+    params?: ImportMemoriParams
+  ) =>
     apiFetcher(`/ImportExport/ImportMemori/${authToken}`, {
       apiUrl,
       method: 'POST',
@@ -192,18 +195,32 @@ export default (apiUrl: string) => ({
       text: true,
     }) as Promise<string>,
 
-
-    exportMemori: async (
+  // Updated exportMemori function for the API repository
+  exportMemori: async (
     authToken: string,
     memoriID: string,
     password?: string
-  ) =>
-      apiFetcher(`/ImportExport/ExportMemori/${authToken}/${memoriID}`, {
-        apiUrl,
+  ) => {
+    // Modify the apiFetcher call to handle binary data
+    const response = await fetch(
+      `${apiUrl}/ImportExport/ExportMemori/${authToken}/${memoriID}`,
+      {
         method: 'POST',
-        text: true,
-        body: {
-          password,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/octet-stream, application/zip',
         },
-      }) as Promise<string>,
+        body: JSON.stringify({
+          password,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`API responded with status: ${response.status}`);
+    }
+
+    // Return the binary data as ArrayBuffer
+    return response.arrayBuffer();
+  },
 });
