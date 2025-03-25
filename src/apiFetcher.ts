@@ -26,7 +26,7 @@ export const apiFetcher = (
  * A specialized API fetcher for handling binary responses
  * Use this function when you need to download files or process binary data
  */
-export const apiBinaryFetcher = (
+export const apiBinaryFetcher =  async (
   path: string,
   opts: {
     apiUrl: string;
