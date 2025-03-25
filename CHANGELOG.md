@@ -1,5 +1,12 @@
 
 
+## [6.0.5](https://github.com/memori-ai/memori-api-client/compare/v6.0.4...v6.0.5) (2025-03-25)
+
+
+### Changes
+
+* streamline apiFetcher usage for binary data handling in import/export functions ([6adc72a](https://github.com/memori-ai/memori-api-client/commit/6adc72a8293ef4ecc0cccc00c74fe3ee9e69164e))
+
 ## [6.0.4](https://github.com/memori-ai/memori-api-client/compare/v6.0.3...v6.0.4) (2025-03-25)
 
 
