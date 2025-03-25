@@ -202,19 +202,17 @@ export default (apiUrl: string) => ({
     password?: string
   ) => {
     // Modify the apiFetcher call to handle binary data
-    const response = await fetch(
-      `${apiUrl}/ImportExport/ExportMemori/${authToken}/${memoriID}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/octet-stream, application/zip',
-        },
-        body: JSON.stringify({
-          password,
-        }),
-      }
-    );
+    const response = await apiFetcher(`/ImportExport/ExportMemori/${authToken}/${memoriID}`, {
+      apiUrl,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/octet-stream, application/zip',
+      },
+      body: {
+        password,
+      },
+    });
 
     if (!response.ok) {
       throw new Error(`API responded with status: ${response.status}`);
