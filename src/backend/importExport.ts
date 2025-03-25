@@ -6,7 +6,7 @@ import type {
   JSONLSpecs,
   ImportMemoriParams,
 } from '../types';
-import { apiFetcher } from '../apiFetcher';
+import { apiBinaryFetcher, apiFetcher } from '../apiFetcher';
 
 /************************
  *                      *
@@ -195,30 +195,18 @@ export default (apiUrl: string) => ({
       text: true,
     }) as Promise<string>,
 
-  // Updated exportMemori function for the API repository
   exportMemori: async (
     authToken: string,
     memoriID: string,
     password?: string
   ) => {
-    // Modify the apiFetcher call to handle binary data
-    const response = await apiFetcher(`/ImportExport/ExportMemori/${authToken}/${memoriID}`, {
+    return apiBinaryFetcher(`/ImportExport/ExportMemori/${authToken}/${memoriID}`, {
       apiUrl,
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/octet-stream, application/zip',
-      },
       body: {
-        password,
+        password: password || '',
       },
+      responseType: 'arrayBuffer',
     });
-
-    if (!response.ok) {
-      throw new Error(`API responded with status: ${response.status}`);
-    }
-
-    // Return the binary data as ArrayBuffer
-    return response.arrayBuffer();
   },
 });
