@@ -1,5 +1,17 @@
 
 
+## [6.0.6](https://github.com/memori-ai/memori-api-client/compare/v6.0.5...v6.0.6) (2025-03-25)
+
+
+### Features
+
+* introduce apiBinaryFetcher for handling binary responses in API calls ([3f9b037](https://github.com/memori-ai/memori-api-client/commit/3f9b03721b2548568846228db20eb094e2818a38))
+
+
+### Bug Fixes
+
+* update apiBinaryFetcher to be an async function ([4d4a674](https://github.com/memori-ai/memori-api-client/commit/4d4a6740e26e8b5312c030027dc9413ec710153f))
+
 ## [6.0.5](https://github.com/memori-ai/memori-api-client/compare/v6.0.4...v6.0.5) (2025-03-25)
 
 
