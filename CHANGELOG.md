@@ -1,5 +1,12 @@
 
 
+## [6.0.4](https://github.com/memori-ai/memori-api-client/compare/v6.0.3...v6.0.4) (2025-03-25)
+
+
+### Changes
+
+* update import/export functions to improve API handling and documentation ([4446f7a](https://github.com/memori-ai/memori-api-client/commit/4446f7a00312b413f53090586314d7ffec6f13e8))
+
 ## [6.0.3](https://github.com/memori-ai/memori-api-client/compare/v6.0.2...v6.0.3) (2025-03-13)
 
 
