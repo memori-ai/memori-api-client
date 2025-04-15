@@ -11,10 +11,11 @@ export default (apiUrl: string) => ({
   /**
    * Initializes a new Dialog State Machine session for an existing Memori.
    */
-  initSession: async (params: OpenSession) =>
+  initSession: async (params: OpenSession, userAgent?: string) =>
     apiFetcher(`/Session`, {
       method: 'POST',
       body: params,
+      headers: userAgent ? { 'User-Agent': userAgent } : undefined,
       apiUrl,
     }) as Promise<
       ResponseSpec & {
