@@ -1,5 +1,12 @@
 
 
+## [6.0.7](https://github.com/memori-ai/memori-api-client/compare/v6.0.6...v6.0.7) (2025-04-15)
+
+
+### Maintenance
+
+* add userAgent param to init session ([8662707](https://github.com/memori-ai/memori-api-client/commit/8662707cbb9f74872115938a939b3ff0d3ce087e))
+
 ## [6.0.6](https://github.com/memori-ai/memori-api-client/compare/v6.0.5...v6.0.6) (2025-03-25)
 
 
