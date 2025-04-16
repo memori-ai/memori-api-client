@@ -1,5 +1,12 @@
 
 
+## [6.0.8](https://github.com/memori-ai/memori-api-client/compare/v6.0.7...v6.0.8) (2025-04-16)
+
+
+### Features
+
+* add postTextEnteredEventExtended function ([11c0387](https://github.com/memori-ai/memori-api-client/commit/11c0387bae17e3fd2f09165a0c04cfbf9931029f))
+
 ## [6.0.7](https://github.com/memori-ai/memori-api-client/compare/v6.0.6...v6.0.7) (2025-04-15)
 
 
