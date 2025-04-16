@@ -34,6 +34,38 @@ export default (apiUrl: string) => ({
     >,
 
   /**
+   * Submits a Text Entered event to the session's Dialog State Machine.
+   * @param {object} params
+   * @param {string} params.sessionId The session ID
+   * @param {string} params.text The text entered by the user
+   * @param {object} params.questionsAndAnswers The questions and answers to submit
+   */
+  postTextEnteredEventExtended: async ({
+    sessionId,
+    text,
+    questionsAndAnswersHistory,
+  }: {
+    sessionId: string;
+    text: string;
+    questionsAndAnswersHistory: {
+      question: string;
+      answer: string;
+    }[];
+  }) =>
+    apiFetcher(`/ExtendedTextEnteredEvent/${sessionId}`, {
+      method: 'POST',
+      apiUrl,
+      body: {
+        text,
+        questionsAndAnswersHistory,
+      },
+    }) as Promise<
+      ResponseSpec & {
+        currentState: DialogState;
+      }
+    >,
+
+  /**
    * Submits a Place Changed event to the session's Dialog State Machine.
    * @param {object} params
    * @param {string} params.sessionId - The session ID
