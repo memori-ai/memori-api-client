@@ -62,6 +62,7 @@ export declare type Memori = {
   publishedInTheMetaverse?: boolean;
   metaverseEnvironment?: string;
   exposed?: boolean;
+  mobile?: boolean;
   disableR2R3Loop?: boolean;
   disableR4Loop?: boolean;
   disableR5Loop?: boolean;
@@ -484,11 +485,21 @@ export declare type Tenant = {
   tenantID: string;
   name: string;
   aliases?: string[];
+  /**
+   * Type of the Tenant.
+   * The following values are possible:
+   * - Owned: the tenant is owned Memori
+   * - Customer: the tenant is owned by a customer
+   */
+  tenantType?: 'Owned' | 'Customer';
   description: string;
   logoURL?: string;
   adminEmail?: string;
   theme?: string;
   feedbackURL?: string;
+  privacyPolicyURL?: string;
+  speechProvider?: string;
+  speechAPIKey?: string;
   adminCount?: number;
   userCount?: number;
   memoriCount?: number;
