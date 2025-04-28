@@ -1,5 +1,17 @@
 
 
+## [6.1.0](https://github.com/memori-ai/memori-api-client/compare/v6.0.8...v6.1.0) (2025-04-28)
+
+
+### Features
+
+* new fields on Tenant and Memori ([75f8ccf](https://github.com/memori-ai/memori-api-client/commit/75f8ccfb3cc4e0962c8584cea6c07dffd98a3877))
+
+
+### Maintenance
+
+* add new media events and attributes ([a5c535a](https://github.com/memori-ai/memori-api-client/commit/a5c535adea7e9a5e436a45dcc6f868a402286f8c))
+
 ## [6.0.8](https://github.com/memori-ai/memori-api-client/compare/v6.0.7...v6.0.8) (2025-04-16)
 
 
