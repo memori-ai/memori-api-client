@@ -920,7 +920,12 @@ export declare type DialogState = {
   giverID?: string;
   currentReceiverID?: string;
   currentMemoryID?: string;
+  /**
+   * @deprecated Use emittedMedia instead
+   */
   media?: Medium[];
+  emittedMedia?: Medium[];
+  currentMedia?: Medium[];
   knownTags?: { [key: string]: string };
   contextVars?: { [key: string]: string };
   memoryTags?: string[];

@@ -151,6 +151,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Submits a Medium Selected event to the session's Dialog State Machine.
+   * Selectable in R1, R6 e M1 or states with the AcceptMedia flag
    * @param {string} sessionId The session ID
    * @param {Medium} medium The medium to set
    */
@@ -159,6 +160,23 @@ export default (apiUrl: string) => ({
       method: 'POST',
       apiUrl,
       body: { medium },
+    }) as Promise<
+      ResponseSpec & {
+        currentState: DialogState;
+      }
+    >,
+
+  /**
+   * Submits a Medium Deselected event to the session's Dialog State Machine.
+   * A Medium Deselected event is used for removing media from an associated Memory or from use during dialog (e.g. by an intent or generative AI).
+   * @param {string} sessionID The session ID
+   * @param {string} mediumID The medium ID to set
+   */
+  postMediumDeselectedEvent: async (sessionID: string, mediumID: string) =>
+    apiFetcher(`/MediumDeselectedEvent/${sessionID}`, {
+      method: 'POST',
+      apiUrl,
+      body: { mediumID },
     }) as Promise<
       ResponseSpec & {
         currentState: DialogState;
