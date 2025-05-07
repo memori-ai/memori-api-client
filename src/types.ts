@@ -119,6 +119,7 @@ export declare type Memori = {
   contentQualityIndex?: number;
   contentQualityIndexTimestamp?: string;
   alwaysAnswerWithCompletion?: boolean;
+  requireLoginToken?: boolean;
 };
 
 export declare type CompletionConfig = {
