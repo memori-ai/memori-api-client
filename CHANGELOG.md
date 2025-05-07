@@ -1,5 +1,12 @@
 
 
+## [6.1.1](https://github.com/memori-ai/memori-api-client/compare/v6.1.0...v6.1.1) (2025-05-07)
+
+
+### Features
+
+* add requireLoginToken field to Memori type ([c4296cc](https://github.com/memori-ai/memori-api-client/commit/c4296cc186fa8ea4da188c7f8d8b5d2008e11981))
+
 ## [6.1.0](https://github.com/memori-ai/memori-api-client/compare/v6.0.8...v6.1.0) (2025-04-28)
 
 
