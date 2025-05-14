@@ -307,4 +307,31 @@ export default (apiUrl: string) => ({
       body: memori,
       method: 'POST',
     }) as Promise<ResponseSpec>,
+
+  /**
+   * Blocks a Memori object. Only super admins can perform this operation.
+   * @param {string} authToken - The login token
+   * @param {Memori} memori - The Memori object specifications
+   * @returns Response indicating success or failure
+   */
+  blockMemori: (authToken: string, memori: Memori) =>
+    apiFetcher(`/MemoriBlock/${authToken}`, {
+      apiUrl,
+      body: memori,
+      method: 'POST',
+    }) as Promise<ResponseSpec>,
+
+  /**
+   * Unblocks a Memori object. Only super admins can perform this operation.
+   * @param {string} authToken - The login token
+   * @param {Memori} memori - The Memori object specifications
+   * @returns Response indicating success or failure
+   */
+  unblockMemori: (authToken: string, memori: Memori) =>
+    apiFetcher(`/MemoriBlock/${authToken}`, {
+      apiUrl,
+      body: memori,
+      method: 'DELETE',
+    }) as Promise<ResponseSpec>,
+    
 });
