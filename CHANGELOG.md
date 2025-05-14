@@ -1,5 +1,12 @@
 
 
+## [6.2.0](https://github.com/memori-ai/memori-api-client/compare/v6.1.1...v6.2.0) (2025-05-14)
+
+
+### Features
+
+* add blockMemori and unblockMemori functions ([d762c6a](https://github.com/memori-ai/memori-api-client/commit/d762c6acc8a3a8550b2c33affd82c05f73944d47))
+
 ## [6.1.1](https://github.com/memori-ai/memori-api-client/compare/v6.1.0...v6.1.1) (2025-05-07)
 
 
