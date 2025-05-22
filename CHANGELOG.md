@@ -1,5 +1,12 @@
 
 
+## [6.4.0](https://github.com/memori-ai/memori-api-client/compare/v6.3.0...v6.4.0) (2025-05-22)
+
+
+### Features
+
+* update CompletionConfig to Vertex_Anthropic provider options ([e2e23ad](https://github.com/memori-ai/memori-api-client/commit/e2e23ad86de1457440b45104bbbb64a2c3d69f69))
+
 ## [6.3.0](https://github.com/memori-ai/memori-api-client/compare/v6.2.0...v6.3.0) (2025-05-22)
 
 
