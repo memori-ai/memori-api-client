@@ -243,7 +243,30 @@ export declare type CompletionConfig = {
    * Secret Access Key of the AWS Anthropic model.
    */
   secretAccessKey?: string;
-
+  /**
+   * @type {string=}
+   * Location of the Vertex Anthropic model.
+   */
+  location?: string;
+  /**
+   * @type {string=}
+   * Client Secret of the Vertex Anthropic model.
+   */
+  clientSecret?: string;
+  /**
+   * @type {string=}
+   * Refresh Token of the Vertex Anthropic model.
+   */
+  refreshToken?: string;
+  /**
+   * @type {string=}
+   * Client ID of the Vertex Anthropic model.
+   */
+  clientId?: string;
+  /**
+   * @type {string=}
+   * Project ID of the Vertex Anthropic model.
+   */
   /**
    * @type {string=}
    * If True this configuration is applied to all Memori of the Tenant.
