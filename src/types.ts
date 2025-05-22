@@ -145,13 +145,16 @@ export declare type CompletionConfig = {
    * - Anthropic
    * - Mistral
    * - Azure_OpenAI
+   * - AWS_Anthropic
+   * - Vertex_Anthropic
    */
   provider:
     | 'OpenAI'
     | 'Anthropic'
     | 'Mistral'
     | 'Azure_OpenAI'
-    | 'AWS_Anthropic';
+    | 'AWS_Anthropic'
+    | 'Vertex_Anthropic';
   /**
    * @type {string=}
    * URL of the Completion Provider API end-point. If not specified, the default end-point for the provider is used.
@@ -238,6 +241,11 @@ export declare type CompletionConfig = {
    * Access Key ID of the AWS Anthropic model.
    */
   accessKeyId?: string;
+  /**
+   * @type {string=}
+   * Project ID of the Vertex Anthropic model.
+   */
+  projectId?: string;
   /**
    * @type {string=}
    * Secret Access Key of the AWS Anthropic model.
