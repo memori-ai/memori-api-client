@@ -1,5 +1,12 @@
 
 
+## [6.3.0](https://github.com/memori-ai/memori-api-client/compare/v6.2.0...v6.3.0) (2025-05-22)
+
+
+### Features
+
+* add Vertex Anthropic model configuration fields to CompletionConfig ([80901bf](https://github.com/memori-ai/memori-api-client/commit/80901bf95ea196dc232993525b3f7d0003e4bedd))
+
 ## [6.2.0](https://github.com/memori-ai/memori-api-client/compare/v6.1.1...v6.2.0) (2025-05-14)
 
 
