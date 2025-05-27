@@ -1,5 +1,12 @@
 
 
+## [6.5.1](https://github.com/memori-ai/memori-api-client/compare/v6.5.0...v6.5.1) (2025-05-27)
+
+
+### Features
+
+* extend Notification type with new fields for type, tenantID, and userID ([c16bf78](https://github.com/memori-ai/memori-api-client/commit/c16bf784565f8947b2aa7d341e3d5864698aef23))
+
 ## [6.5.0](https://github.com/memori-ai/memori-api-client/compare/v6.4.0...v6.5.0) (2025-05-27)
 
 
