@@ -631,6 +631,9 @@ export declare type Notification = {
   notificationID: string;
   timestamp: string;
   severity: 'INFO' | 'WARN' | 'ALERT' | 'AWARD';
+  type: 'BROADCAST' | 'TENANT' | 'USER';
+  tenantID?: string;
+  userID?: string;
   texts: {
     'it-IT': string;
     'en-US': string;
