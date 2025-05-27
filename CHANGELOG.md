@@ -1,5 +1,12 @@
 
 
+## [6.5.0](https://github.com/memori-ai/memori-api-client/compare/v6.4.0...v6.5.0) (2025-05-27)
+
+
+### Features
+
+* add notification management functions including create, get, delete, list, and update ([6e8dfad](https://github.com/memori-ai/memori-api-client/commit/6e8dfad276be195d96aece3758fcdb73789ccda4))
+
 ## [6.4.0](https://github.com/memori-ai/memori-api-client/compare/v6.3.0...v6.4.0) (2025-05-22)
 
 
