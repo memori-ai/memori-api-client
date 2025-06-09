@@ -634,6 +634,8 @@ export declare type Notification = {
   type: 'BROADCAST' | 'TENANT' | 'USER';
   tenantID?: string;
   userID?: string;
+  validFrom?: string;
+  validTo?: string;
   texts: {
     'it-IT': string;
     'en-US': string;
