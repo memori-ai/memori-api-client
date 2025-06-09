@@ -1,5 +1,13 @@
 
 
+## [6.5.2](https://github.com/memori-ai/memori-api-client/compare/v6.5.1...v6.5.2) (2025-06-09)
+
+
+### Features
+
+* add 'CHATLOG' severity option to Notification type ([85ba375](https://github.com/memori-ai/memori-api-client/commit/85ba375fcc19dd9680c2f4ef2c4564a3c2f13844))
+* add validFrom and validTo fields to Notification type ([57f2ad9](https://github.com/memori-ai/memori-api-client/commit/57f2ad932ffca15e5b24fbd51da8fb0c3066d62c))
+
 ## [6.5.1](https://github.com/memori-ai/memori-api-client/compare/v6.5.0...v6.5.1) (2025-05-27)
 
 
