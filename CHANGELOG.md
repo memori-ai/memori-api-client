@@ -1,5 +1,17 @@
 
 
+## [6.5.3](https://github.com/memori-ai/memori-api-client/compare/v6.5.2...v6.5.3) (2025-06-09)
+
+
+### Features
+
+* add userName field to Notification type ([689c68b](https://github.com/memori-ai/memori-api-client/commit/689c68b649c954744c14283032016b95be7705fb))
+
+
+### Bug Fixes
+
+* update severity option in Notification type from 'CHATLOG' to 'CHANGELOG' ([0d3c4fd](https://github.com/memori-ai/memori-api-client/commit/0d3c4fd9862375c120f2d20b26ebf1e9ffdf4f1b))
+
 ## [6.5.2](https://github.com/memori-ai/memori-api-client/compare/v6.5.1...v6.5.2) (2025-06-09)
 
 
