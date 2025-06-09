@@ -630,7 +630,7 @@ export declare type ConsumptionLog = {
 export declare type Notification = {
   notificationID: string;
   timestamp: string;
-  severity: 'INFO' | 'WARN' | 'ALERT' | 'AWARD';
+  severity: 'INFO' | 'WARN' | 'ALERT' | 'AWARD' | 'CHATLOG';
   type: 'BROADCAST' | 'TENANT' | 'USER';
   tenantID?: string;
   userID?: string;
