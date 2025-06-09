@@ -635,6 +635,7 @@ export declare type Notification = {
   tenantID?: string;
   userID?: string;
   validFrom?: string;
+  userName?: string;
   validTo?: string;
   texts: {
     'it-IT': string;
