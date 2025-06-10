@@ -1,5 +1,12 @@
 
 
+## [6.5.4](https://github.com/memori-ai/memori-api-client/compare/v6.5.3...v6.5.4) (2025-06-10)
+
+
+### Features
+
+* add continueFromChatLogID field to OpenSession type ([e1e3ab8](https://github.com/memori-ai/memori-api-client/commit/e1e3ab83a2b0b7773230c6fe4f4c71a4ff4e70fc))
+
 ## [6.5.3](https://github.com/memori-ai/memori-api-client/compare/v6.5.2...v6.5.3) (2025-06-09)
 
 
