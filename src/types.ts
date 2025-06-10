@@ -883,6 +883,7 @@ export declare type OpenSession = {
   recoveryTokens?: string[];
   tag?: string;
   pin?: string;
+  continueFromChatLogID?: string;
   initialContextVars?: { [key: string]: string };
   initialQuestion?: string;
   forceCloseSessions?: boolean;
