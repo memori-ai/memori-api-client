@@ -1,5 +1,12 @@
 
 
+## [6.5.5](https://github.com/memori-ai/memori-api-client/compare/v6.5.4...v6.5.5) (2025-06-11)
+
+
+### Features
+
+* add uploadAssetUnlogged function to handle file uploads for unlogged users ([37f75f3](https://github.com/memori-ai/memori-api-client/commit/37f75f34deb4c47378dd087a2c19e721622cc4c8))
+
 ## [6.5.4](https://github.com/memori-ai/memori-api-client/compare/v6.5.3...v6.5.4) (2025-06-10)
 
 
