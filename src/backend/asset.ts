@@ -55,6 +55,40 @@ export default (apiUrl: string) => ({
   },
 
   /**
+   * Uploads a file and creates a new Asset object for unlogged users.
+   * @param {string} fileName - The file name
+   * @param {string} fileUrl - The URL of the file to upload
+   * @param {string} memoriID - The memori ID
+   * @param {string} sessionID - The session ID
+   * @returns Response of an Upload Asset request.
+   */
+  uploadAssetUnlogged: async (
+    fileName: string,
+    fileUrl: string,
+    memoriID: string,
+    sessionID: string
+  ) => {
+    const data = new FormData();
+    const file = await fetch(fileUrl);
+    const fileBlob = await file.blob();
+
+    data.append(fileName, fileBlob, fileName);
+
+    const upload = await fetch(
+      `${apiUrl}/Asset/unlogged/${memoriID}/${sessionID}`,
+      {
+        method: 'POST',
+        body: data,
+      }
+    );
+    return (await upload.json()) as Promise<
+      ResponseSpec & {
+        asset: Asset;
+      }
+    >;
+  },
+
+  /**
    * Downloads a file from an Asset object
    * @param {string} fileName - The file name
    * @param {string} sessionID - The session ID
