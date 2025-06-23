@@ -7,7 +7,7 @@ export default (apiUrl: string) => ({
    * @param user - The user object
    * @returns The logged in user object
    */
-  userLogin: (user: User) =>
+  pwlUserLogin: (user: User) =>
     apiFetcher('/PwlLogin', {
       apiUrl,
       body: user,
@@ -20,7 +20,7 @@ export default (apiUrl: string) => ({
    * Logs out the user.
    * @param authToken - The login token
    */
-  userLogout: (authToken: string) =>
+  pwlUserLogout: (authToken: string) =>
     apiFetcher(`/PwlLogout/${authToken}`, {
       apiUrl,
       method: 'POST',
@@ -31,7 +31,7 @@ export default (apiUrl: string) => ({
    * @param authToken - The login token
    * @returns The user object
    */
-  getCurrentUser: (authToken: string) =>
+  pwlGetCurrentUser: (authToken: string) =>
     apiFetcher(`/PwlUser/${authToken}`, {
       apiUrl,
     }) as Promise<
@@ -46,7 +46,7 @@ export default (apiUrl: string) => ({
    * @param userID - The user ID
    * @returns The user object
    */
-  getUser: (authToken: string, userID: string) =>
+  pwlGetUser: (authToken: string, userID: string) =>
     apiFetcher(`/PwlUser/${authToken}/${userID}`, {
       apiUrl,
     }) as Promise<
@@ -60,7 +60,7 @@ export default (apiUrl: string) => ({
    * @param authToken - The login token
    * @returns A list of User objects
    */
-  getUsersList: (authToken: string) =>
+  pwlGetUsersList: (authToken: string) =>
     apiFetcher(`/PwlUsers/${authToken}`, {
       apiUrl,
     }) as Promise<
@@ -76,7 +76,7 @@ export default (apiUrl: string) => ({
    * @param howMany - The number of User objects to list
    * @returns A list of User objects
    */
-  getUsersListPaginated: (authToken: string, filters: UserFilters) =>
+  pwlGetUsersListPaginated: (authToken: string, filters: UserFilters) =>
     apiFetcher(`/FilterPwlUsers/${authToken}`, {
       apiUrl,
       body: filters,
@@ -93,7 +93,7 @@ export default (apiUrl: string) => ({
    * @param {string} authToken - The login token
    * @param {string} userID: The User ID
    */
-  deleteUser: (authToken: string, userID: string) =>
+  pwlDeleteUser: (authToken: string, userID: string) =>
     apiFetcher(`/PwlUser/${authToken}/${userID}`, {
       apiUrl,
       method: 'DELETE',
@@ -105,7 +105,7 @@ export default (apiUrl: string) => ({
    * @param userID - The user ID
    * @returns The user object
    */
-  updateUser: (authToken: string, userID: string, user: User) =>
+  pwlUpdateUser: (authToken: string, userID: string, user: User) =>
     apiFetcher(`/PwlUser/${authToken}/${userID}`, {
       apiUrl,
       method: 'PATCH',
@@ -120,7 +120,7 @@ export default (apiUrl: string) => ({
    * Recovers a User's name and sends it to their configured e-mail.
    * @param {User} user - The user object
    */
-  recoverUsername: (user: User) =>
+  pwlRecoverUsername: (user: User) =>
     apiFetcher(`/RecoverPwlUserName`, {
       apiUrl,
       body: user,
@@ -131,7 +131,7 @@ export default (apiUrl: string) => ({
    * Registers a new user.
    * @param {User} user - The user object
    */
-  createUser: (authToken: string, user: Partial<User>) =>
+  pwlCreateUser: (authToken: string, user: Partial<User>) =>
     apiFetcher(`/PwlUser/${authToken}`, {
       apiUrl,
       body: user,
@@ -144,7 +144,7 @@ export default (apiUrl: string) => ({
    * @param {string} payload.jwt - The JWT
    * @returns The logged in user object
    */
-  loginWithJWT: (jwt: string) =>
+  pwlLoginWithJWT: (jwt: string) =>
     apiFetcher('/LoginWithJWT', {
       apiUrl,
       body: { jwt },
