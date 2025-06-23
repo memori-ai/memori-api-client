@@ -1,5 +1,12 @@
 
 
+## [6.5.7](https://github.com/memori-ai/memori-api-client/compare/v6.5.6...v6.5.7) (2025-06-23)
+
+
+### Features
+
+* add userPwl API integration to backend for enhanced user management ([c55af83](https://github.com/memori-ai/memori-api-client/commit/c55af83f626ff4c6e41c2056333ce03b6a8b423b))
+
 ## [6.5.6](https://github.com/memori-ai/memori-api-client/compare/v6.5.5...v6.5.6) (2025-06-23)
 
 
