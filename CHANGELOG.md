@@ -1,5 +1,17 @@
 
 
+## [6.5.6](https://github.com/memori-ai/memori-api-client/compare/v6.5.5...v6.5.6) (2025-06-23)
+
+
+### Features
+
+* implement user management API functions including login, logout and user details retrieval ([58a6b44](https://github.com/memori-ai/memori-api-client/commit/58a6b44f039fac65e0a45d80399519bce3566ea6))
+
+
+### Changes
+
+* rename user management API functions to include 'pwl' prefix for clarity ([1b49f3f](https://github.com/memori-ai/memori-api-client/commit/1b49f3f8e413731f362f7cac751dca270df5a7a5))
+
 ## [6.5.5](https://github.com/memori-ai/memori-api-client/compare/v6.5.4...v6.5.5) (2025-06-11)
 
 
