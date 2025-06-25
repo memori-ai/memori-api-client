@@ -1,5 +1,12 @@
 
 
+## [6.5.8](https://github.com/memori-ai/memori-api-client/compare/v6.5.7...v6.5.8) (2025-06-25)
+
+
+### Features
+
+* implement trustedApplication API for managing trusted applications ([7115f9f](https://github.com/memori-ai/memori-api-client/commit/7115f9ff576153144ee5ed4ef17900f4844dbce7))
+
 ## [6.5.7](https://github.com/memori-ai/memori-api-client/compare/v6.5.6...v6.5.7) (2025-06-23)
 
 
