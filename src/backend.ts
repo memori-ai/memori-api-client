@@ -12,6 +12,7 @@ import analysis from './backend/analysis';
 import completionConfig from './backend/completionConfig';
 import badge from './backend/badge';
 import tenant from './backend/tenant';
+import trustedApplication from './backend/trustedApplication';
 
 const backendAPI = (apiUrl: string) => ({
   asset: asset(apiUrl),
@@ -28,6 +29,7 @@ const backendAPI = (apiUrl: string) => ({
   completionConfig: completionConfig(apiUrl),
   badge: badge(apiUrl),
   tenant: tenant(apiUrl),
+  trustedApplication: trustedApplication(apiUrl),
   ...asset(apiUrl),
   ...memori(apiUrl),
   ...user(apiUrl),
@@ -42,6 +44,7 @@ const backendAPI = (apiUrl: string) => ({
   ...completionConfig(apiUrl),
   ...badge(apiUrl),
   ...tenant(apiUrl),
+  ...trustedApplication(apiUrl),
 });
 
 export default backendAPI;

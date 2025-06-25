@@ -1934,3 +1934,17 @@ export declare type MacroFunction = {
     obfuscated?: boolean;
   }[];
 };
+
+export declare type TrustedApplication = {
+  trustedApplicationID: string;
+  tenantID: string;
+  name: string;
+  description: string;
+  baseUrl: string;
+  authorizationToken: string;
+  isEnabled: boolean;
+  createdByUserID: string;
+  lastModifiedByUserID: string;
+  creationTimestamp: string;
+  lastChangeTimestamp: string;
+};
