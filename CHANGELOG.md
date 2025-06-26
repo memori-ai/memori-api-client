@@ -1,5 +1,12 @@
 
 
+## [6.5.9](https://github.com/memori-ai/memori-api-client/compare/v6.5.8...v6.5.9) (2025-06-26)
+
+
+### Features
+
+* add getChatLogsPaged API function for retrieving paginated chat logs within a date range ([ec60c57](https://github.com/memori-ai/memori-api-client/commit/ec60c575c71fa065fb8247a833d94b8b38aa9fd0))
+
 ## [6.5.8](https://github.com/memori-ai/memori-api-client/compare/v6.5.7...v6.5.8) (2025-06-25)
 
 
