@@ -30,6 +30,33 @@ export default (apiUrl: string) => ({
     >,
 
   /**
+   * Gets paginated Chat Log objects for the Memori of the current session in a specific date interval.
+   * @param {string} sessionId The session ID
+   * @param {string} dateFrom The begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+   * @param {string} dateTo The end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+   * @param {number} from The starting index for pagination
+   * @param {number} howMany The number of items to retrieve
+   */
+  getChatLogsPaged: async (
+    sessionId: string,
+    dateFrom: string,
+    dateTo: string,
+    from: number,
+    howMany: number
+  ) =>
+    apiFetcher(
+      `/ChatLogsPaged/${sessionId}/${dateFrom}/${dateTo}/${from}/${howMany}`,
+      {
+        method: 'GET',
+        apiUrl,
+      }
+    ) as Promise<
+      ResponseSpec & {
+        chatLogs: ChatLog[];
+      }
+    >,
+
+  /**
    * Gets the Chat Log objects for the Memori of the current session created by the current User.
    * @param {string} sessionId The session ID
    * @param {?string} dateFrom The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
