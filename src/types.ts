@@ -558,6 +558,7 @@ export declare type Tenant = {
   billingDelegation?: boolean;
   creationTimestamp?: string;
   lastChangeTimestamp?: string;
+  perplexityAPIKey?: string;
 };
 
 export declare type LocalizationKeyContent = {
