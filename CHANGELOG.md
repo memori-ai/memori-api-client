@@ -1,5 +1,12 @@
 
 
+## [6.6.2](https://github.com/memori-ai/memori-api-client/compare/v6.6.1...v6.6.2) (2025-07-03)
+
+
+### Changes
+
+* update getTenant and getTenantConfig APIs to include authToken parameter ([dffaebb](https://github.com/memori-ai/memori-api-client/commit/dffaebbb4d8f31d9fad0bebd55c3fc81c9b621d8))
+
 ## [6.6.1](https://github.com/memori-ai/memori-api-client/compare/v6.5.9...v6.6.1) (2025-07-03)
 
 
