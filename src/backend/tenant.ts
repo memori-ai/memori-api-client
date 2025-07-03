@@ -17,8 +17,8 @@ export default (apiUrl: string) => ({
    * @alias getTenant
    * @deprecated
    */
-  getTenantConfig: (tenantName: string) =>
-    apiFetcher(`/Tenant/${tenantName}`, { apiUrl }) as Promise<
+  getTenantConfig: (authToken: string, tenantName: string) =>
+    apiFetcher(`/Tenant/${authToken}/${tenantName}`, { apiUrl }) as Promise<
       ResponseSpec & {
         tenant: Tenant;
       }
@@ -28,8 +28,8 @@ export default (apiUrl: string) => ({
    * Gets the details of a Tenant object.
    * @param tenantName - The name of the tenant
    */
-  getTenant: (tenantName: string) =>
-    apiFetcher(`/Tenant/${tenantName}`, { apiUrl }) as Promise<
+  getTenant: (authToken: string, tenantName: string) =>
+    apiFetcher(`/Tenant/${authToken}/${tenantName}`, { apiUrl }) as Promise<
       ResponseSpec & {
         tenant: Tenant;
       }
