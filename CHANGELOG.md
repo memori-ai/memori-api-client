@@ -1,5 +1,12 @@
 
 
+## [6.6.1](https://github.com/memori-ai/memori-api-client/compare/v6.5.9...v6.6.1) (2025-07-03)
+
+
+### Features
+
+* add perplexityAPIKey to Tenant type for enhanced configuration options ([1241bd2](https://github.com/memori-ai/memori-api-client/commit/1241bd20ec065791ceee47fe874bd001bfe02296))
+
 ## [6.5.9](https://github.com/memori-ai/memori-api-client/compare/v6.5.8...v6.5.9) (2025-06-26)
 
 
