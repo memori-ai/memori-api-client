@@ -14,21 +14,20 @@ export default (apiUrl: string) => ({
   /**
    * Gets the details of a Tenant object.
    * @param tenantName - The name of the tenant
-   * @alias getTenant
-   * @deprecated
    */
-  getTenantConfig: (authToken: string, tenantName: string) =>
-    apiFetcher(`/Tenant/${authToken}/${tenantName}`, { apiUrl }) as Promise<
+  getTenant: (tenantName: string) =>
+    apiFetcher(`/Tenant/${tenantName}`, { apiUrl }) as Promise<
       ResponseSpec & {
         tenant: Tenant;
       }
     >,
 
   /**
-   * Gets the details of a Tenant object.
+   * Gets the details of a Tenant object as an admin user.
    * @param tenantName - The name of the tenant
+   * @param authToken - The login token
    */
-  getTenant: (authToken: string, tenantName: string) =>
+  getTenantAuthenticated: (tenantName: string, authToken: string) =>
     apiFetcher(`/Tenant/${authToken}/${tenantName}`, { apiUrl }) as Promise<
       ResponseSpec & {
         tenant: Tenant;
