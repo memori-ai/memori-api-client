@@ -1,4 +1,4 @@
-import { ChatLog, ResponseSpec } from '../types';
+import { ChatLog, ChatLogFilters, ResponseSpec } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /*************************
@@ -37,20 +37,12 @@ export default (apiUrl: string) => ({
    * @param {number} from The starting index for pagination
    * @param {number} howMany The number of items to retrieve
    */
-  getChatLogsPaged: async (
-    sessionId: string,
-    dateFrom: string,
-    dateTo: string,
-    from: number,
-    howMany: number
-  ) =>
-    apiFetcher(
-      `/ChatLogsPaged/${sessionId}/${dateFrom}/${dateTo}/${from}/${howMany}`,
-      {
-        method: 'GET',
-        apiUrl,
-      }
-    ) as Promise<
+  getChatLogsPaged: async (sessionId: string, filters?: ChatLogFilters) =>
+    apiFetcher(`/ChatLogsPaged/${sessionId}`, {
+      method: 'POST',
+      apiUrl,
+      body: filters,
+    }) as Promise<
       ResponseSpec & {
         chatLogs: ChatLog[];
       }
@@ -62,7 +54,11 @@ export default (apiUrl: string) => ({
    * @param {?string} dateFrom The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
    * @param {?string} dateTo The optional end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
    */
-  getChatLogsByUser: async (sessionId: string, dateFrom?: string, dateTo?: string) =>
+  getChatLogsByUser: async (
+    sessionId: string,
+    dateFrom?: string,
+    dateTo?: string
+  ) =>
     apiFetcher(
       `/CurrentUserChatLogs/${sessionId}${dateFrom ? `/${dateFrom}` : ''}${
         dateFrom && dateTo ? `/${dateTo}` : ''

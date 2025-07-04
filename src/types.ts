@@ -1115,6 +1115,14 @@ export declare type ChatLog = {
   lines: ChatLogLine[];
 };
 
+export interface ChatLogFilters {
+  strDateFrom?: string;
+  strDateTo?: string;
+  showChatsWithNoHistory?: boolean;
+  from: number;
+  howMany: number;
+}
+
 export declare type Utterance = {
   /**
    * Utterance object ID.
