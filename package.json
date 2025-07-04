@@ -1,5 +1,5 @@
 {
-  "version": "6.6.2",
+  "version": "6.7.0",
   "name": "@memori.ai/memori-api-client",
   "description": "React library to integrate a Memori in your app or website",
   "license": "Apache-2.0",

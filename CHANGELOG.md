@@ -1,5 +1,12 @@
 
 
+## [6.7.0](https://github.com/memori-ai/memori-api-client/compare/v6.6.2...v6.7.0) (2025-07-04)
+
+
+### Features
+
+* new chatlog paged filters ([d3e2891](https://github.com/memori-ai/memori-api-client/commit/d3e2891d708b9bfb17cf9b8fdabe5e9f9d7d6358))
+
 ## [6.6.2](https://github.com/memori-ai/memori-api-client/compare/v6.6.1...v6.6.2) (2025-07-03)
 
 
