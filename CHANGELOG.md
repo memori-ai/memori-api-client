@@ -1,5 +1,12 @@
 
 
+## [6.7.1](https://github.com/memori-ai/memori-api-client/compare/v6.7.0...v6.7.1) (2025-07-04)
+
+
+### Maintenance
+
+* get tenant api ([7fecf8e](https://github.com/memori-ai/memori-api-client/commit/7fecf8ef87248d1d9b1752228d514eedbe95cb94))
+
 ## [6.7.0](https://github.com/memori-ai/memori-api-client/compare/v6.6.2...v6.7.0) (2025-07-04)
 
 
