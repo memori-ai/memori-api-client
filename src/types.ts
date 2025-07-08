@@ -5,6 +5,7 @@ export declare type Error = {
 
 export declare type ResponseSpec = {
   count?: number;
+  totalCount?: number;
   requestID: string;
   requestDateTime: string;
   resultCode: number;
@@ -400,6 +401,13 @@ export declare type UserFilters = {
   numberOfResults: number; //
   startFrom: number; //
   orderBy?: OrderBy | undefined; //
+};
+
+export declare type MemoriFilters = {
+  text?: string | undefined; //
+  categories?: string[] | undefined; //
+  numberOfResults: number; //
+  startFrom: number; //
 };
 
 export declare type OrderBy =

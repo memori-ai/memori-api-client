@@ -1,4 +1,4 @@
-import { ResponseSpec, Memori, MemoriConfig } from '../types';
+import { ResponseSpec, Memori, MemoriConfig, MemoriFilters } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 export default (apiUrl: string) => ({
@@ -333,5 +333,138 @@ export default (apiUrl: string) => ({
       body: memori,
       method: 'DELETE',
     }) as Promise<ResponseSpec>,
+
+  /**
+   * Gets a list of all the public Memori objects for a specific Tenant filtered and paginated.
+   * @param {string} tenantName - The name of the tenant
+   * @param {MemoriFilters} filters - The filters to apply
+   * @returns A list of Memori objects with total count
+   */
+  getTenantPublicMemoriFiltered: (tenantName: string, filters: MemoriFilters) =>
+    apiFetcher(`/TenantPublicMemoriFiltered/${encodeURIComponent(tenantName)}`, {
+      apiUrl,
+      body: filters,
+      method: 'POST',
+    }) as Promise<
+      ResponseSpec & {
+        memori: Memori[];
+      }
+    >,
+
+  /**
+   * Gets a list of the public Memori objects for the currently logged in User filtered and paginated.
+   * @param {string} authToken - The login token
+   * @param {MemoriFilters} filters - The filters to apply
+   * @returns A list of Memori objects with total count
+   */
+  getPublicMemoriFiltered: (authToken: string, filters: MemoriFilters) =>
+    apiFetcher(`/PublicMemoriFiltered/${authToken}`, {
+      apiUrl,
+      body: filters,
+      method: 'POST',
+    }) as Promise<
+      ResponseSpec & {
+        memori: Memori[];
+      }
+    >,
+
+  /**
+   * Gets a list of Memori objects owned by the currently logged in User filtered and paginated.
+   * @param {string} authToken - The login token
+   * @param {MemoriFilters} filters - The filters to apply
+   * @returns A list of Memori objects with total count
+   */
+  getMemoriFiltered: (authToken: string, filters: MemoriFilters) =>
+    apiFetcher(`/MemoriFiltered/${authToken}`, {
+      apiUrl,
+      body: filters,
+      method: 'POST',
+    }) as Promise<
+      ResponseSpec & {
+        memori: Memori[];
+      }
+    >,
+
+  /**
+   * Gets a list of Memori objects shared with the currently logged in User filtered and paginated.
+   * @param {string} authToken - The login token
+   * @param {MemoriFilters} filters - The filters to apply
+   * @returns A list of Memori objects with total count
+   */
+  getSharedMemoriFiltered: (authToken: string, filters: MemoriFilters) =>
+    apiFetcher(`/SharedMemoriFiltered/${authToken}`, {
+      apiUrl,
+      body: filters,
+      method: 'POST',
+    }) as Promise<
+      ResponseSpec & {
+        memori: Memori[];
+      }
+    >,
+
+  /**
+   * Gets a list of Memori objects owned by the specified user filtered and paginated.
+   * @param {string} tenantName - The name of the tenant
+   * @param {string} userName - The user name
+   * @param {string} authToken - The login token
+   * @param {MemoriFilters} filters - The filters to apply
+   * @returns A list of Memori objects with total count
+   */
+  getUserMemoriFiltered: (
+    tenantName: string,
+    userName: string,
+    authToken: string,
+    filters: MemoriFilters
+  ) =>
+    apiFetcher(`/UserMemoriFiltered/${encodeURIComponent(tenantName)}/${encodeURIComponent(userName)}/${authToken}`, {
+      apiUrl,
+      body: filters,
+      method: 'POST',
+    }) as Promise<
+      ResponseSpec & {
+        memori: Memori[];
+      }
+    >,
+
+  /**
+   * Gets a list of Memori objects owned by the specified user filtered and paginated.
+   * @param {string} tenantName - The name of the tenant
+   * @param {string} userID - The user ID
+   * @param {string} authToken - The login token
+   * @param {MemoriFilters} filters - The filters to apply
+   * @returns A list of Memori objects with total count
+   */
+  getUserMemoriByIDFiltered: (
+    tenantName: string,
+    userID: string,
+    authToken: string,
+    filters: MemoriFilters
+  ) =>
+    apiFetcher(`/UserMemoriByIDFiltered/${encodeURIComponent(tenantName)}/${encodeURIComponent(userID)}/${authToken}`, {
+      apiUrl,
+      body: filters,
+      method: 'POST',
+    }) as Promise<
+      ResponseSpec & {
+        memori: Memori[];
+      }
+    >,
+
+  /**
+   * Gets a list of all Memori objects filtered and paginated.
+   * @param {string} authToken - The login token
+   * @param {MemoriFilters} filters - The filters to apply
+   * @returns A list of Memori objects with total count
+   */
+  getAllMemoriFiltered: (authToken: string, filters: MemoriFilters) =>
+    apiFetcher(`/AllMemoriFiltered/${authToken}`, {
+      apiUrl,
+      body: filters,
+      method: 'POST',
+    }) as Promise<
+      ResponseSpec & {
+        memori: Memori[];
+      }
+    >,
     
 });
