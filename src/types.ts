@@ -564,6 +564,19 @@ export declare type Tenant = {
   enableDeepThought?: boolean;
   enableVirtualSpaces?: boolean;
   billingDelegation?: boolean;
+  /**
+   * @type {object=}
+   * SMTP configuration for the Tenant.
+   */
+  smtpConfig?: {
+    server: string;
+    user: string;
+    password: string;
+    port: number;
+    socketSecurity: string;
+    senderEmail: string;
+    senderName: string;
+  };
   creationTimestamp?: string;
   lastChangeTimestamp?: string;
   perplexityAPIKey?: string;
