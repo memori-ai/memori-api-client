@@ -1,5 +1,12 @@
 
 
+## [6.7.3](https://github.com/memori-ai/memori-api-client/compare/v6.7.2...v6.7.3) (2025-07-14)
+
+
+### Features
+
+* add MemoriFilters type and related API functions for filtered Memori retrieval ([f5061da](https://github.com/memori-ai/memori-api-client/commit/f5061daad4ae2f3a1162f869124a00fffd6c05e4))
+
 ## [6.7.2](https://github.com/memori-ai/memori-api-client/compare/v6.7.1...v6.7.2) (2025-07-08)
 
 
