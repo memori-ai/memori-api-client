@@ -1,17 +1,15 @@
-import { getApiUrl } from './helpers/getApiUrl';
+import { getBackendApiUrl, getEngineApiUrl } from './helpers/getApiUrl';
 import backend from './backend';
 import engine from './engine';
 import * as constants from './constants';
 import asset from './helpers/asset';
 
 const api = (backendEndpoint?: string, engineEndpoint?: string) => {
-  const apiUrl = getApiUrl(backendEndpoint);
-  const engineApiUrl = getApiUrl(engineEndpoint);
+  const apiUrl = getBackendApiUrl(backendEndpoint);
+  const engineApiUrl = getEngineApiUrl(engineEndpoint);
 
   const backendUrl = `${apiUrl}/api/v2`;
-  const engineUrl = engineEndpoint
-    ? `${engineApiUrl}/memori/v2`
-    : `${apiUrl.replace('backend', 'engine')}/memori/v2`;
+  const engineUrl = `${engineApiUrl}/memori/v2`;
 
   return {
     backend: backend(backendUrl),

@@ -20,7 +20,10 @@ describe('client', () => {
     );
   });
   it('works with staging backend url', () => {
-    const customClient = memori('https://backend-staging.memori.ai/api/v2');
+    const customClient = memori(
+      'https://backend-staging.memori.ai/api/v2',
+      'https://engine-staging.memori.ai/memori/v2'
+    );
     expect(customClient.constants.BACKEND_URL).toBe(
       'https://backend-staging.memori.ai/api/v2'
     );

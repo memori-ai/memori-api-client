@@ -1,15 +1,33 @@
-import { getApiUrl } from './getApiUrl';
+import { getBackendApiUrl, getEngineApiUrl } from './getApiUrl';
 
-describe('API URL', () => {
+describe('Backend API URL', () => {
   it('parses the correct API URL with no arg', () => {
-    expect(getApiUrl()).toBe('https://backend.memori.ai');
+    expect(getBackendApiUrl()).toBe('https://backend.memori.ai');
   });
   it('parses the correct API URL passing host', () => {
-    expect(getApiUrl('backend.memori.ai')).toBe('https://backend.memori.ai');
+    expect(getBackendApiUrl('backend.memori.ai')).toBe(
+      'https://backend.memori.ai'
+    );
   });
   it('parses the correct API URL passing more url parts', () => {
-    expect(getApiUrl('https://backend.memori.ai/memoriai/awanagana')).toBe(
-      'https://backend.memori.ai'
+    expect(
+      getBackendApiUrl('https://backend.memori.ai/memoriai/awanagana')
+    ).toBe('https://backend.memori.ai');
+  });
+});
+
+describe('Engine API URL', () => {
+  it('parses the correct API URL with no arg', () => {
+    expect(getEngineApiUrl()).toBe('https://engine.memori.ai');
+  });
+  it('parses the correct API URL passing host', () => {
+    expect(getEngineApiUrl('engine.memori.ai')).toBe(
+      'https://engine.memori.ai'
+    );
+  });
+  it('parses the correct API URL passing more url parts', () => {
+    expect(getEngineApiUrl('https://engine.memori.ai/memoriai/awanagana')).toBe(
+      'https://engine.memori.ai'
     );
   });
 });
