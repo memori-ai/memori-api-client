@@ -1,5 +1,12 @@
 
 
+## [6.7.4](https://github.com/memori-ai/memori-api-client/compare/v6.7.3...v6.7.4) (2025-07-15)
+
+
+### Maintenance
+
+* remove engine endpoint replace fallback ([16bf2b7](https://github.com/memori-ai/memori-api-client/commit/16bf2b7f5e443d20a29a3620854e972db723f07b))
+
 ## [6.7.3](https://github.com/memori-ai/memori-api-client/compare/v6.7.2...v6.7.3) (2025-07-14)
 
 
