@@ -1,5 +1,12 @@
 
 
+## [6.7.5](https://github.com/memori-ai/memori-api-client/compare/v6.7.4...v6.7.5) (2025-07-16)
+
+
+### Changes
+
+* rename date filters in ChatLogFilters and add new filter property ([a283540](https://github.com/memori-ai/memori-api-client/commit/a283540c303caf503293d01cfd7229439aee85b5))
+
 ## [6.7.4](https://github.com/memori-ai/memori-api-client/compare/v6.7.3...v6.7.4) (2025-07-15)
 
 
