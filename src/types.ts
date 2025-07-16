@@ -1137,11 +1137,12 @@ export declare type ChatLog = {
 };
 
 export interface ChatLogFilters {
-  strDateFrom?: string;
-  strDateTo?: string;
+  dateFrom?: string;
+  dateTo?: string;
   showChatsWithNoHistory?: boolean;
   from: number;
   howMany: number;
+  filter: string;
 }
 
 export declare type Utterance = {
