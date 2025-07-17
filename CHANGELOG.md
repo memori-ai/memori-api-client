@@ -1,5 +1,12 @@
 
 
+## [6.7.6](https://github.com/memori-ai/memori-api-client/compare/v6.7.5...v6.7.6) (2025-07-17)
+
+
+### Features
+
+* add getUserChatLogsByToken function to retrieve user chat logs based on login token ([648efca](https://github.com/memori-ai/memori-api-client/commit/648efca67911c6b12cbb02e751a99b6703e0b197))
+
 ## [6.7.5](https://github.com/memori-ai/memori-api-client/compare/v6.7.4...v6.7.5) (2025-07-16)
 
 
