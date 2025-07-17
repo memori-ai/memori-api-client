@@ -1,5 +1,12 @@
 
 
+## [6.7.7](https://github.com/memori-ai/memori-api-client/compare/v6.7.6...v6.7.7) (2025-07-17)
+
+
+### Bug Fixes
+
+* update API endpoint for retrieving user chat logs to remove versioning ([78ffe3f](https://github.com/memori-ai/memori-api-client/commit/78ffe3fb6e2963b82d5480ececb0e32caad66566))
+
 ## [6.7.6](https://github.com/memori-ai/memori-api-client/compare/v6.7.5...v6.7.6) (2025-07-17)
 
 
