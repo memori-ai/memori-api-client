@@ -157,11 +157,13 @@ export default (apiUrl: string) => ({
   getUserChatLogsByToken: async (
     loginToken: string,
     memoriID: string,
-    dateFrom: string,
-    dateTo: string
+    dateFrom?: string,
+    dateTo?: string
   ) =>
     apiFetcher(
-      `/UserChatLogsByToken/${loginToken}/${memoriID}/${dateFrom}/${dateTo}`,
+      `/UserChatLogsByToken/${loginToken}/${memoriID}${dateFrom ? `/${dateFrom}` : ''}${
+        dateFrom && dateTo ? `/${dateTo}` : ''
+      }`,
       {
         method: 'GET',
         apiUrl,
