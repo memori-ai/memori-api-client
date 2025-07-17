@@ -146,4 +146,29 @@ export default (apiUrl: string) => ({
       method: 'DELETE',
       apiUrl,
     }) as Promise<ResponseSpec>,
+
+  /**
+   * Gets the Chat Log objects for the Memori created by the user identified by the login token.
+   * @param {string} loginToken The login token
+   * @param {string} memoriID The Memori ID
+   * @param {string} dateFrom The begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+   * @param {string} dateTo The end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+   */
+  getUserChatLogsByToken: async (
+    loginToken: string,
+    memoriID: string,
+    dateFrom: string,
+    dateTo: string
+  ) =>
+    apiFetcher(
+      `/memori/v2/UserChatLogsByToken/${loginToken}/${memoriID}/${dateFrom}/${dateTo}`,
+      {
+        method: 'GET',
+        apiUrl,
+      }
+    ) as Promise<
+      ResponseSpec & {
+        chatLogs: ChatLog[];
+      }
+    >,
 });
