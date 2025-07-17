@@ -1,5 +1,12 @@
 
 
+## [6.7.8](https://github.com/memori-ai/memori-api-client/compare/v6.7.7...v6.7.8) (2025-07-17)
+
+
+### Bug Fixes
+
+* make dateFrom and dateTo parameters optional in getUserChatLogsByToken function ([b38635b](https://github.com/memori-ai/memori-api-client/commit/b38635b63e1c2ce12ab0631a95020f48618a5260))
+
 ## [6.7.7](https://github.com/memori-ai/memori-api-client/compare/v6.7.6...v6.7.7) (2025-07-17)
 
 
