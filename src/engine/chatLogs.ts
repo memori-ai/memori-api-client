@@ -161,7 +161,7 @@ export default (apiUrl: string) => ({
     dateTo: string
   ) =>
     apiFetcher(
-      `/memori/v2/UserChatLogsByToken/${loginToken}/${memoriID}/${dateFrom}/${dateTo}`,
+      `/UserChatLogsByToken/${loginToken}/${memoriID}/${dateFrom}/${dateTo}`,
       {
         method: 'GET',
         apiUrl,
