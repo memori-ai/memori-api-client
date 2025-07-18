@@ -140,16 +140,20 @@ export default (apiUrl: string) => ({
 
   /**
    * Tries a login with the specified JWT and returns a login token if successful.
-   * @param {object} payload - The payload object
-   * @param {string} payload.jwt - The JWT
+   * @param {string} jwtToken - The JWT
+   * @param {string} tenant - The tenant ID
+   * @param {string} secretKey - The trusted app secret key
    * @returns The logged in user object
    */
-  pwlLoginWithJWT: (jwt: string) =>
+  pwlLoginWithJWT: (jwtToken: string, tenant: string, secretKey: string) =>
     apiFetcher('/LoginWithJWT', {
       apiUrl,
-      body: { jwt },
+      body: { jwtToken, tenant },
+      headers: {
+        'X-Memori-Trusted-App': secretKey,
+      },
       method: 'POST',
     }) as Promise<
       ResponseSpec & { user: User; token?: string; flowID?: string }
     >,
-}); 
+});
