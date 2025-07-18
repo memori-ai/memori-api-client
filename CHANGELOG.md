@@ -1,5 +1,12 @@
 
 
+## [6.7.9](https://github.com/memori-ai/memori-api-client/compare/v6.7.8...v6.7.9) (2025-07-18)
+
+
+### Bug Fixes
+
+* jwt login method ([bb71e01](https://github.com/memori-ai/memori-api-client/commit/bb71e01e1c05e99642cfb8b539e5cb09e2cefda7))
+
 ## [6.7.8](https://github.com/memori-ai/memori-api-client/compare/v6.7.7...v6.7.8) (2025-07-17)
 
 
