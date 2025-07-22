@@ -7,10 +7,10 @@ export default (apiUrl: string) => ({
    * @param user - The user object
    * @returns The logged in user object
    */
-  pwlUserLogin: (user: User) =>
+  pwlUserLogin: (user: User, redirectTo?: string) =>
     apiFetcher('/PwlLogin', {
       apiUrl,
-      body: user,
+      body: { ...user, redirectTo: redirectTo ?? '' },
       method: 'POST',
     }) as Promise<
       ResponseSpec & { user: User; token?: string; flowID?: string }
