@@ -1,5 +1,12 @@
 
 
+## [6.8.0](https://github.com/memori-ai/memori-api-client/compare/v6.7.9...v6.8.0) (2025-07-22)
+
+
+### Features
+
+* enhance pwlUserLogin to support optional redirect URL ([ec31e18](https://github.com/memori-ai/memori-api-client/commit/ec31e189df218fbe96ffdd4ba8206a4f92b1d4a7))
+
 ## [6.7.9](https://github.com/memori-ai/memori-api-client/compare/v6.7.8...v6.7.9) (2025-07-18)
 
 
