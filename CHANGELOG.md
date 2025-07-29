@@ -1,5 +1,12 @@
 
 
+## [6.8.1](https://github.com/memori-ai/memori-api-client/compare/v6.8.0...v6.8.1) (2025-07-29)
+
+
+### Bug Fixes
+
+* trusted app patch ([a29ce12](https://github.com/memori-ai/memori-api-client/commit/a29ce12507e907436bfcf8fc515465255c9fbc03))
+
 ## [6.8.0](https://github.com/memori-ai/memori-api-client/compare/v6.7.9...v6.8.0) (2025-07-22)
 
 
