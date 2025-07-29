@@ -9,7 +9,10 @@ export default (apiUrl: string) => ({
    * @param trustedApplication - The TrustedApplication specifications
    * @returns The created TrustedApplication object
    */
-  createTrustedApplication: (authToken: string, trustedApplication: TrustedApplication) =>
+  createTrustedApplication: (
+    authToken: string,
+    trustedApplication: TrustedApplication
+  ) =>
     apiFetcher(`/TrustedApplication/${authToken}`, {
       apiUrl,
       body: trustedApplication,
@@ -34,10 +37,14 @@ export default (apiUrl: string) => ({
    * @param trustedApplication - The TrustedApplication specifications
    * @returns The updated TrustedApplication object
    */
-  updateTrustedApplication: (authToken: string, trustedApplicationID: string, trustedApplication: TrustedApplication) =>
+  updateTrustedApplication: (
+    authToken: string,
+    trustedApplicationID: string,
+    trustedApplication: TrustedApplication
+  ) =>
     apiFetcher(`/TrustedApplication/${authToken}/${trustedApplicationID}`, {
       apiUrl,
-      method: 'PUT',
+      method: 'PATCH',
       body: trustedApplication,
     }) as Promise<ResponseSpec & { trustedApplication: TrustedApplication }>,
 
@@ -61,4 +68,4 @@ export default (apiUrl: string) => ({
     apiFetcher(`/TrustedApplications/${authToken}`, {
       apiUrl,
     }) as Promise<ResponseSpec & { trustedApplications: TrustedApplication[] }>,
-}); 
+});
