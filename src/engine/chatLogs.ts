@@ -173,4 +173,32 @@ export default (apiUrl: string) => ({
         chatLogs: ChatLog[];
       }
     >,
+
+  /**
+   * Gets paginated Chat Log objects for the Memori created by the user identified by the login token.
+   * @param {string} loginToken The login token
+   * @param {string} memoriID The Memori ID
+   * @param {number} from The starting index for pagination
+   * @param {number} howMany The number of items to retrieve
+   */
+  getUserChatLogsByTokenPaged: async (
+    loginToken: string,
+    memoriID: string,
+    from: number,
+    howMany: number
+  ) =>
+    apiFetcher(`/UserChatLogsByTokenPaged`, {
+      method: 'POST',
+      apiUrl,
+      body: {
+        LoginToken: loginToken,
+        MemoriID: memoriID,
+        From: from.toString(),
+        HowMany: howMany.toString(),
+      },
+    }) as Promise<
+      ResponseSpec & {
+        chatLogs: ChatLog[];
+      }
+    >,
 });
