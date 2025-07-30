@@ -1,5 +1,12 @@
 
 
+## [6.9.2](https://github.com/memori-ai/memori-api-client/compare/v6.9.1...v6.9.2) (2025-07-30)
+
+
+### Features
+
+* add optional date range parameters to getUserChatLogsByTokenPaged ([3163a3c](https://github.com/memori-ai/memori-api-client/commit/3163a3cd5f4d14a2138e8e913c66e35ad1723d53))
+
 ## [6.9.1](https://github.com/memori-ai/memori-api-client/compare/v6.8.1...v6.9.1) (2025-07-30)
 
 
