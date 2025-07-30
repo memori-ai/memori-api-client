@@ -1,5 +1,12 @@
 
 
+## [6.9.0](https://github.com/memori-ai/memori-api-client/compare/v6.8.0...v6.9.0) (2025-07-30)
+
+
+### Features
+
+* add getUserChatLogsByTokenPaged function for paginated retrieval of user chat logs ([3591744](https://github.com/memori-ai/memori-api-client/commit/35917446d7005b86418c0dd9aaae285a297698a0))
+
 ## [6.8.0](https://github.com/memori-ai/memori-api-client/compare/v6.7.9...v6.8.0) (2025-07-22)
 
 
