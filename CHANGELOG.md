@@ -1,5 +1,12 @@
 
 
+## [6.11.0](https://github.com/memori-ai/memori-api-client/compare/v6.10.0...v6.11.0) (2025-07-31)
+
+
+### Features
+
+* add showChatsWithNoHistory parameter to getUserChatLogsByTokenPaged ([015fb8f](https://github.com/memori-ai/memori-api-client/commit/015fb8fec2fc1e40685eb4ca8692f0b78f3e5ee6))
+
 ## [6.10.0](https://github.com/memori-ai/memori-api-client/compare/v6.9.2...v6.10.0) (2025-07-31)
 
 
