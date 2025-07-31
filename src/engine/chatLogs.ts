@@ -182,6 +182,7 @@ export default (apiUrl: string) => ({
    * @param {number} howMany The number of items to retrieve
    * @param {?string} dateFrom The optional begin of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
    * @param {?string} dateTo The optional end of the date interval, in UTC time, in the format yyyyMMddHHmmssfff
+   * @param {?boolean} showChatsWithNoHistory Whether to include chats with only one message in the result
    */
   getUserChatLogsByTokenPaged: async (
     loginToken: string,
@@ -190,17 +191,19 @@ export default (apiUrl: string) => ({
     howMany: number,
     dateFrom?: string,
     dateTo?: string,
+    showChatsWithNoHistory?: boolean
   ) =>
     apiFetcher(`/UserChatLogsByTokenPaged`, {
       method: 'POST',
       apiUrl,
       body: {
-        LoginToken: loginToken,
-        MemoriID: memoriID,
+        loginToken: loginToken,
+        memoriID: memoriID,
         dateFrom: dateFrom,
         dateTo: dateTo,
-        From: from,
-        HowMany: howMany,
+        from: from,
+        howMany: howMany,
+        showChatsWithNoHistory: showChatsWithNoHistory,
       },
     }) as Promise<
       ResponseSpec & {
