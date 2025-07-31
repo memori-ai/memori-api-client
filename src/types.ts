@@ -155,7 +155,24 @@ export declare type CompletionConfig = {
     | 'Mistral'
     | 'Azure_OpenAI'
     | 'AWS_Anthropic'
-    | 'Vertex_Anthropic';
+    | 'Vertex_Anthropic'
+    | 'Custom_OpenAI';
+
+  /**
+   * @type {string=}
+   * Name of the Completion Model. This is provider-specific, and for some providers (e.g. Azure) it is also part of the end-point URL.
+   */
+  modelName?: string;
+  /**
+   * @type {number=}
+   * Context Size of the Completion Model.
+   */
+  contextSize?: number;
+  /**
+   * @type {number=}
+   * Timeout of the Completion Model.
+   */
+  timeout?: number;
   /**
    * @type {string=}
    * URL of the Completion Provider API end-point. If not specified, the default end-point for the provider is used.
