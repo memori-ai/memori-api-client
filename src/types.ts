@@ -397,6 +397,8 @@ export declare type User = {
   lastChangeTimestamp?: string;
   referral?: string;
   couponCode?: string;
+  magicLinkURL?: string;
+  redirectTo?: string;
   paying?: boolean;
   notificationPrefs?: NotificationPrefs[];
   birthDate?: string;
