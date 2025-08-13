@@ -1,5 +1,12 @@
 
 
+## [6.11.1](https://github.com/memori-ai/memori-api-client/compare/v6.11.0...v6.11.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* user types, adjust pwdless login ([40c3778](https://github.com/memori-ai/memori-api-client/commit/40c3778f85606baa2ff39518fb4fc0b5646051cd))
+
 ## [6.11.0](https://github.com/memori-ai/memori-api-client/compare/v6.10.0...v6.11.0) (2025-07-31)
 
 
