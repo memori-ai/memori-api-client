@@ -1162,6 +1162,7 @@ export interface ChatLogFilters {
   from: number;
   howMany: number;
   filter: string;
+  minimumMessagesPerChat?: number;
 }
 
 export declare type Utterance = {

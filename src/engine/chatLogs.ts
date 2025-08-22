@@ -185,25 +185,13 @@ export default (apiUrl: string) => ({
    * @param {?boolean} showChatsWithNoHistory Whether to include chats with only one message in the result
    */
   getUserChatLogsByTokenPaged: async (
-    loginToken: string,
-    memoriID: string,
-    from: number,
-    howMany: number,
-    dateFrom?: string,
-    dateTo?: string,
-    showChatsWithNoHistory?: boolean
+    filters?: ChatLogFilters
   ) =>
     apiFetcher(`/UserChatLogsByTokenPaged`, {
       method: 'POST',
       apiUrl,
       body: {
-        loginToken: loginToken,
-        memoriID: memoriID,
-        dateFrom: dateFrom,
-        dateTo: dateTo,
-        from: from,
-        howMany: howMany,
-        showChatsWithNoHistory: showChatsWithNoHistory,
+        ...filters,
       },
     }) as Promise<
       ResponseSpec & {
