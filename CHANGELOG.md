@@ -1,4 +1,8 @@
+## [6.12.1](https://github.com/memori-ai/memori-api-client/compare/v6.11.1...v6.12.1) (2025-08-22)
 
+## Features
+
+* feat: add minimumMessagesPerChat filter to ChatLogFilters ([0a6f63c](https://github.com/memori-ai/memori-api-client/commit/0a6f63c26a5b69add2818a2bba5c0845fc0e1c91))
 
 ## [6.11.1](https://github.com/memori-ai/memori-api-client/compare/v6.11.0...v6.11.1) (2025-08-13)
 
