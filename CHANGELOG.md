@@ -1,3 +1,13 @@
+
+
+## [6.12.2](https://github.com/memori-ai/memori-api-client/compare/v6.12.1...v6.12.2) (2025-08-28)
+
+
+### Maintenance
+
+* add new changelog notifications api ([31a9cdf](https://github.com/memori-ai/memori-api-client/commit/31a9cdf9b3c3ae0b518053dbdbe53215a73a2b44))
+* release v6.12.1 ([5ba4429](https://github.com/memori-ai/memori-api-client/commit/5ba4429e3001c195a2220ad6e8357e87554556b8))
+
 ## [6.12.1](https://github.com/memori-ai/memori-api-client/compare/v6.11.1...v6.12.1) (2025-08-22)
 
 ## Features
