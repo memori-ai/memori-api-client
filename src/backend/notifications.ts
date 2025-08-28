@@ -23,6 +23,15 @@ export default (apiUrl: string) => ({
     }) as Promise<ResponseSpec & { notifications: Notification[] }>,
 
   /**
+   * Gets all the changelog Notification objects (including expired ones).
+   * @param {string} tenant - The name of the tenant
+   */
+  getChangelogNotifications: (tenant: string) =>
+    apiFetcher(`/ChangelogNotifications/${tenant}`, {
+      apiUrl,
+    }) as Promise<ResponseSpec & { notifications: Notification[] }>,
+
+  /**
    * Create a new notification
    * @param {string} token - Authentication token
    * @param {Notification} notificationData - Notification specification
