@@ -1,5 +1,12 @@
 
 
+## [6.13.0](https://github.com/memori-ai/memori-api-client/compare/v6.12.2...v6.13.0) (2025-09-12)
+
+
+### Features
+
+* add refresh temporary session functionality ([92a3b1d](https://github.com/memori-ai/memori-api-client/commit/92a3b1d4ae33afeca66c5741629baf030976f78c))
+
 ## [6.12.2](https://github.com/memori-ai/memori-api-client/compare/v6.12.1...v6.12.2) (2025-08-28)
 
 
