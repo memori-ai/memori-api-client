@@ -1,5 +1,12 @@
 
 
+## [6.13.1](https://github.com/memori-ai/memori-api-client/compare/v6.13.0...v6.13.1) (2025-09-12)
+
+
+### Changes
+
+* update RefreshTemporarySession types to use sessionToken ([4644ade](https://github.com/memori-ai/memori-api-client/commit/4644ade605cb304d6adb5e9a75a6887448a53b21))
+
 ## [6.13.0](https://github.com/memori-ai/memori-api-client/compare/v6.12.2...v6.13.0) (2025-09-12)
 
 
