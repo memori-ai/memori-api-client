@@ -2001,13 +2001,11 @@ export declare type TrustedApplication = {
 };
 
 export declare type RefreshTemporarySessionRequest = {
-  temporarySessionID: string;
+  sessionToken: string;
 };
 
 export declare type RefreshTemporarySessionResponse = {
-  refreshTemporarySessionSpecs: {
-    newSessionID: string;
-  };
+  newSessionToken: string;
   requestID: number;
   requestDateTime: string;
   resultCode: number;
