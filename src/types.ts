@@ -1999,3 +1999,17 @@ export declare type TrustedApplication = {
   creationTimestamp: string;
   lastChangeTimestamp: string;
 };
+
+export declare type RefreshTemporarySessionRequest = {
+  temporarySessionID: string;
+};
+
+export declare type RefreshTemporarySessionResponse = {
+  refreshTemporarySessionSpecs: {
+    newSessionID: string;
+  };
+  requestID: number;
+  requestDateTime: string;
+  resultCode: number;
+  resultMessage: string;
+};

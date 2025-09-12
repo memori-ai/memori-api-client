@@ -1,4 +1,4 @@
-import { ResponseSpec, Tenant, User, UserFilters } from '../types';
+import { ResponseSpec, Tenant, User, UserFilters, RefreshTemporarySessionRequest, RefreshTemporarySessionResponse } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 export default (apiUrl: string) => ({
@@ -203,4 +203,16 @@ export default (apiUrl: string) => ({
       body: user,
       method: 'POST',
     }) as Promise<ResponseSpec & { user: User }>,
+
+  /**
+   * Refreshes a temporary session token for a user just logged or created.
+   * @param refreshTemporarySessionSpecs - The refresh temporary session specifications
+   * @returns The refreshed session details
+   */
+  refreshTemporarySession: (refreshTemporarySessionSpecs: RefreshTemporarySessionRequest) =>
+    apiFetcher('/RefreshTemporarySession', {
+      apiUrl,
+      body: refreshTemporarySessionSpecs,
+      method: 'POST',
+    }) as Promise<RefreshTemporarySessionResponse>,
 });
