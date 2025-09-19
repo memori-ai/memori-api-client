@@ -1,5 +1,12 @@
 
 
+## [6.13.2](https://github.com/memori-ai/memori-api-client/compare/v6.13.1...v6.13.2) (2025-09-19)
+
+
+### Features
+
+* add login with OTP and validate OTP code functionality ([adc8293](https://github.com/memori-ai/memori-api-client/commit/adc8293e00498eb6e4f80cfbc436a05e39301cb4))
+
 ## [6.13.1](https://github.com/memori-ai/memori-api-client/compare/v6.13.0...v6.13.1) (2025-09-12)
 
 
