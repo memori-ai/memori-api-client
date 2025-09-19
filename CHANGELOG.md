@@ -1,5 +1,12 @@
 
 
+## [6.13.3](https://github.com/memori-ai/memori-api-client/compare/v6.13.2...v6.13.3) (2025-09-19)
+
+
+### Bug Fixes
+
+* update validateOTPCode to include tenant parameter in request body ([c598a35](https://github.com/memori-ai/memori-api-client/commit/c598a359aa74cb74ff1649dfa3fa24013e90bc92))
+
 ## [6.13.2](https://github.com/memori-ai/memori-api-client/compare/v6.13.1...v6.13.2) (2025-09-19)
 
 
