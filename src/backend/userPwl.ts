@@ -175,10 +175,10 @@ export default (apiUrl: string) => ({
    * @param {Tenant} loginCredentials - The login credentials
    * @returns The login response
    */
-  validateOTPCode: (otpCode: string, userName?: string, eMail?: string) =>
+  validateOTPCode: (otpCode: string, tenant: string, userName?: string, eMail?: string) =>
     apiFetcher(`/ValidateOTPCode`, {
       apiUrl,
       method: 'POST',
-      body: { userName, eMail, otpCode },
+      body: { userName, eMail, otpCode, tenant },
     }) as Promise<ResponseSpec & { newSessionToken: string }>,
 });
