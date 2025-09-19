@@ -156,4 +156,29 @@ export default (apiUrl: string) => ({
     }) as Promise<
       ResponseSpec & { user: User; token?: string; flowID?: string }
     >,
+
+  /**
+   * Logs in a user by a 4 digits verification code to the user's e-mail address.
+   * If the user does not exist, a new user is created (if the tenant allows user registration).
+   * @param {LoginWithOTPRequest} loginCredentials - The login credentials
+   * @returns The login response
+   */
+  loginWithOTP: (user: User) =>
+    apiFetcher(`/LoginWithOTP`, {
+      apiUrl,
+      method: 'POST',
+      body: { ...user },
+    }) as Promise<ResponseSpec>,
+
+  /**
+   * Validate OTP Code for a user just logged or created.
+   * @param {Tenant} loginCredentials - The login credentials
+   * @returns The login response
+   */
+  validateOTPCode: (otpCode: string, userName?: string, eMail?: string) =>
+    apiFetcher(`/ValidateOTPCode`, {
+      apiUrl,
+      method: 'POST',
+      body: { userName, eMail, otpCode },
+    }) as Promise<ResponseSpec & { newSessionToken: string }>,
 });
