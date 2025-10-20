@@ -4,6 +4,7 @@ import { apiFetcher } from '../apiFetcher';
 export default (apiUrl: string) => ({
   /**
    * Registers a new user.
+   * @deprecated Use PwlUser APIs
    * @param user - The user object
    * @returns The created user object
    */
@@ -16,6 +17,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Confirms the registration of a User and performs a Login.
+   * @deprecated Use PwlUser APIs
    * @param user - The user object
    * @returns The created user object
    */
@@ -28,6 +30,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Tries a login with the specified credentials and returns a login token if successful.
+   * @deprecated Use PwlUser APIs
    * @param user - The user object
    * @returns The logged in user object
    */
@@ -42,6 +45,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Logs out the user.
+   * @deprecated Use PwlUser APIs
    * @param authToken - The login token
    */
   userLogout: (authToken: string) =>
@@ -52,6 +56,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Gets the details of the currently logged in User object.
+   * @deprecated Use PwlUser APIs
    * @param authToken - The login token
    * @returns The user object
    */
@@ -66,6 +71,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Gets the details of a User object.
+   * @deprecated Use PwlUser APIs
    * @param authToken - The login token
    * @param userID - The user ID
    * @returns The user object
@@ -81,6 +87,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Gets a list of all the existing User objects.
+   * @deprecated Use PwlUser APIs
    * @param authToken - The login token
    * @returns A list of User objects
    */
@@ -95,6 +102,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Gets a list of all the existing User objects paginated.
+   * @deprecated Use PwlUser APIs
    * @param authToken - The login token
    * @param from - The 0-based index of the first User object to list
    * @param howMany - The number of User objects to list
@@ -114,6 +122,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Deletes the currently logged in User.
+   * @deprecated Use PwlUser APIs
    * @param {string} authToken - The login token
    * @param {string} userID: The User ID
    */
@@ -125,6 +134,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Updates the details of a User object.
+   * @deprecated Use PwlUser APIs
    * @param authToken - The login token
    * @param userID - The user ID
    * @returns The user object
@@ -145,6 +155,7 @@ export default (apiUrl: string) => ({
    * If found, the User receives a verification code via e-mail.
    * The code must be sent via the ResetConfirm API, passing the same User object
    * sent to this API with the addition of the verification code and the new password.
+   * @deprecated Use PwlUser APIs
    * @param {User} user - The user object
    */
   resetPassword: (user: User) =>
@@ -156,6 +167,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Confirms the password reset of a User and performs a Login
+   * @deprecated Use PwlUser APIs
    * @param {User} user - The user object
    */
   resetConfirm: (user: User) =>
@@ -173,6 +185,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Recovers a User's name and sends it to their configured e-mail.
+   * @deprecated Use PwlUser APIs
    * @param {User} user - The user object
    */
   recoverUsername: (user: User) =>
@@ -184,6 +197,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Re-sends the verification code to confirm a pending User registration.
+   * @deprecated Use PwlUser APIs
    * @param {User} user - The user object
    */
   resendVerificationCode: (user: Partial<User>) =>
@@ -195,6 +209,7 @@ export default (apiUrl: string) => ({
 
   /**
    * Registers a new user.
+   * @deprecated Use PwlUser APIs
    * @param {User} user - The user object
    */
   createUser: (authToken: string, user: Partial<User>) =>
@@ -206,10 +221,13 @@ export default (apiUrl: string) => ({
 
   /**
    * Refreshes a temporary session token for a user just logged or created.
+   * @deprecated Use PwlUser APIs
    * @param refreshTemporarySessionSpecs - The refresh temporary session specifications
    * @returns The refreshed session details
    */
-  refreshTemporarySession: (refreshTemporarySessionSpecs: RefreshTemporarySessionRequest) =>
+  refreshTemporarySession: (
+    refreshTemporarySessionSpecs: RefreshTemporarySessionRequest
+  ) =>
     apiFetcher('/RefreshTemporarySession', {
       apiUrl,
       body: refreshTemporarySessionSpecs,

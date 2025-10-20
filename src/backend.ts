@@ -1,5 +1,4 @@
 import memori from './backend/memori';
-import user from './backend/user';
 import userPwl from './backend/userPwl';
 import integration from './backend/integration';
 import asset from './backend/asset';
@@ -17,7 +16,7 @@ import trustedApplication from './backend/trustedApplication';
 const backendAPI = (apiUrl: string) => ({
   asset: asset(apiUrl),
   memori: memori(apiUrl),
-  user: user(apiUrl),
+  user: userPwl(apiUrl),
   userPwl: userPwl(apiUrl),
   integration: integration(apiUrl),
   invitation: invitation(apiUrl),
@@ -32,7 +31,6 @@ const backendAPI = (apiUrl: string) => ({
   trustedApplication: trustedApplication(apiUrl),
   ...asset(apiUrl),
   ...memori(apiUrl),
-  ...user(apiUrl),
   ...userPwl(apiUrl),
   ...integration(apiUrl),
   ...invitation(apiUrl),
