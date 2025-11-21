@@ -30,9 +30,10 @@ export default (apiUrl: string) => ({
     fileUrl: string,
     authToken: string,
     memoriID?: string,
-    memoryID?: string
+    memoryID?: string,
+    isRemoteSession?: boolean
   ) => {
-    const data = new FormData();
+    const data = new FormData() ;
     const file = await fetch(fileUrl);
     const fileBlob = await file.blob();
 
@@ -44,7 +45,10 @@ export default (apiUrl: string) => ({
       }`,
       {
         method: 'POST',
-        body: data,
+        body: {
+          ...data,
+          remoteSessionCheck: isRemoteSession ?? false,
+        } as any,
       }
     );
     return (await upload.json()) as Promise<
