@@ -1,5 +1,17 @@
 
 
+## [6.14.0](https://github.com/memori-ai/memori-api-client/compare/v6.13.3...v6.14.0) (2025-11-21)
+
+
+### Features
+
+* add isRemoteSession parameter to asset upload functionality ([1d6fcb9](https://github.com/memori-ai/memori-api-client/commit/1d6fcb915ac5260cffa6d74dbd2770c915f38f59))
+
+
+### Changes
+
+* user controller alias + deprecation notice ([b03ff55](https://github.com/memori-ai/memori-api-client/commit/b03ff55f27b8f62c36c3fc04c7b8891344d0bcd7))
+
 ## [6.13.3](https://github.com/memori-ai/memori-api-client/compare/v6.13.2...v6.13.3) (2025-09-19)
 
 
