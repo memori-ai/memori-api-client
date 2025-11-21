@@ -39,16 +39,15 @@ export default (apiUrl: string) => ({
 
     data.append(fileName, fileBlob, fileName);
 
+    data.append('remoteSessionCheck', isRemoteSession?.toString() ?? 'false');
+
     const upload = await fetch(
       `${apiUrl}/Asset/${authToken}${memoriID ? `/${memoriID}` : ''}${
         memoryID ? `/${memoryID}` : ''
       }`,
       {
         method: 'POST',
-        body: {
-          ...data,
-          remoteSessionCheck: isRemoteSession ?? false,
-        } as any,
+        body: data
       }
     );
     return (await upload.json()) as Promise<
