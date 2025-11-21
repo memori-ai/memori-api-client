@@ -1,5 +1,12 @@
 
 
+## [6.14.1](https://github.com/memori-ai/memori-api-client/compare/v6.14.0...v6.14.1) (2025-11-21)
+
+
+### Bug Fixes
+
+* correct remoteSessionCheck handling in asset upload request ([5399388](https://github.com/memori-ai/memori-api-client/commit/53993889b4e9f1a32476efb7ab7833f14ced0c88))
+
 ## [6.14.0](https://github.com/memori-ai/memori-api-client/compare/v6.13.3...v6.14.0) (2025-11-21)
 
 
