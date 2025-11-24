@@ -1,5 +1,12 @@
 
 
+## [6.15.0](https://github.com/memori-ai/memori-api-client/compare/v6.14.2...v6.15.0) (2025-11-24)
+
+
+### Features
+
+* add remoteSessionCheck to the updateAsset API ([c4d0544](https://github.com/memori-ai/memori-api-client/commit/c4d05446c1123755082c98fd77afe69ac1690102))
+
 ## [6.14.2](https://github.com/memori-ai/memori-api-client/compare/v6.14.1...v6.14.2) (2025-11-24)
 
 
