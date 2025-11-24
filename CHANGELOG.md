@@ -1,5 +1,12 @@
 
 
+## [6.14.2](https://github.com/memori-ai/memori-api-client/compare/v6.14.1...v6.14.2) (2025-11-24)
+
+
+### Features
+
+* add refreshTemporarySession method to userPwl ([0b4d312](https://github.com/memori-ai/memori-api-client/commit/0b4d312de9f263ddd243101c0489bd4101fc7fcc))
+
 ## [6.14.1](https://github.com/memori-ai/memori-api-client/compare/v6.14.0...v6.14.1) (2025-11-21)
 
 
