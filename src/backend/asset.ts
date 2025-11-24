@@ -31,15 +31,12 @@ export default (apiUrl: string) => ({
     authToken: string,
     memoriID?: string,
     memoryID?: string,
-    isRemoteSession?: boolean
   ) => {
-    const data = new FormData() ;
+    const data = new FormData();
     const file = await fetch(fileUrl);
     const fileBlob = await file.blob();
 
     data.append(fileName, fileBlob, fileName);
-
-    data.append('remoteSessionCheck', isRemoteSession?.toString() ?? 'false');
 
     const upload = await fetch(
       `${apiUrl}/Asset/${authToken}${memoriID ? `/${memoriID}` : ''}${
@@ -47,7 +44,7 @@ export default (apiUrl: string) => ({
       }`,
       {
         method: 'POST',
-        body: data
+        body: data,
       }
     );
     return (await upload.json()) as Promise<
@@ -120,11 +117,14 @@ export default (apiUrl: string) => ({
    * @param {string} assetURL - The asset URL
    * @returns The updated asset object
    */
-  updateAsset: (authToken: string, assetURL: string, asset: Asset) =>
+  updateAsset: (authToken: string, assetURL: string, asset: Asset, remoteSessionCheck?: boolean) =>
     apiFetcher(`/Asset/${authToken}/${assetURL.split('/').reverse()[0]}`, {
       apiUrl,
       method: 'PATCH',
-      body: asset,
+      body: {
+        ...asset,
+        remoteSessionCheck: remoteSessionCheck ?? false,
+      },
     }) as Promise<ResponseSpec & { asset: Asset }>,
 
   /**
