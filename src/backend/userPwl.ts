@@ -1,4 +1,4 @@
-import { ResponseSpec, User, UserFilters } from '../types';
+import { RefreshTemporarySessionRequest, RefreshTemporarySessionResponse, ResponseSpec, User, UserFilters } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 export default (apiUrl: string) => ({
@@ -175,10 +175,30 @@ export default (apiUrl: string) => ({
    * @param {Tenant} loginCredentials - The login credentials
    * @returns The login response
    */
-  validateOTPCode: (otpCode: string, tenant: string, userName?: string, eMail?: string) =>
+  validateOTPCode: (
+    otpCode: string,
+    tenant: string,
+    userName?: string,
+    eMail?: string
+  ) =>
     apiFetcher(`/ValidateOTPCode`, {
       apiUrl,
       method: 'POST',
       body: { userName, eMail, otpCode, tenant },
     }) as Promise<ResponseSpec & { newSessionToken: string }>,
+
+  /**
+   * Refreshes a temporary session token for a user just logged or created.
+   * @deprecated Use PwlUser APIs
+   * @param refreshTemporarySessionSpecs - The refresh temporary session specifications
+   * @returns The refreshed session details
+   */
+  refreshTemporarySession: (
+    refreshTemporarySessionSpecs: RefreshTemporarySessionRequest
+  ) =>
+    apiFetcher('/RefreshTemporarySession', {
+      apiUrl,
+      body: refreshTemporarySessionSpecs,
+      method: 'POST',
+    }) as Promise<RefreshTemporarySessionResponse>,
 });
