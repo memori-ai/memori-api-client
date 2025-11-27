@@ -1,5 +1,12 @@
 
 
+## [6.17.0](https://github.com/memori-ai/memori-api-client/compare/v6.16.0...v6.17.0) (2025-11-27)
+
+
+### Features
+
+* add continueFromSessionID to OpenSession type ([24895f8](https://github.com/memori-ai/memori-api-client/commit/24895f88e050af10cc26ad47cfcec304321405ac))
+
 ## [6.16.0](https://github.com/memori-ai/memori-api-client/compare/v6.15.0...v6.16.0) (2025-11-27)
 
 
