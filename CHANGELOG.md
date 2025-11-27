@@ -1,5 +1,12 @@
 
 
+## [6.16.0](https://github.com/memori-ai/memori-api-client/compare/v6.15.0...v6.16.0) (2025-11-27)
+
+
+### Features
+
+* add disableAIContentCollection property to Memori type ([1cb03bb](https://github.com/memori-ai/memori-api-client/commit/1cb03bbeb040ae23a96290add1efde3e9b784940))
+
 ## [6.15.0](https://github.com/memori-ai/memori-api-client/compare/v6.14.2...v6.15.0) (2025-11-24)
 
 
