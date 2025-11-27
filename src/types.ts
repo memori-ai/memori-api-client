@@ -926,6 +926,7 @@ export declare type OpenSession = {
   tag?: string;
   pin?: string;
   continueFromChatLogID?: string;
+  continueFromSessionID?: string;
   initialContextVars?: { [key: string]: string };
   initialQuestion?: string;
   forceCloseSessions?: boolean;
