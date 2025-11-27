@@ -120,6 +120,7 @@ export declare type Memori = {
   contentQualityIndex?: number;
   contentQualityIndexTimestamp?: string;
   alwaysAnswerWithCompletion?: boolean;
+  disableAIContentCollection?: boolean;
   requireLoginToken?: boolean;
 };
 
