@@ -1,5 +1,12 @@
 
 
+## [6.18.0](https://github.com/memori-ai/memori-api-client/compare/v6.17.0...v6.18.0) (2026-01-05)
+
+
+### Features
+
+* add DTDescription property to Memori type ([ad3454b](https://github.com/memori-ai/memori-api-client/commit/ad3454b2571b4f6acbe9d8b69edc05a672cf329f))
+
 ## [6.17.0](https://github.com/memori-ai/memori-api-client/compare/v6.16.0...v6.17.0) (2025-11-27)
 
 
