@@ -72,7 +72,7 @@ export declare type Memori = {
   nsfw?: boolean;
   enableCompletions?: boolean;
   completionDescription?: string;
-  DTDescription?: string;
+  dtDescription?: string;
   enableDeepThought?: boolean;
   enableBoardOfExperts?: boolean;
   disableCompletionMediaExtraction?: boolean;
