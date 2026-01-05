@@ -1,5 +1,12 @@
 
 
+## [6.18.1](https://github.com/memori-ai/memori-api-client/compare/v6.18.0...v6.18.1) (2026-01-05)
+
+
+### Bug Fixes
+
+* rename DTDescription to dtDescription in Memori type ([386d347](https://github.com/memori-ai/memori-api-client/commit/386d3478b60eccbe00ddcfea8d3f367bf2aaf422))
+
 ## [6.18.0](https://github.com/memori-ai/memori-api-client/compare/v6.17.0...v6.18.0) (2026-01-05)
 
 
