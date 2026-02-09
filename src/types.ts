@@ -598,6 +598,10 @@ export declare type Tenant = {
     senderEmail: string;
     senderName: string;
   };
+  translationServiceConfig?: {
+    apiKey: string;
+    url: string;
+  };
   creationTimestamp?: string;
   lastChangeTimestamp?: string;
   perplexityAPIKey?: string;
