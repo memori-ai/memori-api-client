@@ -1,5 +1,12 @@
 
 
+## [6.19.0](https://github.com/memori-ai/memori-api-client/compare/v6.18.1...v6.19.0) (2026-02-09)
+
+
+### Features
+
+* add translationServiceConfig to Tenant type ([03f84da](https://github.com/memori-ai/memori-api-client/commit/03f84da080fea860590ce9b4022fa7a4ba750b0f))
+
 ## [6.18.1](https://github.com/memori-ai/memori-api-client/compare/v6.18.0...v6.18.1) (2026-01-05)
 
 
