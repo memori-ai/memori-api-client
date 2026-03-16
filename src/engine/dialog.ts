@@ -1,4 +1,4 @@
-import { DialogState, Medium, ResponseSpec } from '../types';
+import { DialogState, Medium, PlaceSpecs, ResponseSpec } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /******************
@@ -7,26 +7,57 @@ import { apiFetcher } from '../apiFetcher';
  *                *
  ******************/
 
+function buildTextEnteredBody(params: {
+  text: string;
+  dateUTC?: string | null;
+  place?: PlaceSpecs | null;
+}) {
+  const { text, dateUTC, place } = params;
+  const body: {
+    text: string;
+    dateUTC?: string;
+    place?: Record<string, number | string | null | undefined>;
+  } = { text };
+  if (dateUTC != null && dateUTC !== '') {
+    body.dateUTC = dateUTC;
+  }
+  if (place != null && typeof place === 'object') {
+    const placeBody: Record<string, number | string | null | undefined> = {};
+    if (place.placeName != null) placeBody.placeName = place.placeName;
+    if (place.latitude != null) placeBody.latitude = place.latitude;
+    if (place.longitude != null) placeBody.longitude = place.longitude;
+    if (place.uncertaintyKm != null) placeBody.uncertaintyKm = place.uncertaintyKm;
+    if (Object.keys(placeBody).length > 0) {
+      body.place = placeBody;
+    }
+  }
+  return body;
+}
+
 export default (apiUrl: string) => ({
   /**
    * Submits a Text Entered event to the session's Dialog State Machine.
    * @param {object} params
    * @param {string} params.sessionId The session ID
    * @param {string} params.text The text entered by the user
+   * @param {string} [params.dateUTC] Optional. Current date/time in UTC, ISO 8601 (e.g. 2026-03-16T12:00:00.000Z). If present, the backend updates the session's current date before processing.
+   * @param {PlaceSpecs} [params.place] Optional. Geographical context for the message (placeName, latitude, longitude, uncertaintyKm). latitude and longitude must be sent together if used.
    */
   postTextEnteredEvent: async ({
     sessionId,
     text,
+    dateUTC,
+    place,
   }: {
     sessionId: string;
     text: string;
+    dateUTC?: string | null;
+    place?: PlaceSpecs | null;
   }) =>
     apiFetcher(`/TextEnteredEvent/${sessionId}`, {
       method: 'POST',
       apiUrl,
-      body: {
-        text,
-      },
+      body: buildTextEnteredBody({ text, dateUTC, place }),
     }) as Promise<
       ResponseSpec & {
         currentState: DialogState;

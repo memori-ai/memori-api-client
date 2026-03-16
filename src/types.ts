@@ -315,6 +315,21 @@ export declare type Venue = {
   uncertainty?: number;
 };
 
+/**
+ * Geographical context for a message (e.g. Text Entered event).
+ * All fields are optional. When using coordinates, latitude and longitude must be provided together.
+ */
+export declare type PlaceSpecs = {
+  /** Place name (e.g. "London"); if lat/lon are omitted, the backend may geocode from this. */
+  placeName?: string | null;
+  /** Latitude; must be sent together with longitude when using coordinates. */
+  latitude?: number | null;
+  /** Longitude; must be sent together with latitude when using coordinates. */
+  longitude?: number | null;
+  /** Radius of uncertainty in km (e.g. 20.0). */
+  uncertaintyKm?: number | null;
+};
+
 export declare type NominatimItem = {
   place_id: number;
   lat: number;
