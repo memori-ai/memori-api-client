@@ -1,5 +1,12 @@
 
 
+## [6.20.0](https://github.com/memori-ai/memori-api-client/compare/v6.19.0...v6.20.0) (2026-03-16)
+
+
+### Features
+
+* add PlaceSpecs type and integrate into postTextEnteredEvent ([e860231](https://github.com/memori-ai/memori-api-client/commit/e860231f5ec6574b1a02d896b88feba2b96520f4))
+
 ## [6.19.0](https://github.com/memori-ai/memori-api-client/compare/v6.18.1...v6.19.0) (2026-02-09)
 
 
