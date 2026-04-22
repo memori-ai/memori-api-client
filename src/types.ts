@@ -123,6 +123,12 @@ export declare type Memori = {
   alwaysAnswerWithCompletion?: boolean;
   disableAIContentCollection?: boolean;
   requireLoginToken?: boolean;
+  /**
+   * If True the Memori is a SCORM Memori.
+   * Once enabled, this flag cannot be reverted through update operations.
+   * To remove SCORM status, the Memori must be deleted.
+   */
+  scorm?: boolean;
 };
 
 export declare type CompletionConfig = {
@@ -579,10 +585,19 @@ export declare type Tenant = {
   adminCount?: number;
   userCount?: number;
   memoriCount?: number;
+  /**
+   * Number of SCORM Memori in this Tenant.
+   */
+  scormMemoriCount?: number;
+  /**
+   * Alias kept for backend payloads that expose PascalCase.
+   */
+  ScormMemoriCount?: number;
   disableRegistration?: boolean;
   maxMemoriPerAdmin?: number;
   maxMemoriPerUser?: number;
   maxTotalMemori?: number;
+  maxScormMemori?: number;
   maxAdmins?: number;
   maxUsers?: number;
   maxFreeSessions?: number;
