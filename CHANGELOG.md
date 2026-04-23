@@ -1,5 +1,12 @@
 
 
+## [6.21.0](https://github.com/memori-ai/memori-api-client/compare/v6.20.0...v6.21.0) (2026-04-23)
+
+
+### Features
+
+* add scorm support and additional properties to types ([17941ca](https://github.com/memori-ai/memori-api-client/commit/17941ca846e582dc0effd3f023b085f944af87dd))
+
 ## [6.20.0](https://github.com/memori-ai/memori-api-client/compare/v6.19.0...v6.20.0) (2026-03-16)
 
 
