@@ -158,13 +158,13 @@ export declare type CompletionConfig = {
    * - Vertex_Anthropic
    */
   provider:
-    | 'OpenAI'
-    | 'Anthropic'
-    | 'Mistral'
-    | 'Azure_OpenAI'
-    | 'AWS_Anthropic'
-    | 'Vertex_Anthropic'
-    | 'Custom_OpenAI';
+  | 'OpenAI'
+  | 'Anthropic'
+  | 'Mistral'
+  | 'Azure_OpenAI'
+  | 'AWS_Anthropic'
+  | 'Vertex_Anthropic'
+  | 'Custom_OpenAI';
 
   /**
    * @type {string=}
@@ -504,15 +504,15 @@ export declare type Integration = {
   memoriID?: string;
   type: IntegrationType;
   state?:
-    | 'NEW'
-    | 'PROCESSING'
-    | 'DONE'
-    | 'REMOVED'
-    | 'ERROR'
-    | 'WAITING_MANUAL_ACTION'
-    | 'DRAFT'
-    | 'NOT_VALIDATED'
-    | 'PUBLISHED';
+  | 'NEW'
+  | 'PROCESSING'
+  | 'DONE'
+  | 'REMOVED'
+  | 'ERROR'
+  | 'WAITING_MANUAL_ACTION'
+  | 'DRAFT'
+  | 'NOT_VALIDATED'
+  | 'PUBLISHED';
   publish?: boolean;
   deviceEmails?: string[];
   invocationText?: string;
@@ -594,6 +594,8 @@ export declare type Tenant = {
    */
   ScormMemoriCount?: number;
   disableRegistration?: boolean;
+  ssoLogin?: boolean;
+  ssoRedirect?: string;
   maxMemoriPerAdmin?: number;
   maxMemoriPerUser?: number;
   maxTotalMemori?: number;
@@ -830,12 +832,12 @@ export declare type SearchQuery = {
    * If specified, the search is limited to Memories of this type.
    */
   memoryType?:
-    | 'Question'
-    | 'Story'
-    | 'Default'
-    | 'CompletionDraft'
-    | 'CompletionPlaceholder'
-    | 'ExpertReference';
+  | 'Question'
+  | 'Story'
+  | 'Default'
+  | 'CompletionDraft'
+  | 'CompletionPlaceholder'
+  | 'ExpertReference';
 };
 
 /**
@@ -878,11 +880,11 @@ export declare type Answer = {
 export declare type Memory = {
   memoryID: string;
   memoryType:
-    | 'Question'
-    | 'Story'
-    | 'Default'
-    | 'CompletionDraft'
-    | 'ExpertReference';
+  | 'Question'
+  | 'Story'
+  | 'Default'
+  | 'CompletionDraft'
+  | 'ExpertReference';
   lastRead?: string;
   readOccurrences?: number;
   receiverID?: string;
@@ -1544,19 +1546,19 @@ export declare type EventLog = {
   eventLogID: string;
   timestamp: string;
   eventType:
-    | 'MemoriOpened'
-    | 'MemoriClosed'
-    | 'QuestionAnsweredCorrectly'
-    | 'QuestionAnsweredIncorrectly'
-    | 'QuestionNotAnswered'
-    | 'IntentMatched';
+  | 'MemoriOpened'
+  | 'MemoriClosed'
+  | 'QuestionAnsweredCorrectly'
+  | 'QuestionAnsweredIncorrectly'
+  | 'QuestionNotAnswered'
+  | 'IntentMatched';
   memoriID: string;
   sessionID: string;
   maintenanceType?:
-    | 'None'
-    | 'ConsumptionJob'
-    | 'ChatLogExtractionJob'
-    | 'ContentQualityJob';
+  | 'None'
+  | 'ConsumptionJob'
+  | 'ChatLogExtractionJob'
+  | 'ContentQualityJob';
   userAgent?: string;
   ipAddress?: string;
   additionalInfo?: OpenSession['additionalInfo'];
@@ -1745,12 +1747,12 @@ export interface ProcessStatus {
    * - Failed: the Import process terminated due to an unexpected error, not all Memory objects may have been processed.
    */
   status:
-    | 'Pending'
-    | 'Starting'
-    | 'Running'
-    | 'Stopped'
-    | 'Completed'
-    | 'Failed';
+  | 'Pending'
+  | 'Starting'
+  | 'Running'
+  | 'Stopped'
+  | 'Completed'
+  | 'Failed';
   /**
    * @type {string=}
    * If the Status is Failed, reports the error that caused the Import process to fail. Null otherwise.
