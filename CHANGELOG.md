@@ -1,5 +1,12 @@
 
 
+## [6.22.0](https://github.com/memori-ai/memori-api-client/compare/v6.21.0...v6.22.0) (2026-04-24)
+
+
+### Features
+
+* add ssoLogin and ssoRedirect to Tenant type ([56145f3](https://github.com/memori-ai/memori-api-client/commit/56145f3b735bb4690ad82770a8b0a68c9dfa9019))
+
 ## [6.21.0](https://github.com/memori-ai/memori-api-client/compare/v6.20.0...v6.21.0) (2026-04-23)
 
 
