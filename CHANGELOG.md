@@ -1,5 +1,12 @@
 
 
+## [6.23.0](https://github.com/memori-ai/memori-api-client/compare/v6.22.0...v6.23.0) (2026-04-30)
+
+
+### Features
+
+* add enableScorm property to Tenant type ([89ba708](https://github.com/memori-ai/memori-api-client/commit/89ba7081c08501735574f53277b169818f410686))
+
 ## [6.22.0](https://github.com/memori-ai/memori-api-client/compare/v6.21.0...v6.22.0) (2026-04-24)
 
 
