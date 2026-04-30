@@ -592,6 +592,7 @@ export declare type Tenant = {
   /**
    * Alias kept for backend payloads that expose PascalCase.
    */
+  enableScorm?: boolean;
   ScormMemoriCount?: number;
   disableRegistration?: boolean;
   ssoLogin?: boolean;
