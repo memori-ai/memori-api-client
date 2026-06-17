@@ -1,5 +1,12 @@
 
 
+## [6.24.1](https://github.com/memori-ai/memori-api-client/compare/v6.24.0...v6.24.1) (2026-06-17)
+
+
+### Changes
+
+* streamline postTextEnteredEventAsync method and update documentation for clarity ([c0585f3](https://github.com/memori-ai/memori-api-client/commit/c0585f343a09d4cc04164341b7d90ae028fa53c8))
+
 ## [6.24.0](https://github.com/memori-ai/memori-api-client/compare/v6.23.0...v6.24.0) (2026-06-17)
 
 
