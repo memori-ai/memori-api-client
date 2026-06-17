@@ -37,34 +37,6 @@ function buildTextEnteredBody(params: {
 export default (apiUrl: string) => ({
 
   /**
- * Submits a Text Entered event to the session's Dialog State Machine.
- * @param {object} params
- * @param {string} params.sessionId The session ID
- * @param {string} params.text The text entered by the user
- * @param {string} [params.dateUTC] Optional. Current date/time in UTC, ISO 8601 (e.g. 2026-03-16T12:00:00.000Z). If present, the backend updates the session's current date before processing.
- * @param {PlaceSpecs} [params.place] Optional. Geographical context for the message (placeName, latitude, longitude, uncertaintyKm). latitude and longitude must be sent together if used.
- */
-  postTextEnteredEventAsync: async ({
-    sessionId,
-    text,
-    dateUTC,
-    place,
-  }: {
-    sessionId: string;
-    text: string;
-    dateUTC?: string | null;
-    place?: PlaceSpecs | null;
-  }) =>
-    apiFetcher(`/TextEnteredEventAsync/${sessionId}`, {
-      method: 'POST',
-      apiUrl,
-      body: buildTextEnteredBody({ text, dateUTC, place }),
-    }) as Promise<
-      ResponseSpec & {
-        currentState: DialogState;
-      }
-    >,
-  /**
    * Submits a Text Entered event to the session's Dialog State Machine.
    * @param {object} params
    * @param {string} params.sessionId The session ID
@@ -94,7 +66,8 @@ export default (apiUrl: string) => ({
     >,
 
   /**
-   * Submits a Text Entered event to the session's Dialog State Machine asynchronously.
+   * Submits a Text Entered event to the session's Dialog State Machine
+   * (fire-and-forget, returns 200 immediately).
    * Identical to postTextEnteredEvent, except the immediate HTTP 200 response is a
    * TextEnteredAsyncResponse with resultCode, resultMessage, and correlationID.
    * @param {object} params
@@ -114,7 +87,7 @@ export default (apiUrl: string) => ({
     dateUTC?: string | null;
     place?: PlaceSpecs | null;
   }) =>
-    apiFetcher(`/EnterTextAsync/${sessionId}`, {
+    apiFetcher(`/TextEnteredEventAsync/${sessionId}`, {
       method: 'POST',
       apiUrl,
       body: buildTextEnteredBody({ text, dateUTC, place }),
