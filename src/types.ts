@@ -12,6 +12,12 @@ export declare type ResponseSpec = {
   resultMessage: string;
 };
 
+export declare type TextEnteredAsyncResponse = {
+  resultCode: number;
+  resultMessage: string;
+  correlationID: string;
+};
+
 export declare type MemoriConfig = {
   memoriConfigID: string;
   useCase: string;

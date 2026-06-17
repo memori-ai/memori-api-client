@@ -1,4 +1,4 @@
-import { DialogState, Medium, PlaceSpecs, ResponseSpec } from '../types';
+import { DialogState, Medium, PlaceSpecs, ResponseSpec, TextEnteredAsyncResponse } from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 /******************
@@ -35,6 +35,35 @@ function buildTextEnteredBody(params: {
 }
 
 export default (apiUrl: string) => ({
+
+  /**
+ * Submits a Text Entered event to the session's Dialog State Machine.
+ * @param {object} params
+ * @param {string} params.sessionId The session ID
+ * @param {string} params.text The text entered by the user
+ * @param {string} [params.dateUTC] Optional. Current date/time in UTC, ISO 8601 (e.g. 2026-03-16T12:00:00.000Z). If present, the backend updates the session's current date before processing.
+ * @param {PlaceSpecs} [params.place] Optional. Geographical context for the message (placeName, latitude, longitude, uncertaintyKm). latitude and longitude must be sent together if used.
+ */
+  postTextEnteredEventAsync: async ({
+    sessionId,
+    text,
+    dateUTC,
+    place,
+  }: {
+    sessionId: string;
+    text: string;
+    dateUTC?: string | null;
+    place?: PlaceSpecs | null;
+  }) =>
+    apiFetcher(`/TextEnteredEventAsync/${sessionId}`, {
+      method: 'POST',
+      apiUrl,
+      body: buildTextEnteredBody({ text, dateUTC, place }),
+    }) as Promise<
+      ResponseSpec & {
+        currentState: DialogState;
+      }
+    >,
   /**
    * Submits a Text Entered event to the session's Dialog State Machine.
    * @param {object} params
@@ -63,6 +92,33 @@ export default (apiUrl: string) => ({
         currentState: DialogState;
       }
     >,
+
+  /**
+   * Submits a Text Entered event to the session's Dialog State Machine asynchronously.
+   * Identical to postTextEnteredEvent, except the immediate HTTP 200 response is a
+   * TextEnteredAsyncResponse with resultCode, resultMessage, and correlationID.
+   * @param {object} params
+   * @param {string} params.sessionId The session ID
+   * @param {string} params.text The text entered by the user
+   * @param {string} [params.dateUTC] Optional. Current date/time in UTC, ISO 8601 (e.g. 2026-03-16T12:00:00.000Z). If present, the backend updates the session's current date before processing.
+   * @param {PlaceSpecs} [params.place] Optional. Geographical context for the message (placeName, latitude, longitude, uncertaintyKm). latitude and longitude must be sent together if used.
+   */
+  postEnterTextAsync: async ({
+    sessionId,
+    text,
+    dateUTC,
+    place,
+  }: {
+    sessionId: string;
+    text: string;
+    dateUTC?: string | null;
+    place?: PlaceSpecs | null;
+  }) =>
+    apiFetcher(`/EnterTextAsync/${sessionId}`, {
+      method: 'POST',
+      apiUrl,
+      body: buildTextEnteredBody({ text, dateUTC, place }),
+    }) as Promise<TextEnteredAsyncResponse>,
 
   /**
    * Submits a Text Entered event to the session's Dialog State Machine.
@@ -95,6 +151,36 @@ export default (apiUrl: string) => ({
         currentState: DialogState;
       }
     >,
+
+  /**
+   * Submits a Text Entered event to the session's Dialog State Machine asynchronously.
+   * Identical to postTextEnteredEventExtended, except the immediate HTTP 200 response
+   * is a TextEnteredAsyncResponse with resultCode, resultMessage, and correlationID.
+   * @param {object} params
+   * @param {string} params.sessionId The session ID
+   * @param {string} params.text The text entered by the user
+   * @param {object} params.questionsAndAnswers The questions and answers to submit
+   */
+  postExtendedEnterTextAsync: async ({
+    sessionId,
+    text,
+    questionsAndAnswersHistory,
+  }: {
+    sessionId: string;
+    text: string;
+    questionsAndAnswersHistory: {
+      question: string;
+      answer: string;
+    }[];
+  }) =>
+    apiFetcher(`/ExtendedEnterTextAsync/${sessionId}`, {
+      method: 'POST',
+      apiUrl,
+      body: {
+        text,
+        questionsAndAnswersHistory,
+      },
+    }) as Promise<TextEnteredAsyncResponse>,
 
   /**
    * Submits a Place Changed event to the session's Dialog State Machine.
