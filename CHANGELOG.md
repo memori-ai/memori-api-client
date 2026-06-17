@@ -1,5 +1,12 @@
 
 
+## [6.24.0](https://github.com/memori-ai/memori-api-client/compare/v6.23.0...v6.24.0) (2026-06-17)
+
+
+### Features
+
+* add TextEnteredAsyncResponse type and asynchronous text entry methods ([0568d64](https://github.com/memori-ai/memori-api-client/commit/0568d64cfd5399366116eabadd3fe33c353921ff))
+
 ## [6.23.0](https://github.com/memori-ai/memori-api-client/compare/v6.22.0...v6.23.0) (2026-04-30)
 
 
