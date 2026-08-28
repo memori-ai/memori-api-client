@@ -2057,3 +2057,91 @@ export declare type RefreshTemporarySessionResponse = {
   resultCode: number;
   resultMessage: string;
 };
+
+export declare type GovernanceRuleStatus = 'Active' | 'Draft';
+
+export declare type GovernanceRuleWritableScopeType =
+  | 'All'
+  | 'MemoriCategories'
+  | 'List'
+  | 'AllExcept';
+
+export declare type GovernanceRuleScopeType =
+  | GovernanceRuleWritableScopeType
+  | 'Tags';
+
+export declare type GovernanceRuleExclusionSpecs = {
+  memoriID: string;
+  reason: string;
+};
+
+export declare type GovernanceRuleExclusion = GovernanceRuleExclusionSpecs & {
+  exclusionID?: string;
+};
+
+export declare type GovernanceRuleSpecs = {
+  title?: string;
+  text?: string;
+  categoryID?: string;
+  rationale?: string;
+  normRef?: string | null;
+  status?: GovernanceRuleStatus;
+  scopeType?: GovernanceRuleScopeType;
+  scopeMemoriCategories?: string[];
+  scopeMemoriIDs?: string[];
+  exclusions?: GovernanceRuleExclusionSpecs[];
+  /** @deprecated legacy Tags scope */
+  scopeTags?: string[];
+};
+
+export declare type GovernanceRule = {
+  ruleID: string;
+  tenantID: string;
+  title: string;
+  text: string;
+  categoryID: string;
+  categoryName?: string;
+  rationale: string;
+  normRef?: string | null;
+  status: GovernanceRuleStatus;
+  scopeType: GovernanceRuleScopeType;
+  scopeMemoriCategories?: string[];
+  scopeMemoriIDs?: string[];
+  exclusions?: GovernanceRuleExclusion[];
+  /** @deprecated legacy Tags scope */
+  scopeTags?: string[];
+  createdByUserID?: string;
+  lastModifiedByUserID?: string;
+  creationTimestamp?: string;
+  lastChangeTimestamp?: string;
+};
+
+export declare type GovernanceRuleCategory = {
+  categoryID: string;
+  name: string;
+};
+
+export declare type CreateGovernanceRuleResponse = ResponseSpec & {
+  governanceRule?: GovernanceRule;
+  rule?: GovernanceRule;
+};
+
+export declare type UpdateGovernanceRuleResponse = ResponseSpec & {
+  governanceRule?: GovernanceRule;
+  rule?: GovernanceRule;
+};
+
+export declare type GetGovernanceRuleResponse = ResponseSpec & {
+  governanceRule?: GovernanceRule;
+  rule?: GovernanceRule;
+};
+
+export declare type ListGovernanceRulesResponse = ResponseSpec & {
+  governanceRules?: GovernanceRule[];
+  rules?: GovernanceRule[];
+};
+
+export declare type ListGovernanceRuleCategoriesResponse = ResponseSpec & {
+  categories?: GovernanceRuleCategory[];
+  governanceRuleCategories?: GovernanceRuleCategory[];
+};

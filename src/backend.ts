@@ -12,6 +12,7 @@ import completionConfig from './backend/completionConfig';
 import badge from './backend/badge';
 import tenant from './backend/tenant';
 import trustedApplication from './backend/trustedApplication';
+import governanceRules from './backend/governanceRules';
 
 const backendAPI = (apiUrl: string) => ({
   asset: asset(apiUrl),
@@ -29,6 +30,7 @@ const backendAPI = (apiUrl: string) => ({
   badge: badge(apiUrl),
   tenant: tenant(apiUrl),
   trustedApplication: trustedApplication(apiUrl),
+  governanceRules: governanceRules(apiUrl),
   ...asset(apiUrl),
   ...memori(apiUrl),
   ...userPwl(apiUrl),
@@ -43,6 +45,7 @@ const backendAPI = (apiUrl: string) => ({
   ...badge(apiUrl),
   ...tenant(apiUrl),
   ...trustedApplication(apiUrl),
+  ...governanceRules(apiUrl),
 });
 
 export default backendAPI;
