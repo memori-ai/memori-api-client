@@ -1,5 +1,12 @@
 
 
+## [6.25.0](https://github.com/memori-ai/memori-api-client/compare/v6.24.1...v6.25.0) (2026-08-28)
+
+
+### Features
+
+* implement governance rules API and types, including CRUD operations and helper functions ([8ebbf75](https://github.com/memori-ai/memori-api-client/commit/8ebbf754f4bb6c31028cbd25b6b244a656171c9f))
+
 ## [6.24.1](https://github.com/memori-ai/memori-api-client/compare/v6.24.0...v6.24.1) (2026-06-17)
 
 
