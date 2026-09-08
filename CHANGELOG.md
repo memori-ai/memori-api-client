@@ -1,5 +1,12 @@
 
 
+## [6.26.0](https://github.com/memori-ai/memori-api-client/compare/v6.25.0...v6.26.0) (2026-09-08)
+
+
+### Features
+
+* add governance export functionality, including API methods and types for tenant governance ZIP generation ([bbf0171](https://github.com/memori-ai/memori-api-client/commit/bbf017124c471eff51147ce1e13e9571b50a6fe6))
+
 ## [6.25.0](https://github.com/memori-ai/memori-api-client/compare/v6.24.1...v6.25.0) (2026-08-28)
 
 
