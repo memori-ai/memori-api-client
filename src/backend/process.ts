@@ -3,6 +3,28 @@ import { apiFetcher } from '../apiFetcher';
 
 export default (apiUrl: string) => ({
   /**
+   * Gets processes for the session tenant, without filtering by user.
+   * Admin / SuperAdmin only. Use this for shared UIs such as GovernanceExport.
+   * @param {string} authToken - The login token.
+   * @param {string=} processType - Optional filter for Process type
+   */
+  getTenantProcesses: async <T = ProcessStatus>(
+    authToken: string,
+    processType?: ProcessStatus['processType']
+  ) =>
+    apiFetcher(
+      `/TenantProcesses/${authToken}${processType ? `/${processType}` : ''}`,
+      {
+        apiUrl,
+        method: 'GET',
+      }
+    ) as Promise<
+      ResponseSpec & {
+        processes: T[];
+      }
+    >,
+
+  /**
    * Gets a list of processes started by the currently logged in User.
    * @param {string} authToken - The login token.
    * @param {string=} processType - Optional filter for Process type

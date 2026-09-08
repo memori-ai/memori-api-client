@@ -1729,6 +1729,11 @@ export interface ProcessStatus {
    */
   memoriID: string;
   /**
+   * @type {string=}
+   * Tenant ID. Present on tenant-scoped processes such as GovernanceExport.
+   */
+  tenantID?: string;
+  /**
    * @type {string}
    * Name of the user that started the process.
    */
@@ -1740,8 +1745,9 @@ export interface ProcessStatus {
    *
    * - Import: for file import processes
    * - Analysis: for Deep Thought user/query analysis processes
+   * - GovernanceExport: for tenant policy/governance ZIP generation
    */
-  processType: 'Import' | 'Analysis';
+  processType: 'Import' | 'Analysis' | 'GovernanceExport';
   /**
    * @type {string}
    * minLength: 1
@@ -1800,8 +1806,42 @@ export interface ProcessStatus {
    * Total elements this Process is processing.
    */
   totalElements?: number;
+  /**
+   * @type {string=}
+   * Asset ID of the generated ZIP. Present on Completed GovernanceExport.
+   */
+  assetID?: string;
+  /**
+   * @type {string=}
+   * Public URL of the generated ZIP. Present on Completed GovernanceExport.
+   */
+  assetURL?: string;
+  /**
+   * @type {string=}
+   * Hash of the documented tenant configuration.
+   */
+  configHash?: string;
+  /**
+   * @type {string=}
+   * SHA-256 of the ZIP package (lowercase hex).
+   */
+  packageSha256?: string;
+  /**
+   * @type {number=}
+   * Number of warnings. Always present for GovernanceExport.
+   */
+  warningsCount?: number;
+  /**
+   * @type {string[]=}
+   * Warning messages. Full list on ProcessStatus / start; empty array on lists.
+   */
+  warnings?: string[];
   creationTimestamp?: string;
   lastChangeTimestamp?: string;
+}
+
+export interface GovernanceExportStatus extends ProcessStatus {
+  processType: 'GovernanceExport';
 }
 
 export interface ImportStatus extends ProcessStatus {

@@ -13,6 +13,7 @@ import badge from './backend/badge';
 import tenant from './backend/tenant';
 import trustedApplication from './backend/trustedApplication';
 import governanceRules from './backend/governanceRules';
+import governanceExport from './backend/governanceExport';
 
 const backendAPI = (apiUrl: string) => ({
   asset: asset(apiUrl),
@@ -31,6 +32,7 @@ const backendAPI = (apiUrl: string) => ({
   tenant: tenant(apiUrl),
   trustedApplication: trustedApplication(apiUrl),
   governanceRules: governanceRules(apiUrl),
+  governanceExport: governanceExport(apiUrl),
   ...asset(apiUrl),
   ...memori(apiUrl),
   ...userPwl(apiUrl),
@@ -46,6 +48,7 @@ const backendAPI = (apiUrl: string) => ({
   ...tenant(apiUrl),
   ...trustedApplication(apiUrl),
   ...governanceRules(apiUrl),
+  ...governanceExport(apiUrl),
 });
 
 export default backendAPI;
