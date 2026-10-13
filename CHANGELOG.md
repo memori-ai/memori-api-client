@@ -1,5 +1,12 @@
 
 
+## [6.27.0](https://github.com/memori-ai/memori-api-client/compare/v6.26.0...v6.27.0) (2026-10-13)
+
+
+### Features
+
+* enhance CompletionConfig with new settings ([68139d4](https://github.com/memori-ai/memori-api-client/commit/68139d4ef5fc2a80500232027aa5af944dc55383))
+
 ## [6.26.0](https://github.com/memori-ai/memori-api-client/compare/v6.25.0...v6.26.0) (2026-09-08)
 
 
