@@ -1,4 +1,8 @@
-import { ResponseSpec, CompletionConfig } from '../types';
+import {
+  ResponseSpec,
+  CompletionConfig,
+  CompletionConfigChangeResult,
+} from '../types';
 import { apiFetcher } from '../apiFetcher';
 
 export default (apiUrl: string) => ({
@@ -38,6 +42,7 @@ export default (apiUrl: string) => ({
   /**
    * Updates an existing Completion Config object.
    * A user can only update a Completion Config object owned by him, unless it has administrative rights.
+   * Secrets (API key, custom header values) sent back obfuscated are left unchanged.
    * @param {string} authToken - The login token
    * @param {CompletionConfig} config - The updated Completion Config object
    */
@@ -52,28 +57,37 @@ export default (apiUrl: string) => ({
     }) as Promise<
       ResponseSpec & {
         config: CompletionConfig;
-        appliedMemoriIDs?: string[];
-        appliedMemoriNames?: string[];
+        completionConfigChangeResults?: CompletionConfigChangeResult[];
       }
     >,
 
   /**
    * Deletes an existing Completion Config object.
    * A user can only delete a Completion Config object owned by him, unless it has administrative rights.
+   * @param {string} authToken - The login token
+   * @param {string} configID - The Completion Config object ID
    */
   deleteCompletionConfig: (authToken: string, configID: string) =>
     apiFetcher(`/CompletionConfig/${authToken}/${configID}`, {
       apiUrl,
       method: 'DELETE',
-    }) as Promise<ResponseSpec>,
+    }) as Promise<
+      ResponseSpec & {
+        completionConfigChangeResults?: CompletionConfigChangeResult[];
+      }
+    >,
 
   /**
    * Creates a new Completion Config object.
    * The created Completion Config object is owned by the currently logged-in user.
+   * @param {string} authToken - The login token
+   * @param {CompletionConfig} config - The Completion Config object to create
    */
   createCompletionConfig: (
     authToken: string,
-    config: CompletionConfig & { completionConfigID?: string }
+    config: Omit<CompletionConfig, 'completionConfigID'> & {
+      completionConfigID?: string;
+    }
   ) =>
     apiFetcher(`/CompletionConfig/${authToken}`, {
       apiUrl,
@@ -82,8 +96,7 @@ export default (apiUrl: string) => ({
     }) as Promise<
       ResponseSpec & {
         config: CompletionConfig;
-        appliedMemoriIDs?: string[];
-        appliedMemoriNames?: string[];
+        completionConfigChangeResults?: CompletionConfigChangeResult[];
       }
     >,
 });

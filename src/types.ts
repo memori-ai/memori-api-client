@@ -162,6 +162,7 @@ export declare type CompletionConfig = {
    * - Azure_OpenAI
    * - AWS_Anthropic
    * - Vertex_Anthropic
+   * - Custom_OpenAI
    */
   provider:
   | 'OpenAI'
@@ -304,21 +305,117 @@ export declare type CompletionConfig = {
    */
   clientId?: string;
   /**
-   * @type {string=}
-   * Project ID of the Vertex Anthropic model.
+   * @type {boolean=}
+   * If True the function cache is enabled for this configuration.
    */
+  functionCacheEnabled?: boolean;
   /**
-   * @type {string=}
-   * If True this configuration is applied to all Memori of the Tenant.
+   * @type {number=}
+   * Maximum percentage of the context window that can be used by the function cache.
+   */
+  functionCacheMaxPercent?: number;
+  /**
+   * @type {OpenAISettings=}
+   * Settings specific to the OpenAI provider family (OpenAI, Azure_OpenAI, Custom_OpenAI).
+   */
+  openAISettings?: OpenAISettings | null;
+  /**
+   * @type {AnthropicSettings=}
+   * Settings specific to the Anthropic provider family (Anthropic, AWS_Anthropic, Vertex_Anthropic).
+   */
+  anthropicSettings?: AnthropicSettings | null;
+  /**
+   * @type {MistralSettings=}
+   * Settings specific to the Mistral provider.
+   */
+  mistralSettings?: MistralSettings | null;
+  /**
+   * @type {ApplyToOption=}
+   * During Creation and Update operations, when set forces this configuration
+   * to be applied to the specified Memori objects and purposes.
+   * Ignored during Get operations.
    */
   applyTo?: ApplyToOption;
 };
 
+/**
+ * Custom HTTP header sent to the Completion Provider.
+ * The value is obfuscated for users who are not the creator of the Completion Config.
+ */
+export declare type CompletionHttpHeader = {
+  name: string;
+  value: string;
+};
+
+export declare type CompletionImageInputMode = 'url' | 'base64';
+
+export declare type OpenAISettings = {
+  contextWindow?: number | null;
+  reasoningEnabled?: boolean | null;
+  reasoningEffort?: string | null;
+  reasoningBudgetTokens?: number | null;
+  imageInputMode?: CompletionImageInputMode | null;
+  presencePenalty?: number | null;
+  frequencyPenalty?: number | null;
+  n?: number | null;
+  headers?: CompletionHttpHeader[] | null;
+  cacheEnabled?: boolean | null;
+  store?: boolean | null;
+  verbosity?: 'low' | 'medium' | 'high' | null;
+  reasoningMode?: 'standard' | 'pro' | null;
+  timeout?: number | null;
+};
+
+export declare type AnthropicSettings = {
+  contextWindow?: number | null;
+  reasoningEnabled?: boolean | null;
+  adaptive?: boolean | null;
+  reasoningEffort?: string | null;
+  reasoningBudgetTokens?: number | null;
+  thinkingDisplay?: 'summarized' | 'omitted' | null;
+  headers?: CompletionHttpHeader[] | null;
+  cacheTTL?: 'no' | '5min' | '1h' | null;
+  vertexRegion?: string | null;
+  imageInputMode?: CompletionImageInputMode | null;
+};
+
+export declare type MistralSettings = {
+  contextWindow?: number | null;
+  reasoningEnabled?: boolean | null;
+  reasoningEffort?: string | null;
+  headers?: CompletionHttpHeader[] | null;
+  cacheEnabled?: boolean | null;
+  imageInputMode?: CompletionImageInputMode | null;
+};
+
 export declare type ApplyToOption =
+  | 'ONLY_USER_MEMORI_ON_DEFAULT_ONLY_QA_PURPOSE'
+  | 'ONLY_USER_MEMORI_ON_DEFAULT_ONLY_IE_PURPOSE'
+  | 'ONLY_USER_MEMORI_ON_DEFAULT_ONLY_DT_PURPOSE'
+  | 'ONLY_USER_MEMORI_ON_DEFAULT_ALL_ENABLED_PURPOSES'
+  | 'ALL_USER_MEMORI_ONLY_QA_PURPOSE'
+  | 'ALL_USER_MEMORI_ONLY_IE_PURPOSE'
+  | 'ALL_USER_MEMORI_ONLY_DT_PURPOSE'
+  | 'ALL_USER_MEMORI_ALL_ENABLED_PURPOSES'
+  | 'ONLY_TENANT_MEMORI_ON_DEFAULT_ONLY_QA_PURPOSE'
+  | 'ONLY_TENANT_MEMORI_ON_DEFAULT_ONLY_IE_PURPOSE'
+  | 'ONLY_TENANT_MEMORI_ON_DEFAULT_ONLY_DT_PURPOSE'
+  | 'ONLY_TENANT_MEMORI_ON_DEFAULT_ALL_ENABLED_PURPOSES'
   | 'ALL_TENANT_MEMORI_ONLY_QA_PURPOSE'
   | 'ALL_TENANT_MEMORI_ONLY_IE_PURPOSE'
   | 'ALL_TENANT_MEMORI_ONLY_DT_PURPOSE'
   | 'ALL_TENANT_MEMORI_ALL_ENABLED_PURPOSES';
+
+/**
+ * Outcome of applying (or removing) a Completion Config to a single Memori,
+ * returned by Create, Update and Delete Completion Config operations.
+ */
+export declare type CompletionConfigChangeResult = {
+  memoriId: string;
+  memoriName: string;
+  applied: boolean;
+  errorMessage?: string;
+};
 
 export declare type Venue = {
   placeName: string;
