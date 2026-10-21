@@ -274,6 +274,37 @@ export default (apiUrl: string) => ({
     >,
 
   /**
+   * Submits a Proposal Confirmed event to the session's Dialog State Machine.
+   * A Proposal Confirmed event applies or discards one of the changes proposed while the Giver instructs the Agent.
+   * When the proposal is no longer pending the event is ignored, and the current state is returned without an emission.
+   * @param {object} params
+   * @param {string} params.sessionId The session ID
+   * @param {string} params.proposalID The ID of the proposal, the same as the ID of its medium
+   * @param {boolean} params.apply True to apply the proposal, false to discard it
+   * @param {object=} params.parameters The fields of a connector filled by the Giver, secret ones included
+   */
+  postProposalConfirmedEvent: async ({
+    sessionId,
+    proposalID,
+    apply,
+    parameters,
+  }: {
+    sessionId: string;
+    proposalID: string;
+    apply: boolean;
+    parameters?: { [key: string]: string };
+  }) =>
+    apiFetcher(`/ProposalConfirmedEvent/${sessionId}`, {
+      method: 'POST',
+      apiUrl,
+      body: { proposalID, apply, parameters },
+    }) as Promise<
+      ResponseSpec & {
+        currentState: DialogState;
+      }
+    >,
+
+  /**
    * Submits a Date Selected event to the session's Dialog State Machine.
    * @param {string} sessionId The session ID
    */
