@@ -1,5 +1,22 @@
 
 
+## [6.28.0](https://github.com/memori-ai/memori-api-client/compare/v6.27.0...v6.28.0) (2026-11-26)
+
+
+### Features
+
+* add postProposalConfirmedEvent to the dialog api ([331f109](https://github.com/memori-ai/memori-api-client/commit/331f109b181930405748bd68f4799d7b742676a7))
+
+
+### Bug Fixes
+
+* mock cross-fetch in jest setup to prevent real backend calls during tests ([89e16e4](https://github.com/memori-ai/memori-api-client/commit/89e16e4db5cd992f5f3afb7740d37959a412f0d9))
+
+
+### Maintenance
+
+* update GitHub Actions workflow to use latest actions and enable corepack ([0ee598b](https://github.com/memori-ai/memori-api-client/commit/0ee598b3b00cb44c08b09da873bf3168cb544e47))
+
 ## [6.27.0](https://github.com/memori-ai/memori-api-client/compare/v6.26.0...v6.27.0) (2026-10-13)
 
 
